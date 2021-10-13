@@ -8,6 +8,10 @@ clang -o $compiler_name lex.yy.c
 
 for test_case in $test_cases
 do
-	echo "Running test case ${test_case}..."
+	echo -e "Running test case ${test_case}"
+	echo "----------------------------------------------------"
 	./gocompiler < $test_case > "${test_case//${in_ext}/${out_ext}}"
+	cat "${test_case//${in_ext}/${out_ext}}"
+	echo -e ""
+	echo "----------------------------------------------------"
 done
