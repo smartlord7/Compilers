@@ -3,8 +3,10 @@
 	#include <stdio.h>
 %}
 
+%X STRING LINE_COMMENT GENERAL_COMMENT
+
 semicolon 		";"
-colon			","
+comma			","
 blank_id		"_"
 assign			"="
 star			"*"
@@ -27,74 +29,80 @@ or			"||"
 rbrace			"}"
 rpar			")"
 rsq			"]"
-package			"package"
-return 			"return"
+package		"package"
+return 		"return"
 else			"else"
 for			"for"
 if			"if"
 var			"var"
 int			"int"
-float32			"float32"
+float32		"float32"
 bool			"bool"
 string			"string"
 print			"fmt.Println"
 parse_int		"strconv.Atoi"
 func			"func"
-cmdargs			"os.Args"
+cmdargs		"os.Args"
 whitespaces		\r|\n|\t|\f|" "
-other			"."
+other			.
 
 letter			[a-zA-Z]
 digit			[0-9]
 
 id			({letter}|{blank_id})({letter}|{digit}+|{blank_id})*
 int_lit		(0?{digit}*)|(0[xX][{digit}a-fA-F]*)
+reserved		"case"|"chan"|"const"|"continue""|"default"|"defer"|
+			"fallthrough"|"func"|"go"|"goto"|"import"|
+            		"interface"|"map"|"range"|"select"|"struct"|"switch"|
+            		"type"|{plus}{plus}|{minus}{minus}
 
 
 %%
 
-{semicolon} 		{printf("SEMICOLON");}
-{colon}			{printf("COLON");}
-{blank_id}		{printf("BLANKID");}
-{assign}		{printf("ASSIGN");}
-{star}			{printf("STAR");}
-{div}			{printf("DIV");}
-{minus}			{printf("MINUS");}
-{plus}			{printf("PLUS");}
-{eq}			{printf("EQ");}
-{ge}			{printf("GE");}
-{gt}			{printf("GT");}
-{lbrace}		{printf("LBRACE");}
-{le}			{printf("LE");}
-{lpar}			{printf("LPAR");}
-{lsq}			{printf("LSQ");}
-{lt}			{printf("LT");}
-{mod}			{printf("MOD");}
-{ne}			{printf("NE");}
-{not} 			{printf("NOT");}
-{and}			{printf("AND");}
-{or}			{printf("OR");}
-{rbrace}		{printf("RBRACE");}
-{rpar}			{printf("RPAR");}
-{rsq}			{printf("RSQ");}
+{semicolon} 		{printf("SEMICOLON\n");}
+{colon}		{printf("COMMA\n");}
+{blank_id}		{printf("BLANKID\n");}
+{assign}		{printf("ASSIGN\n");}
+{star}			{printf("STAR\n");}
+{div}			{printf("DIV\n");}
+{minus}		{printf("MINUS\n");}
+{plus}			{printf("PLUS\n");}
+{eq}			{printf("EQ\n");}
+{ge}			{printf("GE\n");}
+{gt}			{printf("GT\n");}
+{lbrace}		{printf("LBRACE\n");}
+{le}			{printf("LE\n");}
+{lpar}			{printf("LPAR\n");}
+{lsq}			{printf("LSQ\n");}
+{lt}			{printf("LT\n");}
+{mod}			{printf("MOD\n");}
+{ne}			{printf("NE\n");}
+{not} 			{printf("NOT\n");}
+{and}			{printf("AND\n");}
+{or}			{printf("OR\n");}
+{rbrace}		{printf("RBRACE\n");}
+{rpar}			{printf("RPAR\n");}
+{rsq}			{printf("RSQ\n");}
 
-{package}		{printf("PACKAGE");}
-{return} 		{printf("RETURN");}
-{else}			{printf("ELSE");}
-{for}			{printf("FOR");}
-{if}			{printf("IF");}
-{var}			{printf("VAR");}
-{int}			{printf("INT");}
-{float32}		{printf("FLOAT32");}
-{bool}			{printf("BOOL");}
-{string}		{printf("STRING");}
-{print}			{printf("PRINT");}
-{parse_int}		{printf("PARSEINT");}
-{func}			{printf("FUNC");}
-{cmdargs}		{printf("CMDARGS");}
+{package}		{printf("PACKAGE\n");}
+{return} 		{printf("RETURN\n");}
+{else}			{printf("ELSE\n");}
+{for}			{printf("FOR\n");}
+{if}			{printf("IF\n");}
+{var}			{printf("VAR\n");}
+{int}			{printf("INT\n");}
+{float32}		{printf("FLOAT32\n");}
+{bool}			{printf("BOOL\n");}
+{string}		{printf("STRING\n");}
+{print}		{printf("PRINT\n");}
+{parse_int}		{printf("PARSEINT\n");}
+{func}			{printf("FUNC\n");}
+{cmdargs}		{printf("CMDARGS\n");}
 
 {id}			{printf("ID(%s)\n", yytext);}
+{int_lit}		{printf("INTLIT(%s)\n", yytext);}
 {whitespaces}		{;}
+
 {other}		{;}
 
 
