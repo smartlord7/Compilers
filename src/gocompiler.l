@@ -167,8 +167,8 @@ digit			[0-9]
 
 id			({letter}|{blank_id})({letter}|{digit}+|{blank_id})*
 int_lit		(0?{digit}*)|(0[xX][{digit}a-fA-F]*)
-reserved		"case"|"chan"|"const"|"continue""|"default"|"defer"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|{plus}{plus}|{minus}{minus}
-real_lit		({digit}*"."({digit}+|(e|E)({minus}|{plus})?{digit}+)) | {digit}+(e|E)({minus}|{plus})?{digit}+
+real_lit		({digit}*"."({digit}+|(e|E)({minus}|{plus})?{digit}+))|{digit}+(e|E)({minus}|{plus})?{digit}+
+reserved		"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"type"|{plus}{plus}|{minus}{minus}
 
 
 %%
@@ -215,12 +215,13 @@ real_lit		({digit}*"."({digit}+|(e|E)({minus}|{plus})?{digit}+)) | {digit}+(e|E)
 
 {id}			{handle_token(ID);}
 {int_lit}		{handle_token(INT_LIT);}
+{real_lit}		{printf("REALLIT(%s)\n", yytext);}
 {whitespaces}		{;}
 
 \"			{BEGIN STRING;}
 <STRING>\"		{BEGIN 0;}
 <STRING>\f|\t|\\	{;}
-<STRING>\n|\r|\.|\".\"	{;}		//TODO: Call error function
+<STRING>\n|\\n|\\r|\r|\".\"|\.|\\.	{printf("erro");}		//TODO: Call error function
 
 {other}		{;}
 
