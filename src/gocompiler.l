@@ -29,20 +29,20 @@ or			"||"
 rbrace			"}"
 rpar			")"
 rsq			"]"
-package		"package"
-return 		"return"
+package			"package"
+return 			"return"
 else			"else"
 for			"for"
 if			"if"
 var			"var"
 int			"int"
-float32		"float32"
+float32			"float32"
 bool			"bool"
 string			"string"
 print			"fmt.Println"
 parse_int		"strconv.Atoi"
 func			"func"
-cmdargs		"os.Args"
+cmdargs			"os.Args"
 whitespaces		\r|\n|\t|\f|" "
 other			.
 
@@ -55,17 +55,18 @@ reserved		"case"|"chan"|"const"|"continue""|"default"|"defer"|
 			"fallthrough"|"func"|"go"|"goto"|"import"|
             		"interface"|"map"|"range"|"select"|"struct"|"switch"|
             		"type"|{plus}{plus}|{minus}{minus}
+real_lit		({digit}*"."({digit}+|(e|E)({minus}|{plus})?{digit}+)) | {digit}+(e|E)({minus}|{plus})?{digit}+
 
 
 %%
 
 {semicolon} 		{printf("SEMICOLON\n");}
-{colon}		{printf("COMMA\n");}
+{colon}			{printf("COMMA\n");}
 {blank_id}		{printf("BLANKID\n");}
 {assign}		{printf("ASSIGN\n");}
 {star}			{printf("STAR\n");}
 {div}			{printf("DIV\n");}
-{minus}		{printf("MINUS\n");}
+{minus}			{printf("MINUS\n");}
 {plus}			{printf("PLUS\n");}
 {eq}			{printf("EQ\n");}
 {ge}			{printf("GE\n");}
@@ -102,6 +103,11 @@ reserved		"case"|"chan"|"const"|"continue""|"default"|"defer"|
 {id}			{printf("ID(%s)\n", yytext);}
 {int_lit}		{printf("INTLIT(%s)\n", yytext);}
 {whitespaces}		{;}
+
+\"			{begin STRING;}
+<STRING>\"		{begin 0;}
+<STRING>\f|\t|\\	{;}
+<STRING>\n|\r|\.|\".\"	{;}		//TODO: Call error function
 
 {other}		{;}
 
