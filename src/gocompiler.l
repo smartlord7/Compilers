@@ -4,7 +4,7 @@
 	#include <string.h>
 	#include <stdarg.h>
 	
-	#define ERROR_GENERIC_MSG "Line %d, column %d "
+	#define ERROR_GENERIC_MSG "Line %d, column %d: "
 	#define BUF_SIZE 256
 	
 	static int current_line = 1, current_column = 1;
@@ -60,6 +60,8 @@
 		LINE_COMMENT_START,
 		GENERAL_COMMENT_START,
 		GENERAL_COMMENT_END,
+		IGNORE,
+		IGNORE_NEW_LINE
 	} token_type;
 		
 	typedef enum {
@@ -121,6 +123,8 @@
 		"LINE_COMMENT_START",
 		"GENERAL_COMMENT_START",
 		"GENERAL_COMMENT_END",
+		"IGNORE",
+		"IGNORE_NEW_LINE"
 	};
 	
 	const char * error_msgs[] = {
@@ -243,14 +247,14 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 <STATE_STRING>\n|\\n|\\r|\r|\".\"|\.|\\.	{lex_error(UNTERMINATED_STR_LIT);}
 
 "//"									{BEGIN STATE_LINE_COMMENT;}
-<STATE_LINE_COMMENT>{new_line}			{BEGIN 0;}						
-<STATE_LINE_COMMENT>.					{;}
+<STATE_LINE_COMMENT>{new_line}			{handle_token(IGNORE_NEW_LINE); BEGIN 0;}						
+<STATE_LINE_COMMENT>.					{handle_token(IGNORE);}
 
 "/*"									{BEGIN STATE_GENERAL_COMMENT;}
 <STATE_GENERAL_COMMENT>"*/"					{BEGIN 0;}
+<STATE_GENERAL_COMMENT>{new_line}			{handle_token(IGNORE_NEW_LINE);}
 <STATE_GENERAL_COMMENT><<EOF>>				{lex_error(UNTERMINATED_COMMENT); exit(EXIT_FAILURE);}
-<STATE_GENERAL_COMMENT>^([^("*"|<<EOF>>)])	{lex_error(ILLEGAL_CHAR);}
-<STATE_GENERAL_COMMENT>.					{;}
+<STATE_GENERAL_COMMENT>.					{handle_token(IGNORE);}
 
 {other}								{lex_error(ILLEGAL_CHAR);}
 
@@ -283,7 +287,13 @@ void handle_token(token_type tok_type) {
 		case NEW_LINE:
 			current_line++;
 			current_column = 1;
-			break;			
+			break;
+		case IGNORE:
+			break;
+		case IGNORE_NEW_LINE:
+			current_line++;
+			current_column = 1;
+			break;		
 		default:
 			printf("%s\n", token_types[tok_type]);	
 	}
