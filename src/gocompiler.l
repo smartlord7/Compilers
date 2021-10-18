@@ -7,7 +7,7 @@
 	#define ERROR_GENERIC_MSG "Line %d, column %d: "
 	#define BUF_SIZE 256
 	
-	static int current_line = 1, current_column = 1;
+	static int current_line = 1, current_column = 1, last_token;
 	
 	typedef enum {
 		NEW_LINE,
@@ -285,18 +285,32 @@ void handle_token(token_type tok_type) {
 			printf("%s(%s)\n", token_types[tok_type], tok);
 			break;
 		case NEW_LINE:
-			current_line++;
-			current_column = 1;
-			break;
-		case IGNORE:
-			break;
 		case IGNORE_NEW_LINE:
 			current_line++;
 			current_column = 1;
-			break;		
+
+			switch(last_token) {
+				case INT_LIT:
+				case REAL_LIT:
+				case STRING_LIT:
+				case ID:
+				case RETURN:
+				case RPAR:
+				case RSQ:
+				case RBRACE:
+					handle_token(SEMICOLON);
+					break;
+				default:
+					break;
+			}
+
+			break;
+		case IGNORE:
+			break;
 		default:
 			printf("%s\n", token_types[tok_type]);	
 	}
+	last_token = tok_type;
 }
 
 void lex_error_inner(error_type err_type, ...) {
