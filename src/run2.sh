@@ -4,7 +4,7 @@ in_ext='in'
 out_ext='out'
 
 lex $compiler_name.l
-clang-9 -o $compiler_name lex.yy.c
+clang-9 -o $compiler_name lex.yy.c -g
 
 for test_case in $test_cases
 do

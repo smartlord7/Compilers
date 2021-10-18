@@ -5,10 +5,12 @@
 	#include <stdarg.h>
 	
 	#define ERROR_GENERIC_MSG "Line %d, column %d "
+	#define BUF_SIZE 256
 	
-	static int current_column = 1;
+	static int current_line = 1, current_column = 1;
 	
 	typedef enum {
+		NEW_LINE,
 		SEMICOLON,
 		COMMA,
 		BLANK_ID,
@@ -50,18 +52,26 @@
 		RESERVED,
 		ID,
 		INT_LIT,
-		OTHER
+		REAL_LIT,
+		STRING_LIT,
+		OTHER,
+		STRING_START,
+		STRING_END,
+		LINE_COMMENT_START,
+		GENERAL_COMMENT_START,
+		GENERAL_COMMENT_END,
 	} token_type;
 		
 	typedef enum {
 		ILLEGAL_CHAR,
-		INVALID_OCTAL_CONST,
 		UNTERMINATED_COMMENT,
+		INVALID_OCTAL_CONST,
 		UNTERMINATED_STR_LIT,
 		INVALID_ESCAPE_SEQ
 	} error_type;
 	
 	const char * token_types[] = {
+		"NEW_LINE",
 		"SEMICOLON",	
 		"COMMA",
 		"BLANKID",
@@ -103,22 +113,30 @@
 		"RESERVED",
 		"ID",
 		"INTLIT",
+		"REALLIT",
+		"STRINGLIT"
 		"OTHER"
+		"STRING_START",
+		"STRING_END",
+		"LINE_COMMENT_START",
+		"GENERAL_COMMENT_START",
+		"GENERAL_COMMENT_END",
 	};
 	
-	const char * error_types[] = {
+	const char * error_msgs[] = {
 		"illegal character (%c)",
-		"invalid octal constant",
-		"unterminated comment",
+		"invalid octal constant (%c)",
+		"unterminated constant",
 		"unterminated string literal",
-		"invalid escape sequence"
+		"invalid escape sequence (%c)"
 	};
 	
 	static void handle_token(token_type type);
+	static void lex_error(error_type err_type);
 
 %}
 
-%X STRING LINE_COMMENT STATE_GENERAL_COMMENT
+%X STATE_STRING STATE_LINE_COMMENT STATE_GENERAL_COMMENT
 
 semicolon 							";"
 comma								","
@@ -168,7 +186,7 @@ digit								[0-9]
 id									({letter}|{blank_id})({letter}|{digit}+|{blank_id})*
 int_lit								(0?{digit}*)|(0[xX][{digit}a-fA-F]*)
 real_lit							({digit}*"."({digit}+|(e|E)({minus}|{plus})?{digit}+))|{digit}+(e|E)({minus}|{plus})?{digit}+
-reserved							"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"type"|{plus}{plus}|{minus}{minus}
+reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|{plus}{plus}|{minus}{minus}
 
 
 %%
@@ -213,15 +231,21 @@ reserved							"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|
 {func}								{handle_token(FUNC);}
 {cmdargs}							{handle_token(CMDARGS);}
 
+{new_line}							{handle_token(NEW_LINE);}
+{reserved}							{handle_token(RESERVED);}
 {id}								{handle_token(ID);}
 {int_lit}							{handle_token(INT_LIT);}
-{real_lit}							{printf("REALLIT(%s)\n", yytext);}
+{real_lit}							{handle_token(REAL_LIT);}
 {whitespaces}						{;}
 
-\"									{BEGIN STRING;}
-<STRING>\"							{BEGIN 0;}
-<STRING>\f|\t|\\					{;}
-<STRING>\n|\\n|\\r|\r|\".\"|\.|\\.	{printf("erro");}		//TODO: Call error function
+\"									{BEGIN STATE_STRING;}
+<STATE_STRING>\"							{BEGIN 0;}
+<STATE_STRING>\f|\t|\\					{;}
+<STATE_STRING>\n|\\n|\\r|\r|\".\"|\.|\\.	{lex_error(UNTERMINATED_STR_LIT);}
+
+"//"									{BEGIN STATE_LINE_COMMENT;}
+<STATE_LINE_COMMENT>{new_line}			{BEGIN 0;}						
+<STATE_LINE_COMMENT>.					{;}
 
 "/*"|"/**"									{BEGIN STATE_GENERAL_COMMENT; printf("inicio comment\n");}		//TODO: Remove printf
 <STATE_GENERAL_COMMENT>"*/"					{BEGIN 0; printf("fim comment");}					//TODO: Remove printf
@@ -229,6 +253,8 @@ reserved							"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|
 <STATE_GENERAL_COMMENT><<EOF>>				{printf("erro no comment\n"); exit(EXIT_FAILURE);}						//TODO: Call error function
 <STATE_GENERAL_COMMENT>.					{;}
 {other}		{;}
+
+{other}								{lex_error(ILLEGAL_CHAR);}
 
 
 %%
@@ -251,24 +277,32 @@ void handle_token(token_type tok_type) {
 	switch (tok_type) {
 		case ID:
 		case INT_LIT:
+		case REAL_LIT:
+		case RESERVED:
+		case STRING_LIT:
 			printf("%s(%s)\n", token_types[tok_type], tok);
 			break;
-		case OTHER:
-			
+		case NEW_LINE:
+			current_line++;
+			break;			
 		default:
 			printf("%s\n", token_types[tok_type]);	
 	}
 }
 
-void show_lex_error_wrap(error_type err_type, ...) {
+void lex_error_inner(error_type err_type, ...) {
 	va_list args;
    
    	va_start(args, err_type);
-	vprintf(strcat(strcat(ERROR_GENERIC_MSG, error_types[err_type]), "\n"), args);
+	char buffer[BUF_SIZE], buffer2[BUF_SIZE];
+	snprintf(buffer, BUF_SIZE, ERROR_GENERIC_MSG, current_line, current_column);
+	vsnprintf(buffer2, BUF_SIZE, error_msgs[err_type], args);
+	
+	printf("%s%s\n", buffer, buffer2);
 	
    	va_end(args);
 }
 
-void show_lex_error(error_type err_type) {
-	show_lex_error_wrap(err_type, yylineno, current_column, yytext[0]);
+void lex_error(error_type err_type) {
+	lex_error_inner(err_type, yytext[0]);
 }
