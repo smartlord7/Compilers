@@ -188,7 +188,6 @@ int_lit								(0?{digit}*)|(0[xX][{digit}a-fA-F]*)
 real_lit							({digit}*"."({digit}+|(e|E)({minus}|{plus})?{digit}+))|{digit}+(e|E)({minus}|{plus})?{digit}+
 reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|{plus}{plus}|{minus}{minus}
 
-
 %%
 
 {semicolon} 						{handle_token(SEMICOLON);}
@@ -247,12 +246,11 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 <STATE_LINE_COMMENT>{new_line}			{BEGIN 0;}						
 <STATE_LINE_COMMENT>.					{;}
 
-"/*"|"/**"									{BEGIN STATE_GENERAL_COMMENT; printf("inicio comment\n");}		//TODO: Remove printf
-<STATE_GENERAL_COMMENT>"*/"					{BEGIN 0; printf("fim comment");}					//TODO: Remove printf
-<STATE_GENERAL_COMMENT>^([^("*"|<<EOF>>)])	{printf("erro no comment 2\n");}
-<STATE_GENERAL_COMMENT><<EOF>>				{printf("erro no comment\n"); exit(EXIT_FAILURE);}						//TODO: Call error function
+"/*"|"/**"									{BEGIN STATE_GENERAL_COMMENT;}
+<STATE_GENERAL_COMMENT>"*/"					{BEGIN 0;}
+<STATE_GENERAL_COMMENT><<EOF>>				{lex_error(UNTERMINATED_COMMENT); exit(EXIT_FAILURE);}
+<STATE_GENERAL_COMMENT>^([^("*"|<<EOF>>)])	{lex_error(ILLEGAL_CHAR);}
 <STATE_GENERAL_COMMENT>.					{;}
-{other}		{;}
 
 {other}								{lex_error(ILLEGAL_CHAR);}
 
