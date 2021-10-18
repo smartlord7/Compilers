@@ -2258,8 +2258,6 @@ void handle_token(token_type tok_type) {
 		default:
 			printf("%s\n", token_types[tok_type]);	
 	}
-	
-	
 }
 
 void show_lex_error_wrap(error_type err_type, ...) {
