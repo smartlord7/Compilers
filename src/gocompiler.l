@@ -109,7 +109,7 @@
 	const char * error_types[] = {
 		"illegal character (%c)",
 		"invalid octal constant",
-		"untermianted constant",
+		"unterminated comment",
 		"unterminated string literal",
 		"invalid escape sequence"
 	};
@@ -118,7 +118,7 @@
 
 %}
 
-%X STRING LINE_COMMENT GENERAL_COMMENT
+%X STRING LINE_COMMENT STATE_GENERAL_COMMENT
 
 semicolon 							";"
 comma								","
@@ -223,6 +223,9 @@ reserved							"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|
 <STRING>\f|\t|\\					{;}
 <STRING>\n|\\n|\\r|\r|\".\"|\.|\\.	{printf("erro");}		//TODO: Call error function
 
+"/*"|"/**"								{BEGIN STATE_GENERAL_COMMENT; printf("inicio comment");}		//TODO: Remove printf
+<STATE_GENERAL_COMMENT>"*/"					{BEGIN 0; printf("fim comment");}					//TODO: Remove printf
+<STATE_GENERAL_COMMENT><<EOF>>				{printf("erro no comment"); exit(EXIT_FAILURE);}							//TODO: Call error function
 {other}		{;}
 
 
@@ -267,4 +270,3 @@ void show_lex_error_wrap(error_type err_type, ...) {
 void show_lex_error(error_type err_type) {
 	show_lex_error_wrap(err_type, yylineno, current_column, yytext[0]);
 }
-
