@@ -9,8 +9,6 @@ INT
 RPAR
 INT
 LBRACE
-Line 4, column 2 illegal character (\)
-Line 4, column 3 illegal character (:)
 IF
 ID(n)
 EQ
@@ -21,7 +19,6 @@ INTLIT(1)
 SEMICOLON
 RBRACE
 SEMICOLON
-Line 8, column 2 illegal character (?)
 RETURN
 ID(n)
 STAR
@@ -43,8 +40,6 @@ VAR
 ID(argument)
 INT
 SEMICOLON
-Line 13, column 17 illegal character (&)
-Line 13, column 18 illegal character ($)
 ID(argument)
 COMMA
 BLANKID
@@ -67,3 +62,4 @@ RPAR
 SEMICOLON
 RBRACE
 SEMICOLON
+Line 14, column 3 unterminated comment

@@ -125,8 +125,8 @@
 	
 	const char * error_msgs[] = {
 		"illegal character (%c)",
+		"unterminated comment",
 		"invalid octal constant (%c)",
-		"unterminated constant",
 		"unterminated string literal",
 		"invalid escape sequence (%c)"
 	};
@@ -246,7 +246,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 <STATE_LINE_COMMENT>{new_line}			{BEGIN 0;}						
 <STATE_LINE_COMMENT>.					{;}
 
-"/*"|"/**"									{BEGIN STATE_GENERAL_COMMENT;}
+"/*"									{BEGIN STATE_GENERAL_COMMENT;}
 <STATE_GENERAL_COMMENT>"*/"					{BEGIN 0;}
 <STATE_GENERAL_COMMENT><<EOF>>				{lex_error(UNTERMINATED_COMMENT); exit(EXIT_FAILURE);}
 <STATE_GENERAL_COMMENT>^([^("*"|<<EOF>>)])	{lex_error(ILLEGAL_CHAR);}
@@ -282,6 +282,7 @@ void handle_token(token_type tok_type) {
 			break;
 		case NEW_LINE:
 			current_line++;
+			current_column = 1;
 			break;			
 		default:
 			printf("%s\n", token_types[tok_type]);	
@@ -289,6 +290,8 @@ void handle_token(token_type tok_type) {
 }
 
 void lex_error_inner(error_type err_type, ...) {
+	current_column += strlen(yytext);
+
 	va_list args;
    
    	va_start(args, err_type);
