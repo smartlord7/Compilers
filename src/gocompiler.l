@@ -223,9 +223,11 @@ reserved							"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|
 <STRING>\f|\t|\\					{;}
 <STRING>\n|\\n|\\r|\r|\".\"|\.|\\.	{printf("erro");}		//TODO: Call error function
 
-"/*"|"/**"								{BEGIN STATE_GENERAL_COMMENT; printf("inicio comment");}		//TODO: Remove printf
+"/*"|"/**"									{BEGIN STATE_GENERAL_COMMENT; printf("inicio comment\n");}		//TODO: Remove printf
 <STATE_GENERAL_COMMENT>"*/"					{BEGIN 0; printf("fim comment");}					//TODO: Remove printf
-<STATE_GENERAL_COMMENT><<EOF>>				{printf("erro no comment"); exit(EXIT_FAILURE);}							//TODO: Call error function
+<STATE_GENERAL_COMMENT>^([^("*"|<<EOF>>)])	{printf("erro no comment 2\n");}
+<STATE_GENERAL_COMMENT><<EOF>>				{printf("erro no comment\n"); exit(EXIT_FAILURE);}						//TODO: Call error function
+<STATE_GENERAL_COMMENT>.					{;}
 {other}		{;}
 
 
