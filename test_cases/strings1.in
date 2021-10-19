@@ -1,7 +1,6 @@
-"lawjhd";
-"alkdha";
-"";
-" awdlwjahda";
-" continue break int ";
-" \"Hello World \r";
-"\t\t \"STRING\"";
+"hello world"
+"123";
+"teste""teste""teste"""
+"\"\"teste\"teste\"teste\"\""
+"\fhello\nworld\rhow\tare\\you"
+"\\\\\\\"\\""\"""1h2e3l4l5o6\\"

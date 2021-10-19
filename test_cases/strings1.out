@@ -1,14 +1,17 @@
-STRLIT("lawjhd")
+STRLIT("hello world")
 SEMICOLON
-STRLIT("alkdha")
+STRLIT("123")
 SEMICOLON
+STRLIT("teste")
+STRLIT("teste")
+STRLIT("teste")
 STRLIT("")
 SEMICOLON
-STRLIT(" awdlwjahda")
+STRLIT("\"\"teste\"teste\"teste\"\"")
 SEMICOLON
-STRLIT(" continue break int ")
+STRLIT("\fhello\nworld\rhow\tare\\you")
 SEMICOLON
-STRLIT(" \"Hello World \r")
-SEMICOLON
-STRLIT("\t\t \"STRING\"")
+STRLIT("\\\\\\\"\\")
+STRLIT("\"")
+STRLIT("1h2e3l4l5o6\\")
 SEMICOLON

@@ -188,19 +188,24 @@ new_line							\r|\r?\n
 space								" "
 other								.
 
-letter								[a-zA-Z]
-digit								[0-9]+
+dec_digit							[0-9]
+hex_digit 							[0-9a-fA-F]
+octal_digit							[0-7]
+dec_lit								"0"|([1-9]{dec_digit}*)
+hex_lit								"0"[xX]{hex_digit}+
+octal_lit							"0"{octal_digit}+
+invalid_octal_lit					"0"{dec_digit}+
+int_lit								{dec_lit}|{hex_lit}|{octal_lit}
 
-id									({letter}|{blank_id})({letter}|{digit}+|{blank_id})*
-hex_digit 							[0-9a-fA-F]+
-int_lit								0|([1-9][0-9]*)|(0[xX]{hex_digit})
-octal_lit							0[0-7]+
-invalid_octal_lit					0[0-9]+
-exponent							(e|E)({minus}|{plus})?{digit}
-real_lit1							{digit}"."({digit})?{exponent}?
-real_lit2							"."{digit}({exponent})?
-real_lit3							{digit}{exponent}
-real_lit							{real_lit1}|{real_lit2}|{real_lit3}							
+exponent							(e|E)({minus}|{plus})?{dec_digit}+
+real_lit1							{dec_digit}+"."{dec_digit}*{exponent}?
+real_lit2							"."{dec_digit}+({exponent})?
+real_lit3							{dec_digit}+{exponent}
+real_lit							{real_lit1}|{real_lit2}|{real_lit3}	
+						
+letter								[a-zA-Z]
+id									({letter}|{blank_id})({letter}|{dec_digit}+|{blank_id})*
+
 
 reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|{plus}{plus}|{minus}{minus}
 
@@ -250,7 +255,6 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 {reserved}							{handle_token(RESERVED);}
 {id}								{handle_token(ID);}
 {int_lit}							{handle_token(INT_LIT);}
-{octal_lit}							{handle_token(INT_LIT);}
 {invalid_octal_lit}					{lex_error(INVALID_OCTAL_CONST, current_column);}
 {real_lit}							{handle_token(REAL_LIT);}
 {space}								{current_column++;}
@@ -291,7 +295,6 @@ int main(int argc, char * argv[]) {
 
 int yywrap() {
 	auto_semicolon();
-	printf("\n");
 
 	return 1;
 }
