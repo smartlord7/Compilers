@@ -7,7 +7,7 @@
 	#define ERROR_GENERIC_MSG "Line %d, column %d: "
 	#define BUF_SIZE 256
 	
-	static int current_line = 1, current_column = 1, last_token;
+	static int current_line = 1, current_column = 1, last_token, comment_line, comment_column;
 	
 	typedef enum {
 		NEW_LINE,
@@ -250,10 +250,10 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 <STATE_LINE_COMMENT>{new_line}			{handle_token(IGNORE_NEW_LINE); BEGIN 0;}						
 <STATE_LINE_COMMENT>.					{handle_token(IGNORE);}
 
-"/*"									{BEGIN STATE_GENERAL_COMMENT;}
+"/*"										{BEGIN STATE_GENERAL_COMMENT; comment_line = current_line; comment_column = current_column;}
 <STATE_GENERAL_COMMENT>"*/"					{BEGIN 0;}
 <STATE_GENERAL_COMMENT>{new_line}			{handle_token(IGNORE_NEW_LINE);}
-<STATE_GENERAL_COMMENT><<EOF>>				{lex_error(UNTERMINATED_COMMENT); exit(EXIT_FAILURE);}
+<STATE_GENERAL_COMMENT><<EOF>>				{current_line = comment_line; current_column = comment_column; lex_error(UNTERMINATED_COMMENT); exit(EXIT_FAILURE);}
 <STATE_GENERAL_COMMENT>.					{handle_token(IGNORE);}
 
 {other}								{lex_error(ILLEGAL_CHAR);}
