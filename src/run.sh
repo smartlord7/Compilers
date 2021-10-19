@@ -1,7 +1,7 @@
 compiler_name='gocompiler'
 test_cases='../test_cases/*.in'
-in_ext='in'
-out_ext='out'
+in_ext='.in'
+out_ext='.out'
 
 lex $compiler_name.l
 clang -o $compiler_name lex.yy.c -g

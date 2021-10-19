@@ -7,7 +7,8 @@
 	#define ERROR_GENERIC_MSG "Line %d, column %d: "
 	#define BUF_SIZE 256
 	
-	static int current_line = 1, current_column = 1, last_token, comment_line, comment_column;
+	static int current_line = 1, current_column = 1, start = 0, str_error = 0;
+	static char buf[BUF_SIZE], buf_counter = 0;
 	
 	typedef enum {
 		NEW_LINE,
@@ -116,8 +117,8 @@
 		"ID",
 		"INTLIT",
 		"REALLIT",
-		"STRINGLIT"
-		"OTHER"
+		"STRLIT",
+		"OTHER",
 		"STRING_START",
 		"STRING_END",
 		"LINE_COMMENT_START",
@@ -128,15 +129,15 @@
 	};
 	
 	const char * error_msgs[] = {
-		"illegal character (%c)",
+		"illegal character (%s)",
 		"unterminated comment",
-		"invalid octal constant (%c)",
+		"invalid octal constant (%s)",
 		"unterminated string literal",
-		"invalid escape sequence (%c)"
+		"invalid escape sequence (%s)"
 	};
 	
 	static void handle_token(token_type type);
-	static void lex_error(error_type err_type);
+	static void lex_error(error_type err_type, int curr_column);
 
 %}
 
@@ -241,10 +242,13 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 {real_lit}							{handle_token(REAL_LIT);}
 {whitespaces}						{;}
 
-\"									{BEGIN STATE_STRING;}
-<STATE_STRING>\"							{BEGIN 0;}
-<STATE_STRING>\f|\t|\\					{;}
-<STATE_STRING>\n|\\n|\\r|\r|\".\"|\.|\\.	{lex_error(UNTERMINATED_STR_LIT);}
+\"														{buf[0] = '\0'; buf_counter = 0; str_error = 0; start = current_column; BEGIN STATE_STRING;}
+<STATE_STRING>\"										{BEGIN 0; if (!str_error) handle_token(STRING_LIT);}
+<STATE_STRING>\n|\r										{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
+<STATE_STRING><<EOF>>									{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
+<STATE_STRING>"\\\""|"\\t"|"\\n"|"\\r"					{current_column += 2;buf[buf_counter++] = yytext[0];buf[buf_counter++] = yytext[1];}
+<STATE_STRING>\\[^\n\r]?								{lex_error(INVALID_ESCAPE_SEQ, current_column + 1);current_column+=strlen(yytext); str_error = 1;}
+<STATE_STRING>.											{current_column++;buf[buf_counter++] = yytext[0];}
 
 "//"									{BEGIN STATE_LINE_COMMENT;}
 <STATE_LINE_COMMENT>{new_line}			{handle_token(IGNORE_NEW_LINE); BEGIN 0;}						
@@ -256,7 +260,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 <STATE_GENERAL_COMMENT><<EOF>>				{current_line = comment_line; current_column = comment_column; lex_error(UNTERMINATED_COMMENT); exit(EXIT_FAILURE);}
 <STATE_GENERAL_COMMENT>.					{handle_token(IGNORE);}
 
-{other}								{lex_error(ILLEGAL_CHAR);}
+{other}										{lex_error(ILLEGAL_CHAR, current_column+=strlen(yytext));}
 
 
 %%
@@ -281,8 +285,13 @@ void handle_token(token_type tok_type) {
 		case INT_LIT:
 		case REAL_LIT:
 		case RESERVED:
-		case STRING_LIT:
 			printf("%s(%s)\n", token_types[tok_type], tok);
+			break;
+		case STRING_LIT:
+			buf[buf_counter] = '\0'; 
+			printf("%s(\"%s\")\n", token_types[STRING_LIT], buf);
+			buf[0] = '\0'; 
+			buf_counter = 0;
 			break;
 		case NEW_LINE:
 		case IGNORE_NEW_LINE:
@@ -313,14 +322,12 @@ void handle_token(token_type tok_type) {
 	last_token = tok_type;
 }
 
-void lex_error_inner(error_type err_type, ...) {
-	current_column += strlen(yytext);
-
+void lex_error_inner(error_type err_type, int curr_column, ...) {
 	va_list args;
    
-   	va_start(args, err_type);
+   	va_start(args, curr_column);
 	char buffer[BUF_SIZE], buffer2[BUF_SIZE];
-	snprintf(buffer, BUF_SIZE, ERROR_GENERIC_MSG, current_line, current_column);
+	snprintf(buffer, BUF_SIZE, ERROR_GENERIC_MSG, current_line, curr_column);
 	vsnprintf(buffer2, BUF_SIZE, error_msgs[err_type], args);
 	
 	printf("%s%s\n", buffer, buffer2);
@@ -328,6 +335,6 @@ void lex_error_inner(error_type err_type, ...) {
    	va_end(args);
 }
 
-void lex_error(error_type err_type) {
-	lex_error_inner(err_type, yytext[0]);
+void lex_error(error_type err_type, int curr_column) {
+	lex_error_inner(err_type, curr_column, yytext);
 }
