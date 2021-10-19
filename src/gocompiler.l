@@ -141,7 +141,7 @@
 
 %}
 
-%X STATE_STRING STATE_LINE_COMMENT STATE_GENERAL_COMMENT
+%X STATE_STRING STATE_LINE_COMMENT STATE_GENERAL_COMMENT OCTAL
 
 semicolon 							";"
 comma								","
@@ -189,8 +189,9 @@ letter								[a-zA-Z]
 digit								[0-9]
 
 id									({letter}|{blank_id})({letter}|{digit}+|{blank_id})*
-int_lit								(0?{digit}*)|(0[xX][{digit}a-fA-F]*)
-real_lit							({digit}*"."({digit}+|(e|E)({minus}|{plus})?{digit}+))|{digit}+(e|E)({minus}|{plus})?{digit}+
+int_lit								([1-9]+)|(0[xX][{digit}a-fA-F]+)|(0[0-7]+)
+invalid_octal_lit					0[0-9]+
+real_lit							{digit}+"."({digit}+)?((e|E)({minus}|{plus})?{digit}+)?|"."{digit}+((e|E)({minus}|{plus})?{digit}+)?|{digit}+(e|E)({minus}|{plus})?{digit}+
 reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|{plus}{plus}|{minus}{minus}
 
 %%
