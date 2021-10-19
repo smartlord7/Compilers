@@ -8,20 +8,15 @@ ID(n)
 INT
 RPAR
 INT
-LBRACE
-Line 4, column 6: illegal character (\)
-Line 4, column 8: illegal character (:)
 IF
 ID(n)
 EQ
-Line 5, column 14: illegal character (0)
+Line 4, column 14: illegal character (0)
 LBRACE
 RETURN
-INTLIT(1)
 SEMICOLON
 RBRACE
 SEMICOLON
-Line 8, column 6: illegal character (?)
 RETURN
 ID(n)
 STAR
@@ -34,6 +29,15 @@ RPAR
 SEMICOLON
 RBRACE
 SEMICOLON
+ID(a)
+SEMICOLON
+INTLIT(1)
+SEMICOLON
+REALLIT(1.e-1)
+SEMICOLON
+STRLIT("a")
+SEMICOLON
+Line 14, column 2: unterminated string literal
 FUNC
 ID(main)
 LPAR
@@ -42,9 +46,6 @@ LBRACE
 VAR
 ID(argument)
 INT
-SEMICOLON
-Line 13, column 24: illegal character (&)
-Line 13, column 26: illegal character ($)
 ID(argument)
 COMMA
 BLANKID
@@ -66,4 +67,3 @@ RPAR
 RPAR
 SEMICOLON
 RBRACE
-SEMICOLON

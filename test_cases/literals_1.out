@@ -4,6 +4,9 @@ REALLIT(1.)
 SEMICOLON
 REALLIT(.1e-1)
 SEMICOLON
+MINUS
+REALLIT(1.1e+1)
+SEMICOLON
 PLUS
 REALLIT(.1e+512)
 SEMICOLON
@@ -13,14 +16,14 @@ INTLIT(0x012FaF1)
 SEMICOLON
 INTLIT(0123)
 SEMICOLON
-Line 8, column 1: invalid octal constant (01239)
+Line 9, column 1: invalid octal constant (01239)
 SEMICOLON
-Line 9, column 1: invalid octal constant (08)
+Line 10, column 1: invalid octal constant (08)
 SEMICOLON
 INTLIT(123)
 INTLIT(124)
 INTLIT(07)
-Line 10, column 12: invalid octal constant (08)
+Line 11, column 12: invalid octal constant (08)
 SEMICOLON
 INTLIT(000)
 INTLIT(0X123)
@@ -31,4 +34,7 @@ REALLIT(123E+1)
 SEMICOLON
 PLUS
 REALLIT(12471E-1)
+SEMICOLON
+MINUS
+REALLIT(12451e1223)
 SEMICOLON

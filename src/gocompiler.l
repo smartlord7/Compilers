@@ -7,8 +7,9 @@
 	#define ERROR_GENERIC_MSG "Line %d, column %d: "
 	#define BUF_SIZE 4096
 	
-	static int current_line = 1, current_column = 1, start = 0, str_error = 0, last_token = 0, comment_line = 0, comment_column = 0;
-	static char buf[BUF_SIZE], buf_counter = 0;
+	int current_line = 1, current_column = 1, start = 0, str_error = 0, last_token = 0, comment_line = 0, comment_column = 0;
+	char buf[BUF_SIZE];
+	int buf_counter = 0;
 	
 	typedef enum {
 		NEW_LINE,
@@ -189,7 +190,8 @@ letter								[a-zA-Z]
 digit								[0-9]
 
 id									({letter}|{blank_id})({letter}|{digit}+|{blank_id})*
-int_lit								([1-9]+)|(0[xX][{digit}a-fA-F]+)|(0[0-7]+)
+int_lit								([1-9]+)|(0[xX][0-9a-fA-F]+)
+octal_lit							0[0-7]+
 invalid_octal_lit					0[0-9]+
 real_lit							{digit}+"."({digit}+)?((e|E)({minus}|{plus})?{digit}+)?|"."{digit}+((e|E)({minus}|{plus})?{digit}+)?|{digit}+(e|E)({minus}|{plus})?{digit}+
 reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|{plus}{plus}|{minus}{minus}
@@ -240,15 +242,18 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 {reserved}							{handle_token(RESERVED);}
 {id}								{handle_token(ID);}
 {int_lit}							{handle_token(INT_LIT);}
+{octal_lit}							{handle_token(INT_LIT);}
+{invalid_octal_lit}					{lex_error(INVALID_OCTAL_CONST, current_column);}
 {real_lit}							{handle_token(REAL_LIT);}
+" "									{current_column++;}
 {whitespaces}						{;}
 
 \"														{buf[0] = '\0'; buf_counter = 0; str_error = 0; start = current_column; BEGIN STATE_STRING;}
 <STATE_STRING>\"										{BEGIN 0; if (!str_error) handle_token(STRING_LIT);}
 <STATE_STRING>\n|\r										{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING><<EOF>>									{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
-<STATE_STRING>"\\\""|"\\t"|"\\n"|"\\r"					{current_column += 2;buf[buf_counter++] = yytext[0];buf[buf_counter++] = yytext[1];}
-<STATE_STRING>\\[^\n\r]?								{lex_error(INVALID_ESCAPE_SEQ, current_column + 1);current_column+=strlen(yytext); str_error = 1;}
+<STATE_STRING>"\\\""|"\\t"|"\\n"|"\\r"					{current_column += yylen;buf[buf_counter++] = yytext[0];buf[buf_counter++] = yytext[1];}
+<STATE_STRING>\\[^\n\r]?								{lex_error(INVALID_ESCAPE_SEQ, current_column + 1);current_column+=yylen; str_error = 1;}
 <STATE_STRING>.											{current_column++;buf[buf_counter++] = yytext[0];}
 
 "//"									{BEGIN STATE_LINE_COMMENT;}
