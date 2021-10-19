@@ -248,25 +248,25 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 " "									{current_column++;}
 {whitespaces}						{;}
 
-\"														{buf[0] = '\0'; buf_counter = 0; str_error = 0; start = current_column; BEGIN STATE_STRING;}
-<STATE_STRING>\"										{BEGIN 0; if (!str_error) handle_token(STRING_LIT);}
-<STATE_STRING>\n|\r										{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
-<STATE_STRING><<EOF>>									{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
-<STATE_STRING>"\\\""|"\\t"|"\\n"|"\\r"					{current_column += yylen;buf[buf_counter++] = yytext[0];buf[buf_counter++] = yytext[1];}
-<STATE_STRING>\\[^\n\r]?								{lex_error(INVALID_ESCAPE_SEQ, current_column + 1);current_column+=yylen; str_error = 1;}
-<STATE_STRING>.											{current_column++;buf[buf_counter++] = yytext[0];}
+\"																	{buf[0] = '\0'; buf_counter = 0; str_error = 0; start = current_column++; BEGIN STATE_STRING;}
+<STATE_STRING>\"													{BEGIN 0; if (!str_error) handle_token(STRING_LIT); current_column = 1;}
+<STATE_STRING>\r|\r?\n												{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
+<STATE_STRING><<EOF>>												{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
+<STATE_STRING>"\\\\"|"\\\""|"\\t"|"\\n"|"\\r"						{current_column += 2; buf[buf_counter++] = yytext[0]; buf[buf_counter++] = yytext[1];}
+<STATE_STRING>\\[^\n\r]?											{current_column += yyleng; lex_error(INVALID_ESCAPE_SEQ, current_column - yyleng); str_error = 1;}
+<STATE_STRING>.														{current_column++;buf[buf_counter++] = yytext[0];}
 
-"//"									{BEGIN STATE_LINE_COMMENT;}
-<STATE_LINE_COMMENT>{new_line}			{handle_token(IGNORE_NEW_LINE); BEGIN 0;}						
-<STATE_LINE_COMMENT>.					{handle_token(IGNORE);}
+"//"																{BEGIN STATE_LINE_COMMENT;}
+<STATE_LINE_COMMENT>{new_line}										{handle_token(IGNORE_NEW_LINE); BEGIN 0;}						
+<STATE_LINE_COMMENT>.												{handle_token(IGNORE);}
 
-"/*"										{BEGIN STATE_GENERAL_COMMENT; comment_line = current_line; comment_column = current_column;}
-<STATE_GENERAL_COMMENT>"*/"					{BEGIN 0;}
-<STATE_GENERAL_COMMENT>{new_line}			{handle_token(IGNORE_NEW_LINE);}
-<STATE_GENERAL_COMMENT><<EOF>>				{current_line = comment_line; current_column = comment_column; lex_error(UNTERMINATED_COMMENT, current_column); exit(EXIT_FAILURE);}
-<STATE_GENERAL_COMMENT>.					{handle_token(IGNORE);}
+"/*"																{BEGIN STATE_GENERAL_COMMENT; comment_line = current_line; comment_column = current_column; current_column += 2;}
+<STATE_GENERAL_COMMENT>"*/"											{BEGIN 0; current_column += 2;}
+<STATE_GENERAL_COMMENT>{new_line}									{handle_token(IGNORE_NEW_LINE);}
+<STATE_GENERAL_COMMENT><<EOF>>										{current_line = comment_line; lex_error(UNTERMINATED_COMMENT, comment_column + 1); exit(EXIT_FAILURE);}
+<STATE_GENERAL_COMMENT>.											{handle_token(IGNORE);}
 
-{other}										{lex_error(ILLEGAL_CHAR, current_column+=strlen(yytext));}
+{other}																{current_column += yyleng; lex_error(ILLEGAL_CHAR, current_column);}
 
 
 %%
@@ -284,7 +284,7 @@ int yywrap() {
 
 void handle_token(token_type tok_type) {
 	char * tok = yytext;
-	current_column += strlen(tok);
+	current_column += yyleng;
 	
 	switch (tok_type) {
 		case ID:
@@ -313,7 +313,7 @@ void handle_token(token_type tok_type) {
 				case RPAR:
 				case RSQ:
 				case RBRACE:
-					handle_token(SEMICOLON);
+					printf("SEMICOLON\n");
 					break;
 				default:
 					break;
