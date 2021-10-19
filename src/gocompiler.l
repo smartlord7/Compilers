@@ -7,7 +7,7 @@
 	#define ERROR_GENERIC_MSG "Line %d, column %d: "
 	#define BUF_SIZE 4096
 	
-	int current_line = 1, current_column = 1, start = 0, str_error = 0, last_token = 0, comment_line = 0, comment_column = 0;
+	int current_line = 1, current_column = 1, start = 0, str_error = 0, last_token = 0, comment_line = 0, comment_column = 0, verbose = 0;
 	char buf[BUF_SIZE];
 	int buf_counter = 0;
 	
@@ -139,6 +139,7 @@
 	
 	static void handle_token(token_type type);
 	static void lex_error(error_type err_type, int curr_column);
+	static void auto_semicolon();
 
 %}
 
@@ -182,18 +183,25 @@ print								"fmt.Println"
 parse_int							"strconv.Atoi"
 func								"func"
 cmdargs								"os.Args"
-whitespaces							\r|\n|\t|\f|" "
+whitespaces							\r|\n|\t|\f
 new_line							\r|\r?\n
+space								" "
 other								.
 
 letter								[a-zA-Z]
-digit								[0-9]
+digit								[0-9]+
 
 id									({letter}|{blank_id})({letter}|{digit}+|{blank_id})*
-int_lit								([1-9]+)|(0[xX][0-9a-fA-F]+)
+hex_digit 							[0-9a-fA-F]+
+int_lit								0|([1-9][0-9]*)|(0[xX]{hex_digit})
 octal_lit							0[0-7]+
 invalid_octal_lit					0[0-9]+
-real_lit							{digit}+"."({digit}+)?((e|E)({minus}|{plus})?{digit}+)?|"."{digit}+((e|E)({minus}|{plus})?{digit}+)?|{digit}+(e|E)({minus}|{plus})?{digit}+
+exponent							(e|E)({minus}|{plus})?{digit}
+real_lit1							{digit}"."({digit})?{exponent}?
+real_lit2							"."{digit}({exponent})?
+real_lit3							{digit}{exponent}
+real_lit							{real_lit1}|{real_lit2}|{real_lit3}							
+
 reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|{plus}{plus}|{minus}{minus}
 
 %%
@@ -245,16 +253,15 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 {octal_lit}							{handle_token(INT_LIT);}
 {invalid_octal_lit}					{lex_error(INVALID_OCTAL_CONST, current_column);}
 {real_lit}							{handle_token(REAL_LIT);}
-" "									{current_column++;}
-{whitespaces}						{;}
+{space}								{current_column++;}
 
-\"																	{buf[0] = '\0'; buf_counter = 0; str_error = 0; start = current_column++; BEGIN STATE_STRING;}
-<STATE_STRING>\"													{BEGIN 0; if (!str_error) handle_token(STRING_LIT); current_column = 1;}
+\"																	{buf[0] = '\0'; buf_counter = 0; str_error = 0; BEGIN STATE_STRING; start = current_column++;}
+<STATE_STRING>\"													{BEGIN 0; if (!str_error) handle_token(STRING_LIT);}
 <STATE_STRING>\r|\r?\n												{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING><<EOF>>												{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
-<STATE_STRING>"\\\\"|"\\\""|"\\t"|"\\n"|"\\r"						{current_column += 2; buf[buf_counter++] = yytext[0]; buf[buf_counter++] = yytext[1];}
-<STATE_STRING>\\[^\n\r]?											{current_column += yyleng; lex_error(INVALID_ESCAPE_SEQ, current_column - yyleng); str_error = 1;}
-<STATE_STRING>.														{current_column++;buf[buf_counter++] = yytext[0];}
+<STATE_STRING>"\\\\"|"\\\""|"\\t"|"\\n"|"\\r"|"\\f"					{buf[buf_counter++] = yytext[0]; buf[buf_counter++] = yytext[1]; current_column += 2;}
+<STATE_STRING>\\[^\n\r]?											lex_error(INVALID_ESCAPE_SEQ, current_column); {current_column += yyleng;  str_error = 1;}
+<STATE_STRING>.														{buf[buf_counter++] = yytext[0]; current_column++;}
 
 "//"																{BEGIN STATE_LINE_COMMENT;}
 <STATE_LINE_COMMENT>{new_line}										{handle_token(IGNORE_NEW_LINE); BEGIN 0;}						
@@ -263,21 +270,28 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 "/*"																{BEGIN STATE_GENERAL_COMMENT; comment_line = current_line; comment_column = current_column; current_column += 2;}
 <STATE_GENERAL_COMMENT>"*/"											{BEGIN 0; current_column += 2;}
 <STATE_GENERAL_COMMENT>{new_line}									{handle_token(IGNORE_NEW_LINE);}
-<STATE_GENERAL_COMMENT><<EOF>>										{current_line = comment_line; lex_error(UNTERMINATED_COMMENT, comment_column + 1); exit(EXIT_FAILURE);}
+<STATE_GENERAL_COMMENT><<EOF>>										{current_line = comment_line; lex_error(UNTERMINATED_COMMENT, comment_column); return 0;}
 <STATE_GENERAL_COMMENT>.											{handle_token(IGNORE);}
 
-{other}																{current_column += yyleng; lex_error(ILLEGAL_CHAR, current_column);}
+{whitespaces}														{;}
+{other}																{lex_error(ILLEGAL_CHAR, current_column); current_column += yyleng;}
 
 
 %%
 
 int main(int argc, char * argv[]) {
+	if (argc > 1 && strcmp(argv[1], "-l") == 0) {
+		verbose = 1;
+	}
+
 	yylex();
-	
+
 	return EXIT_SUCCESS;
 }
 
 int yywrap() {
+	auto_semicolon();
+	printf("\n");
 
 	return 1;
 }
@@ -291,11 +305,15 @@ void handle_token(token_type tok_type) {
 		case INT_LIT:
 		case REAL_LIT:
 		case RESERVED:
+		if (verbose) {
 			printf("%s(%s)\n", token_types[tok_type], tok);
+		}
 			break;
 		case STRING_LIT:
-			buf[buf_counter] = '\0'; 
-			printf("%s(\"%s\")\n", token_types[STRING_LIT], buf);
+			buf[buf_counter] = '\0';
+			if (verbose) {
+				printf("%s(\"%s\")\n", token_types[STRING_LIT], buf);
+			}
 			buf[0] = '\0'; 
 			buf_counter = 0;
 			break;
@@ -303,29 +321,36 @@ void handle_token(token_type tok_type) {
 		case IGNORE_NEW_LINE:
 			current_line++;
 			current_column = 1;
-
-			switch(last_token) {
-				case INT_LIT:
-				case REAL_LIT:
-				case STRING_LIT:
-				case ID:
-				case RETURN:
-				case RPAR:
-				case RSQ:
-				case RBRACE:
-					printf("SEMICOLON\n");
-					break;
-				default:
-					break;
-			}
-
+			auto_semicolon();
 			break;
 		case IGNORE:
 			break;
 		default:
-			printf("%s\n", token_types[tok_type]);	
+			if (verbose) {
+				printf("%s\n", token_types[tok_type]);	
+			}
 	}
+
 	last_token = tok_type;
+}
+
+void auto_semicolon() {
+	if (verbose) {
+		switch(last_token) {
+			case INT_LIT:
+			case REAL_LIT:
+			case STRING_LIT:
+			case ID:
+			case RETURN:
+			case RPAR:
+			case RSQ:
+			case RBRACE:
+				printf("SEMICOLON\n");
+				break;
+			default:
+				break;
+		}
+	}
 }
 
 void lex_error_inner(error_type err_type, int curr_column, ...) {

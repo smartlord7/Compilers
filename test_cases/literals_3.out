@@ -12,5 +12,5 @@ REALLIT(123E51)
 STRLIT("_")
 BLANKID
 STRLIT("STRING")
-Line 3, column 27: invalid octal constant (08)
+Line 3, column 29: invalid octal constant (08)
 SEMICOLON
