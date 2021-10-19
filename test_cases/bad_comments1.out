@@ -62,4 +62,4 @@ RPAR
 SEMICOLON
 RBRACE
 SEMICOLON
-Line 14, column 3 unterminated comment
+Line 14, column 3: unterminated comment

@@ -5,9 +5,9 @@
 	#include <stdarg.h>
 	
 	#define ERROR_GENERIC_MSG "Line %d, column %d: "
-	#define BUF_SIZE 256
+	#define BUF_SIZE 4096
 	
-	static int current_line = 1, current_column = 1, start = 0, str_error = 0;
+	static int current_line = 1, current_column = 1, start = 0, str_error = 0, last_token = 0, comment_line = 0, comment_column = 0;
 	static char buf[BUF_SIZE], buf_counter = 0;
 	
 	typedef enum {
@@ -257,7 +257,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 "/*"										{BEGIN STATE_GENERAL_COMMENT; comment_line = current_line; comment_column = current_column;}
 <STATE_GENERAL_COMMENT>"*/"					{BEGIN 0;}
 <STATE_GENERAL_COMMENT>{new_line}			{handle_token(IGNORE_NEW_LINE);}
-<STATE_GENERAL_COMMENT><<EOF>>				{current_line = comment_line; current_column = comment_column; lex_error(UNTERMINATED_COMMENT); exit(EXIT_FAILURE);}
+<STATE_GENERAL_COMMENT><<EOF>>				{current_line = comment_line; current_column = comment_column; lex_error(UNTERMINATED_COMMENT, current_column); exit(EXIT_FAILURE);}
 <STATE_GENERAL_COMMENT>.					{handle_token(IGNORE);}
 
 {other}										{lex_error(ILLEGAL_CHAR, current_column+=strlen(yytext));}
