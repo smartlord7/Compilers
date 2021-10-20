@@ -22,6 +22,8 @@ SEMICOLON
 RBRACE
 SEMICOLON
 Line 8, column 5: illegal character (?)
+DIV
+STAR
 RETURN
 ID(n)
 STAR

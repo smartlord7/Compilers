@@ -7,9 +7,16 @@
 	#define ERROR_GENERIC_MSG "Line %d, column %d: "
 	#define BUF_SIZE 4096
 	
-	int current_line = 1, current_column = 1, start = 0, str_error = 0, last_token = 0, comment_line = 0, comment_column = 0, verbose = 0;
+	int current_line = 1,
+		current_column = 1,
+		start = 0,
+		str_error = 0,
+		last_token = 0,
+		comment_line = 0,
+		comment_column = 0,
+		verbose = 0,
+		buf_counter = 0;
 	char buf[BUF_SIZE];
-	int buf_counter = 0;
 	
 	typedef enum {
 		NEW_LINE,
@@ -185,7 +192,7 @@ func								"func"
 cmdargs								"os.Args"
 whitespaces							\r|\n|\t|\f
 new_line							\r|\r?\n
-space								" "
+space								" "|"\t"
 other								.
 
 dec_digit							[0-9]
@@ -255,13 +262,13 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 {reserved}							{handle_token(RESERVED);}
 {id}								{handle_token(ID);}
 {int_lit}							{handle_token(INT_LIT);}
-{invalid_octal_lit}					{lex_error(INVALID_OCTAL_CONST, current_column);}
+{invalid_octal_lit}					{lex_error(INVALID_OCTAL_CONST, current_column); current_column += yyleng;}
 {real_lit}							{handle_token(REAL_LIT);}
 {space}								{current_column++;}
 
 \"																	{buf[0] = '\0'; buf_counter = 0; str_error = 0; BEGIN STATE_STRING; start = current_column++;}
 <STATE_STRING>\"													{BEGIN 0; if (!str_error) handle_token(STRING_LIT);}
-<STATE_STRING>\r|\r?\n												{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
+<STATE_STRING>{new_line}												{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING><<EOF>>												{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING>"\\\\"|"\\\""|"\\t"|"\\n"|"\\r"|"\\f"					{buf[buf_counter++] = yytext[0]; buf[buf_counter++] = yytext[1]; current_column += 2;}
 <STATE_STRING>\\[^\n\r]?											lex_error(INVALID_ESCAPE_SEQ, current_column); {current_column += yyleng;  str_error = 1;}

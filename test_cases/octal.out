@@ -1,0 +1,4 @@
+Line 1, column 1: invalid octal constant (03295)
+Line 1, column 7: invalid octal constant (087)
+Line 1, column 11: invalid octal constant (0792)
+Line 1, column 16: invalid octal constant (0892)
