@@ -47,19 +47,25 @@
 %token FUNC
 
 %%                  
-    Program: PACKAGE ID SEMICOLON Program_1                                                              {;}
-    Program_1: Declarations | /*epsilon*/
-    Declarations: VarDeclaration SEMICOLON Declarations | FuncDeclaration SEMICOLON Declarations | /*epsilon*/                                {;}
-    VarDeclaration: VAR VarSpec                                                                             {;}
-    VarDeclaration: VAR LPAR VarSpec SEMICOLON RPAR                                                         {;}
-    VarSpec: ID '{'COMMA ID'}' Type                                                                         {;}
-    Type: INT | FLOAT32 | BOOL | STRING                                                                     {;}
-    FuncDeclaration: FUNC ID LPAR '['Parameters']' RPAR '['Type']' FuncBody                                 {;}
-    Parameters: ID Type '{'COMMA ID Type'}'                                                                 {;}
-    FuncBody: LBRACE VarsAndStatements RBRACE                                                               {;}
-    VarsAndStatements: VarsAndStatements '['VarDeclaration | Statement']' SEMICOLON | /*epsilon*/           {;}
-    Statement: ID ASSIGN Expr                                                                               {;}
-    Statement: LBRACE '{'Statement SEMICOLON'}' RBRACE                                                      {;}
+    Program: PACKAGE ID SEMICOLON Program_1                                                             	{;}
+    Program_1: Declarations | /*epsilon*/									{;}
+    Declarations: VarDeclaration SEMICOLON Declarations | FuncDeclaration SEMICOLON Declarations | /*epsilon*/	{;}
+    VarDeclaration: VAR VarDeclaration_1                                                                       	{;}
+    VarSpec: ID VarSpec_1                                                                         		{;}
+    VarDeclaration_1: VarSpec | LPAR VarSpec SEMICOLON RPAR							{;}
+    VarSpec_1: Type | COMMA ID VarSpec_1									{;}
+    Type: INT | FLOAT32 | BOOL | STRING                                                                     	{;}
+    FuncDeclaration: FUNC ID LPAR FuncDeclaration_1								{;}
+    FuncDeclaration_1: RPAR FuncDeclaration_2 | Parameters RPAR FuncDeclaration_2				{;}
+    FuncDeclaration_2: FuncBody | Type FuncBody									{;}
+    Parameters: ID Type | ID Type Parameters_1                                                                 	{;}
+    Parameters_1: COMMA ID Type | COMMA ID Type Parameters_1							{;}
+    FuncBody: LBRACE VarsAndStatements RBRACE                                                               	{;}
+    VarsAndStatements: VarsAndStatements VarsAndStatements_1 | /*epsilon*/           				{;}
+    VarsAndStatements_1: SEMICOLON | VarsAndStatements_2 SEMICOLON						{;}
+    VarsAndStatements_2: VarDeclaration | Statement								{;}
+    Statement: ID ASSIGN Expr                                                                               	{;}
+    Statement: LBRACE '{'Statement SEMICOLON'}' RBRACE                                                      	{;}
     Statement:  IF Expr LBRACE '{'Statement SEMICOLON'}' RBRACE '['ELSE LBRACE '{'Statement SEMICOLON'}' RBRACE']'  {;}
     Statement: FOR '['Expr']' LBRACE '{'Statement SEMICOLON'}' RBRACE                                       {;}
     Statement: RETURN '['Expr']'                                                                            {;}

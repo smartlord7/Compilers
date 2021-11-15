@@ -7,6 +7,8 @@
     <list default="true" id="3dad2c65-2968-4510-9728-c861fd881af9" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gocompiler.y" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.y" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/y.output" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/y.tab.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +53,7 @@
       <workItem from="1634229762986" duration="27000" />
       <workItem from="1634231079089" duration="90000" />
       <workItem from="1636995406263" duration="36000" />
-      <workItem from="1636995635311" duration="1407000" />
+      <workItem from="1636995635311" duration="5549000" />
     </task>
     <servers />
   </component>
