@@ -44,10 +44,12 @@
 %token NOT
 %token INTLIT
 %token REALLIT
+%token FUNC
 
 %%                  
-    Program: PACKAGE ID SEMICOLON Declarations                                                              {;}
-    Declarations: '{'VarDeclaration SEMICOLON | FuncDeclaration SEMICOLON'}'                                {;}
+    Program: PACKAGE ID SEMICOLON Program_1                                                              {;}
+    Program_1: Declarations | /*epsilon*/
+    Declarations: VarDeclaration SEMICOLON Declarations | FuncDeclaration SEMICOLON Declarations | /*epsilon*/                                {;}
     VarDeclaration: VAR VarSpec                                                                             {;}
     VarDeclaration: VAR LPAR VarSpec SEMICOLON RPAR                                                         {;}
     VarSpec: ID '{'COMMA ID'}' Type                                                                         {;}
