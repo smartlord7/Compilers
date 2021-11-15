@@ -47,37 +47,37 @@
 %token FUNC
 
 %%                  
-    Program: PACKAGE ID SEMICOLON Program_1                                                             	{;}
-    Program_1: Declarations | /*epsilon*/									{;}
-    Declarations: VarDeclaration SEMICOLON Declarations | FuncDeclaration SEMICOLON Declarations | /*epsilon*/	{;}
-    VarDeclaration: VAR VarDeclaration_1                                                                       	{;}
-    VarSpec: ID VarSpec_1                                                                         		{;}
-    VarDeclaration_1: VarSpec | LPAR VarSpec SEMICOLON RPAR							{;}
-    VarSpec_1: Type | COMMA ID VarSpec_1									{;}
-    Type: INT | FLOAT32 | BOOL | STRING                                                                     	{;}
-    FuncDeclaration: FUNC ID LPAR FuncDeclaration_1								{;}
-    FuncDeclaration_1: RPAR FuncDeclaration_2 | Parameters RPAR FuncDeclaration_2				{;}
-    FuncDeclaration_2: FuncBody | Type FuncBody									{;}
-    Parameters: ID Type | ID Type Parameters_1                                                                 	{;}
-    Parameters_1: COMMA ID Type | COMMA ID Type Parameters_1							{;}
-    FuncBody: LBRACE VarsAndStatements RBRACE                                                               	{;}
-    VarsAndStatements: VarsAndStatements VarsAndStatements_1 | /*epsilon*/           				{;}
-    VarsAndStatements_1: SEMICOLON | VarsAndStatements_2 SEMICOLON						{;}
-    VarsAndStatements_2: VarDeclaration | Statement								{;}
-    Statement: ID ASSIGN Expr                                                                               	{;}
-    Statement: LBRACE '{'Statement SEMICOLON'}' RBRACE                                                      	{;}
-    Statement:  IF Expr LBRACE '{'Statement SEMICOLON'}' RBRACE '['ELSE LBRACE '{'Statement SEMICOLON'}' RBRACE']'  {;}
-    Statement: FOR '['Expr']' LBRACE '{'Statement SEMICOLON'}' RBRACE                                       {;}
-    Statement: RETURN '['Expr']'                                                                            {;}
-    Statement: FuncInvocation | ParseArgs                                                                   {;}
-    Statement: PRINT LPAR '('Expr | STRLIT')' RPAR                                                          {;}
-    ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR                              {;}
-    FuncInvocation: ID LPAR '['Expr '{'COMMA Expr'}'']' RPAR                                                  {;}
-    Expr: Expr '('OR | AND')' Expr                                                                          {;}
-    Expr: Expr '('LT | GT | EQ | NE | LE | GE')' Expr                                                       {;}
-    Expr: Expr '('PLUS | MINUS | STAR | DIV | MOD')' Expr                                                   {;}
-    Expr: '('NOT | MINUS | PLUS')' Expr                                                                     {;}
-    Expr: INTLIT | REALLIT | ID | FuncInvocation | LPAR Expr RPAR                                           {;}
+    Program: PACKAGE ID SEMICOLON Program_1                                                             		{;}
+    Program_1: Declarations | /*epsilon*/										{;}
+    Declarations: VarDeclaration SEMICOLON Declarations | FuncDeclaration SEMICOLON Declarations | /*epsilon*/		{;}
+    VarDeclaration: VAR VarDeclaration_1                                                                       		{;}
+    VarSpec: ID VarSpec_1                                                                         			{;}
+    VarDeclaration_1: VarSpec | LPAR VarSpec SEMICOLON RPAR								{;}
+    VarSpec_1: Type | COMMA ID VarSpec_1										{;}
+    Type: INT | FLOAT32 | BOOL | STRING                                                                     		{;}
+    FuncDeclaration: FUNC ID LPAR FuncDeclaration_1									{;}
+    FuncDeclaration_1: RPAR FuncDeclaration_2 | Parameters RPAR FuncDeclaration_2					{;}
+    FuncDeclaration_2: FuncBody | Type FuncBody										{;}
+    Parameters: ID Type | ID Type Parameters_1                                                                 		{;}
+    Parameters_1: COMMA ID Type | COMMA ID Type Parameters_1								{;}
+    FuncBody: LBRACE VarsAndStatements RBRACE                                                               		{;}
+    VarsAndStatements: VarsAndStatements VarsAndStatements_1 | /*epsilon*/           					{;}
+    VarsAndStatements_1: SEMICOLON | VarsAndStatements_2 SEMICOLON							{;}
+    VarsAndStatements_2: VarDeclaration | Statement									{;}
+    Statement: ID ASSIGN Expr                                                                               		{;}
+    Statement: LBRACE '{'Statement SEMICOLON'}' RBRACE                                                      		{;}
+    Statement:  IF Expr LBRACE '{'Statement SEMICOLON'}' RBRACE '['ELSE LBRACE '{'Statement SEMICOLON'}' RBRACE']'  	{;}
+    Statement: FOR '['Expr']' LBRACE '{'Statement SEMICOLON'}' RBRACE                                       		{;}
+    Statement: RETURN '['Expr']'                                                                           		{;}
+    Statement: FuncInvocation | ParseArgs                                                                   		{;}
+    Statement: PRINT LPAR '('Expr | STRLIT')' RPAR                                                          		{;}
+    ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR                              		{;}
+    FuncInvocation: ID LPAR '['Expr '{'COMMA Expr'}'']' RPAR                                                  		{;}
+    Expr: Expr '('OR | AND')' Expr                                                                          		{;}
+    Expr: Expr '('LT | GT | EQ | NE | LE | GE')' Expr                                                       		{;}
+    Expr: Expr '('PLUS | MINUS | STAR | DIV | MOD')' Expr                                                   		{;}
+    Expr: '('NOT | MINUS | PLUS')' Expr                                                                     		{;}
+    Expr: INTLIT | REALLIT | ID | FuncInvocation | LPAR Expr RPAR                                           		{;}
 
 %%
 

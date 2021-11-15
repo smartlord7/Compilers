@@ -379,4 +379,4 @@ void lex_error_inner(error_type err_type, int curr_column, ...) {
 
 void lex_error(error_type err_type, int curr_column) {
 	lex_error_inner(err_type, curr_column, yytext);
-}
+
