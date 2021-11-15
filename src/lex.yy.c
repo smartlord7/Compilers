@@ -737,7 +737,7 @@ char *yytext;
 		GENERAL_COMMENT_START,
 		GENERAL_COMMENT_END,
 		IGNORE,
-		IGNORE_NEW_LINE
+		IGNORE_NEW_LINE,
 	} token_type;
 		
 	typedef enum {
@@ -800,7 +800,7 @@ char *yytext;
 		"GENERAL_COMMENT_START",
 		"GENERAL_COMMENT_END",
 		"IGNORE",
-		"IGNORE_NEW_LINE"
+		"IGNORE_NEW_LINE",
 	};
 	
 	const char * error_msgs[] = {
@@ -1362,7 +1362,7 @@ YY_RULE_SETUP
 case 52:
 YY_RULE_SETUP
 #line 277 "gocompiler.l"
-{BEGIN STATE_LINE_COMMENT;}
+{BEGIN STATE_LINE_COMMENT; handle_token(LINE_COMMENT_START);}
 	YY_BREAK
 case 53:
 /* rule 53 can match eol */
@@ -2467,6 +2467,7 @@ void handle_token(token_type tok_type) {
 		case IGNORE_NEW_LINE:
 			current_line++;
 			current_column = 1;
+		case LINE_COMMENT_START:
 			auto_semicolon();
 			break;
 		case IGNORE:

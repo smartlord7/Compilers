@@ -70,7 +70,7 @@
 		GENERAL_COMMENT_START,
 		GENERAL_COMMENT_END,
 		IGNORE,
-		IGNORE_NEW_LINE
+		IGNORE_NEW_LINE,
 	} token_type;
 		
 	typedef enum {
@@ -133,7 +133,7 @@
 		"GENERAL_COMMENT_START",
 		"GENERAL_COMMENT_END",
 		"IGNORE",
-		"IGNORE_NEW_LINE"
+		"IGNORE_NEW_LINE",
 	};
 	
 	const char * error_msgs[] = {
@@ -274,7 +274,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 <STATE_STRING>\\[^\n\r]?											lex_error(INVALID_ESCAPE_SEQ, current_column); {current_column += yyleng;  str_error = 1;}
 <STATE_STRING>.														{buf[buf_counter++] = yytext[0]; current_column++;}
 
-"//"																{BEGIN STATE_LINE_COMMENT;}
+"//"																{BEGIN STATE_LINE_COMMENT; handle_token(LINE_COMMENT_START);}
 <STATE_LINE_COMMENT>{new_line}										{handle_token(IGNORE_NEW_LINE); BEGIN 0;}						
 <STATE_LINE_COMMENT>.												{handle_token(IGNORE);}
 
@@ -331,6 +331,7 @@ void handle_token(token_type tok_type) {
 		case IGNORE_NEW_LINE:
 			current_line++;
 			current_column = 1;
+		case LINE_COMMENT_START:
 			auto_semicolon();
 			break;
 		case IGNORE:
