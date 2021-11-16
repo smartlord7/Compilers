@@ -69,7 +69,8 @@
     Parameters: ID Type | ID Type Parameters_1                                                                 		{;}
     Parameters_1: COMMA ID Type | COMMA ID Type Parameters_1								{;}
     FuncBody: LBRACE VarsAndStatements RBRACE                                                               		{;}
-    VarsAndStatements: VarsAndStatements VarsAndStatements_1 | /*epsilon*/           					{;}
+    VarsAndStatements: VarsAndStatements_S1           									{;}
+    VarsAndStatements_S1: VarsAndStatements_1 VarsAndStatements_S1							{;}
     VarsAndStatements_1: SEMICOLON | VarsAndStatements_2 SEMICOLON							{;}
     VarsAndStatements_2: VarDeclaration | Statement									{;}
     Statement: ID ASSIGN Expr                                                                               		{;}
