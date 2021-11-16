@@ -46,6 +46,14 @@
 %token REALLIT
 %token FUNC
 
+// Operator precedence order definition -> See Go language specification
+%left OR
+%left AND
+%left LT GT LE GE EQ NE
+%left PLUS MINUS
+%left STAR DIV MOD
+%left NOT
+
 %%                  
     Program: PACKAGE ID SEMICOLON Program_1                                                             		{;}
     Program_1: Declarations | /*epsilon*/										{;}
@@ -66,17 +74,18 @@
     VarsAndStatements_2: VarDeclaration | Statement									{;}
     Statement: ID ASSIGN Expr                                                                               		{;}
     Statement: LBRACE '{'Statement SEMICOLON'}' RBRACE                                                      		{;}
-    Statement:  IF Expr LBRACE '{'Statement SEMICOLON'}' RBRACE '['ELSE LBRACE '{'Statement SEMICOLON'}' RBRACE']'  	{;}
+    Statement: IF Expr LBRACE '{'Statement SEMICOLON'}' RBRACE '['ELSE LBRACE '{'Statement SEMICOLON'}' RBRACE']'  	{;}
     Statement: FOR '['Expr']' LBRACE '{'Statement SEMICOLON'}' RBRACE                                       		{;}
-    Statement: RETURN '['Expr']'                                                                           		{;}
+    Statement: RETURN '['Expr']'                                                                   			{;}
     Statement: FuncInvocation | ParseArgs                                                                   		{;}
     Statement: PRINT LPAR '('Expr | STRLIT')' RPAR                                                          		{;}
     ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR                              		{;}
     FuncInvocation: ID LPAR '['Expr '{'COMMA Expr'}'']' RPAR                                                  		{;}
-    Expr: Expr '('OR | AND')' Expr                                                                          		{;}
-    Expr: Expr '('LT | GT | EQ | NE | LE | GE')' Expr                                                       		{;}
+    Expr: Expr '('OR | AND')' Expr                                                					{;}
+    Expr: Expr '('LT | GT | LE | GE | EQ | NE')'									{;}
     Expr: Expr '('PLUS | MINUS | STAR | DIV | MOD')' Expr                                                   		{;}
-    Expr: '('NOT | MINUS | PLUS')' Expr                                                                     		{;}
+    Expr: '('NOT')' Expr |
+          '('MINUS | PLUS')' Expr %prec NOT /*unary minus/plus has the same priority as the not operator */		{;}
     Expr: INTLIT | REALLIT | ID | FuncInvocation | LPAR Expr RPAR                                           		{;}
 
 %%
