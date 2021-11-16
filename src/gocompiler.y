@@ -52,7 +52,7 @@
 %left LT GT LE GE EQ NE
 %left PLUS MINUS
 %left STAR DIV MOD
-%left NOT
+%right NOT
 
 %%                  
     Program: PACKAGE ID SEMICOLON Program_1                                                             		{;}
