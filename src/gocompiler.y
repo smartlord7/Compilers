@@ -55,8 +55,7 @@
 %right NOT
 
 %%                  
-    Program: PACKAGE ID SEMICOLON Program_1                                                             		{;}
-    Program_1: Declarations | /*epsilon*/										{;}
+    Program: PACKAGE ID SEMICOLON Declarations								{;}
     Declarations: VarDeclaration SEMICOLON Declarations | FuncDeclaration SEMICOLON Declarations | /*epsilon*/		{;}
     VarDeclaration: VAR VarDeclaration_1                                                                       		{;}
     VarSpec: ID VarSpec_1                                                                         			{;}
@@ -68,25 +67,35 @@
     FuncDeclaration_2: FuncBody | Type FuncBody										{;}
     Parameters: ID Type | ID Type Parameters_1                                                                 		{;}
     Parameters_1: COMMA ID Type | COMMA ID Type Parameters_1								{;}
-    FuncBody: LBRACE VarsAndStatements RBRACE                                                               		{;}
-    VarsAndStatements: VarsAndStatements_S1           									{;}
-    VarsAndStatements_S1: VarsAndStatements_1 VarsAndStatements_S1							{;}
-    VarsAndStatements_1: SEMICOLON | VarsAndStatements_2 SEMICOLON							{;}
-    VarsAndStatements_2: VarDeclaration | Statement									{;}
+    FuncBody: LBRACE RBRACE | LBRACE VarsAndStatements RBRACE                      					{;}
+    VarsAndStatements: SEMICOLON | VarDeclaration SEMICOLON | Statement SEMICOLON |
+    SEMICOLON VarsAndStatements | VarDeclaration SEMICOLON VarsAndStatements | Statement SEMICOLON VarsAndStatements 	{;}
     Statement: ID ASSIGN Expr                                                                               		{;}
-    Statement: LBRACE '{'Statement SEMICOLON'}' RBRACE                                                      		{;}
-    Statement: IF Expr LBRACE '{'Statement SEMICOLON'}' RBRACE '['ELSE LBRACE '{'Statement SEMICOLON'}' RBRACE']'  	{;}
-    Statement: FOR '['Expr']' LBRACE '{'Statement SEMICOLON'}' RBRACE                                       		{;}
-    Statement: RETURN '['Expr']'                                                                   			{;}
+    Statement: LBRACE RBRACE | LBRACE Statement_1 RBRACE                                                      		{;}
+    Statement_1: Statement SEMICOLON | Statement SEMICOLON Statement_1
+    Statement: 	IF Expr LBRACE RBRACE |
+     		IF Expr LBRACE Statement_rep RBRACE |
+     		IF Expr LBRACE RBRACE ELSE LBRACE RBRACE |
+     		IF Expr LBRACE RBRACE ELSE LBRACE Statement_rep RBRACE |
+     		IF Expr LBRACE Statement_rep RBRACE ELSE LBRACE RBRACE |
+     		IF Expr LBRACE Statement_rep RBRACE ELSE LBRACE Statement_rep RBRACE 					{;}
+    Statement_rep: Statement SEMICOLON											{;}
+    Statement: 	FOR LBRACE RBRACE |
+		FOR LBRACE Statement_rep RBRACE |
+		FOR Expr LBRACE RBRACE |
+		FOR Expr LBRACE Statement_rep RBRACE 									{;}
+    Statement: RETURN | RETURN Expr                                                                   			{;}
     Statement: FuncInvocation | ParseArgs                                                                   		{;}
-    Statement: PRINT LPAR '('Expr | STRLIT')' RPAR                                                          		{;}
+    Statement: PRINT LPAR Expr RPAR | PRINT LPAR STRLIT RPAR                                                          	{;}
     ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR                              		{;}
-    FuncInvocation: ID LPAR '['Expr '{'COMMA Expr'}'']' RPAR                                                  		{;}
-    Expr: Expr '('OR | AND')' Expr                                                					{;}
-    Expr: Expr '('LT | GT | LE | GE | EQ | NE')'									{;}
-    Expr: Expr '('PLUS | MINUS | STAR | DIV | MOD')' Expr                                                   		{;}
-    Expr: '('NOT')' Expr |
-          '('MINUS | PLUS')' Expr %prec NOT /*unary minus/plus has the same priority as the not operator */		{;}
+    FuncInvocation: 	ID LPAR RPAR |
+			ID LPAR Expr RPAR |
+			ID LPAR Expr FuncInvocation_rep RPAR								{;}
+    FuncInvocation_rep: COMMA Expr | COMMA Expr FuncInvocation_rep							{;}
+    Expr: Expr OR Expr | Expr AND Expr                                                					{;}
+    Expr: Expr LT | Expr GT | Expr LE | Expr GE | Expr EQ | Expr NE							{;}
+    Expr: Expr PLUS Expr | Expr MINUS Expr | Expr STAR Expr | Expr DIV Expr | Expr MOD Expr                             {;}
+    Expr: NOT Expr | MINUS Expr %prec NOT | PLUS Expr %prec NOT /*unary minus/plus has the same priority as the not operator */{;}
     Expr: INTLIT | REALLIT | ID | FuncInvocation | LPAR Expr RPAR                                           		{;}
 
 %%
