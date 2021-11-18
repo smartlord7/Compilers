@@ -3,8 +3,8 @@
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdarg.h>
-	#include "error_handling.h"
-	#include "token_type.h"
+	#include "util/error_handling.h"
+	#include "util/token_type.h"
 
 	#define show_error(err_type, curr_column) error(err_type, curr_column, yytext);
 
