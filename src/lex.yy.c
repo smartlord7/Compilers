@@ -973,102 +973,102 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 93 "gocompiler.l"
-{handle_token(SEMICOLON);}
+{handle_token(SEMICOLON_);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 94 "gocompiler.l"
-{handle_token(COMMA);}
+{handle_token(COMMA_);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 95 "gocompiler.l"
-{handle_token(BLANK_ID);}
+{handle_token(BLANK_ID_);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 96 "gocompiler.l"
-{handle_token(ASSIGN);}
+{handle_token(ASSIGN_);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 97 "gocompiler.l"
-{handle_token(STAR);}
+{handle_token(STAR_);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 98 "gocompiler.l"
-{handle_token(DIV);}
+{handle_token(DIV_);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 99 "gocompiler.l"
-{handle_token(MINUS);}
+{handle_token(MINUS_);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 100 "gocompiler.l"
-{handle_token(PLUS);}
+{handle_token(PLUS_);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 101 "gocompiler.l"
-{handle_token(EQ);}
+{handle_token(EQ_);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 102 "gocompiler.l"
-{handle_token(GE);}
+{handle_token(GE_);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 103 "gocompiler.l"
-{handle_token(GT);}
+{handle_token(GT_);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 104 "gocompiler.l"
-{handle_token(LBRACE);}
+{handle_token(LBRACE_);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 105 "gocompiler.l"
-{handle_token(LE);}
+{handle_token(LE_);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 106 "gocompiler.l"
-{handle_token(LPAR);}
+{handle_token(LPAR_);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 107 "gocompiler.l"
-{handle_token(LSQ);}
+{handle_token(LSQ_);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 108 "gocompiler.l"
-{handle_token(LT);}
+{handle_token(LT_);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 109 "gocompiler.l"
-{handle_token(MOD);}
+{handle_token(MOD_);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 110 "gocompiler.l"
-{handle_token(NE);}
+{handle_token(NE_);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 111 "gocompiler.l"
-{handle_token(NOT);}
+{handle_token(NOT_);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 112 "gocompiler.l"
-{handle_token(AND);}
+{handle_token(AND_);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
@@ -2364,7 +2364,7 @@ void auto_semicolon() {
 			case RPAR_:
 			case RSQ_:
 			case RBRACE_:
-				printf("%s\n", token_types[SEMICOLON]);
+				printf("%s\n", token_types[SEMICOLON_]);
 				break;
 			default:
 				break;

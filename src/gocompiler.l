@@ -90,26 +90,26 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 
 %%
 
-{semicolon} 						{handle_token(SEMICOLON);}
-{comma}								{handle_token(COMMA);}
-{blank_id}							{handle_token(BLANK_ID);}
-{assign}							{handle_token(ASSIGN);}
-{star}								{handle_token(STAR);}
-{div}								{handle_token(DIV);}
-{minus}								{handle_token(MINUS);}
-{plus}								{handle_token(PLUS);}
-{eq}								{handle_token(EQ);}
-{ge}								{handle_token(GE);}
-{gt}								{handle_token(GT);}
-{lbrace}							{handle_token(LBRACE);}
-{le}								{handle_token(LE);}
-{lpar}								{handle_token(LPAR);}
-{lsq}								{handle_token(LSQ);}
-{lt}								{handle_token(LT);}
-{mod}								{handle_token(MOD);}
-{ne}								{handle_token(NE);}
-{not} 								{handle_token(NOT);}
-{and}								{handle_token(AND);}
+{semicolon} 						{handle_token(SEMICOLON_);}
+{comma}								{handle_token(COMMA_);}
+{blank_id}							{handle_token(BLANK_ID_);}
+{assign}							{handle_token(ASSIGN_);}
+{star}								{handle_token(STAR_);}
+{div}								{handle_token(DIV_);}
+{minus}								{handle_token(MINUS_);}
+{plus}								{handle_token(PLUS_);}
+{eq}								{handle_token(EQ_);}
+{ge}								{handle_token(GE_);}
+{gt}								{handle_token(GT_);}
+{lbrace}							{handle_token(LBRACE_);}
+{le}								{handle_token(LE_);}
+{lpar}								{handle_token(LPAR_);}
+{lsq}								{handle_token(LSQ_);}
+{lt}								{handle_token(LT_);}
+{mod}								{handle_token(MOD_);}
+{ne}								{handle_token(NE_);}
+{not} 								{handle_token(NOT_);}
+{and}								{handle_token(AND_);}
 {or}								{handle_token(OR_);}
 {rbrace}							{handle_token(RBRACE_);}
 {rpar}								{handle_token(RPAR_);}
@@ -228,7 +228,7 @@ void auto_semicolon() {
 			case RPAR_:
 			case RSQ_:
 			case RBRACE_:
-				printf("%s\n", token_types[SEMICOLON]);
+				printf("%s\n", token_types[SEMICOLON_]);
 				break;
 			default:
 				break;
