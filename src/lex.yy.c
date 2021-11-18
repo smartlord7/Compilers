@@ -1073,113 +1073,113 @@ YY_RULE_SETUP
 case 21:
 YY_RULE_SETUP
 #line 113 "gocompiler.l"
-{handle_token(OR);}
+{handle_token(OR_);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 114 "gocompiler.l"
-{handle_token(RBRACE);}
+{handle_token(RBRACE_);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 115 "gocompiler.l"
-{handle_token(RPAR);}
+{handle_token(RPAR_);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 116 "gocompiler.l"
-{handle_token(RSQ);}
+{handle_token(RSQ_);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 118 "gocompiler.l"
-{handle_token(PACKAGE);}
+{handle_token(PACKAGE_);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 119 "gocompiler.l"
-{handle_token(RETURN);}
+{handle_token(RETURN_);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 120 "gocompiler.l"
-{handle_token(ELSE);}
+{handle_token(ELSE_);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 121 "gocompiler.l"
-{handle_token(FOR);}
+{handle_token(FOR_);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 122 "gocompiler.l"
-{handle_token(IF);}
+{handle_token(IF_);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 123 "gocompiler.l"
-{handle_token(VAR);}
+{handle_token(VAR_);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 124 "gocompiler.l"
-{handle_token(INT);}
+{handle_token(INT_);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 125 "gocompiler.l"
-{handle_token(FLOAT32);}
+{handle_token(FLOAT32_);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 126 "gocompiler.l"
-{handle_token(BOOL);}
+{handle_token(BOOL_);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 127 "gocompiler.l"
-{handle_token(STRING);}
+{handle_token(STRING_);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 128 "gocompiler.l"
-{handle_token(PRINT);}
+{handle_token(PRINT_);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 129 "gocompiler.l"
-{handle_token(PARSE_INT);}
+{handle_token(PARSE_INT_);}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 130 "gocompiler.l"
-{handle_token(FUNC);}
+{handle_token(FUNC_);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
 #line 131 "gocompiler.l"
-{handle_token(CMDARGS);}
+{handle_token(CMDARGS_);}
 	YY_BREAK
 case 39:
 /* rule 39 can match eol */
 YY_RULE_SETUP
 #line 133 "gocompiler.l"
-{handle_token(NEW_LINE);}
+{handle_token(NEW_LINE_);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
 #line 134 "gocompiler.l"
-{handle_token(RESERVED);}
+{handle_token(RESERVED_);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
 #line 135 "gocompiler.l"
-{handle_token(ID);}
+{handle_token(ID_);}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
 #line 136 "gocompiler.l"
-{handle_token(INT_LIT);}
+{handle_token(INT_LIT_);}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
@@ -1189,7 +1189,7 @@ YY_RULE_SETUP
 case 44:
 YY_RULE_SETUP
 #line 138 "gocompiler.l"
-{handle_token(REAL_LIT);}
+{handle_token(REAL_LIT_);}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
@@ -1204,7 +1204,7 @@ YY_RULE_SETUP
 case 47:
 YY_RULE_SETUP
 #line 142 "gocompiler.l"
-{BEGIN 0; if (!str_error) handle_token(STRING_LIT);}
+{BEGIN 0; if (!str_error) handle_token(STRING_LIT_);}
 	YY_BREAK
 case 48:
 /* rule 48 can match eol */
@@ -1234,18 +1234,18 @@ YY_RULE_SETUP
 case 52:
 YY_RULE_SETUP
 #line 149 "gocompiler.l"
-{BEGIN STATE_LINE_COMMENT; handle_token(LINE_COMMENT_START);}
+{BEGIN STATE_LINE_COMMENT; handle_token(LINE_COMMENT_START_);}
 	YY_BREAK
 case 53:
 /* rule 53 can match eol */
 YY_RULE_SETUP
 #line 150 "gocompiler.l"
-{handle_token(IGNORE_NEW_LINE); BEGIN 0;}						
+{handle_token(IGNORE_NEW_LINE_); BEGIN 0;}						
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
 #line 151 "gocompiler.l"
-{handle_token(IGNORE);}
+{handle_token(IGNORE_);}
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
@@ -1261,7 +1261,7 @@ case 57:
 /* rule 57 can match eol */
 YY_RULE_SETUP
 #line 155 "gocompiler.l"
-{handle_token(IGNORE_NEW_LINE);}
+{handle_token(IGNORE_NEW_LINE_);}
 	YY_BREAK
 case YY_STATE_EOF(STATE_GENERAL_COMMENT):
 #line 156 "gocompiler.l"
@@ -1270,7 +1270,7 @@ case YY_STATE_EOF(STATE_GENERAL_COMMENT):
 case 58:
 YY_RULE_SETUP
 #line 157 "gocompiler.l"
-{handle_token(IGNORE);}
+{handle_token(IGNORE_);}
 	YY_BREAK
 case 59:
 /* rule 59 can match eol */
@@ -2319,30 +2319,30 @@ void handle_token(token_type tok_type) {
 	current_column += yyleng;
 	
 	switch (tok_type) {
-		case ID:
-		case INT_LIT:
-		case REAL_LIT:
-		case RESERVED:
+		case ID_:
+		case INT_LIT_:
+		case REAL_LIT_:
+		case RESERVED_:
 		if (verbose) {
 			printf("%s(%s)\n", token_types[tok_type], tok);
 		}
 			break;
-		case STRING_LIT:
+		case STRING_LIT_:
 			buf[buf_counter] = '\0';
 			if (verbose) {
-				printf("%s(\"%s\")\n", token_types[STRING_LIT], buf);
+				printf("%s(\"%s\")\n", token_types[STRING_LIT_], buf);
 			}
 			buf[0] = '\0'; 
 			buf_counter = 0;
 			break;
-		case NEW_LINE:
-		case IGNORE_NEW_LINE:
+		case NEW_LINE_:
+		case IGNORE_NEW_LINE_:
 			current_line++;
 			current_column = 1;
-		case LINE_COMMENT_START:
+		case LINE_COMMENT_START_:
 			auto_semicolon();
 			break;
-		case IGNORE:
+		case IGNORE_:
 			break;
 		default:
 			if (verbose) {
@@ -2356,14 +2356,14 @@ void handle_token(token_type tok_type) {
 void auto_semicolon() {
 	if (verbose) {
 		switch(last_token) {
-			case INT_LIT:
-			case REAL_LIT:
-			case STRING_LIT:
-			case ID:
-			case RETURN:
-			case RPAR:
-			case RSQ:
-			case RBRACE:
+			case INT_LIT_:
+			case REAL_LIT_:
+			case STRING_LIT_:
+			case ID_:
+			case RETURN_:
+			case RPAR_:
+			case RSQ_:
+			case RBRACE_:
 				printf("%s\n", token_types[SEMICOLON]);
 				break;
 			default:
