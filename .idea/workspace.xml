@@ -5,30 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3dad2c65-2968-4510-9728-c861fd881af9" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/src/error_handling.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/error_handling.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/token_type.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/token_type.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/gocompiler.zip" beforeDir="false" afterPath="$PROJECT_DIR$/dist/gocompiler.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gocompiler" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gocompiler.l" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.l" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gocompiler.y" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.y" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lex.yy.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lex.yy.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/run.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/run2.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/run2.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/token_type.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/token_type.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/token_type.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/token_type.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.output" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.output" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.tab.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.tab.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_cases/comments_1.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/comments_1.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_cases/comments_2.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/comments_2.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_cases/comments_bad_2.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/comments_bad_2.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_cases/ids_keywords_1.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/ids_keywords_1.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_cases/ids_keywords_2.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/ids_keywords_2.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_cases/ids_keywords_3.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/ids_keywords_3.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_cases/str_bad_1.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/str_bad_1.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_cases/text_1.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/text_1.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_cases/text_2.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/text_2.out" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +58,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -118,11 +109,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/util/error_handling.h</url>
-          <line>12</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/util/token_type.h</url>
           <line>16</line>

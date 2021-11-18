@@ -1,11 +1,11 @@
 %{
+	#include "y.tab.h"
 	#include <stdlib.h>
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdarg.h>
 	#include "util/error_handling.h"
 	#include "util/token_type.h"
-	#include "y.tab.h"
 
 	#define show_error(err_type, curr_column) error(err_type, curr_column, yytext);
 
@@ -168,7 +168,10 @@ int main(int argc, char * argv[]) {
 		verbose = 1;
 	}
 
-	yylex();
+	while(yyparse() == 0) {
+	    printf("sucesso\n");
+    }
+	printf("insucesso\n");
 
 	return EXIT_SUCCESS;
 }
@@ -237,6 +240,6 @@ void auto_semicolon() {
 	}
 }
 
-void yyerror (char *s) {
-	printf ( "Line %d, column %d: %s: %s\n" , current_line, current_column, s, yytext);
+void yyerror (char * s) {
+    printf ("Line %d, column %d: %s: %s\n", current_line, current_column, s, yytext);
 }

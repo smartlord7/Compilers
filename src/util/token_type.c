@@ -51,4 +51,5 @@ const char * token_types[] = {
         "GENERAL_COMMENT_END",
         "IGNORE",
         "IGNORE_NEW_LINE",
+        "END"
 };

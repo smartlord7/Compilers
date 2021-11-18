@@ -72,11 +72,15 @@
 #include "util/error_handling.h"
 #include "util/token_type.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int yylex (void);
 void yyerror(char* s);
 
-#line 80 "y.tab.c"
+int yydebug = 1;
+
+
+#line 84 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -105,7 +109,7 @@ void yyerror(char* s);
 # define YY_YY_Y_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
-# define YYDEBUG 0
+# define YYDEBUG 1
 #endif
 #if YYDEBUG
 extern int yydebug;
@@ -279,8 +283,8 @@ enum yysymbol_kind_t
   YYSYMBOL_Program = 46,                   /* Program  */
   YYSYMBOL_Declarations = 47,              /* Declarations  */
   YYSYMBOL_VarDeclaration = 48,            /* VarDeclaration  */
-  YYSYMBOL_VarSpec = 49,                   /* VarSpec  */
-  YYSYMBOL_VarDeclaration_1 = 50,          /* VarDeclaration_1  */
+  YYSYMBOL_VarDeclaration_1 = 49,          /* VarDeclaration_1  */
+  YYSYMBOL_VarSpec = 50,                   /* VarSpec  */
   YYSYMBOL_VarSpec_1 = 51,                 /* VarSpec_1  */
   YYSYMBOL_Type = 52,                      /* Type  */
   YYSYMBOL_FuncDeclaration = 53,           /* FuncDeclaration  */
@@ -678,17 +682,17 @@ static const yytype_int8 yytranslate[] =
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
-static const yytype_int8 yyrline[] =
+static const yytype_int16 yyrline[] =
 {
-       0,    63,    63,    64,    64,    64,    65,    66,    67,    67,
-      68,    68,    69,    69,    69,    69,    70,    71,    71,    72,
-      72,    73,    73,    74,    74,    75,    75,    76,    76,    76,
-      77,    77,    77,    78,    79,    79,    80,    80,    81,    82,
-      83,    84,    85,    86,    87,    88,    89,    90,    91,    92,
-      92,    93,    93,    94,    94,    95,    96,    97,    98,    99,
-     100,   101,   101,   102,   103,   103,   104,   104,   104,   104,
-     104,   104,   105,   105,   105,   105,   105,   106,   106,   106,
-     107,   107,   107,   107,   107,   108
+       0,    68,    68,    72,    74,    76,    80,    84,    86,    90,
+      94,    96,   100,   102,   104,   106,   110,   114,   116,   120,
+     122,   126,   128,   132,   134,   138,   140,   144,   146,   148,
+     150,   152,   154,   158,   162,   164,   168,   170,   174,   176,
+     178,   180,   182,   184,   188,   192,   194,   196,   198,   202,
+     204,   208,   210,   214,   216,   220,   224,   228,   232,   234,
+     236,   240,   242,   246,   250,   252,   256,   258,   260,   262,
+     264,   266,   270,   272,   274,   276,   278,   282,   284,   286,
+     290,   292,   294,   296,   298,   302
 };
 #endif
 
@@ -710,7 +714,7 @@ static const char *const yytname[] =
   "PRINT", "STRLIT", "BLANKID", "PARSEINT", "CMDARGS", "LSQ", "RSQ", "OR",
   "AND", "LT", "GT", "EQ", "NE", "LE", "GE", "PLUS", "MINUS", "STAR",
   "DIV", "MOD", "NOT", "INTLIT", "REALLIT", "FUNC", "$accept", "Program",
-  "Declarations", "VarDeclaration", "VarSpec", "VarDeclaration_1",
+  "Declarations", "VarDeclaration", "VarDeclaration_1", "VarSpec",
   "VarSpec_1", "Type", "FuncDeclaration", "FuncDeclaration_1",
   "FuncDeclaration_2", "Parameters", "Parameters_1", "FuncBody",
   "VarsAndStatements", "Statement", "Statement_1", "Statement_rep",
@@ -776,9 +780,9 @@ static const yytype_int16 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        0,     0,     0,     0,     1,     5,     0,     0,     2,     0,
-       0,     0,     0,     8,     6,     0,     5,     5,     0,    12,
-      13,    14,    15,     7,    10,     0,     0,     3,     4,     0,
-       0,     0,     0,    16,     0,    11,     9,    21,     0,     0,
+       0,     0,     0,     6,     7,     0,     5,     5,     0,    12,
+      13,    14,    15,     9,    10,     0,     0,     3,     4,     0,
+       0,     0,     0,    16,     0,    11,     8,    21,     0,     0,
       17,    19,     0,     0,    22,    55,     0,     0,    25,     0,
        0,    49,     0,     0,     0,     0,     0,    52,    51,    20,
       18,     0,     0,     0,     0,    30,    34,     0,     0,    82,
@@ -797,7 +801,7 @@ static const yytype_int8 yydefact[] =
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-     -86,   -86,     7,    -1,   272,   -86,   258,   -11,   -86,   -86,
+     -86,   -86,     7,    -1,   -86,   272,   258,   -11,   -86,   -86,
      244,   -86,   203,   261,   -25,   -35,   198,   -85,   -86,   -38,
      148,   -45
 };
@@ -921,7 +925,7 @@ static const yytype_int8 yystos[] =
 {
        0,     3,    46,     4,     0,     5,     6,    44,    47,    48,
       53,     4,     7,    49,    50,     4,     5,     5,     9,    10,
-      11,    12,    13,    51,    52,    49,     7,    47,    47,     4,
+      11,    12,    13,    51,    52,    50,     7,    47,    47,     4,
        5,     4,     8,    54,    56,    51,     8,    52,    15,    52,
       55,    58,     8,     9,    57,     1,     4,     5,    14,    15,
       17,    19,    20,    21,    48,    59,    60,    63,    64,    58,
@@ -941,7 +945,7 @@ static const yytype_int8 yystos[] =
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    45,    46,    47,    47,    47,    48,    49,    50,    50,
+       0,    45,    46,    47,    47,    47,    48,    49,    49,    50,
       51,    51,    52,    52,    52,    52,    53,    54,    54,    55,
       55,    56,    56,    57,    57,    58,    58,    59,    59,    59,
       59,    59,    59,    60,    60,    60,    61,    61,    60,    60,
@@ -955,7 +959,7 @@ static const yytype_int8 yyr1[] =
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     4,     3,     3,     0,     2,     2,     1,     4,
+       0,     2,     4,     3,     3,     0,     2,     1,     4,     2,
        1,     3,     1,     1,     1,     1,     4,     2,     3,     1,
        2,     2,     3,     3,     4,     2,     3,     1,     2,     2,
        2,     3,     3,     3,     2,     3,     2,     3,     4,     5,
@@ -1431,211 +1435,511 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* Program: PACKAGE ID SEMICOLON Declarations  */
-#line 63 "gocompiler.y"
-                                                                                                                        {printf("1\n");}
-#line 1437 "y.tab.c"
+#line 68 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-3]; yyval=yyvsp[-2]; yyval=yyvsp[-1]; printf("1\n");}
+#line 1441 "y.tab.c"
+    break;
+
+  case 3: /* Declarations: VarDeclaration SEMICOLON Declarations  */
+#line 72 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1447 "y.tab.c"
+    break;
+
+  case 4: /* Declarations: FuncDeclaration SEMICOLON Declarations  */
+#line 74 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1453 "y.tab.c"
     break;
 
   case 5: /* Declarations: %empty  */
-#line 64 "gocompiler.y"
-                                                                                                                        {printf("2\n");}
-#line 1443 "y.tab.c"
+#line 76 "gocompiler.y"
+                                                                                                                        {printf("1\n");}
+#line 1459 "y.tab.c"
     break;
 
   case 6: /* VarDeclaration: VAR VarDeclaration_1  */
-#line 65 "gocompiler.y"
-                                                                                                                        {printf("3\n");}
-#line 1449 "y.tab.c"
+#line 80 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1465 "y.tab.c"
     break;
 
-  case 7: /* VarSpec: ID VarSpec_1  */
-#line 66 "gocompiler.y"
-                                                                                                                        {printf("4\n");}
-#line 1455 "y.tab.c"
+  case 7: /* VarDeclaration_1: VarSpec  */
+#line 84 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1471 "y.tab.c"
     break;
 
-  case 9: /* VarDeclaration_1: LPAR VarSpec SEMICOLON RPAR  */
-#line 67 "gocompiler.y"
-                                                                                                                        {printf("5\n");}
-#line 1461 "y.tab.c"
+  case 8: /* VarDeclaration_1: LPAR VarSpec SEMICOLON RPAR  */
+#line 86 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-3]; printf("1\n");}
+#line 1477 "y.tab.c"
+    break;
+
+  case 9: /* VarSpec: ID VarSpec_1  */
+#line 90 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1483 "y.tab.c"
+    break;
+
+  case 10: /* VarSpec_1: Type  */
+#line 94 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1489 "y.tab.c"
     break;
 
   case 11: /* VarSpec_1: COMMA ID VarSpec_1  */
-#line 68 "gocompiler.y"
-                                                                                                                        {printf("6\n");}
-#line 1467 "y.tab.c"
+#line 96 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1495 "y.tab.c"
+    break;
+
+  case 12: /* Type: INT  */
+#line 100 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1501 "y.tab.c"
+    break;
+
+  case 13: /* Type: FLOAT32  */
+#line 102 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1507 "y.tab.c"
+    break;
+
+  case 14: /* Type: BOOL  */
+#line 104 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1513 "y.tab.c"
     break;
 
   case 15: /* Type: STRING  */
-#line 69 "gocompiler.y"
-                                                                                                                        {printf("7\n");}
-#line 1473 "y.tab.c"
+#line 106 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1519 "y.tab.c"
     break;
 
   case 16: /* FuncDeclaration: FUNC ID LPAR FuncDeclaration_1  */
-#line 70 "gocompiler.y"
-                                                                                                                        {printf("8\n");}
-#line 1479 "y.tab.c"
+#line 110 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-3]; printf("1\n");}
+#line 1525 "y.tab.c"
+    break;
+
+  case 17: /* FuncDeclaration_1: RPAR FuncDeclaration_2  */
+#line 114 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1531 "y.tab.c"
     break;
 
   case 18: /* FuncDeclaration_1: Parameters RPAR FuncDeclaration_2  */
-#line 71 "gocompiler.y"
-                                                                                                                        {printf("9\n");}
-#line 1485 "y.tab.c"
+#line 116 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1537 "y.tab.c"
+    break;
+
+  case 19: /* FuncDeclaration_2: FuncBody  */
+#line 120 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1543 "y.tab.c"
     break;
 
   case 20: /* FuncDeclaration_2: Type FuncBody  */
-#line 72 "gocompiler.y"
-                                                                                                                        {printf("10\n");}
-#line 1491 "y.tab.c"
+#line 122 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1549 "y.tab.c"
+    break;
+
+  case 21: /* Parameters: ID Type  */
+#line 126 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1555 "y.tab.c"
     break;
 
   case 22: /* Parameters: ID Type Parameters_1  */
-#line 73 "gocompiler.y"
-                                                                                                                        {printf("11\n");}
-#line 1497 "y.tab.c"
+#line 128 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1561 "y.tab.c"
+    break;
+
+  case 23: /* Parameters_1: COMMA ID Type  */
+#line 132 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1567 "y.tab.c"
     break;
 
   case 24: /* Parameters_1: COMMA ID Type Parameters_1  */
-#line 74 "gocompiler.y"
-                                                                                                                        {printf("12\n");}
-#line 1503 "y.tab.c"
+#line 134 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-3]; printf("1\n");}
+#line 1573 "y.tab.c"
+    break;
+
+  case 25: /* FuncBody: LBRACE RBRACE  */
+#line 138 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1579 "y.tab.c"
     break;
 
   case 26: /* FuncBody: LBRACE VarsAndStatements RBRACE  */
-#line 75 "gocompiler.y"
-                                                                                                                        {printf("13\n");}
-#line 1509 "y.tab.c"
+#line 140 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1585 "y.tab.c"
+    break;
+
+  case 27: /* VarsAndStatements: SEMICOLON  */
+#line 144 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1591 "y.tab.c"
+    break;
+
+  case 28: /* VarsAndStatements: VarDeclaration SEMICOLON  */
+#line 146 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1597 "y.tab.c"
+    break;
+
+  case 29: /* VarsAndStatements: Statement SEMICOLON  */
+#line 148 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1603 "y.tab.c"
+    break;
+
+  case 30: /* VarsAndStatements: SEMICOLON VarsAndStatements  */
+#line 150 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1609 "y.tab.c"
+    break;
+
+  case 31: /* VarsAndStatements: VarDeclaration SEMICOLON VarsAndStatements  */
+#line 152 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1615 "y.tab.c"
     break;
 
   case 32: /* VarsAndStatements: Statement SEMICOLON VarsAndStatements  */
-#line 77 "gocompiler.y"
-                                                                                                                        {printf("14\n");}
-#line 1515 "y.tab.c"
+#line 154 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1621 "y.tab.c"
     break;
 
   case 33: /* Statement: ID ASSIGN Expr  */
-#line 78 "gocompiler.y"
-                                                                                                                        {printf("15\n");}
-#line 1521 "y.tab.c"
+#line 158 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1627 "y.tab.c"
+    break;
+
+  case 34: /* Statement: LBRACE RBRACE  */
+#line 162 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1633 "y.tab.c"
     break;
 
   case 35: /* Statement: LBRACE Statement_1 RBRACE  */
-#line 79 "gocompiler.y"
-                                                                                                                        {printf("16\n");}
-#line 1527 "y.tab.c"
+#line 164 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1639 "y.tab.c"
+    break;
+
+  case 36: /* Statement_1: Statement SEMICOLON  */
+#line 168 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1645 "y.tab.c"
+    break;
+
+  case 37: /* Statement_1: Statement SEMICOLON Statement_1  */
+#line 170 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1651 "y.tab.c"
+    break;
+
+  case 38: /* Statement: IF Expr LBRACE RBRACE  */
+#line 174 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-3]; printf("1\n");}
+#line 1657 "y.tab.c"
+    break;
+
+  case 39: /* Statement: IF Expr LBRACE Statement_rep RBRACE  */
+#line 176 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-4]; printf("1\n");}
+#line 1663 "y.tab.c"
+    break;
+
+  case 40: /* Statement: IF Expr LBRACE RBRACE ELSE LBRACE RBRACE  */
+#line 178 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-6]; printf("1\n");}
+#line 1669 "y.tab.c"
+    break;
+
+  case 41: /* Statement: IF Expr LBRACE RBRACE ELSE LBRACE Statement_rep RBRACE  */
+#line 180 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-7]; printf("1\n");}
+#line 1675 "y.tab.c"
+    break;
+
+  case 42: /* Statement: IF Expr LBRACE Statement_rep RBRACE ELSE LBRACE RBRACE  */
+#line 182 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-7]; printf("1\n");}
+#line 1681 "y.tab.c"
     break;
 
   case 43: /* Statement: IF Expr LBRACE Statement_rep RBRACE ELSE LBRACE Statement_rep RBRACE  */
-#line 86 "gocompiler.y"
-                                                                                                                        {printf("17\n");}
-#line 1533 "y.tab.c"
+#line 184 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-8]; printf("1\n");}
+#line 1687 "y.tab.c"
     break;
 
   case 44: /* Statement_rep: Statement SEMICOLON  */
-#line 87 "gocompiler.y"
-                                                                                                                        {printf("18\n");}
-#line 1539 "y.tab.c"
+#line 188 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1693 "y.tab.c"
+    break;
+
+  case 45: /* Statement: FOR LBRACE RBRACE  */
+#line 192 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1699 "y.tab.c"
+    break;
+
+  case 46: /* Statement: FOR LBRACE Statement_rep RBRACE  */
+#line 194 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-3]; printf("1\n");}
+#line 1705 "y.tab.c"
+    break;
+
+  case 47: /* Statement: FOR Expr LBRACE RBRACE  */
+#line 196 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-3]; printf("1\n");}
+#line 1711 "y.tab.c"
     break;
 
   case 48: /* Statement: FOR Expr LBRACE Statement_rep RBRACE  */
-#line 91 "gocompiler.y"
-                                                                                                                        {printf("19\n");}
-#line 1545 "y.tab.c"
+#line 198 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-4]; printf("1\n");}
+#line 1717 "y.tab.c"
+    break;
+
+  case 49: /* Statement: RETURN  */
+#line 202 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1723 "y.tab.c"
     break;
 
   case 50: /* Statement: RETURN Expr  */
-#line 92 "gocompiler.y"
-                                                                                                                        {printf("20\n");}
-#line 1551 "y.tab.c"
+#line 204 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1729 "y.tab.c"
+    break;
+
+  case 51: /* Statement: FuncInvocation  */
+#line 208 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1735 "y.tab.c"
     break;
 
   case 52: /* Statement: ParseArgs  */
-#line 93 "gocompiler.y"
-                                                                                                                        {printf("21\n");}
-#line 1557 "y.tab.c"
+#line 210 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1741 "y.tab.c"
+    break;
+
+  case 53: /* Statement: PRINT LPAR Expr RPAR  */
+#line 214 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-3]; printf("1\n");}
+#line 1747 "y.tab.c"
     break;
 
   case 54: /* Statement: PRINT LPAR STRLIT RPAR  */
-#line 94 "gocompiler.y"
-                                                                                                                        {printf("22\n");}
-#line 1563 "y.tab.c"
+#line 216 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-3]; printf("1\n");}
+#line 1753 "y.tab.c"
     break;
 
   case 55: /* Statement: error  */
-#line 95 "gocompiler.y"
-                                                                                                                        {printf("23\n");}
-#line 1569 "y.tab.c"
+#line 220 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1759 "y.tab.c"
     break;
 
   case 56: /* ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR  */
-#line 96 "gocompiler.y"
-                                                                                                                        {printf("24\n");}
-#line 1575 "y.tab.c"
+#line 224 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-10]; printf("1\n");}
+#line 1765 "y.tab.c"
     break;
 
   case 57: /* ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR error RPAR  */
-#line 97 "gocompiler.y"
-                                                                                                                        {printf("25\n");}
-#line 1581 "y.tab.c"
+#line 228 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-7]; printf("1\n");}
+#line 1771 "y.tab.c"
+    break;
+
+  case 58: /* FuncInvocation: ID LPAR RPAR  */
+#line 232 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1777 "y.tab.c"
+    break;
+
+  case 59: /* FuncInvocation: ID LPAR Expr RPAR  */
+#line 234 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-3]; printf("1\n");}
+#line 1783 "y.tab.c"
     break;
 
   case 60: /* FuncInvocation: ID LPAR Expr FuncInvocation_rep RPAR  */
-#line 100 "gocompiler.y"
-                                                                                                                        {printf("26\n");}
-#line 1587 "y.tab.c"
+#line 236 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-4]; printf("1\n");}
+#line 1789 "y.tab.c"
+    break;
+
+  case 61: /* FuncInvocation_rep: COMMA Expr  */
+#line 240 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1795 "y.tab.c"
     break;
 
   case 62: /* FuncInvocation_rep: COMMA Expr FuncInvocation_rep  */
-#line 101 "gocompiler.y"
-                                                                                                                        {printf("27\n");}
-#line 1593 "y.tab.c"
+#line 242 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1801 "y.tab.c"
     break;
 
   case 63: /* FuncInvocation: ID LPAR error RPAR  */
-#line 102 "gocompiler.y"
-                                                                                                                        {printf("28\n");}
-#line 1599 "y.tab.c"
+#line 246 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-3]; printf("1\n");}
+#line 1807 "y.tab.c"
+    break;
+
+  case 64: /* Expr: Expr OR Expr  */
+#line 250 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1813 "y.tab.c"
     break;
 
   case 65: /* Expr: Expr AND Expr  */
-#line 103 "gocompiler.y"
-                                                                                                                        {printf("29\n");}
-#line 1605 "y.tab.c"
+#line 252 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1819 "y.tab.c"
+    break;
+
+  case 66: /* Expr: Expr LT  */
+#line 256 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1825 "y.tab.c"
+    break;
+
+  case 67: /* Expr: Expr GT  */
+#line 258 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1831 "y.tab.c"
+    break;
+
+  case 68: /* Expr: Expr LE  */
+#line 260 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1837 "y.tab.c"
+    break;
+
+  case 69: /* Expr: Expr GE  */
+#line 262 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1843 "y.tab.c"
+    break;
+
+  case 70: /* Expr: Expr EQ  */
+#line 264 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1849 "y.tab.c"
     break;
 
   case 71: /* Expr: Expr NE  */
-#line 104 "gocompiler.y"
-                                                                                                                        {printf("30\n");}
-#line 1611 "y.tab.c"
+#line 266 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1855 "y.tab.c"
+    break;
+
+  case 72: /* Expr: Expr PLUS Expr  */
+#line 270 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1861 "y.tab.c"
+    break;
+
+  case 73: /* Expr: Expr MINUS Expr  */
+#line 272 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1867 "y.tab.c"
+    break;
+
+  case 74: /* Expr: Expr STAR Expr  */
+#line 274 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1873 "y.tab.c"
+    break;
+
+  case 75: /* Expr: Expr DIV Expr  */
+#line 276 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1879 "y.tab.c"
     break;
 
   case 76: /* Expr: Expr MOD Expr  */
-#line 105 "gocompiler.y"
-                                                                                                                        {printf("31\n");}
-#line 1617 "y.tab.c"
+#line 278 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1885 "y.tab.c"
+    break;
+
+  case 77: /* Expr: NOT Expr  */
+#line 282 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1891 "y.tab.c"
+    break;
+
+  case 78: /* Expr: MINUS Expr  */
+#line 284 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1897 "y.tab.c"
     break;
 
   case 79: /* Expr: PLUS Expr  */
-#line 106 "gocompiler.y"
-                                                                                                                               {printf("32\n");}
-#line 1623 "y.tab.c"
+#line 286 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-1]; printf("1\n");}
+#line 1903 "y.tab.c"
+    break;
+
+  case 80: /* Expr: INTLIT  */
+#line 290 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1909 "y.tab.c"
+    break;
+
+  case 81: /* Expr: REALLIT  */
+#line 292 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1915 "y.tab.c"
+    break;
+
+  case 82: /* Expr: ID  */
+#line 294 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1921 "y.tab.c"
+    break;
+
+  case 83: /* Expr: FuncInvocation  */
+#line 296 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[0]; printf("1\n");}
+#line 1927 "y.tab.c"
     break;
 
   case 84: /* Expr: LPAR Expr RPAR  */
-#line 107 "gocompiler.y"
-                                                                                                                        {printf("33\n");}
-#line 1629 "y.tab.c"
+#line 298 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1933 "y.tab.c"
     break;
 
   case 85: /* Expr: LPAR error RPAR  */
-#line 108 "gocompiler.y"
-                                                                                                                        {printf("34\n");}
-#line 1635 "y.tab.c"
+#line 302 "gocompiler.y"
+                                                                                                                        {yyval=yyvsp[-2]; printf("1\n");}
+#line 1939 "y.tab.c"
     break;
 
 
-#line 1639 "y.tab.c"
+#line 1943 "y.tab.c"
 
       default: break;
     }
@@ -1829,6 +2133,6 @@ yyreturn:
   return yyresult;
 }
 
-#line 109 "gocompiler.y"
+#line 304 "gocompiler.y"
 
 
