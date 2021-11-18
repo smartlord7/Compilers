@@ -16,3 +16,4 @@ do
 	echo "----------------------------------------------------"
 done
 yacc -d -v gocompiler.y
+cc -o gocompiler.out y.tab.c lex.yy.c util/token_type.c util/error_handling.c

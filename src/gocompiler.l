@@ -5,6 +5,7 @@
 	#include <stdarg.h>
 	#include "util/error_handling.h"
 	#include "util/token_type.h"
+	#include "y.tab.h"
 
 	#define show_error(err_type, curr_column) error(err_type, curr_column, yytext);
 
@@ -234,4 +235,8 @@ void auto_semicolon() {
 				break;
 		}
 	}
+}
+
+void yyerror (char *s) {
+	printf ( "Line %d, column %d: %s: %s\n" , current_line, current_column, s, yytext);
 }
