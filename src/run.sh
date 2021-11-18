@@ -4,7 +4,7 @@ in_ext='.in'
 out_ext='.out'
 
 lex $compiler_name.l
-clang -o $compiler_name lex.yy.c -g
+clang -o  $compiler_name lex.yy.c token_type.c error_handling.c -g
 
 for test_case in $test_cases
 do

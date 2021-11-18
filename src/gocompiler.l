@@ -3,13 +3,12 @@
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdarg.h>
-	
-	#define ERROR_GENERIC_MSG "Line %d, column %d: "
-	#define BUF_SIZE 4096
-	
-	int current_line = 1,
-		current_column = 1,
-		start = 0,
+	#include "error_handling.h"
+	#include "token_type.h"
+
+	#define show_error(err_type, curr_column) error(err_type, curr_column, yytext);
+
+	int	start = 0,
 		str_error = 0,
 		last_token = 0,
 		comment_line = 0,
@@ -18,134 +17,7 @@
 		buf_counter = 0;
 	char buf[BUF_SIZE];
 	
-	typedef enum {
-		NEW_LINE,
-		SEMICOLON,
-		COMMA,
-		BLANK_ID,
-		ASSIGN,
-		STAR,
-		DIV,
-		MINUS,
-		PLUS,
-		EQ,
-		GE,
-		GT,
-		LBRACE,
-		LE,
-		LPAR,
-		LSQ,
-		LT,
-		MOD,
-		NE,
-		NOT,
-		AND,
-		OR,
-		RBRACE,
-		RPAR,
-		RSQ,
-		PACKAGE,
-		RETURN,
-		ELSE,
-		FOR,
-		IF,
-		VAR,
-		INT,
-		FLOAT32,
-		BOOL,
-		STRING,
-		PRINT,
-		PARSE_INT,
-		FUNC,
-		CMDARGS,
-		RESERVED,
-		ID,
-		INT_LIT,
-		REAL_LIT,
-		STRING_LIT,
-		OTHER,
-		STRING_START,
-		STRING_END,
-		LINE_COMMENT_START,
-		GENERAL_COMMENT_START,
-		GENERAL_COMMENT_END,
-		IGNORE,
-		IGNORE_NEW_LINE,
-	} token_type;
-		
-	typedef enum {
-		ILLEGAL_CHAR,
-		UNTERMINATED_COMMENT,
-		INVALID_OCTAL_CONST,
-		UNTERMINATED_STR_LIT,
-		INVALID_ESCAPE_SEQ
-	} error_type;
-	
-	const char * token_types[] = {
-		"NEW_LINE",
-		"SEMICOLON",	
-		"COMMA",
-		"BLANKID",
-		"ASSIGN",
-		"STAR",
-		"DIV",
-		"MINUS",
-		"PLUS",
-		"EQ",
-		"GE",
-		"GT",
-		"LBRACE",
-		"LE",
-		"LPAR",
-		"LSQ",
-		"LT",
-		"MOD",
-		"NE",
-		"NOT",
-		"AND",
-		"OR",
-		"RBRACE",
-		"RPAR",
-		"RSQ",
-		"PACKAGE",
-		"RETURN",
-		"ELSE",
-		"FOR",
-		"IF",
-		"VAR",
-		"INT",
-		"FLOAT32",
-		"BOOL",
-		"STRING",
-		"PRINT",
-		"PARSEINT",
-		"FUNC",
-		"CMDARGS",
-		"RESERVED",
-		"ID",
-		"INTLIT",
-		"REALLIT",
-		"STRLIT",
-		"OTHER",
-		"STRING_START",
-		"STRING_END",
-		"LINE_COMMENT_START",
-		"GENERAL_COMMENT_START",
-		"GENERAL_COMMENT_END",
-		"IGNORE",
-		"IGNORE_NEW_LINE",
-	};
-	
-	const char * error_msgs[] = {
-		"illegal character (%s)",
-		"unterminated comment",
-		"invalid octal constant (%s)",
-		"unterminated string literal",
-		"invalid escape sequence (%s)"
-	};
-	
 	static void handle_token(token_type type);
-	static void lex_error(error_type err_type, int curr_column);
 	static void auto_semicolon();
 
 %}
@@ -262,16 +134,16 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 {reserved}							{handle_token(RESERVED);}
 {id}								{handle_token(ID);}
 {int_lit}							{handle_token(INT_LIT);}
-{invalid_octal_lit}					{lex_error(INVALID_OCTAL_CONST, current_column); current_column += yyleng;}
+{invalid_octal_lit}					{show_error(INVALID_OCTAL_CONST, current_column); current_column += yyleng;}
 {real_lit}							{handle_token(REAL_LIT);}
 {space}								{current_column++;}
 
 \"																	{buf[0] = '\0'; buf_counter = 0; str_error = 0; BEGIN STATE_STRING; start = current_column++;}
 <STATE_STRING>\"													{BEGIN 0; if (!str_error) handle_token(STRING_LIT);}
-<STATE_STRING>{new_line}												{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
-<STATE_STRING><<EOF>>												{BEGIN 0; lex_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
+<STATE_STRING>{new_line}											{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
+<STATE_STRING><<EOF>>												{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING>"\\\\"|"\\\""|"\\t"|"\\n"|"\\r"|"\\f"					{buf[buf_counter++] = yytext[0]; buf[buf_counter++] = yytext[1]; current_column += 2;}
-<STATE_STRING>\\[^\n\r]?											lex_error(INVALID_ESCAPE_SEQ, current_column); {current_column += yyleng;  str_error = 1;}
+<STATE_STRING>\\[^\n\r]?											{show_error(INVALID_ESCAPE_SEQ, current_column); current_column += yyleng;  str_error = 1;}
 <STATE_STRING>.														{buf[buf_counter++] = yytext[0]; current_column++;}
 
 "//"																{BEGIN STATE_LINE_COMMENT; handle_token(LINE_COMMENT_START);}
@@ -281,11 +153,11 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 "/*"																{BEGIN STATE_GENERAL_COMMENT; comment_line = current_line; comment_column = current_column; current_column += 2;}
 <STATE_GENERAL_COMMENT>"*/"											{BEGIN 0; current_column += 2;}
 <STATE_GENERAL_COMMENT>{new_line}									{handle_token(IGNORE_NEW_LINE);}
-<STATE_GENERAL_COMMENT><<EOF>>										{current_line = comment_line; lex_error(UNTERMINATED_COMMENT, comment_column); return 0;}
+<STATE_GENERAL_COMMENT><<EOF>>										{current_line = comment_line; show_error(UNTERMINATED_COMMENT, comment_column); return 0;}
 <STATE_GENERAL_COMMENT>.											{handle_token(IGNORE);}
 
 {whitespaces}														{;}
-{other}																{lex_error(ILLEGAL_CHAR, current_column); current_column += yyleng;}
+{other}																{show_error(ILLEGAL_CHAR, current_column); current_column += yyleng;}
 
 
 %%
@@ -356,27 +228,10 @@ void auto_semicolon() {
 			case RPAR:
 			case RSQ:
 			case RBRACE:
-				printf("SEMICOLON\n");
+				printf("%s\n", token_types[SEMICOLON]);
 				break;
 			default:
 				break;
 		}
 	}
-}
-
-void lex_error_inner(error_type err_type, int curr_column, ...) {
-	va_list args;
-   
-   	va_start(args, curr_column);
-	char buffer[BUF_SIZE], buffer2[BUF_SIZE];
-	snprintf(buffer, BUF_SIZE, ERROR_GENERIC_MSG, current_line, curr_column);
-	vsnprintf(buffer2, BUF_SIZE, error_msgs[err_type], args);
-	
-	printf("%s%s\n", buffer, buffer2);
-	
-   	va_end(args);
-}
-
-void lex_error(error_type err_type, int curr_column) {
-	lex_error_inner(err_type, curr_column, yytext);
 }

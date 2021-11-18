@@ -5,11 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3dad2c65-2968-4510-9728-c861fd881af9" name="Changes" comment="Changes">
+      <change afterPath="$PROJECT_DIR$/src/error_handling.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/error_handling.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/token_type.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/token_type.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gocompiler.y" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.y" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/gocompiler.zip" beforeDir="false" afterPath="$PROJECT_DIR$/dist/gocompiler.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler.l" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.l" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lex.yy.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lex.yy.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/run2.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/run2.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.output" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.output" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.tab.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.tab.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/bad_comments1.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/bad_comments1.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/bad_comments2.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/bad_comments2.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/badids.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/badids.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/comments1.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/comments1.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/comments2.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/comments2.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/comments_bad_1.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/comments_bad_1.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/fatorial.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/fatorial.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/ids1.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/ids1.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/illegal_chars.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/illegal_chars.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/keywords.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/keywords.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/keywords2.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/keywords2.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/literals1.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/literals1.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/literals_1.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/literals_1.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/literals_2.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/literals_2.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/literals_3.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/literals_3.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/numbers.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/numbers.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/operators.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/operators.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/operators2.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/operators2.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/operators_2.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/operators_2.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/program.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/program.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/semicolons.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/semicolons.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/semicolons_1.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/semicolons_1.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/semicolons_2.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/semicolons_2.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/single_line.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/single_line.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/stringbad1.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/stringbad1.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/strings1.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/strings1.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/strings2.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/strings2.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/test.out" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/test.out" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,16 +72,17 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TVRemoteController/TVRemoteController" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -65,5 +103,27 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/error_handling.h</url>
+          <line>12</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
