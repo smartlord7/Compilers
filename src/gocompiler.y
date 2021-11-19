@@ -1,4 +1,13 @@
 %{
+#include "util/error_handling.h"
+#include "util/token_type.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+int yylex (void);
+void yyerror(char* s);
+
+int yydebug = 1;
 
 %}
 
@@ -298,8 +307,3 @@
     	;
 %%
 
-int main() {
-    yyparse();
-
-    return 0;
-}

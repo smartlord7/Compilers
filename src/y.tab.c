@@ -68,9 +68,18 @@
 /* First part of user prologue.  */
 #line 1 "gocompiler.y"
 
+#include "util/error_handling.h"
+#include "util/token_type.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+int yylex (void);
+void yyerror(char* s);
+
+int yydebug = 1;
 
 
-#line 74 "y.tab.c"
+#line 83 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -107,7 +116,7 @@
 # define YY_YY_Y_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
-# define YYDEBUG 0
+# define YYDEBUG 1
 #endif
 #if YYDEBUG
 extern int yydebug;
@@ -214,7 +223,7 @@ union YYSTYPE
 
 	char * strlit, * id, * reallit, * intlit;
 
-#line 229 "y.tab.c"
+#line 227 "y.tab.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -533,16 +542,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  4
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   370
+#define YYLAST   461
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  45
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  22
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  81
+#define YYNRULES  85
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  161
+#define YYNSTATES  168
 
 #define YYUNDEFTOK  2
 #define YYMAXUTOK   299
@@ -591,7 +600,7 @@ static const yytype_int8 yytranslate[] =
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
-static const yytype_int8 yyrline[] =
+static const yytype_int16 yyrline[] =
 {
        0,    72,    72,    76,    78,    80,    84,    88,    90,    94,
       98,   100,   104,   106,   108,   110,   114,   118,   120,   124,
@@ -616,7 +625,7 @@ static const char *const yytname[] =
   "BLANKID", "PARSEINT", "CMDARGS", "LSQ", "RSQ", "OR", "AND", "LT", "GT",
   "EQ", "NE", "LE", "GE", "PLUS", "MINUS", "STAR", "DIV", "MOD", "NOT",
   "INTLIT", "REALLIT", "FUNC", "$accept", "Program", "Declarations",
-  "VarDeclaration", "VarSpec", "VarDeclaration_1", "VarSpec_1", "Type",
+  "VarDeclaration", "VarDeclaration_1", "VarSpec", "VarSpec_1", "Type",
   "FuncDeclaration", "FuncDeclaration_1", "FuncDeclaration_2",
   "Parameters", "Parameters_1", "FuncBody", "VarsAndStatements",
   "Statement", "Statement_1", "Statement_rep", "ParseArgs",
@@ -637,12 +646,12 @@ static const yytype_int16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF (-95)
+#define YYPACT_NINF (-86)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
 
-#define YYTABLE_NINF (-1)
+#define YYTABLE_NINF (-37)
 
 #define yytable_value_is_error(Yyn) \
   0
@@ -651,23 +660,23 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-       4,     8,    22,    19,   -95,    -2,     2,    28,   -95,    21,
-      33,   161,    37,   -95,   -95,    40,    -2,    -2,    46,   -95,
-     -95,   -95,   -95,   -95,   -95,    51,    15,   -95,   -95,   161,
-      59,   108,   355,   -95,    65,   -95,   -95,    50,   249,    61,
-     -95,   -95,   355,    74,   -95,    97,   256,   -95,   268,    98,
-      98,    48,    75,    83,    78,    92,   -95,   -95,   -95,   -95,
-     108,    58,    80,    98,   -95,   -95,    93,    94,   100,    98,
-      98,    98,    98,   -95,   -95,   -95,   186,   324,   276,   212,
-      89,   256,   -95,   256,    50,   -95,   114,    96,   324,    60,
-     -95,   128,   -95,   -95,   -95,   288,    98,    98,   -95,   -95,
-     -95,   -95,   -95,   -95,    98,    98,    98,    98,    98,   -95,
-     105,   101,   296,   116,   147,   -95,   -95,   -95,   -95,    98,
-     119,   104,   -95,   -95,   111,   102,   173,   198,   -10,   -10,
-     -95,   -95,   -95,   -95,   -95,   -95,   123,   -95,   -95,   160,
-     -95,   126,   224,   120,   -95,   -95,   231,   308,   242,   232,
-     -95,   245,   316,    98,   -95,   -95,   251,   311,   -95,   259,
-     -95
+       5,    -2,    10,    13,   -86,    -5,    54,    28,   -86,    38,
+      67,    85,    34,   -86,   -86,    75,    -5,    -5,    79,   -86,
+     -86,   -86,   -86,   -86,   -86,    84,    80,   -86,   -86,    85,
+      83,    99,   106,   -86,    96,   -86,   -86,    94,   255,    77,
+     -86,   -86,   106,   109,   -86,   -86,    26,   276,   -86,   326,
+      95,    95,    64,   119,   125,   120,   128,   -86,   -86,   -86,
+     -86,    99,    44,   112,    95,   -86,   -86,   138,   144,   166,
+      33,    95,    95,    95,   -86,   -86,   -86,   189,   421,   347,
+     215,    86,   297,   -86,   318,    94,   167,   -86,   116,   158,
+     421,   355,   -86,   168,   131,   -86,   -86,   -86,   376,    95,
+      95,   -86,   -86,   -86,   -86,   -86,   -86,    95,    95,    95,
+      95,    95,   -86,   185,   228,   384,   249,   149,   -86,   -86,
+     -86,   -86,   -86,    95,   250,   238,   -86,   -86,   -86,   245,
+     251,   176,   201,   102,   102,   -86,   -86,   -86,   -86,   -86,
+     -86,   252,   -86,   -86,   163,   -86,   257,   253,   260,   -86,
+     -86,     4,   405,   256,   259,   247,   -86,   265,   413,   -86,
+      95,   -86,   -86,   269,   408,   -86,   277,   -86
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -676,125 +685,143 @@ static const yytype_int16 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        0,     0,     0,     0,     1,     5,     0,     0,     2,     0,
-       0,     0,     0,     8,     6,     0,     5,     5,     0,    12,
-      13,    14,    15,     7,    10,     0,     0,     3,     4,     0,
-       0,     0,     0,    16,     0,    11,     9,    21,     0,     0,
-      17,    19,     0,     0,    22,     0,    27,    25,     0,     0,
-      49,     0,     0,     0,     0,     0,    52,    51,    20,    18,
-       0,     0,     0,     0,    30,    34,     0,     0,    79,     0,
-       0,     0,     0,    77,    78,    80,     0,    50,     0,     0,
-       0,    28,    26,    29,    23,    56,     0,     0,    33,    36,
-      35,     0,    76,    75,    74,     0,     0,     0,    63,    64,
-      67,    68,    65,    66,     0,     0,     0,     0,     0,    45,
-       0,     0,     0,     0,     0,    31,    32,    24,    57,     0,
-       0,     0,    37,    81,    38,     0,    61,    62,    69,    70,
-      71,    72,    73,    44,    46,    47,     0,    54,    53,    59,
-      58,     0,     0,    39,    48,    60,     0,     0,     0,     0,
-      40,     0,     0,     0,    41,    42,     0,     0,    43,     0,
-      55
+       0,     0,     0,     6,     7,     0,     5,     5,     0,    12,
+      13,    14,    15,     9,    10,     0,     0,     3,     4,     0,
+       0,     0,     0,    16,     0,    11,     8,    21,     0,     0,
+      17,    19,     0,     0,    22,    55,     0,     0,    25,     0,
+       0,    49,     0,     0,     0,     0,     0,    52,    51,    20,
+      18,     0,     0,     0,     0,    30,    34,     0,     0,    82,
+       0,     0,     0,     0,    80,    81,    83,     0,    50,     0,
+       0,     0,     0,    26,     0,    23,     0,    58,     0,     0,
+      33,     0,    35,     0,     0,    79,    78,    77,     0,     0,
+       0,    66,    67,    70,    71,    68,    69,     0,     0,     0,
+       0,     0,    45,     0,     0,     0,     0,     0,    31,    32,
+      24,    63,    59,     0,     0,     0,    37,    85,    84,    38,
+       0,    64,    65,    72,    73,    74,    75,    76,    44,    46,
+      47,     0,    54,    53,    61,    60,     0,     0,    39,    48,
+      62,     0,     0,     0,     0,     0,    40,     0,     0,    57,
+       0,    41,    42,     0,     0,    43,     0,    56
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-     -95,   -95,    70,     0,   262,   -95,   250,   -11,   -95,   -95,
-     236,   -95,   197,   247,   -44,   -35,   195,   -94,   -95,   -38,
-     155,   -36
+     -86,   -86,     7,    -1,   -86,   272,   258,   -11,   -86,   -86,
+     244,   -86,   203,   261,   -25,   -35,   198,   -85,   -86,   -38,
+     148,   -45
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     2,     8,    53,    13,    14,    23,    24,    10,    33,
-      40,    34,    44,    41,    54,   110,    67,   111,    56,    75,
-     120,    76
+      -1,     2,     8,    54,    13,    14,    23,    24,    10,    33,
+      40,    34,    44,    41,    55,   113,    68,   114,    57,    76,
+     124,    77
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
      positive, shift that token.  If negative, reduce the rule whose
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
-static const yytype_uint8 yytable[] =
+static const yytype_int16 yytable[] =
 {
-      57,   125,    64,    55,     6,     9,    11,     1,    57,    12,
-      57,    55,     3,    66,    77,    79,     9,     9,   136,    31,
-      37,    39,     4,    32,     5,    86,    16,    88,   106,   107,
-     108,    39,    15,    91,    92,    93,    94,   115,    17,   116,
-      57,    11,     7,    57,   114,    57,    55,    26,    55,    84,
-      29,    57,    68,   151,    66,    69,    30,    57,   156,    43,
-     126,   127,    68,    78,    45,    69,    85,    36,   128,   129,
-     130,   131,   132,    42,    57,    48,    38,    49,    60,    50,
-      51,    52,    80,   139,    70,    71,    27,    28,    81,    72,
-      73,    74,    82,    68,    70,    71,    69,    83,    89,    72,
-      73,    74,    68,    87,    61,    69,    62,    61,    90,    57,
-     133,   113,   121,    63,    57,   134,   143,   157,    19,    20,
-      21,    22,   118,   119,   137,    70,    71,   140,   141,   142,
-      72,    73,    74,   146,    70,    71,   123,   144,   148,    72,
-      73,    74,    96,    97,    98,    99,   100,   101,   102,   103,
-     104,   105,   106,   107,   108,   138,    96,    97,    98,    99,
-     100,   101,   102,   103,   104,   105,   106,   107,   108,   119,
-      18,    19,    20,    21,    22,    96,    97,    98,    99,   100,
-     101,   102,   103,   104,   105,   106,   107,   108,    96,    97,
-      98,    99,   100,   101,   102,   103,   104,   105,   106,   107,
-     108,    95,    97,    98,    99,   100,   101,   102,   103,   104,
-     105,   106,   107,   108,    96,    97,    98,    99,   100,   101,
-     102,   103,   104,   105,   106,   107,   108,   112,    98,    99,
-     100,   101,   102,   103,   104,   105,   106,   107,   108,   147,
-      96,    97,    98,    99,   100,   101,   102,   103,   104,   105,
-     106,   107,   108,    45,    46,     6,   149,   152,   153,   154,
-      45,    46,     6,    47,    48,   158,    49,   160,    50,    51,
-      52,    48,    45,    49,    25,    50,    51,    52,    59,    35,
-      45,   117,    65,    48,   122,    49,    58,    50,    51,    52,
-     109,    48,    45,    49,   145,    50,    51,    52,     0,     0,
-      45,     0,   124,    48,     0,    49,     0,    50,    51,    52,
-     135,    48,    45,    49,     0,    50,    51,    52,     0,     0,
-      45,     0,   150,    48,     0,    49,     0,    50,    51,    52,
-     155,    48,     0,    49,     0,    50,    51,    52,   159,    96,
-      97,    98,    99,   100,   101,   102,   103,   104,   105,   106,
-     107,   108,    96,    97,    98,    99,   100,   101,   102,   103,
-     104,   105,   106,   107,   108,    19,    20,    21,    22,     0,
-      38
+      58,     6,     3,    56,     9,   154,    78,    80,     1,    58,
+       4,    58,    56,   130,    67,     9,     9,    88,     5,    90,
+      37,    39,    65,    27,    28,    94,    95,    96,    97,   155,
+     141,    39,    15,    62,    93,    63,   117,    69,    11,     7,
+      70,    58,    64,    16,    58,    86,    58,    56,    69,    56,
+      85,    70,    87,    58,   131,   132,    67,   118,    11,   119,
+      58,    12,   133,   134,   135,   136,   137,   157,    69,    71,
+      72,    70,    17,   163,    73,    74,    75,    58,   144,    79,
+      71,    72,    26,    29,    31,    73,    74,    75,    32,    30,
+      69,    36,    38,    70,    18,    19,    20,    21,    22,    69,
+      71,    72,    70,    43,    42,    73,    74,    75,   116,    19,
+      20,    21,    22,    61,    58,   164,    19,    20,    21,    22,
+      58,    38,    71,    72,   122,   123,    81,    73,    74,    75,
+      82,    71,    72,    84,    83,    89,    73,    74,    75,   128,
+     109,   110,   111,    91,    99,   100,   101,   102,   103,   104,
+     105,   106,   107,   108,   109,   110,   111,   143,    92,    99,
+     100,   101,   102,   103,   104,   105,   106,   107,   108,   109,
+     110,   111,   123,    62,   125,   121,   127,    99,   100,   101,
+     102,   103,   104,   105,   106,   107,   108,   109,   110,   111,
+     138,    99,   100,   101,   102,   103,   104,   105,   106,   107,
+     108,   109,   110,   111,    98,   100,   101,   102,   103,   104,
+     105,   106,   107,   108,   109,   110,   111,    99,   100,   101,
+     102,   103,   104,   105,   106,   107,   108,   109,   110,   111,
+     115,   101,   102,   103,   104,   105,   106,   107,   108,   109,
+     110,   111,   139,    99,   100,   101,   102,   103,   104,   105,
+     106,   107,   108,   109,   110,   111,    45,   142,   145,    46,
+      47,     6,   146,   147,   151,   148,   149,   159,   152,    48,
+      49,   158,    50,   160,    51,    52,    53,    45,   153,   161,
+      46,    47,     6,   165,    25,   167,    60,    35,   120,   126,
+     -27,    49,   150,    50,     0,    51,    52,    53,    45,     0,
+      59,    46,    47,     6,     0,     0,     0,     0,     0,     0,
+       0,   -28,    49,     0,    50,     0,    51,    52,    53,    45,
+       0,     0,    46,    47,     6,     0,     0,    45,     0,     0,
+      46,     0,   -29,    49,     0,    50,     0,    51,    52,    53,
+      66,    49,     0,    50,     0,    51,    52,    53,    45,     0,
+       0,    46,     0,     0,     0,     0,    45,     0,     0,    46,
+       0,   112,    49,     0,    50,     0,    51,    52,    53,   -36,
+      49,     0,    50,     0,    51,    52,    53,    45,     0,     0,
+      46,     0,     0,     0,     0,    45,     0,     0,    46,     0,
+     129,    49,     0,    50,     0,    51,    52,    53,   140,    49,
+       0,    50,     0,    51,    52,    53,    45,     0,     0,    46,
+       0,     0,     0,     0,    45,     0,     0,    46,     0,   156,
+      49,     0,    50,     0,    51,    52,    53,   162,    49,     0,
+      50,     0,    51,    52,    53,   166,    99,   100,   101,   102,
+     103,   104,   105,   106,   107,   108,   109,   110,   111,    99,
+     100,   101,   102,   103,   104,   105,   106,   107,   108,   109,
+     110,   111
 };
 
 static const yytype_int16 yycheck[] =
 {
-      38,    95,    46,    38,     6,     5,     4,     3,    46,     7,
-      48,    46,     4,    48,    50,    51,    16,    17,   112,     4,
-      31,    32,     0,     8,     5,    61,     5,    63,    38,    39,
-      40,    42,     4,    69,    70,    71,    72,    81,     5,    83,
-      78,     4,    44,    81,    80,    83,    81,     7,    83,    60,
-       4,    89,     4,   147,    89,     7,     5,    95,   152,     9,
-      96,    97,     4,    15,     4,     7,     8,     8,   104,   105,
-     106,   107,   108,     8,   112,    15,    15,    17,     4,    19,
-      20,    21,     7,   119,    36,    37,    16,    17,     5,    41,
-      42,    43,    14,     4,    36,    37,     7,     5,     5,    41,
-      42,    43,     4,    23,     7,     7,     9,     7,    14,   147,
-       5,    22,    16,    16,   152,    14,    14,   153,    10,    11,
-      12,    13,     8,     9,     8,    36,    37,     8,    24,    18,
-      41,    42,    43,     7,    36,    37,     8,    14,    18,    41,
-      42,    43,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    40,     8,    28,    29,    30,    31,
-      32,    33,    34,    35,    36,    37,    38,    39,    40,     9,
-       9,    10,    11,    12,    13,    28,    29,    30,    31,    32,
-      33,    34,    35,    36,    37,    38,    39,    40,    28,    29,
-      30,    31,    32,    33,    34,    35,    36,    37,    38,    39,
-      40,    15,    29,    30,    31,    32,    33,    34,    35,    36,
-      37,    38,    39,    40,    28,    29,    30,    31,    32,    33,
-      34,    35,    36,    37,    38,    39,    40,    15,    30,    31,
-      32,    33,    34,    35,    36,    37,    38,    39,    40,    15,
-      28,    29,    30,    31,    32,    33,    34,    35,    36,    37,
-      38,    39,    40,     4,     5,     6,    25,    15,    26,    14,
-       4,     5,     6,    14,    15,    14,    17,     8,    19,    20,
-      21,    15,     4,    17,    12,    19,    20,    21,    42,    29,
-       4,    84,    14,    15,    89,    17,    39,    19,    20,    21,
-      14,    15,     4,    17,   139,    19,    20,    21,    -1,    -1,
-       4,    -1,    14,    15,    -1,    17,    -1,    19,    20,    21,
-      14,    15,     4,    17,    -1,    19,    20,    21,    -1,    -1,
-       4,    -1,    14,    15,    -1,    17,    -1,    19,    20,    21,
-      14,    15,    -1,    17,    -1,    19,    20,    21,    27,    28,
+      38,     6,     4,    38,     5,     1,    51,    52,     3,    47,
+       0,    49,    47,    98,    49,    16,    17,    62,     5,    64,
+      31,    32,    47,    16,    17,    70,    71,    72,    73,    25,
+     115,    42,     4,     7,     1,     9,    81,     4,     4,    44,
+       7,    79,    16,     5,    82,     1,    84,    82,     4,    84,
+      61,     7,     8,    91,    99,   100,    91,    82,     4,    84,
+      98,     7,   107,   108,   109,   110,   111,   152,     4,    36,
+      37,     7,     5,   158,    41,    42,    43,   115,   123,    15,
+      36,    37,     7,     4,     4,    41,    42,    43,     8,     5,
+       4,     8,    15,     7,     9,    10,    11,    12,    13,     4,
+      36,    37,     7,     9,     8,    41,    42,    43,    22,    10,
+      11,    12,    13,     4,   152,   160,    10,    11,    12,    13,
+     158,    15,    36,    37,     8,     9,     7,    41,    42,    43,
+       5,    36,    37,     5,    14,    23,    41,    42,    43,     8,
+      38,    39,    40,     5,    28,    29,    30,    31,    32,    33,
+      34,    35,    36,    37,    38,    39,    40,     8,    14,    28,
       29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
-      39,    40,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    40,    10,    11,    12,    13,    -1,
-      15
+      39,    40,     9,     7,    16,     8,     8,    28,    29,    30,
+      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
+       5,    28,    29,    30,    31,    32,    33,    34,    35,    36,
+      37,    38,    39,    40,    15,    29,    30,    31,    32,    33,
+      34,    35,    36,    37,    38,    39,    40,    28,    29,    30,
+      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
+      15,    30,    31,    32,    33,    34,    35,    36,    37,    38,
+      39,    40,    14,    28,    29,    30,    31,    32,    33,    34,
+      35,    36,    37,    38,    39,    40,     1,     8,     8,     4,
+       5,     6,    24,    18,     7,    14,    14,     8,    15,    14,
+      15,    15,    17,    26,    19,    20,    21,     1,    18,    14,
+       4,     5,     6,    14,    12,     8,    42,    29,    85,    91,
+      14,    15,   144,    17,    -1,    19,    20,    21,     1,    -1,
+      39,     4,     5,     6,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    14,    15,    -1,    17,    -1,    19,    20,    21,     1,
+      -1,    -1,     4,     5,     6,    -1,    -1,     1,    -1,    -1,
+       4,    -1,    14,    15,    -1,    17,    -1,    19,    20,    21,
+      14,    15,    -1,    17,    -1,    19,    20,    21,     1,    -1,
+      -1,     4,    -1,    -1,    -1,    -1,     1,    -1,    -1,     4,
+      -1,    14,    15,    -1,    17,    -1,    19,    20,    21,    14,
+      15,    -1,    17,    -1,    19,    20,    21,     1,    -1,    -1,
+       4,    -1,    -1,    -1,    -1,     1,    -1,    -1,     4,    -1,
+      14,    15,    -1,    17,    -1,    19,    20,    21,    14,    15,
+      -1,    17,    -1,    19,    20,    21,     1,    -1,    -1,     4,
+      -1,    -1,    -1,    -1,     1,    -1,    -1,     4,    -1,    14,
+      15,    -1,    17,    -1,    19,    20,    21,    14,    15,    -1,
+      17,    -1,    19,    20,    21,    27,    28,    29,    30,    31,
+      32,    33,    34,    35,    36,    37,    38,    39,    40,    28,
+      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
+      39,    40
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -803,49 +830,49 @@ static const yytype_int8 yystos[] =
 {
        0,     3,    46,     4,     0,     5,     6,    44,    47,    48,
       53,     4,     7,    49,    50,     4,     5,     5,     9,    10,
-      11,    12,    13,    51,    52,    49,     7,    47,    47,     4,
+      11,    12,    13,    51,    52,    50,     7,    47,    47,     4,
        5,     4,     8,    54,    56,    51,     8,    52,    15,    52,
-      55,    58,     8,     9,    57,     4,     5,    14,    15,    17,
-      19,    20,    21,    48,    59,    60,    63,    64,    58,    55,
-       4,     7,     9,    16,    59,    14,    60,    61,     4,     7,
-      36,    37,    41,    42,    43,    64,    66,    66,    15,    66,
-       7,     5,    14,     5,    52,     8,    66,    23,    66,     5,
-      14,    66,    66,    66,    66,    15,    28,    29,    30,    31,
-      32,    33,    34,    35,    36,    37,    38,    39,    40,    14,
-      60,    62,    15,    22,    66,    59,    59,    57,     8,     9,
-      65,    16,    61,     8,    14,    62,    66,    66,    66,    66,
-      66,    66,    66,     5,    14,    14,    62,     8,     8,    66,
-       8,    24,    18,    14,    14,    65,     7,    15,    18,    25,
-      14,    62,    15,    26,    14,    14,    62,    66,    14,    27,
-       8
+      55,    58,     8,     9,    57,     1,     4,     5,    14,    15,
+      17,    19,    20,    21,    48,    59,    60,    63,    64,    58,
+      55,     4,     7,     9,    16,    59,    14,    60,    61,     4,
+       7,    36,    37,    41,    42,    43,    64,    66,    66,    15,
+      66,     7,     5,    14,     5,    52,     1,     8,    66,    23,
+      66,     5,    14,     1,    66,    66,    66,    66,    15,    28,
+      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
+      39,    40,    14,    60,    62,    15,    22,    66,    59,    59,
+      57,     8,     8,     9,    65,    16,    61,     8,     8,    14,
+      62,    66,    66,    66,    66,    66,    66,    66,     5,    14,
+      14,    62,     8,     8,    66,     8,    24,    18,    14,    14,
+      65,     7,    15,    18,     1,    25,    14,    62,    15,     8,
+      26,    14,    14,    62,    66,    14,    27,     8
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    45,    46,    47,    47,    47,    48,    49,    50,    50,
+       0,    45,    46,    47,    47,    47,    48,    49,    49,    50,
       51,    51,    52,    52,    52,    52,    53,    54,    54,    55,
       55,    56,    56,    57,    57,    58,    58,    59,    59,    59,
       59,    59,    59,    60,    60,    60,    61,    61,    60,    60,
       60,    60,    60,    60,    62,    60,    60,    60,    60,    60,
-      60,    60,    60,    60,    60,    63,    64,    64,    64,    65,
-      65,    66,    66,    66,    66,    66,    66,    66,    66,    66,
+      60,    60,    60,    60,    60,    60,    63,    63,    64,    64,
+      64,    65,    65,    64,    66,    66,    66,    66,    66,    66,
       66,    66,    66,    66,    66,    66,    66,    66,    66,    66,
-      66,    66
+      66,    66,    66,    66,    66,    66
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     4,     3,     3,     0,     2,     2,     1,     4,
+       0,     2,     4,     3,     3,     0,     2,     1,     4,     2,
        1,     3,     1,     1,     1,     1,     4,     2,     3,     1,
        2,     2,     3,     3,     4,     2,     3,     1,     2,     2,
        2,     3,     3,     3,     2,     3,     2,     3,     4,     5,
        7,     8,     8,     9,     2,     3,     4,     4,     5,     1,
-       2,     1,     1,     4,     4,    11,     3,     4,     5,     2,
-       3,     3,     3,     2,     2,     2,     2,     2,     2,     3,
-       3,     3,     3,     3,     2,     2,     2,     1,     1,     1,
-       1,     3
+       2,     1,     1,     4,     4,     1,    11,     8,     3,     4,
+       5,     2,     3,     4,     3,     3,     2,     2,     2,     2,
+       2,     2,     3,     3,     3,     3,     3,     2,     2,     2,
+       1,     1,     1,     1,     3,     3
 };
 
 
@@ -1540,512 +1567,512 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 2: /* Program: PACKAGE ID SEMICOLON Declarations  */
+  case 2:
 #line 72 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1450 "y.tab.c"
+#line 1574 "y.tab.c"
     break;
 
-  case 3: /* Declarations: VarDeclaration SEMICOLON Declarations  */
+  case 3:
 #line 76 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1456 "y.tab.c"
+#line 1580 "y.tab.c"
     break;
 
-  case 4: /* Declarations: FuncDeclaration SEMICOLON Declarations  */
+  case 4:
 #line 78 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1462 "y.tab.c"
+#line 1586 "y.tab.c"
     break;
 
-  case 5: /* Declarations: %empty  */
+  case 5:
 #line 80 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1468 "y.tab.c"
+#line 1592 "y.tab.c"
     break;
 
-  case 6: /* VarDeclaration: VAR VarDeclaration_1  */
+  case 6:
 #line 84 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1474 "y.tab.c"
+#line 1598 "y.tab.c"
     break;
 
-  case 7: /* VarDeclaration_1: VarSpec  */
+  case 7:
 #line 88 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1480 "y.tab.c"
+#line 1604 "y.tab.c"
     break;
 
-  case 8: /* VarDeclaration_1: LPAR VarSpec SEMICOLON RPAR  */
+  case 8:
 #line 90 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1486 "y.tab.c"
+#line 1610 "y.tab.c"
     break;
 
-  case 9: /* VarSpec: ID VarSpec_1  */
+  case 9:
 #line 94 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1492 "y.tab.c"
+#line 1616 "y.tab.c"
     break;
 
-  case 10: /* VarSpec_1: Type  */
+  case 10:
 #line 98 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1498 "y.tab.c"
+#line 1622 "y.tab.c"
     break;
 
-  case 11: /* VarSpec_1: COMMA ID VarSpec_1  */
+  case 11:
 #line 100 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1504 "y.tab.c"
+#line 1628 "y.tab.c"
     break;
 
-  case 12: /* Type: INT  */
+  case 12:
 #line 104 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1510 "y.tab.c"
+#line 1634 "y.tab.c"
     break;
 
-  case 13: /* Type: FLOAT32  */
+  case 13:
 #line 106 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1516 "y.tab.c"
+#line 1640 "y.tab.c"
     break;
 
-  case 14: /* Type: BOOL  */
+  case 14:
 #line 108 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1522 "y.tab.c"
+#line 1646 "y.tab.c"
     break;
 
-  case 15: /* Type: STRING  */
+  case 15:
 #line 110 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1528 "y.tab.c"
+#line 1652 "y.tab.c"
     break;
 
-  case 16: /* FuncDeclaration: FUNC ID LPAR FuncDeclaration_1  */
+  case 16:
 #line 114 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1534 "y.tab.c"
+#line 1658 "y.tab.c"
     break;
 
-  case 17: /* FuncDeclaration_1: RPAR FuncDeclaration_2  */
+  case 17:
 #line 118 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1540 "y.tab.c"
+#line 1664 "y.tab.c"
     break;
 
-  case 18: /* FuncDeclaration_1: Parameters RPAR FuncDeclaration_2  */
+  case 18:
 #line 120 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1546 "y.tab.c"
+#line 1670 "y.tab.c"
     break;
 
-  case 19: /* FuncDeclaration_2: FuncBody  */
+  case 19:
 #line 124 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1552 "y.tab.c"
+#line 1676 "y.tab.c"
     break;
 
-  case 20: /* FuncDeclaration_2: Type FuncBody  */
+  case 20:
 #line 126 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1558 "y.tab.c"
+#line 1682 "y.tab.c"
     break;
 
-  case 21: /* Parameters: ID Type  */
+  case 21:
 #line 130 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1564 "y.tab.c"
+#line 1688 "y.tab.c"
     break;
 
-  case 22: /* Parameters: ID Type Parameters_1  */
+  case 22:
 #line 132 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1570 "y.tab.c"
+#line 1694 "y.tab.c"
     break;
 
-  case 23: /* Parameters_1: COMMA ID Type  */
+  case 23:
 #line 136 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1576 "y.tab.c"
+#line 1700 "y.tab.c"
     break;
 
-  case 24: /* Parameters_1: COMMA ID Type Parameters_1  */
+  case 24:
 #line 138 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1582 "y.tab.c"
+#line 1706 "y.tab.c"
     break;
 
-  case 25: /* FuncBody: LBRACE RBRACE  */
+  case 25:
 #line 142 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1588 "y.tab.c"
+#line 1712 "y.tab.c"
     break;
 
-  case 26: /* FuncBody: LBRACE VarsAndStatements RBRACE  */
+  case 26:
 #line 144 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1594 "y.tab.c"
+#line 1718 "y.tab.c"
     break;
 
-  case 27: /* VarsAndStatements: SEMICOLON  */
+  case 27:
 #line 148 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1600 "y.tab.c"
+#line 1724 "y.tab.c"
     break;
 
-  case 28: /* VarsAndStatements: VarDeclaration SEMICOLON  */
+  case 28:
 #line 150 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1606 "y.tab.c"
+#line 1730 "y.tab.c"
     break;
 
-  case 29: /* VarsAndStatements: Statement SEMICOLON  */
+  case 29:
 #line 152 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1612 "y.tab.c"
+#line 1736 "y.tab.c"
     break;
 
-  case 30: /* VarsAndStatements: SEMICOLON VarsAndStatements  */
+  case 30:
 #line 154 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1618 "y.tab.c"
+#line 1742 "y.tab.c"
     break;
 
-  case 31: /* VarsAndStatements: VarDeclaration SEMICOLON VarsAndStatements  */
+  case 31:
 #line 156 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1624 "y.tab.c"
+#line 1748 "y.tab.c"
     break;
 
-  case 32: /* VarsAndStatements: Statement SEMICOLON VarsAndStatements  */
+  case 32:
 #line 158 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1630 "y.tab.c"
+#line 1754 "y.tab.c"
     break;
 
-  case 33: /* Statement: ID ASSIGN Expr  */
+  case 33:
 #line 162 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1636 "y.tab.c"
+#line 1760 "y.tab.c"
     break;
 
-  case 34: /* Statement: LBRACE RBRACE  */
+  case 34:
 #line 166 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1642 "y.tab.c"
+#line 1766 "y.tab.c"
     break;
 
-  case 35: /* Statement: LBRACE Statement_1 RBRACE  */
+  case 35:
 #line 168 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1648 "y.tab.c"
+#line 1772 "y.tab.c"
     break;
 
-  case 36: /* Statement_1: Statement SEMICOLON  */
+  case 36:
 #line 172 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1654 "y.tab.c"
+#line 1778 "y.tab.c"
     break;
 
-  case 37: /* Statement_1: Statement SEMICOLON Statement_1  */
+  case 37:
 #line 174 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1660 "y.tab.c"
+#line 1784 "y.tab.c"
     break;
 
-  case 38: /* Statement: IF Expr LBRACE RBRACE  */
+  case 38:
 #line 178 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1666 "y.tab.c"
+#line 1790 "y.tab.c"
     break;
 
-  case 39: /* Statement: IF Expr LBRACE Statement_rep RBRACE  */
+  case 39:
 #line 180 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1672 "y.tab.c"
+#line 1796 "y.tab.c"
     break;
 
-  case 40: /* Statement: IF Expr LBRACE RBRACE ELSE LBRACE RBRACE  */
+  case 40:
 #line 182 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1678 "y.tab.c"
+#line 1802 "y.tab.c"
     break;
 
-  case 41: /* Statement: IF Expr LBRACE RBRACE ELSE LBRACE Statement_rep RBRACE  */
+  case 41:
 #line 184 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1684 "y.tab.c"
+#line 1808 "y.tab.c"
     break;
 
-  case 42: /* Statement: IF Expr LBRACE Statement_rep RBRACE ELSE LBRACE RBRACE  */
+  case 42:
 #line 186 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1690 "y.tab.c"
+#line 1814 "y.tab.c"
     break;
 
-  case 43: /* Statement: IF Expr LBRACE Statement_rep RBRACE ELSE LBRACE Statement_rep RBRACE  */
+  case 43:
 #line 188 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1696 "y.tab.c"
+#line 1820 "y.tab.c"
     break;
 
-  case 44: /* Statement_rep: Statement SEMICOLON  */
+  case 44:
 #line 192 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1702 "y.tab.c"
+#line 1826 "y.tab.c"
     break;
 
-  case 45: /* Statement: FOR LBRACE RBRACE  */
+  case 45:
 #line 196 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1708 "y.tab.c"
+#line 1832 "y.tab.c"
     break;
 
-  case 46: /* Statement: FOR LBRACE Statement_rep RBRACE  */
+  case 46:
 #line 198 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1714 "y.tab.c"
+#line 1838 "y.tab.c"
     break;
 
-  case 47: /* Statement: FOR Expr LBRACE RBRACE  */
+  case 47:
 #line 200 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1720 "y.tab.c"
+#line 1844 "y.tab.c"
     break;
 
-  case 48: /* Statement: FOR Expr LBRACE Statement_rep RBRACE  */
+  case 48:
 #line 202 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1726 "y.tab.c"
+#line 1850 "y.tab.c"
     break;
 
-  case 49: /* Statement: RETURN  */
+  case 49:
 #line 206 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1732 "y.tab.c"
+#line 1856 "y.tab.c"
     break;
 
-  case 50: /* Statement: RETURN Expr  */
+  case 50:
 #line 208 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1738 "y.tab.c"
+#line 1862 "y.tab.c"
     break;
 
-  case 51: /* Statement: FuncInvocation  */
+  case 51:
 #line 212 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1744 "y.tab.c"
+#line 1868 "y.tab.c"
     break;
 
-  case 52: /* Statement: ParseArgs  */
+  case 52:
 #line 214 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1750 "y.tab.c"
+#line 1874 "y.tab.c"
     break;
 
-  case 53: /* Statement: PRINT LPAR Expr RPAR  */
+  case 53:
 #line 218 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1756 "y.tab.c"
+#line 1880 "y.tab.c"
     break;
 
-  case 54: /* Statement: PRINT LPAR STRLIT RPAR  */
+  case 54:
 #line 220 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1762 "y.tab.c"
+#line 1886 "y.tab.c"
     break;
 
-  case 55: /* Statement: error  */
+  case 55:
 #line 224 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1768 "y.tab.c"
+#line 1892 "y.tab.c"
     break;
 
-  case 56: /* ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR  */
+  case 56:
 #line 228 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1774 "y.tab.c"
+#line 1898 "y.tab.c"
     break;
 
-  case 57: /* ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR error RPAR  */
+  case 57:
 #line 232 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1780 "y.tab.c"
+#line 1904 "y.tab.c"
     break;
 
-  case 58: /* FuncInvocation: ID LPAR RPAR  */
+  case 58:
 #line 236 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1786 "y.tab.c"
+#line 1910 "y.tab.c"
     break;
 
-  case 59: /* FuncInvocation: ID LPAR Expr RPAR  */
+  case 59:
 #line 238 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1792 "y.tab.c"
+#line 1916 "y.tab.c"
     break;
 
-  case 60: /* FuncInvocation: ID LPAR Expr FuncInvocation_rep RPAR  */
+  case 60:
 #line 240 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1798 "y.tab.c"
+#line 1922 "y.tab.c"
     break;
 
-  case 61: /* FuncInvocation_rep: COMMA Expr  */
+  case 61:
 #line 244 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1804 "y.tab.c"
+#line 1928 "y.tab.c"
     break;
 
-  case 62: /* FuncInvocation_rep: COMMA Expr FuncInvocation_rep  */
+  case 62:
 #line 246 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1810 "y.tab.c"
+#line 1934 "y.tab.c"
     break;
 
-  case 63: /* FuncInvocation: ID LPAR error RPAR  */
+  case 63:
 #line 250 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1816 "y.tab.c"
+#line 1940 "y.tab.c"
     break;
 
-  case 64: /* Expr: Expr OR Expr  */
+  case 64:
 #line 254 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1822 "y.tab.c"
+#line 1946 "y.tab.c"
     break;
 
-  case 65: /* Expr: Expr AND Expr  */
+  case 65:
 #line 256 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1828 "y.tab.c"
+#line 1952 "y.tab.c"
     break;
 
-  case 66: /* Expr: Expr LT  */
+  case 66:
 #line 260 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1834 "y.tab.c"
+#line 1958 "y.tab.c"
     break;
 
-  case 67: /* Expr: Expr GT  */
+  case 67:
 #line 262 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1840 "y.tab.c"
+#line 1964 "y.tab.c"
     break;
 
-  case 68: /* Expr: Expr LE  */
+  case 68:
 #line 264 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1846 "y.tab.c"
+#line 1970 "y.tab.c"
     break;
 
-  case 69: /* Expr: Expr GE  */
+  case 69:
 #line 266 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1852 "y.tab.c"
+#line 1976 "y.tab.c"
     break;
 
-  case 70: /* Expr: Expr EQ  */
+  case 70:
 #line 268 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1858 "y.tab.c"
+#line 1982 "y.tab.c"
     break;
 
-  case 71: /* Expr: Expr NE  */
+  case 71:
 #line 270 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1864 "y.tab.c"
+#line 1988 "y.tab.c"
     break;
 
-  case 72: /* Expr: Expr PLUS Expr  */
+  case 72:
 #line 274 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1870 "y.tab.c"
+#line 1994 "y.tab.c"
     break;
 
-  case 73: /* Expr: Expr MINUS Expr  */
+  case 73:
 #line 276 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1876 "y.tab.c"
+#line 2000 "y.tab.c"
     break;
 
-  case 74: /* Expr: Expr STAR Expr  */
+  case 74:
 #line 278 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1882 "y.tab.c"
+#line 2006 "y.tab.c"
     break;
 
-  case 75: /* Expr: Expr DIV Expr  */
+  case 75:
 #line 280 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1888 "y.tab.c"
+#line 2012 "y.tab.c"
     break;
 
-  case 76: /* Expr: Expr MOD Expr  */
+  case 76:
 #line 282 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1894 "y.tab.c"
+#line 2018 "y.tab.c"
     break;
 
-  case 77: /* Expr: NOT Expr  */
+  case 77:
 #line 286 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1900 "y.tab.c"
+#line 2024 "y.tab.c"
     break;
 
-  case 78: /* Expr: MINUS Expr  */
+  case 78:
 #line 288 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1906 "y.tab.c"
+#line 2030 "y.tab.c"
     break;
 
-  case 79: /* Expr: PLUS Expr  */
+  case 79:
 #line 290 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1912 "y.tab.c"
+#line 2036 "y.tab.c"
     break;
 
-  case 80: /* Expr: INTLIT  */
+  case 80:
 #line 294 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1918 "y.tab.c"
+#line 2042 "y.tab.c"
     break;
 
-  case 81: /* Expr: REALLIT  */
+  case 81:
 #line 296 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1924 "y.tab.c"
+#line 2048 "y.tab.c"
     break;
 
-  case 82: /* Expr: ID  */
+  case 82:
 #line 298 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1930 "y.tab.c"
+#line 2054 "y.tab.c"
     break;
 
-  case 83: /* Expr: FuncInvocation  */
+  case 83:
 #line 300 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1936 "y.tab.c"
+#line 2060 "y.tab.c"
     break;
 
-  case 84: /* Expr: LPAR Expr RPAR  */
+  case 84:
 #line 302 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1942 "y.tab.c"
+#line 2066 "y.tab.c"
     break;
 
-  case 85: /* Expr: LPAR error RPAR  */
+  case 85:
 #line 306 "gocompiler.y"
                                                                                                                         {printf("1\n");}
-#line 1948 "y.tab.c"
+#line 2072 "y.tab.c"
     break;
 
 
-#line 1952 "y.tab.c"
+#line 2076 "y.tab.c"
 
       default: break;
     }
@@ -2277,12 +2304,6 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 101 "gocompiler.y"
-
 #line 308 "gocompiler.y"
 
-int main() {
-    yyparse();
 
-    return 0;
-}

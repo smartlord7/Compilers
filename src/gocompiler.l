@@ -1,4 +1,5 @@
 %{
+	#include "y.tab.h"
 	#include <stdlib.h>
 	#include <stdio.h>
 	#include <string.h>
@@ -16,7 +17,7 @@
 		verbose = 0,
 		buf_counter = 0;
 	char buf[BUF_SIZE], buf2[BUF_SIZE_2];
-	
+
 	static char * handle_token(token_type type);
 	static void auto_semicolon();
 
@@ -80,8 +81,8 @@ exponent							(e|E)({minus}|{plus})?{dec_digit}+
 real_lit1							{dec_digit}+"."{dec_digit}*{exponent}?
 real_lit2							"."{dec_digit}+({exponent})?
 real_lit3							{dec_digit}+{exponent}
-real_lit							{real_lit1}|{real_lit2}|{real_lit3}	
-						
+real_lit							{real_lit1}|{real_lit2}|{real_lit3}
+
 letter								[a-zA-Z]
 id									({letter}|{blank_id})({letter}|{dec_digit}+|{blank_id})*
 
@@ -147,7 +148,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 <STATE_STRING>.														{buf[buf_counter++] = yytext[0]; current_column++;}
 
 "//"																{BEGIN STATE_LINE_COMMENT; handle_token(LINE_COMMENT_START_);}
-<STATE_LINE_COMMENT>{new_line}										{handle_token(IGNORE_NEW_LINE_); BEGIN 0;}						
+<STATE_LINE_COMMENT>{new_line}										{handle_token(IGNORE_NEW_LINE_); BEGIN 0;}
 <STATE_LINE_COMMENT>.												{handle_token(IGNORE_);}
 
 "/*"																{BEGIN STATE_GENERAL_COMMENT; comment_line = current_line; comment_column = current_column; current_column += 2;}
@@ -183,7 +184,7 @@ int yywrap() {
 char * handle_token(token_type tok_type) {
 	char * tok = yytext;
 	current_column += yyleng;
-	
+
 	switch (tok_type) {
 		case ID_:
 		case INT_LIT_:
@@ -246,4 +247,8 @@ void auto_semicolon() {
             buf2[0] = '\0';
             break;
     }
+}
+
+void yyerror (char * s) {
+    printf ("Line %d, column %d: %s: %s\n", current_line, current_column, s, yytext);
 }
