@@ -1,5 +1,4 @@
 %{
-	#include "y.tab.h"
 	#include <stdlib.h>
 	#include <stdio.h>
 	#include <string.h>
@@ -247,8 +246,4 @@ void auto_semicolon() {
             buf2[0] = '\0';
             break;
     }
-}
-
-void yyerror (char * s) {
-    printf ("Line %d, column %d: %s: %s\n", current_line, current_column, s, yytext);
 }

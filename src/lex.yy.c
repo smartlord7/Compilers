@@ -666,7 +666,6 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "gocompiler.l"
 #line 2 "gocompiler.l"
-	#include "y.tab.h"
 	#include <stdlib.h>
 	#include <stdio.h>
 	#include <string.h>
@@ -688,9 +687,9 @@ char *yytext;
 	static char * handle_token(token_type type);
 	static void auto_semicolon();
 
-#line 692 "lex.yy.c"
+#line 691 "lex.yy.c"
 
-#line 694 "lex.yy.c"
+#line 693 "lex.yy.c"
 
 #define INITIAL 0
 #define STATE_STRING 1
@@ -911,10 +910,10 @@ YY_DECL
 		}
 
 	{
-#line 92 "gocompiler.l"
+#line 91 "gocompiler.l"
 
 
-#line 918 "lex.yy.c"
+#line 917 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -983,7 +982,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 96 "gocompiler.l"
+#line 95 "gocompiler.l"
 {handle_token(BLANK_ID_);}
 	YY_BREAK
 case 4:
@@ -1169,7 +1168,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 135 "gocompiler.l"
+#line 134 "gocompiler.l"
 {handle_token(RESERVED_);}
 	YY_BREAK
 case 41:
@@ -1184,7 +1183,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 138 "gocompiler.l"
+#line 137 "gocompiler.l"
 {show_error(INVALID_OCTAL_CONST, current_column); current_column += yyleng;}
 	YY_BREAK
 case 44:
@@ -1194,12 +1193,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 140 "gocompiler.l"
+#line 139 "gocompiler.l"
 {current_column++;}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 142 "gocompiler.l"
+#line 141 "gocompiler.l"
 {buf[0] = '\0'; buf_counter = 0; str_error = 0; BEGIN STATE_STRING; start = current_column++;}
 	YY_BREAK
 case 47:
@@ -1210,78 +1209,78 @@ YY_RULE_SETUP
 case 48:
 /* rule 48 can match eol */
 YY_RULE_SETUP
-#line 144 "gocompiler.l"
+#line 143 "gocompiler.l"
 {BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 	YY_BREAK
 case YY_STATE_EOF(STATE_STRING):
-#line 145 "gocompiler.l"
+#line 144 "gocompiler.l"
 {BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 146 "gocompiler.l"
+#line 145 "gocompiler.l"
 {buf[buf_counter++] = yytext[0]; buf[buf_counter++] = yytext[1]; current_column += 2;}
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 147 "gocompiler.l"
+#line 146 "gocompiler.l"
 {show_error(INVALID_ESCAPE_SEQ, current_column); current_column += yyleng;  str_error = 1;}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 148 "gocompiler.l"
+#line 147 "gocompiler.l"
 {buf[buf_counter++] = yytext[0]; current_column++;}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 150 "gocompiler.l"
+#line 149 "gocompiler.l"
 {BEGIN STATE_LINE_COMMENT; handle_token(LINE_COMMENT_START_);}
 	YY_BREAK
 case 53:
 /* rule 53 can match eol */
 YY_RULE_SETUP
-#line 151 "gocompiler.l"
+#line 150 "gocompiler.l"
 {handle_token(IGNORE_NEW_LINE_); BEGIN 0;}						
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 152 "gocompiler.l"
+#line 151 "gocompiler.l"
 {handle_token(IGNORE_);}
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 154 "gocompiler.l"
+#line 153 "gocompiler.l"
 {BEGIN STATE_GENERAL_COMMENT; comment_line = current_line; comment_column = current_column; current_column += 2;}
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 155 "gocompiler.l"
+#line 154 "gocompiler.l"
 {BEGIN 0; current_column += 2;}
 	YY_BREAK
 case 57:
 /* rule 57 can match eol */
 YY_RULE_SETUP
-#line 156 "gocompiler.l"
+#line 155 "gocompiler.l"
 {handle_token(IGNORE_NEW_LINE_);}
 	YY_BREAK
 case YY_STATE_EOF(STATE_GENERAL_COMMENT):
-#line 157 "gocompiler.l"
+#line 156 "gocompiler.l"
 {current_line = comment_line; show_error(UNTERMINATED_COMMENT, comment_column); return 0;}
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 158 "gocompiler.l"
+#line 157 "gocompiler.l"
 {handle_token(IGNORE_);}
 	YY_BREAK
 case 59:
 /* rule 59 can match eol */
 YY_RULE_SETUP
-#line 160 "gocompiler.l"
+#line 159 "gocompiler.l"
 {;}
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 161 "gocompiler.l"
+#line 160 "gocompiler.l"
 {show_error(ILLEGAL_CHAR, current_column); current_column += yyleng;}
 	YY_BREAK
 case 61:
@@ -1289,7 +1288,7 @@ YY_RULE_SETUP
 #line 163 "gocompiler.l"
 ECHO;
 	YY_BREAK
-#line 1293 "lex.yy.c"
+#line 1292 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(STATE_LINE_COMMENT):
 case YY_STATE_EOF(OCTAL):
@@ -2384,8 +2383,4 @@ void auto_semicolon() {
             buf2[0] = '\0';
             break;
     }
-}
-
-void yyerror (char * s) {
-    printf ("Line %d, column %d: %s: %s\n", current_line, current_column, s, yytext);
 }

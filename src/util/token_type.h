@@ -54,7 +54,6 @@ typedef enum {
     GENERAL_COMMENT_END_,
     IGNORE_,
     IGNORE_NEW_LINE_,
-    END_
 } token_type;
 
 extern char * token_types[];

@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/ArrayList.test.dir/src/data_structures/array_list.c.o CMakeFiles/ArrayList.test.dir/src/tests/array_list.test.c.o -o ArrayList.test 
