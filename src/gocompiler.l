@@ -16,6 +16,7 @@
 		comment_column = 0,
 		verbose = 0,
 		buf_counter = 0;
+	int flag = 0;
 	char buf[BUF_SIZE], buf2[BUF_SIZE_2];
 
 	static char * handle_token(token_type type);
@@ -159,6 +160,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 
 {whitespaces}														{;}
 {other}																{show_error(ILLEGAL_CHAR, current_column); current_column += yyleng;}
+<<EOF>>                                                             {if(flag == 1) {flag = 0; return SEMICOLON;} else {return 0;};}
 
 %%
 
@@ -169,16 +171,14 @@ int main(int argc, char * argv[]) {
 
 	if(yyparse() == 0) {
 	    printf("sucesso\n");
-    }
-	printf("insucesso\n");
+    } else printf("insucesso\n");
 
 	return EXIT_SUCCESS;
 }
 
 int yywrap() {
-	printf("wrap\n");
 
-	auto_semicolon();
+    auto_semicolon();
 
 	return 1;
 }
@@ -193,9 +193,10 @@ char * handle_token(token_type tok_type) {
 		case REAL_LIT_:
 		case RESERVED_:
 		snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[tok_type], tok);
-		if (verbose) {
-			printf("%s", buf2);
-		}
+            if (verbose) {
+                printf("%s", buf2);
+            }
+		    last_token = tok_type;
 		    return buf2;
 			break;
 		case STRING_LIT_:
@@ -208,6 +209,7 @@ char * handle_token(token_type tok_type) {
 			buf[0] = '\0';
 			buf_counter = 0;
 
+            last_token = tok_type;
 			return buf2;
 			break;
 		case NEW_LINE_:
@@ -226,29 +228,32 @@ char * handle_token(token_type tok_type) {
 			}
 			return token_types[tok_type];
 	}
-
-	last_token = tok_type;
 }
 
 void auto_semicolon() {
-    switch(last_token) {
-        case INT_LIT_:
-        case REAL_LIT_:
-        case STRING_LIT_:
-        case ID_:
-        case RETURN_:
-        case RPAR_:
-        case RSQ_:
-        case RBRACE_:
-            snprintf(buf2, BUF_SIZE_2, "%s\n", token_types[SEMICOLON_]);
-            if (verbose) {
-                printf("%s\n", token_types[SEMICOLON_]);
-            }
-            break;
-        default:
-            buf2[0] = '\0';
-            break;
-    }
+
+    if(last_token != SEMICOLON_) {
+        switch(last_token) {
+            case INT_LIT_:
+            case REAL_LIT_:
+            case STRING_LIT_:
+            case ID_:
+            case RETURN_:
+            case RPAR_:
+            case RSQ_:
+            case RBRACE_:
+                snprintf(buf2, BUF_SIZE_2, "%s\n", token_types[SEMICOLON_]);
+                if (verbose) {
+                    printf("%s\n", token_types[SEMICOLON_]);
+                }
+                flag = 1;
+                last_token = SEMICOLON_;
+                break;
+            default:
+                buf2[0] = '\0';
+                break;
+        }
+   }
 }
 
 void yyerror (char * s) {

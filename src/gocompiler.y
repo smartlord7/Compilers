@@ -71,7 +71,7 @@ int yydebug = 1;
     Program:
     	PACKAGE ID SEMICOLON Declarations										{printf("1\n");}
     	|
-    	PACKAGE ID SEMICOLON												{printf("2 - \n");}
+    	PACKAGE ID SEMICOLON												{;}
     ;
 
     Declarations:

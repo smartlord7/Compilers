@@ -1435,7 +1435,7 @@ yyreduce:
 
   case 3: /* Program: PACKAGE ID SEMICOLON  */
 #line 74 "gocompiler.y"
-                                                                                                                        {printf("2 - \n");}
+                                                                                                                        {;}
 #line 1440 "y.tab.c"
     break;
 

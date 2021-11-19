@@ -1,2 +1,1 @@
-Line 4, column 4: syntax error: var
-insucesso
+Line 35, column 15: invalid escape sequence (\x)
