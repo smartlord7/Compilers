@@ -16,9 +16,9 @@
 		comment_column = 0,
 		verbose = 0,
 		buf_counter = 0;
-	char buf[BUF_SIZE];
+	char buf[BUF_SIZE], buf2[BUF_SIZE_2];
 	
-	static void handle_token(token_type type);
+	static char * handle_token(token_type type);
 	static void auto_semicolon();
 
 %}
@@ -91,56 +91,56 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 
 %%
 
-{semicolon} 						{handle_token(SEMICOLON_);}
-{comma}								{handle_token(COMMA_);}
+{semicolon} 						{handle_token(SEMICOLON_); return SEMICOLON;}
+{comma}								{handle_token(COMMA_); return COMMA;}
 {blank_id}							{handle_token(BLANK_ID_);}
-{assign}							{handle_token(ASSIGN_);}
-{star}								{handle_token(STAR_);}
-{div}								{handle_token(DIV_);}
-{minus}								{handle_token(MINUS_);}
-{plus}								{handle_token(PLUS_);}
-{eq}								{handle_token(EQ_);}
-{ge}								{handle_token(GE_);}
-{gt}								{handle_token(GT_);}
-{lbrace}							{handle_token(LBRACE_);}
-{le}								{handle_token(LE_);}
-{lpar}								{handle_token(LPAR_);}
-{lsq}								{handle_token(LSQ_);}
-{lt}								{handle_token(LT_);}
-{mod}								{handle_token(MOD_);}
-{ne}								{handle_token(NE_);}
-{not} 								{handle_token(NOT_);}
-{and}								{handle_token(AND_);}
-{or}								{handle_token(OR_);}
-{rbrace}							{handle_token(RBRACE_);}
-{rpar}								{handle_token(RPAR_);}
-{rsq}								{handle_token(RSQ_);}
+{assign}							{handle_token(ASSIGN_); return ASSIGN;}
+{star}								{handle_token(STAR_); return STAR;}
+{div}								{handle_token(DIV_); return DIV;}
+{minus}								{handle_token(MINUS_); return MINUS;}
+{plus}								{handle_token(PLUS_); return PLUS;}
+{eq}								{handle_token(EQ_); return EQ;}
+{ge}								{handle_token(GE_); return GE;}
+{gt}								{handle_token(GT_); return GT;}
+{lbrace}							{handle_token(LBRACE_); return LBRACE;}
+{le}								{handle_token(LE_); return LE;}
+{lpar}								{handle_token(LPAR_); return LPAR;}
+{lsq}								{handle_token(LSQ_); return LSQ;}
+{lt}								{handle_token(LT_); return LT;}
+{mod}								{handle_token(MOD_); return MOD;}
+{ne}								{handle_token(NE_); return NE;}
+{not} 								{handle_token(NOT_); return NOT;}
+{and}								{handle_token(AND_); return AND;}
+{or}								{handle_token(OR_); return OR;}
+{rbrace}							{handle_token(RBRACE_); return RBRACE;}
+{rpar}								{handle_token(RPAR_); return RPAR;}
+{rsq}								{handle_token(RSQ_); return RSQ;}
 
-{package}							{handle_token(PACKAGE_);}
-{return} 							{handle_token(RETURN_);}
-{else}								{handle_token(ELSE_);}
-{for}								{handle_token(FOR_);}
-{if}								{handle_token(IF_);}
-{var}								{handle_token(VAR_);}
-{int}								{handle_token(INT_);}
-{float32}							{handle_token(FLOAT32_);}
-{bool}								{handle_token(BOOL_);}
-{string}							{handle_token(STRING_);}
-{print}								{handle_token(PRINT_);}
-{parse_int}							{handle_token(PARSE_INT_);}
-{func}								{handle_token(FUNC_);}
-{cmdargs}							{handle_token(CMDARGS_);}
+{package}							{handle_token(PACKAGE_); return PACKAGE;}
+{return} 							{handle_token(RETURN_); return RETURN;}
+{else}								{handle_token(ELSE_); return ELSE;}
+{for}								{handle_token(FOR_); return FOR;}
+{if}								{handle_token(IF_); return IF;}
+{var}								{handle_token(VAR_); return VAR;}
+{int}								{handle_token(INT_); return INT;}
+{float32}							{handle_token(FLOAT32_); return FLOAT32;}
+{bool}								{handle_token(BOOL_); return BOOL;}
+{string}							{handle_token(STRING_); return STRING;}
+{print}								{handle_token(PRINT_); return PRINT;}
+{parse_int}							{handle_token(PARSE_INT_); return PARSEINT;}
+{func}								{handle_token(FUNC_); return FUNC;}
+{cmdargs}							{handle_token(CMDARGS_); return CMDARGS;}
 
-{new_line}							{handle_token(NEW_LINE_);}
+{new_line}							{auto_semicolon(); handle_token(NEW_LINE_); if(buf[0] != '\0') {return SEMICOLON;}}
 {reserved}							{handle_token(RESERVED_);}
-{id}								{handle_token(ID_);}
-{int_lit}							{handle_token(INT_LIT_);}
+{id}								{yylval.id = handle_token(ID_); return ID;}
+{int_lit}							{yylval.intlit = handle_token(INT_LIT_); return INTLIT;}
 {invalid_octal_lit}					{show_error(INVALID_OCTAL_CONST, current_column); current_column += yyleng;}
-{real_lit}							{handle_token(REAL_LIT_);}
+{real_lit}							{yylval.reallit = handle_token(REAL_LIT_); return REALLIT;}
 {space}								{current_column++;}
 
 \"																	{buf[0] = '\0'; buf_counter = 0; str_error = 0; BEGIN STATE_STRING; start = current_column++;}
-<STATE_STRING>\"													{BEGIN 0; if (!str_error) handle_token(STRING_LIT_);}
+<STATE_STRING>\"													{BEGIN 0; if (!str_error) yylval.strlit = handle_token(STRING_LIT_); return STRLIT;}
 <STATE_STRING>{new_line}											{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING><<EOF>>												{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING>"\\\\"|"\\\""|"\\t"|"\\n"|"\\r"|"\\f"					{buf[buf_counter++] = yytext[0]; buf[buf_counter++] = yytext[1]; current_column += 2;}
@@ -160,7 +160,6 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 {whitespaces}														{;}
 {other}																{show_error(ILLEGAL_CHAR, current_column); current_column += yyleng;}
 
-
 %%
 
 int main(int argc, char * argv[]) {
@@ -168,7 +167,7 @@ int main(int argc, char * argv[]) {
 		verbose = 1;
 	}
 
-	while(yyparse() == 0) {
+	if(yyparse() == 0) {
 	    printf("sucesso\n");
     }
 	printf("insucesso\n");
@@ -182,7 +181,7 @@ int yywrap() {
 	return 1;
 }
 
-void handle_token(token_type tok_type) {
+char * handle_token(token_type tok_type) {
 	char * tok = yytext;
 	current_column += yyleng;
 	
@@ -191,17 +190,23 @@ void handle_token(token_type tok_type) {
 		case INT_LIT_:
 		case REAL_LIT_:
 		case RESERVED_:
+		snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[tok_type], tok);
 		if (verbose) {
-			printf("%s(%s)\n", token_types[tok_type], tok);
+			printf("%s", buf2);
 		}
+		    return buf2;
 			break;
 		case STRING_LIT_:
 			buf[buf_counter] = '\0';
+
+			snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
 			if (verbose) {
-				printf("%s(\"%s\")\n", token_types[STRING_LIT_], buf);
+				printf("%s", buf2);
 			}
-			buf[0] = '\0'; 
+			buf[0] = '\0';
 			buf_counter = 0;
+
+			return buf2;
 			break;
 		case NEW_LINE_:
 		case IGNORE_NEW_LINE_:
@@ -209,35 +214,39 @@ void handle_token(token_type tok_type) {
 			current_column = 1;
 		case LINE_COMMENT_START_:
 			auto_semicolon();
+			return buf2;
 			break;
 		case IGNORE_:
 			break;
 		default:
 			if (verbose) {
-				printf("%s\n", token_types[tok_type]);	
+				printf("%s\n", token_types[tok_type]);
 			}
+			return token_types[tok_type];
 	}
 
 	last_token = tok_type;
 }
 
 void auto_semicolon() {
-	if (verbose) {
-		switch(last_token) {
-			case INT_LIT_:
-			case REAL_LIT_:
-			case STRING_LIT_:
-			case ID_:
-			case RETURN_:
-			case RPAR_:
-			case RSQ_:
-			case RBRACE_:
-				printf("%s\n", token_types[SEMICOLON_]);
-				break;
-			default:
-				break;
-		}
-	}
+    switch(last_token) {
+        case INT_LIT_:
+        case REAL_LIT_:
+        case STRING_LIT_:
+        case ID_:
+        case RETURN_:
+        case RPAR_:
+        case RSQ_:
+        case RBRACE_:
+            snprintf(buf2, BUF_SIZE_2, "%s\n", token_types[SEMICOLON_]);
+            if (verbose) {
+                printf("%s\n", token_types[SEMICOLON_]);
+            }
+            break;
+        default:
+            buf2[0] = '\0';
+            break;
+    }
 }
 
 void yyerror (char * s) {

@@ -683,9 +683,9 @@ char *yytext;
 		comment_column = 0,
 		verbose = 0,
 		buf_counter = 0;
-	char buf[BUF_SIZE];
+	char buf[BUF_SIZE], buf2[BUF_SIZE_2];
 	
-	static void handle_token(token_type type);
+	static char * handle_token(token_type type);
 	static void auto_semicolon();
 
 #line 692 "lex.yy.c"
@@ -974,12 +974,12 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 94 "gocompiler.l"
-{handle_token(SEMICOLON_);}
+{handle_token(SEMICOLON_); return SEMICOLON;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 95 "gocompiler.l"
-{handle_token(COMMA_);}
+{handle_token(COMMA_); return COMMA;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
@@ -989,183 +989,183 @@ YY_RULE_SETUP
 case 4:
 YY_RULE_SETUP
 #line 97 "gocompiler.l"
-{handle_token(ASSIGN_);}
+{handle_token(ASSIGN_); return ASSIGN;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 98 "gocompiler.l"
-{handle_token(STAR_);}
+{handle_token(STAR_); return STAR;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 99 "gocompiler.l"
-{handle_token(DIV_);}
+{handle_token(DIV_); return DIV;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 100 "gocompiler.l"
-{handle_token(MINUS_);}
+{handle_token(MINUS_); return MINUS;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 101 "gocompiler.l"
-{handle_token(PLUS_);}
+{handle_token(PLUS_); return PLUS;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 102 "gocompiler.l"
-{handle_token(EQ_);}
+{handle_token(EQ_); return EQ;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 103 "gocompiler.l"
-{handle_token(GE_);}
+{handle_token(GE_); return GE;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 104 "gocompiler.l"
-{handle_token(GT_);}
+{handle_token(GT_); return GT;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 105 "gocompiler.l"
-{handle_token(LBRACE_);}
+{handle_token(LBRACE_); return LBRACE;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 106 "gocompiler.l"
-{handle_token(LE_);}
+{handle_token(LE_); return LE;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 107 "gocompiler.l"
-{handle_token(LPAR_);}
+{handle_token(LPAR_); return LPAR;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 108 "gocompiler.l"
-{handle_token(LSQ_);}
+{handle_token(LSQ_); return LSQ;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 109 "gocompiler.l"
-{handle_token(LT_);}
+{handle_token(LT_); return LT;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 110 "gocompiler.l"
-{handle_token(MOD_);}
+{handle_token(MOD_); return MOD;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 111 "gocompiler.l"
-{handle_token(NE_);}
+{handle_token(NE_); return NE;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 112 "gocompiler.l"
-{handle_token(NOT_);}
+{handle_token(NOT_); return NOT;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 113 "gocompiler.l"
-{handle_token(AND_);}
+{handle_token(AND_); return AND;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 114 "gocompiler.l"
-{handle_token(OR_);}
+{handle_token(OR_); return OR;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 115 "gocompiler.l"
-{handle_token(RBRACE_);}
+{handle_token(RBRACE_); return RBRACE;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 116 "gocompiler.l"
-{handle_token(RPAR_);}
+{handle_token(RPAR_); return RPAR;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 117 "gocompiler.l"
-{handle_token(RSQ_);}
+{handle_token(RSQ_); return RSQ;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 119 "gocompiler.l"
-{handle_token(PACKAGE_);}
+{handle_token(PACKAGE_); return PACKAGE;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 120 "gocompiler.l"
-{handle_token(RETURN_);}
+{handle_token(RETURN_); return RETURN;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 121 "gocompiler.l"
-{handle_token(ELSE_);}
+{handle_token(ELSE_); return ELSE;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 122 "gocompiler.l"
-{handle_token(FOR_);}
+{handle_token(FOR_); return FOR;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 123 "gocompiler.l"
-{handle_token(IF_);}
+{handle_token(IF_); return IF;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 124 "gocompiler.l"
-{handle_token(VAR_);}
+{handle_token(VAR_); return VAR;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 125 "gocompiler.l"
-{handle_token(INT_);}
+{handle_token(INT_); return INT;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 126 "gocompiler.l"
-{handle_token(FLOAT32_);}
+{handle_token(FLOAT32_); return FLOAT32;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 127 "gocompiler.l"
-{handle_token(BOOL_);}
+{handle_token(BOOL_); return BOOL;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 128 "gocompiler.l"
-{handle_token(STRING_);}
+{handle_token(STRING_); return STRING;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 129 "gocompiler.l"
-{handle_token(PRINT_);}
+{handle_token(PRINT_); return PRINT;}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 130 "gocompiler.l"
-{handle_token(PARSE_INT_);}
+{handle_token(PARSE_INT_); return PARSEINT;}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 131 "gocompiler.l"
-{handle_token(FUNC_);}
+{handle_token(FUNC_); return FUNC;}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
 #line 132 "gocompiler.l"
-{handle_token(CMDARGS_);}
+{handle_token(CMDARGS_); return CMDARGS;}
 	YY_BREAK
 case 39:
 /* rule 39 can match eol */
 YY_RULE_SETUP
 #line 134 "gocompiler.l"
-{handle_token(NEW_LINE_);}
+{auto_semicolon(); handle_token(NEW_LINE_); if(buf[0] != '\0') {return SEMICOLON;}}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
@@ -1175,12 +1175,12 @@ YY_RULE_SETUP
 case 41:
 YY_RULE_SETUP
 #line 136 "gocompiler.l"
-{handle_token(ID_);}
+{yylval.id = handle_token(ID_); return ID;}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
 #line 137 "gocompiler.l"
-{handle_token(INT_LIT_);}
+{yylval.intlit = handle_token(INT_LIT_); return INTLIT;}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
@@ -1190,7 +1190,7 @@ YY_RULE_SETUP
 case 44:
 YY_RULE_SETUP
 #line 139 "gocompiler.l"
-{handle_token(REAL_LIT_);}
+{yylval.reallit = handle_token(REAL_LIT_); return REALLIT;}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
@@ -1205,7 +1205,7 @@ YY_RULE_SETUP
 case 47:
 YY_RULE_SETUP
 #line 143 "gocompiler.l"
-{BEGIN 0; if (!str_error) handle_token(STRING_LIT_);}
+{BEGIN 0; if (!str_error) yylval.strlit = handle_token(STRING_LIT_); return STRLIT;}
 	YY_BREAK
 case 48:
 /* rule 48 can match eol */
@@ -1286,7 +1286,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 164 "gocompiler.l"
+#line 163 "gocompiler.l"
 ECHO;
 	YY_BREAK
 #line 1293 "lex.yy.c"
@@ -2296,7 +2296,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 164 "gocompiler.l"
+#line 163 "gocompiler.l"
 
 
 int main(int argc, char * argv[]) {
@@ -2304,7 +2304,7 @@ int main(int argc, char * argv[]) {
 		verbose = 1;
 	}
 
-	while(yyparse() == 0) {
+	if(yyparse() == 0) {
 	    printf("sucesso\n");
     }
 	printf("insucesso\n");
@@ -2318,7 +2318,7 @@ int yywrap() {
 	return 1;
 }
 
-void handle_token(token_type tok_type) {
+char * handle_token(token_type tok_type) {
 	char * tok = yytext;
 	current_column += yyleng;
 	
@@ -2327,17 +2327,23 @@ void handle_token(token_type tok_type) {
 		case INT_LIT_:
 		case REAL_LIT_:
 		case RESERVED_:
+		snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[tok_type], tok);
 		if (verbose) {
-			printf("%s(%s)\n", token_types[tok_type], tok);
+			printf("%s", buf2);
 		}
+		    return buf2;
 			break;
 		case STRING_LIT_:
 			buf[buf_counter] = '\0';
+
+			snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
 			if (verbose) {
-				printf("%s(\"%s\")\n", token_types[STRING_LIT_], buf);
+				printf("%s", buf2);
 			}
-			buf[0] = '\0'; 
+			buf[0] = '\0';
 			buf_counter = 0;
+
+			return buf2;
 			break;
 		case NEW_LINE_:
 		case IGNORE_NEW_LINE_:
@@ -2345,35 +2351,39 @@ void handle_token(token_type tok_type) {
 			current_column = 1;
 		case LINE_COMMENT_START_:
 			auto_semicolon();
+			return buf2;
 			break;
 		case IGNORE_:
 			break;
 		default:
 			if (verbose) {
-				printf("%s\n", token_types[tok_type]);	
+				printf("%s\n", token_types[tok_type]);
 			}
+			return token_types[tok_type];
 	}
 
 	last_token = tok_type;
 }
 
 void auto_semicolon() {
-	if (verbose) {
-		switch(last_token) {
-			case INT_LIT_:
-			case REAL_LIT_:
-			case STRING_LIT_:
-			case ID_:
-			case RETURN_:
-			case RPAR_:
-			case RSQ_:
-			case RBRACE_:
-				printf("%s\n", token_types[SEMICOLON_]);
-				break;
-			default:
-				break;
-		}
-	}
+    switch(last_token) {
+        case INT_LIT_:
+        case REAL_LIT_:
+        case STRING_LIT_:
+        case ID_:
+        case RETURN_:
+        case RPAR_:
+        case RSQ_:
+        case RBRACE_:
+            snprintf(buf2, BUF_SIZE_2, "%s\n", token_types[SEMICOLON_]);
+            if (verbose) {
+                printf("%s\n", token_types[SEMICOLON_]);
+            }
+            break;
+        default:
+            buf2[0] = '\0';
+            break;
+    }
 }
 
 void yyerror (char * s) {

@@ -1,4 +1,4 @@
-const char * token_types[] = {
+char * token_types[] = {
         "NEW_LINE",
         "SEMICOLON",
         "COMMA",

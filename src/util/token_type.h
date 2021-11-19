@@ -57,6 +57,6 @@ typedef enum {
     END_
 } token_type;
 
-extern const char * token_types[];
+extern char * token_types[];
 
 #endif //GOCOMPILER_L_TOKEN_TYPE_H

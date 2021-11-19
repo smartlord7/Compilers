@@ -12,7 +12,7 @@ int yydebug = 1;
 %}
 
 
-%token PACKAGE
+%token <package> PACKAGE
 %token ID
 %token SEMICOLON
 %token VAR
@@ -55,6 +55,10 @@ int yydebug = 1;
 %token REALLIT
 %token FUNC
 
+%union{
+	char * strlit, * id, * reallit, * intlit;
+}
+
 // Operator precedence order definition -> See Go language specification
 %left OR
 %left AND
@@ -65,241 +69,241 @@ int yydebug = 1;
 
 %%
     Program:
-    	PACKAGE ID SEMICOLON Declarations										{$$=$1; $$=$2; $$=$3; printf("1\n");}
+    	PACKAGE ID SEMICOLON Declarations										{printf("1\n");}
     ;
 
     Declarations:
-    	VarDeclaration SEMICOLON Declarations										{$$=$1; printf("1\n");}
+    	VarDeclaration SEMICOLON Declarations										{printf("1\n");}
     	|
-    	FuncDeclaration SEMICOLON Declarations										{$$=$1; printf("1\n");}
+    	FuncDeclaration SEMICOLON Declarations										{printf("1\n");}
     	|
     	/*epsilon*/													{printf("1\n");}
     	;
 
     VarDeclaration:
-    	VAR VarDeclaration_1                                                                       			{$$=$1; printf("1\n");}
+    	VAR VarDeclaration_1                                                                       			{printf("1\n");}
     	;
 
     VarDeclaration_1:
-    	VarSpec														{$$=$1; printf("1\n");}
+    	VarSpec														{printf("1\n");}
     	|
-    	LPAR VarSpec SEMICOLON RPAR											{$$=$1; printf("1\n");}
+    	LPAR VarSpec SEMICOLON RPAR											{printf("1\n");}
     	;
 
     VarSpec:
-    	ID VarSpec_1                                                                         				{$$=$1; printf("1\n");}
+    	ID VarSpec_1                                                                         				{printf("1\n");}
     	;
 
     VarSpec_1:
-    	Type														{$$=$1; printf("1\n");}
+    	Type														{printf("1\n");}
     	|
-     	COMMA ID VarSpec_1												{$$=$1; printf("1\n");}
+     	COMMA ID VarSpec_1												{printf("1\n");}
      	;
 
     Type:
-    	INT														{$$=$1; printf("1\n");}
+    	INT														{printf("1\n");}
     	|
-    	FLOAT32														{$$=$1; printf("1\n");}
+    	FLOAT32														{printf("1\n");}
     	|
-    	BOOL														{$$=$1; printf("1\n");}
+    	BOOL														{printf("1\n");}
     	|
-    	STRING                                                                     					{$$=$1; printf("1\n");}
+    	STRING                                                                     					{printf("1\n");}
 	;
 
     FuncDeclaration:
-    	FUNC ID LPAR FuncDeclaration_1											{$$=$1; printf("1\n");}
+    	FUNC ID LPAR FuncDeclaration_1											{printf("1\n");}
 	;
 
     FuncDeclaration_1:
-  	RPAR FuncDeclaration_2												{$$=$1; printf("1\n");}
+  	RPAR FuncDeclaration_2												{printf("1\n");}
   	|
-  	Parameters RPAR FuncDeclaration_2										{$$=$1; printf("1\n");}
+  	Parameters RPAR FuncDeclaration_2										{printf("1\n");}
 	;
 
     FuncDeclaration_2:
-    	FuncBody													{$$=$1; printf("1\n");}
+    	FuncBody													{printf("1\n");}
     	|
-    	Type FuncBody													{$$=$1; printf("1\n");}
+    	Type FuncBody													{printf("1\n");}
 	;
 
     Parameters:
-    	ID Type														{$$=$1; printf("1\n");}
+    	ID Type														{printf("1\n");}
     	|
-    	ID Type Parameters_1                                                                 				{$$=$1; printf("1\n");}
+    	ID Type Parameters_1                                                                 				{printf("1\n");}
 	;
 
     Parameters_1:
-    	COMMA ID Type													{$$=$1; printf("1\n");}
+    	COMMA ID Type													{printf("1\n");}
     	|
-    	COMMA ID Type Parameters_1											{$$=$1; printf("1\n");}
+    	COMMA ID Type Parameters_1											{printf("1\n");}
     	;
 
     FuncBody:
-    	LBRACE RBRACE													{$$=$1; printf("1\n");}
+    	LBRACE RBRACE													{printf("1\n");}
     	|
-    	LBRACE VarsAndStatements RBRACE                      								{$$=$1; printf("1\n");}
+    	LBRACE VarsAndStatements RBRACE                      								{printf("1\n");}
     	;
 
     VarsAndStatements:
-    	SEMICOLON													{$$=$1; printf("1\n");}
+    	SEMICOLON													{printf("1\n");}
     	|
-    	VarDeclaration SEMICOLON											{$$=$1; printf("1\n");}
+    	VarDeclaration SEMICOLON											{printf("1\n");}
     	|
-    	Statement SEMICOLON												{$$=$1; printf("1\n");}
+    	Statement SEMICOLON												{printf("1\n");}
     	|
-    	SEMICOLON VarsAndStatements											{$$=$1; printf("1\n");}
+    	SEMICOLON VarsAndStatements											{printf("1\n");}
     	|
-    	VarDeclaration SEMICOLON VarsAndStatements									{$$=$1; printf("1\n");}
+    	VarDeclaration SEMICOLON VarsAndStatements									{printf("1\n");}
     	|
-    	Statement SEMICOLON VarsAndStatements 										{$$=$1; printf("1\n");}
+    	Statement SEMICOLON VarsAndStatements 										{printf("1\n");}
     	;
 
     Statement:
-    	ID ASSIGN Expr                                                                               			{$$=$1; printf("1\n");}
+    	ID ASSIGN Expr                                                                               			{printf("1\n");}
     	;
 
     Statement:
-    	LBRACE RBRACE													{$$=$1; printf("1\n");}
+    	LBRACE RBRACE													{printf("1\n");}
     	|
-    	LBRACE Statement_1 RBRACE                                                      					{$$=$1; printf("1\n");}
+    	LBRACE Statement_1 RBRACE                                                      					{printf("1\n");}
     	;
 
     Statement_1:
-    	Statement SEMICOLON												{$$=$1; printf("1\n");}
+    	Statement SEMICOLON												{printf("1\n");}
     	|
-    	Statement SEMICOLON Statement_1											{$$=$1; printf("1\n");}
+    	Statement SEMICOLON Statement_1											{printf("1\n");}
     	;
 
     Statement:
-    	IF Expr LBRACE RBRACE 												{$$=$1; printf("1\n");}
+    	IF Expr LBRACE RBRACE 												{printf("1\n");}
     	|
-     	IF Expr LBRACE Statement_rep RBRACE 										{$$=$1; printf("1\n");}
+     	IF Expr LBRACE Statement_rep RBRACE 										{printf("1\n");}
      	|
-     	IF Expr LBRACE RBRACE ELSE LBRACE RBRACE 									{$$=$1; printf("1\n");}
+     	IF Expr LBRACE RBRACE ELSE LBRACE RBRACE 									{printf("1\n");}
      	|
-     	IF Expr LBRACE RBRACE ELSE LBRACE Statement_rep RBRACE 								{$$=$1; printf("1\n");}
+     	IF Expr LBRACE RBRACE ELSE LBRACE Statement_rep RBRACE 								{printf("1\n");}
      	|
-     	IF Expr LBRACE Statement_rep RBRACE ELSE LBRACE RBRACE 								{$$=$1; printf("1\n");}
+     	IF Expr LBRACE Statement_rep RBRACE ELSE LBRACE RBRACE 								{printf("1\n");}
      	|
-     	IF Expr LBRACE Statement_rep RBRACE ELSE LBRACE Statement_rep RBRACE 						{$$=$1; printf("1\n");}
+     	IF Expr LBRACE Statement_rep RBRACE ELSE LBRACE Statement_rep RBRACE 						{printf("1\n");}
      	;
 
     Statement_rep:
-    	Statement SEMICOLON												{$$=$1; printf("1\n");}
+    	Statement SEMICOLON												{printf("1\n");}
     	;
 
     Statement:
-    	FOR LBRACE RBRACE 												{$$=$1; printf("1\n");}
+    	FOR LBRACE RBRACE 												{printf("1\n");}
     	|
-	FOR LBRACE Statement_rep RBRACE 										{$$=$1; printf("1\n");}
+	FOR LBRACE Statement_rep RBRACE 										{printf("1\n");}
 	|
-	FOR Expr LBRACE RBRACE 												{$$=$1; printf("1\n");}
+	FOR Expr LBRACE RBRACE 												{printf("1\n");}
 	|
-	FOR Expr LBRACE Statement_rep RBRACE 										{$$=$1; printf("1\n");}
+	FOR Expr LBRACE Statement_rep RBRACE 										{printf("1\n");}
 	;
 
     Statement:
-    	RETURN														{$$=$1; printf("1\n");}
+    	RETURN														{printf("1\n");}
     	|
-    	RETURN Expr                                                                   					{$$=$1; printf("1\n");}
+    	RETURN Expr                                                                   					{printf("1\n");}
     	;
 
     Statement:
-    	FuncInvocation													{$$=$1; printf("1\n");}
+    	FuncInvocation													{printf("1\n");}
     	|
-    	ParseArgs                                                                   					{$$=$1; printf("1\n");}
+    	ParseArgs                                                                   					{printf("1\n");}
     	;
 
     Statement:
-    	PRINT LPAR Expr RPAR 												{$$=$1; printf("1\n");}
+    	PRINT LPAR Expr RPAR 												{printf("1\n");}
     	|
-    	PRINT LPAR STRLIT RPAR                                                          				{$$=$1; printf("1\n");}
+    	PRINT LPAR STRLIT RPAR                                                          				{printf("1\n");}
     	;
 
     Statement:
-    	error														{$$=$1; printf("1\n");}
+    	error														{printf("1\n");}
     	;
 
     ParseArgs:
-    	ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR                              			{$$=$1; printf("1\n");}
+    	ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR                              			{printf("1\n");}
     	;
 
     ParseArgs:
-    	ID COMMA BLANKID ASSIGN PARSEINT LPAR error RPAR								{$$=$1; printf("1\n");}
+    	ID COMMA BLANKID ASSIGN PARSEINT LPAR error RPAR								{printf("1\n");}
     	;
 
     FuncInvocation:
-    	ID LPAR RPAR 													{$$=$1; printf("1\n");}
+    	ID LPAR RPAR 													{printf("1\n");}
     	|
-	ID LPAR Expr RPAR 												{$$=$1; printf("1\n");}
+	ID LPAR Expr RPAR 												{printf("1\n");}
 	|
-	ID LPAR Expr FuncInvocation_rep RPAR										{$$=$1; printf("1\n");}
+	ID LPAR Expr FuncInvocation_rep RPAR										{printf("1\n");}
 	;
 
     FuncInvocation_rep:
-    	COMMA Expr													{$$=$1; printf("1\n");}
+    	COMMA Expr													{printf("1\n");}
     	|
-    	COMMA Expr FuncInvocation_rep											{$$=$1; printf("1\n");}
+    	COMMA Expr FuncInvocation_rep											{printf("1\n");}
     	;
 
     FuncInvocation:
-    	ID LPAR error RPAR												{$$=$1; printf("1\n");}
+    	ID LPAR error RPAR												{printf("1\n");}
     	;
 
     Expr:
-    	Expr OR Expr 													{$$=$1; printf("1\n");}
+    	Expr OR Expr 													{printf("1\n");}
     	|
-    	Expr AND Expr                                                							{$$=$1; printf("1\n");}
+    	Expr AND Expr                                                							{printf("1\n");}
     	;
 
     Expr:
-    	Expr LT 													{$$=$1; printf("1\n");}
+    	Expr LT 													{printf("1\n");}
     	|
-    	Expr GT 													{$$=$1; printf("1\n");}
+    	Expr GT 													{printf("1\n");}
     	|
-    	Expr LE 													{$$=$1; printf("1\n");}
+    	Expr LE 													{printf("1\n");}
     	|
-    	Expr GE 													{$$=$1; printf("1\n");}
+    	Expr GE 													{printf("1\n");}
     	|
-    	Expr EQ 													{$$=$1; printf("1\n");}
+    	Expr EQ 													{printf("1\n");}
     	|
-    	Expr NE														{$$=$1; printf("1\n");}
+    	Expr NE														{printf("1\n");}
     	;
 
     Expr:
-    	Expr PLUS Expr													{$$=$1; printf("1\n");}
+    	Expr PLUS Expr													{printf("1\n");}
     	|
-    	Expr MINUS Expr													{$$=$1; printf("1\n");}
+    	Expr MINUS Expr													{printf("1\n");}
     	|
-    	Expr STAR Expr													{$$=$1; printf("1\n");}
+    	Expr STAR Expr													{printf("1\n");}
     	|
-    	Expr DIV Expr													{$$=$1; printf("1\n");}
+    	Expr DIV Expr													{printf("1\n");}
     	|
-    	Expr MOD Expr                             									{$$=$1; printf("1\n");}
+    	Expr MOD Expr                             									{printf("1\n");}
     	;
 
     Expr:
-    	NOT Expr													{$$=$1; printf("1\n");}
+    	NOT Expr													{printf("1\n");}
     	|
-    	MINUS Expr %prec NOT												{$$=$1; printf("1\n");}
+    	MINUS Expr %prec NOT												{printf("1\n");}
     	|
-    	PLUS Expr %prec NOT /*unary minus/plus has the same priority as the not operator */				{$$=$1; printf("1\n");}
+    	PLUS Expr %prec NOT /*unary minus/plus has the same priority as the not operator */				{printf("1\n");}
     	;
 
     Expr:
-    	INTLIT 														{$$=$1; printf("1\n");}
+    	INTLIT 														{printf("1\n");}
     	|
-    	REALLIT 													{$$=$1; printf("1\n");}
+    	REALLIT 													{printf("1\n");}
     	|
-    	ID 														{$$=$1; printf("1\n");}
+    	ID 														{printf("1\n");}
     	|
-    	FuncInvocation 													{$$=$1; printf("1\n");}
+    	FuncInvocation 													{printf("1\n");}
     	|
-    	LPAR Expr RPAR                                           							{$$=$1; printf("1\n");}
+    	LPAR Expr RPAR                                           							{printf("1\n");}
     	;
 
     Expr:
-    	LPAR error RPAR   												{$$=$1; printf("1\n");}
+    	LPAR error RPAR   												{printf("1\n");}
     	;
 %%
 
