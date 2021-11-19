@@ -7,47 +7,21 @@
   </component>
   <component name="CMakeSettings">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78548c38-9559-4c6f-82e2-2c6fcb25f076" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/caso_teste.dgo" beforeDir="false" afterPath="$PROJECT_DIR$/src/caso_teste.dgo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gocompiler.l" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.l" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gocompiler.y" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.y" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lex.yy.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lex.yy.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/array_list.test.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/array_list.test.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/run_yacc.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/run_yacc.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.output" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.output" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.tab.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.tab.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/blocks.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/blocks.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/braces.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/braces.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/circle.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/circle.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/eof.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/eof.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/eof1.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/eof1.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/error_unbalanced_par.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/error_unbalanced_par.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/errors.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/errors.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/expressionHard.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/expressionHard.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/expressions.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/expressions.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/expressions_2.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/expressions_2.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/factorial.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/factorial.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/funcParams.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/funcParams.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/multiple_funcdecl_blocks.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/multiple_funcdecl_blocks.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/precedence.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/precedence.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/smallest.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/smallest.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/stat_error.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/stat_error.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/stat_error2.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/stat_error2.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/statements.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/statements.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/statements_ast.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/statements_ast.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/sum.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/sum.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/syntax_errors_stmt.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/syntax_errors_stmt.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/testeErros.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/testeErros.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/varfuncdecl.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/varfuncdecl.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/variable_func_declarations.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/variable_func_declarations.out" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,11 +31,11 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="218zNnqQWAwUtLEboFKj1Y93uRh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -78,9 +52,7 @@
   </component>
   <component name="RunManager">
     <configuration name="ArrayList.test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Compilers" TARGET_NAME="ArrayList.test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Compilers" RUN_TARGET_NAME="ArrayList.test">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
+      <method v="2" />
     </configuration>
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
@@ -119,6 +91,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

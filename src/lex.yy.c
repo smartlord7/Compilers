@@ -2313,6 +2313,8 @@ int main(int argc, char * argv[]) {
 }
 
 int yywrap() {
+	printf("wrap\n");
+
 	auto_semicolon();
 
 	return 1;
