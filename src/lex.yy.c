@@ -1289,7 +1289,7 @@ case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(STATE_LINE_COMMENT):
 case YY_STATE_EOF(OCTAL):
 #line 163 "gocompiler.l"
-{if(flag == 1) {flag = 0; return SEMICOLON;} else {return 0;};}
+{if (flag) {flag = 0; return SEMICOLON;} else {return 0;};}
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
@@ -2360,6 +2360,10 @@ char * handle_token(token_type tok_type) {
 			break;
 		case IGNORE_:
 			break;
+        case SEMICOLON_:
+			flag = 0;
+			last_token = SEMICOLON_;
+			break;
 		default:
 			if (verbose) {
 				printf("%s\n", token_types[tok_type]);
@@ -2369,7 +2373,6 @@ char * handle_token(token_type tok_type) {
 }
 
 void auto_semicolon() {
-
     if(last_token != SEMICOLON_) {
         switch(last_token) {
             case INT_LIT_:
@@ -2381,14 +2384,15 @@ void auto_semicolon() {
             case RSQ_:
             case RBRACE_:
                 snprintf(buf2, BUF_SIZE_2, "%s\n", token_types[SEMICOLON_]);
+
                 if (verbose) {
                     printf("%s\n", token_types[SEMICOLON_]);
                 }
+
                 flag = 1;
                 last_token = SEMICOLON_;
                 break;
             default:
-                buf2[0] = '\0';
                 break;
         }
    }
