@@ -1080,7 +1080,7 @@ YY_RULE_SETUP
 case 22:
 YY_RULE_SETUP
 #line 116 "gocompiler.l"
-{handle_token(RBRACE_); return RBRACE;}
+{handle_token(RBRACE_); if(flag) {flag = 0; return RBRACE; return SEMICOLON;} else {return BRACE;};}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
