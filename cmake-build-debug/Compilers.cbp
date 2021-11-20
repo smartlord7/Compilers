@@ -8,102 +8,102 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/joao/Compilers/cmake-build-debug"/>
+				<Option working_dir="/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/joao/Compilers/cmake-build-debug"/>
+				<Option working_dir="/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/joao/Compilers/cmake-build-debug"/>
+				<Option working_dir="/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ArrayList.test">
-				<Option output="/home/joao/Compilers/cmake-build-debug/ArrayList.test" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/joao/Compilers/cmake-build-debug"/>
+				<Option output="/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/ArrayList.test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/joao/Compilers/src"/>
-					<Add directory="/home/joao/Compilers/src/data_structures"/>
-					<Add directory="/home/joao/Compilers/src/util"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/home/sancho/Documents/GitRepos/Compilers/src"/>
+					<Add directory="/home/sancho/Documents/GitRepos/Compilers/src/data_structures"/>
+					<Add directory="/home/sancho/Documents/GitRepos/Compilers/src/util"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 ArrayList.test"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 ArrayList.test"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ArrayList.test/fast">
-				<Option output="/home/joao/Compilers/cmake-build-debug/ArrayList.test" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/joao/Compilers/cmake-build-debug"/>
+				<Option output="/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/ArrayList.test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/joao/Compilers/src"/>
-					<Add directory="/home/joao/Compilers/src/data_structures"/>
-					<Add directory="/home/joao/Compilers/src/util"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/home/sancho/Documents/GitRepos/Compilers/src"/>
+					<Add directory="/home/sancho/Documents/GitRepos/Compilers/src/data_structures"/>
+					<Add directory="/home/sancho/Documents/GitRepos/Compilers/src/util"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 ArrayList.test/fast"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/joao/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 ArrayList.test/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/joao/Compilers/src/data_structures/abstract_syntax_tree.c">
+		<Unit filename="/home/sancho/Documents/GitRepos/Compilers/src/data_structures/abstract_syntax_tree.c">
 			<Option target="ArrayList.test"/>
 		</Unit>
-		<Unit filename="/home/joao/Compilers/src/data_structures/abstract_syntax_tree.h">
+		<Unit filename="/home/sancho/Documents/GitRepos/Compilers/src/data_structures/abstract_syntax_tree.h">
 			<Option target="ArrayList.test"/>
 		</Unit>
-		<Unit filename="/home/joao/Compilers/src/data_structures/array_list.c">
+		<Unit filename="/home/sancho/Documents/GitRepos/Compilers/src/data_structures/array_list.c">
 			<Option target="ArrayList.test"/>
 		</Unit>
-		<Unit filename="/home/joao/Compilers/src/data_structures/array_list.h">
+		<Unit filename="/home/sancho/Documents/GitRepos/Compilers/src/data_structures/array_list.h">
 			<Option target="ArrayList.test"/>
 		</Unit>
-		<Unit filename="/home/joao/Compilers/src/data_structures/linked_list.c">
+		<Unit filename="/home/sancho/Documents/GitRepos/Compilers/src/data_structures/linked_list.c">
 			<Option target="ArrayList.test"/>
 		</Unit>
-		<Unit filename="/home/joao/Compilers/src/data_structures/linked_list.h">
+		<Unit filename="/home/sancho/Documents/GitRepos/Compilers/src/data_structures/linked_list.h">
 			<Option target="ArrayList.test"/>
 		</Unit>
-		<Unit filename="/home/joao/Compilers/src/tests/array_list.test.c">
+		<Unit filename="/home/sancho/Documents/GitRepos/Compilers/src/tests/array_list.test.c">
 			<Option target="ArrayList.test"/>
 		</Unit>
-		<Unit filename="/home/joao/Compilers/CMakeLists.txt">
+		<Unit filename="/home/sancho/Documents/GitRepos/Compilers/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

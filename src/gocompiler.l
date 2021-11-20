@@ -88,13 +88,13 @@ letter								[a-zA-Z]
 id									({letter}|{blank_id})({letter}|{dec_digit}+|{blank_id})*
 
 
-reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|{plus}{plus}|{minus}{minus}
+reserved							"break"|"case"|"char"|"const"|"continue"|"default"|"defer"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|{plus}{plus}|{minus}{minus}
 
 %%
 
 {semicolon} 						{handle_token(SEMICOLON_); return SEMICOLON;}
 {comma}								{handle_token(COMMA_); return COMMA;}
-{blank_id}							{handle_token(BLANK_ID_);}
+{blank_id}							{handle_token(BLANK_ID_); return BLANK_ID;}
 {assign}							{handle_token(ASSIGN_); return ASSIGN;}
 {star}								{handle_token(STAR_); return STAR;}
 {div}								{handle_token(DIV_); return DIV;}
