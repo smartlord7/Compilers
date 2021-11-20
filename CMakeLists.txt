@@ -15,4 +15,4 @@ include_directories(src/util)
         src/util/token_type.c
         src/util/token_type.h)]]
 
-add_executable(ArrayList.test src/data_structures/array_list.c src/data_structures/array_list.h src/tests/array_list.test.c)
+add_executable(ArrayList.test src/data_structures/array_list.c src/data_structures/array_list.h src/tests/array_list.test.c src/data_structures/abstract_syntax_tree.h src/data_structures/linked_list.h src/data_structures/linked_list.c src/data_structures/abstract_syntax_tree.c)

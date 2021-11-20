@@ -16,7 +16,7 @@
 		comment_column = 0,
 		verbose = 0,
 		buf_counter = 0;
-	int flag = 0;
+	int flag = 0, semicolon_flag = 0, eligible_token = 0;
 	char buf[BUF_SIZE], buf2[BUF_SIZE_2];
 
 	static char * handle_token(token_type type);
@@ -92,7 +92,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 
 %%
 
-{semicolon} 						{handle_token(SEMICOLON_); return SEMICOLON;}
+{semicolon} 						{printf("aqui\n");handle_token(SEMICOLON_); return SEMICOLON;}
 {comma}								{handle_token(COMMA_); return COMMA;}
 {blank_id}							{handle_token(BLANK_ID_);}
 {assign}							{handle_token(ASSIGN_); return ASSIGN;}
@@ -132,7 +132,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 {func}								{handle_token(FUNC_); return FUNC;}
 {cmdargs}							{handle_token(CMDARGS_); return CMDARGS;}
 
-{new_line}							{auto_semicolon(); handle_token(NEW_LINE_); if(buf[0] != '\0') {return SEMICOLON;}}
+{new_line}							{printf("aqui2\n"); handle_token(NEW_LINE_); if(semicolon_flag == 1) {eligible_token = 0; semicolon_flag = 0; return SEMICOLON;};}
 {reserved}							{handle_token(RESERVED_);}
 {id}								{yylval.id = handle_token(ID_); return ID;}
 {int_lit}							{yylval.intlit = handle_token(INT_LIT_); return INTLIT;}
@@ -187,10 +187,17 @@ char * handle_token(token_type tok_type) {
 	char * tok = yytext;
 	current_column += yyleng;
 
+	if(!eligible_token) {
+	    semicolon_flag = 0;
+	}
+
+    printf("%d\n", tok_type);
+
 	switch (tok_type) {
 		case ID_:
 		case INT_LIT_:
 		case REAL_LIT_:
+		    eligible_token = 1;
 		case RESERVED_:
 		snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[tok_type], tok);
             if (verbose) {
@@ -209,14 +216,18 @@ char * handle_token(token_type tok_type) {
 			buf[0] = '\0';
 			buf_counter = 0;
 
+            eligible_token = 1;
             last_token = tok_type;
 			return buf2;
 			break;
 		case NEW_LINE_:
+		    printf("new_line\n");
 		case IGNORE_NEW_LINE_:
+		    printf("ignore_new_line\n");
 			current_line++;
 			current_column = 1;
 		case LINE_COMMENT_START_:
+		    printf("line_comment_start\n");
 			auto_semicolon();
 			return buf2;
 			break;
@@ -226,6 +237,18 @@ char * handle_token(token_type tok_type) {
 			flag = 0;
 			last_token = SEMICOLON_;
 			break;
+		case RETURN_:
+		case RPAR_:
+		case RSQ_:
+		case RBRACE_:
+		    eligible_token = 1;
+
+		    if (verbose) {
+                printf("%s\n", token_types[tok_type]);
+            }
+
+            return token_types[tok_type];
+            break;
 		default:
 			if (verbose) {
 				printf("%s\n", token_types[tok_type]);
@@ -251,7 +274,9 @@ void auto_semicolon() {
                     printf("%s\n", token_types[SEMICOLON_]);
                 }
 
+                semicolon_flag = 1;
                 flag = 1;
+
                 last_token = SEMICOLON_;
                 break;
             default:

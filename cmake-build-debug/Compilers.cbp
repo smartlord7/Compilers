@@ -82,10 +82,22 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/joao/Compilers/src/data_structures/abstract_syntax_tree.c">
+			<Option target="ArrayList.test"/>
+		</Unit>
+		<Unit filename="/home/joao/Compilers/src/data_structures/abstract_syntax_tree.h">
+			<Option target="ArrayList.test"/>
+		</Unit>
 		<Unit filename="/home/joao/Compilers/src/data_structures/array_list.c">
 			<Option target="ArrayList.test"/>
 		</Unit>
 		<Unit filename="/home/joao/Compilers/src/data_structures/array_list.h">
+			<Option target="ArrayList.test"/>
+		</Unit>
+		<Unit filename="/home/joao/Compilers/src/data_structures/linked_list.c">
+			<Option target="ArrayList.test"/>
+		</Unit>
+		<Unit filename="/home/joao/Compilers/src/data_structures/linked_list.h">
 			<Option target="ArrayList.test"/>
 		</Unit>
 		<Unit filename="/home/joao/Compilers/src/tests/array_list.test.c">

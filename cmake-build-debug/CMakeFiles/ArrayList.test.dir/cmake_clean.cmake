@@ -1,7 +1,9 @@
 file(REMOVE_RECURSE
   "ArrayList.test"
   "ArrayList.test.pdb"
+  "CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.o"
   "CMakeFiles/ArrayList.test.dir/src/data_structures/array_list.c.o"
+  "CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.o"
   "CMakeFiles/ArrayList.test.dir/src/tests/array_list.test.c.o"
 )
 

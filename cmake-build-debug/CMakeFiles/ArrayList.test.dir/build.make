@@ -92,19 +92,49 @@ CMakeFiles/ArrayList.test.dir/src/tests/array_list.test.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ArrayList.test.dir/src/tests/array_list.test.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/joao/Compilers/src/tests/array_list.test.c -o CMakeFiles/ArrayList.test.dir/src/tests/array_list.test.c.s
 
+CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.o: CMakeFiles/ArrayList.test.dir/flags.make
+CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.o: ../src/data_structures/linked_list.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joao/Compilers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.o -c /home/joao/Compilers/src/data_structures/linked_list.c
+
+CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/joao/Compilers/src/data_structures/linked_list.c > CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.i
+
+CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/joao/Compilers/src/data_structures/linked_list.c -o CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.s
+
+CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.o: CMakeFiles/ArrayList.test.dir/flags.make
+CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.o: ../src/data_structures/abstract_syntax_tree.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joao/Compilers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.o -c /home/joao/Compilers/src/data_structures/abstract_syntax_tree.c
+
+CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/joao/Compilers/src/data_structures/abstract_syntax_tree.c > CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.i
+
+CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/joao/Compilers/src/data_structures/abstract_syntax_tree.c -o CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.s
+
 # Object files for target ArrayList.test
 ArrayList_test_OBJECTS = \
 "CMakeFiles/ArrayList.test.dir/src/data_structures/array_list.c.o" \
-"CMakeFiles/ArrayList.test.dir/src/tests/array_list.test.c.o"
+"CMakeFiles/ArrayList.test.dir/src/tests/array_list.test.c.o" \
+"CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.o" \
+"CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.o"
 
 # External object files for target ArrayList.test
 ArrayList_test_EXTERNAL_OBJECTS =
 
 ArrayList.test: CMakeFiles/ArrayList.test.dir/src/data_structures/array_list.c.o
 ArrayList.test: CMakeFiles/ArrayList.test.dir/src/tests/array_list.test.c.o
+ArrayList.test: CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.o
+ArrayList.test: CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.o
 ArrayList.test: CMakeFiles/ArrayList.test.dir/build.make
 ArrayList.test: CMakeFiles/ArrayList.test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/joao/Compilers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable ArrayList.test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/joao/Compilers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable ArrayList.test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ArrayList.test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

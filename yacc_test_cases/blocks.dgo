@@ -44,5 +44,3 @@ func main(){
         f = 7
     }
 }
-
-func main() {}

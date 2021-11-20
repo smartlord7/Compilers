@@ -6,13 +6,13 @@
 static array_list_t * _init_array_list() {
     array_list_t * array_list = (array_list_t *) calloc(1, sizeof(array_list_t));
     assert(array_list != NULL);
-
-    return array_list;
 }
 
 static array_t * _init_array(int initial_capacity, size_t elem_size) {
     array_t array = calloc(initial_capacity, elem_size);
     assert(array != NULL);
+
+    return array;
 }
 
 static array_t * _expand_array(array_list_t * array_list) {

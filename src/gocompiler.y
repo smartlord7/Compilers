@@ -3,11 +3,15 @@
 #include "util/token_type.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "data_structures/abstract_syntax_tree.h"
 
 int yylex (void);
 void yyerror(char* s);
 
 int yydebug = 1;
+
+tree_node_t * program;
+extern tree_node_t * create_node(int type, void * data);
 
 %}
 
@@ -54,12 +58,15 @@ int yydebug = 1;
 %token INTLIT
 %token REALLIT
 %token FUNC
+%type <program> Program
 
 %union{
 	char * strlit, * id, * reallit, * intlit;
+	void * program;
 }
 
 // Operator precedence order definition -> See Go language specification
+%right ASSIGN
 %left OR
 %left AND
 %left LT GT LE GE EQ NE

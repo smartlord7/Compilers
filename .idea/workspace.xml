@@ -1,21 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="Compilers" targetName="ArrayList.test" />
+    </generated>
+  </component>
   <component name="CMakeSettings">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78548c38-9559-4c6f-82e2-2c6fcb25f076" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/data_structures/abstract_syntax_tree.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data_structures/abstract_syntax_tree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data_structures/linked_list.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data_structures/linked_list.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ArrayList.test.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Compilers.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Compilers.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/caso_teste.dgo" beforeDir="false" afterPath="$PROJECT_DIR$/src/caso_teste.dgo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_structures/array_list.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_structures/array_list.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_structures/array_list.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_structures/array_list.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gocompiler.l" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.l" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler.y" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.y" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lex.yy.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lex.yy.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/array_list.test.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/array_list.test.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.output" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.output" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.tab.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.tab.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/blocks.dgo" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/blocks.dgo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/blocks.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/blocks.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/braces.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/braces.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/circle.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/circle.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/eof.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/eof.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/eof1.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/eof1.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/error_unbalanced_par.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/error_unbalanced_par.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/errors.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/errors.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/expressionHard.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/expressionHard.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/expressions.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/expressions.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/expressions_2.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/expressions_2.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/factorial.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/factorial.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/funcParams.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/funcParams.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/multiple_funcdecl_blocks.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/multiple_funcdecl_blocks.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/precedence.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/precedence.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/smallest.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/smallest.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/stat_error.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/stat_error.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/stat_error2.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/stat_error2.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/statements.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/statements.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/statements_ast.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/statements_ast.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/sum.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/sum.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/syntax_errors_stmt.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/syntax_errors_stmt.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/testeErros.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/testeErros.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/varfuncdecl.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/varfuncdecl.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yacc_test_cases/variable_func_declarations.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/variable_func_declarations.out" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +79,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="219Iu4IzyY2J60dgxszXLh0xyvG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -43,6 +102,8 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
@@ -108,7 +169,6 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="472b368a-8026-49fe-8829-4d54f9339a0a" name="Changes" comment="" />
       <created>1637347095846</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -116,10 +176,59 @@
       <workItem from="1637337466526" duration="198000" />
       <workItem from="1637339569959" duration="692000" />
       <workItem from="1637345123703" duration="340000" />
+      <workItem from="1637359336831" duration="7141000" />
+      <workItem from="1637397977237" duration="11538000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/data_structures/array_list.c</url>
+          <line>57</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/data_structures/array_list.c</url>
+          <line>44</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/data_structures/array_list.c</url>
+          <line>37</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/data_structures/array_list.c</url>
+          <line>17</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/data_structures/array_list.c</url>
+          <line>10</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/data_structures/array_list.c</url>
+          <line>5</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

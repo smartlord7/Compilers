@@ -7,7 +7,6 @@
 typedef void * array_t;
 typedef void * elem_t;
 
-
 typedef struct {
     int size, capacity;
     size_t elem_size;

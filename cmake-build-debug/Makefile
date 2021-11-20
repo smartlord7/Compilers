@@ -129,6 +129,30 @@ ArrayList.test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ArrayList.test.dir/build.make CMakeFiles/ArrayList.test.dir/build
 .PHONY : ArrayList.test/fast
 
+src/data_structures/abstract_syntax_tree.o: src/data_structures/abstract_syntax_tree.c.o
+.PHONY : src/data_structures/abstract_syntax_tree.o
+
+# target to build an object file
+src/data_structures/abstract_syntax_tree.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ArrayList.test.dir/build.make CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.o
+.PHONY : src/data_structures/abstract_syntax_tree.c.o
+
+src/data_structures/abstract_syntax_tree.i: src/data_structures/abstract_syntax_tree.c.i
+.PHONY : src/data_structures/abstract_syntax_tree.i
+
+# target to preprocess a source file
+src/data_structures/abstract_syntax_tree.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ArrayList.test.dir/build.make CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.i
+.PHONY : src/data_structures/abstract_syntax_tree.c.i
+
+src/data_structures/abstract_syntax_tree.s: src/data_structures/abstract_syntax_tree.c.s
+.PHONY : src/data_structures/abstract_syntax_tree.s
+
+# target to generate assembly for a file
+src/data_structures/abstract_syntax_tree.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ArrayList.test.dir/build.make CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.s
+.PHONY : src/data_structures/abstract_syntax_tree.c.s
+
 src/data_structures/array_list.o: src/data_structures/array_list.c.o
 .PHONY : src/data_structures/array_list.o
 
@@ -152,6 +176,30 @@ src/data_structures/array_list.s: src/data_structures/array_list.c.s
 src/data_structures/array_list.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ArrayList.test.dir/build.make CMakeFiles/ArrayList.test.dir/src/data_structures/array_list.c.s
 .PHONY : src/data_structures/array_list.c.s
+
+src/data_structures/linked_list.o: src/data_structures/linked_list.c.o
+.PHONY : src/data_structures/linked_list.o
+
+# target to build an object file
+src/data_structures/linked_list.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ArrayList.test.dir/build.make CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.o
+.PHONY : src/data_structures/linked_list.c.o
+
+src/data_structures/linked_list.i: src/data_structures/linked_list.c.i
+.PHONY : src/data_structures/linked_list.i
+
+# target to preprocess a source file
+src/data_structures/linked_list.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ArrayList.test.dir/build.make CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.i
+.PHONY : src/data_structures/linked_list.c.i
+
+src/data_structures/linked_list.s: src/data_structures/linked_list.c.s
+.PHONY : src/data_structures/linked_list.s
+
+# target to generate assembly for a file
+src/data_structures/linked_list.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ArrayList.test.dir/build.make CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.s
+.PHONY : src/data_structures/linked_list.c.s
 
 src/tests/array_list.test.o: src/tests/array_list.test.c.o
 .PHONY : src/tests/array_list.test.o
@@ -186,9 +234,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ArrayList.test"
+	@echo "... src/data_structures/abstract_syntax_tree.o"
+	@echo "... src/data_structures/abstract_syntax_tree.i"
+	@echo "... src/data_structures/abstract_syntax_tree.s"
 	@echo "... src/data_structures/array_list.o"
 	@echo "... src/data_structures/array_list.i"
 	@echo "... src/data_structures/array_list.s"
+	@echo "... src/data_structures/linked_list.o"
+	@echo "... src/data_structures/linked_list.i"
+	@echo "... src/data_structures/linked_list.s"
 	@echo "... src/tests/array_list.test.o"
 	@echo "... src/tests/array_list.test.i"
 	@echo "... src/tests/array_list.test.s"

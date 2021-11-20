@@ -8,7 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/home/joao/Compilers/src/data_structures/abstract_syntax_tree.c" "/home/joao/Compilers/cmake-build-debug/CMakeFiles/ArrayList.test.dir/src/data_structures/abstract_syntax_tree.c.o"
   "/home/joao/Compilers/src/data_structures/array_list.c" "/home/joao/Compilers/cmake-build-debug/CMakeFiles/ArrayList.test.dir/src/data_structures/array_list.c.o"
+  "/home/joao/Compilers/src/data_structures/linked_list.c" "/home/joao/Compilers/cmake-build-debug/CMakeFiles/ArrayList.test.dir/src/data_structures/linked_list.c.o"
   "/home/joao/Compilers/src/tests/array_list.test.c" "/home/joao/Compilers/cmake-build-debug/CMakeFiles/ArrayList.test.dir/src/tests/array_list.test.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
