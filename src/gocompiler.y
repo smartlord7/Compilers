@@ -10,8 +10,8 @@ void yyerror(char* s);
 
 int yydebug = 1;
 
-tree_node_t * program;
-extern tree_node_t * create_node(int type, void * data);
+struct tree_node_t * my_program;
+struct tree_node_t * create_node(int type, void * data);
 
 %}
 
@@ -76,235 +76,236 @@ extern tree_node_t * create_node(int type, void * data);
 
 %%
     Program:
-    	PACKAGE ID SEMICOLON Declarations										{printf("1\n");}
+    	PACKAGE ID SEMICOLON Declarations										{;}
     	|
     	PACKAGE ID SEMICOLON												{;}
     ;
 
     Declarations:
-    	VarDeclaration SEMICOLON											{printf("3\n");}
+    	VarDeclaration SEMICOLON											{;}
     	|
-    	VarDeclaration SEMICOLON Declarations										{printf("4\n");}
+    	VarDeclaration SEMICOLON Declarations										{;}
     	|
-    	FuncDeclaration SEMICOLON											{printf("5\n");}
+    	FuncDeclaration SEMICOLON											{;}
     	|
-    	FuncDeclaration SEMICOLON Declarations										{printf("6\n");}
+    	FuncDeclaration SEMICOLON Declarations										{;}
     	;
 
     VarDeclaration:
-    	VAR VarSpec                                                                       				{printf("7\n");}
+    	VAR VarSpec                                                                       				{;}
     	|
-    	VAR LPAR VarSpec SEMICOLON RPAR											{printf("8\n");}
+    	VAR LPAR VarSpec SEMICOLON RPAR											{;}
     	;
 
     VarSpec:
-    	ID VarSpec_1													{printf("9\n");}
+    	ID VarSpec_1													{;}
     	;
 
     VarSpec_1:
-    	Type														{printf("10\n");}
+    	Type														{;}
     	|
-     	COMMA ID VarSpec_1												{printf("11\n");}
+     	COMMA ID VarSpec_1												{;}
      	;
 
     Type:
-    	INT														{printf("12\n");}
+    	INT														{;}
     	|
-    	FLOAT32														{printf("13\n");}
+    	FLOAT32														{;}
     	|
-    	BOOL														{printf("14\n");}
+    	BOOL														{;}
     	|
-    	STRING                                                                     					{printf("15\n");}
+    	STRING                                                                     					{;}
 	;
 
     FuncDeclaration:
-    	FUNC ID LPAR RPAR FuncBody											{printf("16\n");}
+    	FUNC ID LPAR RPAR FuncBody											{;}
     	|
-    	FUNC ID LPAR Parameters RPAR FuncBody										{printf("17\n");}
+    	FUNC ID LPAR Parameters RPAR FuncBody										{;}
     	|
-    	FUNC ID LPAR RPAR Type FuncBody											{printf("18\n");}
+    	FUNC ID LPAR RPAR Type FuncBody											{;}
     	|
-    	FUNC ID LPAR Parameters RPAR Type FuncBody									{printf("19\n");}
+    	FUNC ID LPAR Parameters RPAR Type FuncBody									{;}
     	;
 
     Parameters:
-    	ID Type														{printf("20\n");}
+    	ID Type														{;}
     	|
-    	ID Type Parameters_1                                                                 				{printf("21\n");}
+    	ID Type Parameters_1                                                                 				{;}
 	;
 
     Parameters_1:
-    	COMMA ID Type													{printf("22\n");}
+    	COMMA ID Type													{;}
     	|
-    	COMMA ID Type Parameters_1											{printf("23\n");}
+    	COMMA ID Type Parameters_1											{;}
     	;
 
     FuncBody:
-    	LBRACE RBRACE													{printf("24\n");}
+    	LBRACE RBRACE													{;}
     	|
-    	LBRACE VarsAndStatements RBRACE                      								{printf("25\n");}
+    	LBRACE VarsAndStatements RBRACE                      								{;}
     	;
 
     VarsAndStatements:
-    	SEMICOLON													{printf("26\n");}
+    	SEMICOLON													{;}
     	|
-    	VarDeclaration SEMICOLON											{printf("27\n");}
+    	VarDeclaration SEMICOLON											{;}
     	|
-    	Statement SEMICOLON												{printf("28\n");}
+    	Statement SEMICOLON												{;}
     	|
-    	VarsAndStatements SEMICOLON 											{printf("29\n");}
+    	SEMICOLON VarsAndStatements 											{;}
     	|
-    	VarsAndStatements VarDeclaration SEMICOLON									{printf("30\n");}
+    	VarDeclaration SEMICOLON VarsAndStatements 									{;}
     	|
-    	VarsAndStatements Statement SEMICOLON  										{printf("31\n");}
+    	Statement SEMICOLON VarsAndStatements  										{;}
     	;
 
     Statement:
-    	ID ASSIGN Expr                                                                               			{printf("32\n");}
+    	ID ASSIGN Expr                                                                               			{;}
     	;
 
     Statement:
-    	LBRACE RBRACE													{printf("33\n");}
+    	LBRACE RBRACE													{;}
     	|
-    	LBRACE Statement_1 RBRACE                                                      					{printf("34\n");}
+    	LBRACE Statement_1 RBRACE                                                      					{;}
     	;
 
     Statement_1:
-    	Statement SEMICOLON												{printf("35\n");}
+    	Statement SEMICOLON												{;}
     	|
-    	Statement SEMICOLON Statement_1											{printf("36\n");}
+    	Statement SEMICOLON Statement_1											{;}
     	;
 
     Statement:
-    	IF Expr LBRACE RBRACE 												{printf("37\n");}
-    	|
-     	IF Expr LBRACE Statement_rep RBRACE 										{printf("38\n");}
-     	|
-     	IF Expr LBRACE RBRACE ELSE LBRACE RBRACE 									{printf("39\n");}
-     	|
-     	IF Expr LBRACE RBRACE ELSE LBRACE Statement_rep RBRACE 								{printf("40\n");}
-     	|
-     	IF Expr LBRACE Statement_rep RBRACE ELSE LBRACE RBRACE 								{printf("41\n");}
-     	|
-     	IF Expr LBRACE Statement_rep RBRACE ELSE LBRACE Statement_rep RBRACE 						{printf("42\n");}
+    	// IF Expr LBRACE RBRACE 											{;}
+    	// |
+     	IF Expr LBRACE Statement_rep RBRACE OPT_ELSE									{;}
+     	// IF Expr LBRACE RBRACE ELSE LBRACE RBRACE 									{;}
+     	// |
+     	// IF Expr LBRACE RBRACE ELSE LBRACE Statement_rep RBRACE 							{;}
+     	// |
+     	// IF Expr LBRACE Statement_rep RBRACE ELSE LBRACE RBRACE 							{;}
+     	// |
      	;
+	OPT_ELSE: 
+		ELSE LBRACE Statement_rep RBRACE {39;}
+		| 
+		/*epsilon*/												{;}
+		;
 
     Statement_rep:
-    	Statement SEMICOLON												{printf("43\n");}
+    	/*epsilon*/													{;}
+		|
+		Statement SEMICOLON Statement_rep									{;}
     	;
 
     Statement:
-    	FOR LBRACE RBRACE 												{printf("44\n");}
-    	|
-	FOR LBRACE Statement_rep RBRACE 										{printf("45\n");}
+	FOR LBRACE Statement_rep RBRACE 										{;}
 	|
-	FOR Expr LBRACE RBRACE 												{printf("46\n");}
-	|
-	FOR Expr LBRACE Statement_rep RBRACE 										{printf("47\n");}
+	FOR Expr LBRACE Statement_rep RBRACE 										{;}
 	;
 
     Statement:
-    	RETURN														{printf("48\n");}
+    	RETURN														{;}
     	|
-    	RETURN Expr                                                                   					{printf("49\n");}
+    	RETURN Expr                                                                   					{;}
     	;
 
     Statement:
-    	FuncInvocation													{printf("50\n");}
+    	FuncInvocation													{;}
     	|
-    	ParseArgs                                                                   					{printf("51\n");}
+    	ParseArgs                                                                   					{;}
     	;
 
     Statement:
-    	PRINT LPAR Expr RPAR 												{printf("52\n");}
+    	PRINT LPAR Expr RPAR 												{;}
     	|
-    	PRINT LPAR STRLIT RPAR                                                          				{printf("53\n");}
+    	PRINT LPAR STRLIT RPAR                                                          				{;}
     	;
 
     Statement:
-    	error														{printf("54\n");}
+    	error														{;}
     	;
 
     ParseArgs:
-    	ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR                              			{printf("55\n");}
+    	ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR                              			{;}
     	;
 
     ParseArgs:
-    	ID COMMA BLANKID ASSIGN PARSEINT LPAR error RPAR								{printf("56\n");}
+    	ID COMMA BLANKID ASSIGN PARSEINT LPAR error RPAR								{;}
     	;
 
     FuncInvocation:
-    	ID LPAR RPAR 													{printf("57\n");}
+    	ID LPAR RPAR 													{;}
     	|
-	ID LPAR Expr RPAR 												{printf("58\n");}
+	ID LPAR Expr RPAR 												{;}
 	|
-	ID LPAR Expr FuncInvocation_rep RPAR										{printf("59\n");}
+	ID LPAR Expr FuncInvocation_rep RPAR										{;}
 	;
 
     FuncInvocation_rep:
-    	COMMA Expr													{printf("60\n");}
+    	COMMA Expr													{;}
     	|
-    	COMMA Expr FuncInvocation_rep											{printf("61\n");}
+    	COMMA Expr FuncInvocation_rep											{;}
     	;
 
     FuncInvocation:
-    	ID LPAR error RPAR												{printf("62\n");}
+    	ID LPAR error RPAR												{;}
     	;
 
     Expr:
-    	Expr OR Expr 													{printf("63\n");}
+    	Expr OR Expr 													{;}
     	|
-    	Expr AND Expr                                                							{printf("64\n");}
+    	Expr AND Expr                                                							{;}
     	;
 
     Expr:
-    	Expr LT 													{printf("65\n");}
+    	Expr LT 													{;}
     	|
-    	Expr GT 													{printf("66\n");}
+    	Expr GT 													{;}
     	|
-    	Expr LE 													{printf("67\n");}
+    	Expr LE 													{;}
     	|
-    	Expr GE 													{printf("68\n");}
+    	Expr GE 													{;}
     	|
-    	Expr EQ 													{printf("69\n");}
+    	Expr EQ 													{;}
     	|
-    	Expr NE														{printf("70\n");}
+    	Expr NE														{;}
     	;
 
     Expr:
-    	Expr PLUS Expr													{printf("71\n");}
+    	Expr PLUS Expr													{;}
     	|
-    	Expr MINUS Expr													{printf("72\n");}
+    	Expr MINUS Expr													{;}
     	|
-    	Expr STAR Expr													{printf("73\n");}
+    	Expr STAR Expr													{;}
     	|
-    	Expr DIV Expr													{printf("74\n");}
+    	Expr DIV Expr													{;}
     	|
-    	Expr MOD Expr                             									{printf("75\n");}
+    	Expr MOD Expr                             									{;}
     	;
 
     Expr:
-    	NOT Expr													{printf("76\n");}
+    	NOT Expr													{;}
     	|
-    	MINUS Expr %prec NOT												{printf("77\n");}
+    	MINUS Expr %prec NOT												{;}
     	|
-    	PLUS Expr %prec NOT /*unary minus/plus has the same priority as the not operator */				{printf("78\n");}
+    	PLUS Expr %prec NOT /*unary minus/plus has the same priority as the not operator */				{;}
     	;
 
     Expr:
-    	INTLIT 														{printf("79\n");}
+    	INTLIT 														{;}
     	|
-    	REALLIT 													{printf("80\n");}
+    	REALLIT 													{;}
     	|
-    	ID 														{printf("81\n");}
+    	ID 														{;}
     	|
-    	FuncInvocation 													{printf("82\n");}
+    	FuncInvocation 													{;}
     	|
-    	LPAR Expr RPAR                                           							{printf("83\n");}
+    	LPAR Expr RPAR                                           							{;}
     	;
 
     Expr:
-    	LPAR error RPAR   												{printf("84\n");}
+    	LPAR error RPAR   												{;}
     	;
 %%
 

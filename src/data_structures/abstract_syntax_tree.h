@@ -5,12 +5,12 @@
 
 typedef enum {d_program, d_var_dec, d_func_dec} node_type_t;
 
-typedef struct {
+struct tree_node_t{
     void * data;
     int type, level;
     struct list_node * children;
-} tree_node_t;
+};
 
-tree_node_t * create_node(int type, void * data);
+struct tree_node_t * create_node(int type, void * data);
 
 #endif //COMPILERS_ABSTRACT_SYNTAX_TREE_H
