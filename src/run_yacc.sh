@@ -15,7 +15,7 @@ do
 	echo "----------------------------------------------------"
 	./gocompiler.out < $test_case > ${test_case//${in_ext}/${out_ext}}
 	# cat "${test_case//${in_ext}/${out_ext}}"
-	diff "${test_case//${in_ext}/${out_ext}}" "${test_case::-3}out"
+	#diff "${test_case//${in_ext}/${out_ext}}" "${test_case::-3}out"
 	echo -e ""
 	echo "----------------------------------------------------"
 done

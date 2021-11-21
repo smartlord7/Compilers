@@ -14,6 +14,8 @@
 		last_token = 0,
 		comment_line = 0,
 		comment_column = 0,
+		last_token_line = 0,
+		last_token_column = 0,
 		verbose = 0,
 		buf_counter = 0;
 	int flag = 0, semicolon_flag = 0, eligible_token = 0;
@@ -87,14 +89,13 @@ real_lit							{real_lit1}|{real_lit2}|{real_lit3}
 letter								[a-zA-Z]
 id									({letter}|{blank_id})({letter}|{dec_digit}+|{blank_id})*
 
-
 reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|{plus}{plus}|{minus}{minus}
 
 %%
 
 {semicolon} 						{handle_token(SEMICOLON_); return SEMICOLON;}
 {comma}								{handle_token(COMMA_); return COMMA;}
-{blank_id}							{handle_token(BLANK_ID_);}
+{blank_id}							{handle_token(BLANK_ID_); return BLANKID;}
 {assign}							{handle_token(ASSIGN_); return ASSIGN;}
 {star}								{handle_token(STAR_); return STAR;}
 {div}								{handle_token(DIV_); return DIV;}
@@ -133,7 +134,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 {cmdargs}							{handle_token(CMDARGS_); return CMDARGS;}
 
 {new_line}							{handle_token(NEW_LINE_); if(semicolon_flag == 1) {semicolon_flag = 0; return SEMICOLON;};}
-{reserved}							{handle_token(RESERVED_);}
+{reserved}							{handle_token(RESERVED_); return RESERVED_;}
 {id}								{yylval.id = handle_token(ID_); return ID;}
 {int_lit}							{yylval.intlit = handle_token(INT_LIT_); return INTLIT;}
 {invalid_octal_lit}					{show_error(INVALID_OCTAL_CONST, current_column); current_column += yyleng;}
@@ -147,6 +148,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 <STATE_STRING>"\\\\"|"\\\""|"\\t"|"\\n"|"\\r"|"\\f"					{buf[buf_counter++] = yytext[0]; buf[buf_counter++] = yytext[1]; current_column += 2;}
 <STATE_STRING>\\[^\n\r]?											{show_error(INVALID_ESCAPE_SEQ, current_column); current_column += yyleng;  str_error = 1;}
 <STATE_STRING>.														{buf[buf_counter++] = yytext[0]; current_column++;}
+
 
 "//"																{BEGIN STATE_LINE_COMMENT; handle_token(LINE_COMMENT_START_);}
 <STATE_LINE_COMMENT>{new_line}										{handle_token(IGNORE_NEW_LINE_); BEGIN 0;}
@@ -184,12 +186,13 @@ int yywrap() {
 }
 
 char * handle_token(token_type tok_type) {
+
+	last_token_line = current_line;
+	last_token_column = current_column;
+
 	char * tok = yytext;
 	current_column += yyleng;
 
-	/*if(!eligible_token) {
-	    semicolon_flag = 0;
-	}*/
 
 	switch (tok_type) {
 		case ID_:
@@ -212,7 +215,6 @@ char * handle_token(token_type tok_type) {
 			}
 			buf[0] = '\0';
 			buf_counter = 0;
-
             last_token = tok_type;
 			return buf2;
 			break;
@@ -283,5 +285,5 @@ void auto_semicolon() {
 }
 
 void yyerror (char * s) {
-    printf ("Line %d, column %d: %s: %s\n", current_line, current_column, s, yytext);
+    printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column, s, yytext);
 }

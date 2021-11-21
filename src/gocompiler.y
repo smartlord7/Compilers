@@ -73,6 +73,7 @@ struct tree_node_t * create_node(int type, void * data);
 %left PLUS MINUS
 %left STAR DIV MOD
 %right NOT
+%nonassoc UNARY
 
 %%
     Program:
@@ -223,7 +224,7 @@ struct tree_node_t * create_node(int type, void * data);
     	;
 
     Statement:
-    	error														{;}
+    	Error_1														{;}
     	;
 
     ParseArgs:
@@ -231,7 +232,7 @@ struct tree_node_t * create_node(int type, void * data);
     	;
 
     ParseArgs:
-    	ID COMMA BLANKID ASSIGN PARSEINT LPAR error RPAR								{;}
+    	ID COMMA BLANKID ASSIGN PARSEINT LPAR Error_1 RPAR								{;}
     	;
 
     FuncInvocation:
@@ -249,7 +250,7 @@ struct tree_node_t * create_node(int type, void * data);
     	;
 
     FuncInvocation:
-    	ID LPAR error RPAR												{;}
+    	ID LPAR Error_1 RPAR												{;}
     	;
 
     Expr:
@@ -259,17 +260,17 @@ struct tree_node_t * create_node(int type, void * data);
     	;
 
     Expr:
-    	Expr LT 													{;}
+    	Expr LT Expr													{;}
     	|
-    	Expr GT 													{;}
+    	Expr GT Expr													{;}
     	|
-    	Expr LE 													{;}
+    	Expr LE Expr													{;}
     	|
-    	Expr GE 													{;}
+    	Expr GE Expr													{;}
     	|
-    	Expr EQ 													{;}
+    	Expr EQ Expr													{;}
     	|
-    	Expr NE														{;}
+    	Expr NE	Expr													{;}
     	;
 
     Expr:
@@ -285,9 +286,9 @@ struct tree_node_t * create_node(int type, void * data);
     	;
 
     Expr:
-    	NOT Expr													{;}
+    	NOT Expr																						{;}
     	|
-    	MINUS Expr %prec NOT												{;}
+    	MINUS Expr %prec NOT																			{;}
     	|
     	PLUS Expr %prec NOT /*unary minus/plus has the same priority as the not operator */				{;}
     	;
@@ -305,7 +306,10 @@ struct tree_node_t * create_node(int type, void * data);
     	;
 
     Expr:
-    	LPAR error RPAR   												{;}
+    	LPAR Error_1 RPAR   												{;}
     	;
+
+	Error_1:
+		error								{;}
 %%
 

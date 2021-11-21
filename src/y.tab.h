@@ -95,7 +95,8 @@ extern int yydebug;
     NOT = 296,                     /* NOT  */
     INTLIT = 297,                  /* INTLIT  */
     REALLIT = 298,                 /* REALLIT  */
-    FUNC = 299                     /* FUNC  */
+    FUNC = 299,                    /* FUNC  */
+    UNARY = 300                    /* UNARY  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -146,6 +147,7 @@ extern int yydebug;
 #define INTLIT 297
 #define REALLIT 298
 #define FUNC 299
+#define UNARY 300
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -156,7 +158,7 @@ union YYSTYPE
 	char * strlit, * id, * reallit, * intlit;
 	void * program;
 
-#line 160 "y.tab.h"
+#line 162 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
