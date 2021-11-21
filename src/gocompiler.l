@@ -4,6 +4,7 @@
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdarg.h>
+	#include "data_structures/abstract_syntax_tree.h"
 	#include "util/error_handling.h"
 	#include "util/token_type.h"
 
@@ -135,10 +136,10 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 
 {new_line}							{handle_token(NEW_LINE_); if(semicolon_flag == 1) {semicolon_flag = 0; return SEMICOLON;};}
 {reserved}							{handle_token(RESERVED_); return RESERVED_;}
-{id}								{yylval.id = handle_token(ID_); return ID;}
-{int_lit}							{yylval.intlit = handle_token(INT_LIT_); return INTLIT;}
+{id}								{yylval.id = strdup(handle_token(ID_)); return ID;}
+{int_lit}							{yylval.intlit = strdup(handle_token(INT_LIT_)); return INTLIT;}
 {invalid_octal_lit}					{show_error(INVALID_OCTAL_CONST, current_column); current_column += yyleng;}
-{real_lit}							{yylval.reallit = handle_token(REAL_LIT_); return REALLIT;}
+{real_lit}							{yylval.reallit = strdup(handle_token(REAL_LIT_)); return REALLIT;}
 {space}								{current_column++;}
 
 \"																	{buf[0] = '\0'; buf_counter = 0; str_error = 0; BEGIN STATE_STRING; start = current_column++;}
@@ -172,8 +173,10 @@ int main(int argc, char * argv[]) {
 	}
 
 	if(yyparse() == 0) {
-	    printf("sucesso\n");
-    } else printf("insucesso\n");
+	    if (argc > 1 && strcmp(argv[1], "-t") == 0) {
+			print_tree();
+		}
+    }
 
 	return EXIT_SUCCESS;
 }
@@ -196,13 +199,53 @@ char * handle_token(token_type tok_type) {
 
 	switch (tok_type) {
 		case ID_:
+			buf[buf_counter] = '\0';
+
+			snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
+			if (verbose) {
+				printf("%s", buf2);
+			}
+
+			snprintf(buf2, BUF_SIZE_2, "Id(%s)", tok);
+
+			buf_counter = 0;
+            last_token = tok_type;
+			return buf2;
+			break;
 		case INT_LIT_:
+			buf[buf_counter] = '\0';
+
+			snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
+			if (verbose) {
+				printf("%s", buf2);
+			}
+
+			snprintf(buf2, BUF_SIZE_2, "IntLit(%s)", tok);
+
+			buf_counter = 0;
+            last_token = tok_type;
+			return buf2;
+			break;
 		case REAL_LIT_:
+			buf[buf_counter] = '\0';
+
+			snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
+			if (verbose) {
+				printf("%s", buf2);
+			}
+
+			snprintf(buf2, BUF_SIZE_2, "RealLit(%s)", tok);
+
+			buf_counter = 0;
+            last_token = tok_type;
+			return buf2;
+			break;
 		case RESERVED_:
-		snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[tok_type], tok);
+			snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[tok_type], tok);
             if (verbose) {
                 printf("%s", buf2);
             }
+			snprintf(buf2, BUF_SIZE_2, "%s", tok);
 		    last_token = tok_type;
 		    return buf2;
 			break;
@@ -213,6 +256,9 @@ char * handle_token(token_type tok_type) {
 			if (verbose) {
 				printf("%s", buf2);
 			}
+
+			snprintf(buf2, BUF_SIZE_2, "StrLit(\"%s\")", buf);
+
 			buf_counter = 0;
             last_token = tok_type;
 			return buf2;
@@ -252,6 +298,8 @@ char * handle_token(token_type tok_type) {
 			}
 			return token_types[tok_type];
 	}
+
+	return NULL;
 }
 
 void auto_semicolon() {

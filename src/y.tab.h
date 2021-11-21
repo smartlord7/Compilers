@@ -143,10 +143,10 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 63 "gocompiler.y"
+#line 81 "gocompiler.y"
 
 	char * strlit, * id, * reallit, * intlit;
-	void * program;
+	struct tree_node_t * tree_node;
 
 #line 152 "y.tab.h"
 

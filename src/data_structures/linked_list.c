@@ -1,20 +1,23 @@
 #include "linked_list.h"
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 
-struct list_node_t * create_node(void * new_data, int type) {
+struct list_node_t * create_list_node(struct tree_node_t * new_data) {
     struct list_node_t * new_node = (struct list_node_t*) malloc(sizeof(struct list_node_t));
 
-    new_node->data = new_data;
+    new_node->data = (struct tree_node_t *) malloc(sizeof(struct tree_node_t));
+    memcpy(new_node->data, new_data, sizeof(struct tree_node_t));
+
     new_node->next = NULL;
-    new_node->type = type;
+    new_node->size = 0;
 
     return new_node;
 }
 
-struct list_node_t * push(struct list_node_t * head, void * new_data, int type) {
+struct list_node_t * push(struct list_node_t * head, struct tree_node_t * new_data) {
 
-    struct list_node_t * new_node = create_node(new_data, type);
+    struct list_node_t * new_node = create_list_node(new_data);
 
     if(head == NULL) {
         return new_node;
@@ -24,7 +27,9 @@ struct list_node_t * push(struct list_node_t * head, void * new_data, int type) 
     while (tmp->next != NULL) {
         tmp = tmp->next;
     }
+
     tmp->next = new_node;
+    head->size++;
 
     return head;
 }
