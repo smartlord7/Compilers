@@ -4,8 +4,8 @@
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdarg.h>
-	#include "util/error_handling.h"
-	#include "util/token_type.h"
+	#include "error_handling.h"
+	#include "token_type.h"
 
 	#define show_error(err_type, curr_column) error(err_type, curr_column, yytext);
 
@@ -68,7 +68,8 @@ func								"func"
 cmdargs								"os.Args"
 whitespaces							\r|\n|\t|\f
 new_line							\r|\r?\n
-space								" "|"\t"
+space								(" "|"\t")+
+
 other								.
 
 dec_digit							[0-9]
@@ -85,6 +86,10 @@ real_lit1							{dec_digit}+"."{dec_digit}*{exponent}?
 real_lit2							"."{dec_digit}+({exponent})?
 real_lit3							{dec_digit}+{exponent}
 real_lit							{real_lit1}|{real_lit2}|{real_lit3}
+
+str_lit								\"([^\n\r\"\\]|\\f|\\t|\\\\|\\\"|\\n)*\"
+ // unterminated_str_lit				\"({new_line}|<<EOF>>)
+ // invalid_scape_seq					\"\\[^\n\r\f\t\\\"]?
 
 letter								[a-zA-Z]
 id									({letter}|{blank_id})({letter}|{dec_digit}+|{blank_id})*
@@ -141,8 +146,10 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 {real_lit}							{yylval.reallit = handle_token(REAL_LIT_); return REALLIT;}
 {space}								{current_column++;}
 
+{str_lit}							{printf("yytext->%s\n", yytext);yylval.strlit = strdup(yytext); handle_token(STRING_LIT_); return STRLIT;}
+
 \"																	{buf[0] = '\0'; buf_counter = 0; str_error = 0; BEGIN STATE_STRING; start = current_column++;}
-<STATE_STRING>\"													{BEGIN 0; if (!str_error) yylval.strlit = handle_token(STRING_LIT_); return STRLIT;}
+<STATE_STRING>\"													{BEGIN 0; handle_token(STRING_LIT_);}
 <STATE_STRING>{new_line}											{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING><<EOF>>												{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING>"\\\\"|"\\\""|"\\t"|"\\n"|"\\r"|"\\f"					{buf[buf_counter++] = yytext[0]; buf[buf_counter++] = yytext[1]; current_column += 2;}
@@ -160,7 +167,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 <STATE_GENERAL_COMMENT><<EOF>>										{current_line = comment_line; show_error(UNTERMINATED_COMMENT, comment_column); return 0;}
 <STATE_GENERAL_COMMENT>.											{handle_token(IGNORE_);}
 
-{whitespaces}														{;}
+{whitespaces}														{handle_token(NOTHING_);}
 {other}																{show_error(ILLEGAL_CHAR, current_column); current_column += yyleng;}
 <<EOF>>                                                             {if (semicolon_flag) {semicolon_flag = 0; return SEMICOLON;} else {return 0;};}
 
@@ -245,6 +252,8 @@ char * handle_token(token_type tok_type) {
 			last_token = tok_type;
             return token_types[tok_type];
             break;
+		case NOTHING_:
+			break;
 		default:
 			last_token = tok_type;
 			semicolon_flag = 0;
@@ -253,6 +262,7 @@ char * handle_token(token_type tok_type) {
 			}
 			return token_types[tok_type];
 	}
+	return NULL;
 }
 
 void auto_semicolon() {

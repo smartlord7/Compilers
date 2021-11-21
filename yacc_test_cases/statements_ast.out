@@ -1,1 +1,4 @@
+yytext->"This is a string literal."
+yytext->"y is greater than 10."
+yytext->"y is lower than 10."
 sucesso

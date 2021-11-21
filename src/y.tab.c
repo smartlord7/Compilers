@@ -69,11 +69,10 @@
 /* First part of user prologue.  */
 #line 1 "gocompiler.y"
 
-#include "util/error_handling.h"
-#include "util/token_type.h"
+#include "error_handling.h"
+#include "token_type.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "data_structures/abstract_syntax_tree.h"
 
 int yylex (void);
 void yyerror(char* s);
@@ -84,7 +83,7 @@ struct tree_node_t * my_program;
 struct tree_node_t * create_node(int type, void * data);
 
 
-#line 88 "y.tab.c"
+#line 87 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -227,12 +226,12 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 63 "gocompiler.y"
+#line 62 "gocompiler.y"
 
 	char * strlit, * id, * reallit, * intlit;
 	void * program;
 
-#line 236 "y.tab.c"
+#line 235 "y.tab.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -701,15 +700,15 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,    80,    80,    82,    86,    88,    90,    92,    96,    98,
-     102,   106,   108,   112,   114,   116,   118,   122,   124,   126,
-     128,   132,   134,   138,   140,   144,   146,   150,   152,   154,
-     156,   158,   160,   164,   168,   170,   174,   176,   182,   191,
-     193,   197,   199,   203,   205,   209,   211,   215,   217,   221,
-     223,   227,   231,   235,   239,   241,   243,   247,   249,   253,
-     257,   259,   263,   265,   267,   269,   271,   273,   277,   279,
-     281,   283,   285,   289,   291,   293,   297,   299,   301,   303,
-     305,   309,   313
+       0,    79,    79,    81,    85,    87,    89,    91,    95,    97,
+     101,   105,   107,   111,   113,   115,   117,   121,   123,   125,
+     127,   131,   133,   137,   139,   143,   145,   149,   151,   153,
+     155,   157,   159,   163,   167,   169,   173,   175,   181,   190,
+     192,   196,   198,   202,   204,   208,   210,   214,   216,   220,
+     222,   226,   230,   234,   238,   240,   242,   246,   248,   252,
+     256,   258,   262,   264,   266,   268,   270,   272,   276,   278,
+     280,   282,   284,   288,   290,   292,   296,   298,   300,   302,
+     304,   308,   312
 };
 #endif
 
@@ -1444,493 +1443,493 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* Program: PACKAGE ID SEMICOLON Declarations  */
-#line 80 "gocompiler.y"
+#line 79 "gocompiler.y"
                                                                                                                         {;}
-#line 1450 "y.tab.c"
+#line 1449 "y.tab.c"
     break;
 
   case 3: /* Program: PACKAGE ID SEMICOLON  */
-#line 82 "gocompiler.y"
+#line 81 "gocompiler.y"
                                                                                                                         {;}
-#line 1456 "y.tab.c"
+#line 1455 "y.tab.c"
     break;
 
   case 4: /* Declarations: VarDeclaration SEMICOLON  */
-#line 86 "gocompiler.y"
+#line 85 "gocompiler.y"
                                                                                                                         {;}
-#line 1462 "y.tab.c"
+#line 1461 "y.tab.c"
     break;
 
   case 5: /* Declarations: VarDeclaration SEMICOLON Declarations  */
-#line 88 "gocompiler.y"
+#line 87 "gocompiler.y"
                                                                                                                         {;}
-#line 1468 "y.tab.c"
+#line 1467 "y.tab.c"
     break;
 
   case 6: /* Declarations: FuncDeclaration SEMICOLON  */
-#line 90 "gocompiler.y"
+#line 89 "gocompiler.y"
                                                                                                                         {;}
-#line 1474 "y.tab.c"
+#line 1473 "y.tab.c"
     break;
 
   case 7: /* Declarations: FuncDeclaration SEMICOLON Declarations  */
-#line 92 "gocompiler.y"
+#line 91 "gocompiler.y"
                                                                                                                         {;}
-#line 1480 "y.tab.c"
+#line 1479 "y.tab.c"
     break;
 
   case 8: /* VarDeclaration: VAR VarSpec  */
-#line 96 "gocompiler.y"
+#line 95 "gocompiler.y"
                                                                                                                         {;}
-#line 1486 "y.tab.c"
+#line 1485 "y.tab.c"
     break;
 
   case 9: /* VarDeclaration: VAR LPAR VarSpec SEMICOLON RPAR  */
-#line 98 "gocompiler.y"
+#line 97 "gocompiler.y"
                                                                                                                         {;}
-#line 1492 "y.tab.c"
+#line 1491 "y.tab.c"
     break;
 
   case 10: /* VarSpec: ID VarSpec_1  */
-#line 102 "gocompiler.y"
+#line 101 "gocompiler.y"
                                                                                                                         {;}
-#line 1498 "y.tab.c"
+#line 1497 "y.tab.c"
     break;
 
   case 11: /* VarSpec_1: Type  */
-#line 106 "gocompiler.y"
+#line 105 "gocompiler.y"
                                                                                                                         {;}
-#line 1504 "y.tab.c"
+#line 1503 "y.tab.c"
     break;
 
   case 12: /* VarSpec_1: COMMA ID VarSpec_1  */
-#line 108 "gocompiler.y"
+#line 107 "gocompiler.y"
                                                                                                                         {;}
-#line 1510 "y.tab.c"
+#line 1509 "y.tab.c"
     break;
 
   case 13: /* Type: INT  */
-#line 112 "gocompiler.y"
+#line 111 "gocompiler.y"
                                                                                                                         {;}
-#line 1516 "y.tab.c"
+#line 1515 "y.tab.c"
     break;
 
   case 14: /* Type: FLOAT32  */
-#line 114 "gocompiler.y"
+#line 113 "gocompiler.y"
                                                                                                                         {;}
-#line 1522 "y.tab.c"
+#line 1521 "y.tab.c"
     break;
 
   case 15: /* Type: BOOL  */
-#line 116 "gocompiler.y"
+#line 115 "gocompiler.y"
                                                                                                                         {;}
-#line 1528 "y.tab.c"
+#line 1527 "y.tab.c"
     break;
 
   case 16: /* Type: STRING  */
-#line 118 "gocompiler.y"
+#line 117 "gocompiler.y"
                                                                                                                         {;}
-#line 1534 "y.tab.c"
+#line 1533 "y.tab.c"
     break;
 
   case 17: /* FuncDeclaration: FUNC ID LPAR RPAR FuncBody  */
-#line 122 "gocompiler.y"
+#line 121 "gocompiler.y"
                                                                                                                         {;}
-#line 1540 "y.tab.c"
+#line 1539 "y.tab.c"
     break;
 
   case 18: /* FuncDeclaration: FUNC ID LPAR Parameters RPAR FuncBody  */
-#line 124 "gocompiler.y"
+#line 123 "gocompiler.y"
                                                                                                                         {;}
-#line 1546 "y.tab.c"
+#line 1545 "y.tab.c"
     break;
 
   case 19: /* FuncDeclaration: FUNC ID LPAR RPAR Type FuncBody  */
-#line 126 "gocompiler.y"
+#line 125 "gocompiler.y"
                                                                                                                         {;}
-#line 1552 "y.tab.c"
+#line 1551 "y.tab.c"
     break;
 
   case 20: /* FuncDeclaration: FUNC ID LPAR Parameters RPAR Type FuncBody  */
-#line 128 "gocompiler.y"
+#line 127 "gocompiler.y"
                                                                                                                         {;}
-#line 1558 "y.tab.c"
+#line 1557 "y.tab.c"
     break;
 
   case 21: /* Parameters: ID Type  */
-#line 132 "gocompiler.y"
+#line 131 "gocompiler.y"
                                                                                                                         {;}
-#line 1564 "y.tab.c"
+#line 1563 "y.tab.c"
     break;
 
   case 22: /* Parameters: ID Type Parameters_1  */
-#line 134 "gocompiler.y"
+#line 133 "gocompiler.y"
                                                                                                                         {;}
-#line 1570 "y.tab.c"
+#line 1569 "y.tab.c"
     break;
 
   case 23: /* Parameters_1: COMMA ID Type  */
-#line 138 "gocompiler.y"
+#line 137 "gocompiler.y"
                                                                                                                         {;}
-#line 1576 "y.tab.c"
+#line 1575 "y.tab.c"
     break;
 
   case 24: /* Parameters_1: COMMA ID Type Parameters_1  */
-#line 140 "gocompiler.y"
+#line 139 "gocompiler.y"
                                                                                                                         {;}
-#line 1582 "y.tab.c"
+#line 1581 "y.tab.c"
     break;
 
   case 25: /* FuncBody: LBRACE RBRACE  */
-#line 144 "gocompiler.y"
+#line 143 "gocompiler.y"
                                                                                                                         {;}
-#line 1588 "y.tab.c"
+#line 1587 "y.tab.c"
     break;
 
   case 26: /* FuncBody: LBRACE VarsAndStatements RBRACE  */
-#line 146 "gocompiler.y"
+#line 145 "gocompiler.y"
                                                                                                                         {;}
-#line 1594 "y.tab.c"
+#line 1593 "y.tab.c"
     break;
 
   case 27: /* VarsAndStatements: SEMICOLON  */
-#line 150 "gocompiler.y"
+#line 149 "gocompiler.y"
                                                                                                                         {;}
-#line 1600 "y.tab.c"
+#line 1599 "y.tab.c"
     break;
 
   case 28: /* VarsAndStatements: VarDeclaration SEMICOLON  */
-#line 152 "gocompiler.y"
+#line 151 "gocompiler.y"
                                                                                                                         {;}
-#line 1606 "y.tab.c"
+#line 1605 "y.tab.c"
     break;
 
   case 29: /* VarsAndStatements: Statement SEMICOLON  */
-#line 154 "gocompiler.y"
+#line 153 "gocompiler.y"
                                                                                                                         {;}
-#line 1612 "y.tab.c"
+#line 1611 "y.tab.c"
     break;
 
   case 30: /* VarsAndStatements: SEMICOLON VarsAndStatements  */
-#line 156 "gocompiler.y"
+#line 155 "gocompiler.y"
                                                                                                                         {;}
-#line 1618 "y.tab.c"
+#line 1617 "y.tab.c"
     break;
 
   case 31: /* VarsAndStatements: VarDeclaration SEMICOLON VarsAndStatements  */
-#line 158 "gocompiler.y"
+#line 157 "gocompiler.y"
                                                                                                                         {;}
-#line 1624 "y.tab.c"
+#line 1623 "y.tab.c"
     break;
 
   case 32: /* VarsAndStatements: Statement SEMICOLON VarsAndStatements  */
-#line 160 "gocompiler.y"
+#line 159 "gocompiler.y"
                                                                                                                         {;}
-#line 1630 "y.tab.c"
+#line 1629 "y.tab.c"
     break;
 
   case 33: /* Statement: ID ASSIGN Expr  */
-#line 164 "gocompiler.y"
+#line 163 "gocompiler.y"
                                                                                                                         {;}
-#line 1636 "y.tab.c"
+#line 1635 "y.tab.c"
     break;
 
   case 34: /* Statement: LBRACE RBRACE  */
-#line 168 "gocompiler.y"
+#line 167 "gocompiler.y"
                                                                                                                         {;}
-#line 1642 "y.tab.c"
+#line 1641 "y.tab.c"
     break;
 
   case 35: /* Statement: LBRACE Statement_1 RBRACE  */
-#line 170 "gocompiler.y"
+#line 169 "gocompiler.y"
                                                                                                                         {;}
-#line 1648 "y.tab.c"
+#line 1647 "y.tab.c"
     break;
 
   case 36: /* Statement_1: Statement SEMICOLON  */
-#line 174 "gocompiler.y"
+#line 173 "gocompiler.y"
                                                                                                                         {;}
-#line 1654 "y.tab.c"
+#line 1653 "y.tab.c"
     break;
 
   case 37: /* Statement_1: Statement SEMICOLON Statement_1  */
-#line 176 "gocompiler.y"
+#line 175 "gocompiler.y"
                                                                                                                         {;}
-#line 1660 "y.tab.c"
+#line 1659 "y.tab.c"
     break;
 
   case 38: /* Statement: IF Expr LBRACE Statement_rep RBRACE OPT_ELSE  */
-#line 182 "gocompiler.y"
+#line 181 "gocompiler.y"
                                                                                                                         {;}
-#line 1666 "y.tab.c"
+#line 1665 "y.tab.c"
     break;
 
   case 39: /* OPT_ELSE: ELSE LBRACE Statement_rep RBRACE  */
-#line 191 "gocompiler.y"
-                                                 {39;}
-#line 1672 "y.tab.c"
+#line 190 "gocompiler.y"
+                                                                                                                                {;}
+#line 1671 "y.tab.c"
     break;
 
   case 40: /* OPT_ELSE: %empty  */
-#line 193 "gocompiler.y"
+#line 192 "gocompiler.y"
                                                                                                                         {;}
-#line 1678 "y.tab.c"
+#line 1677 "y.tab.c"
     break;
 
   case 41: /* Statement_rep: %empty  */
-#line 197 "gocompiler.y"
+#line 196 "gocompiler.y"
                                                                                                                         {;}
-#line 1684 "y.tab.c"
+#line 1683 "y.tab.c"
     break;
 
   case 42: /* Statement_rep: Statement SEMICOLON Statement_rep  */
-#line 199 "gocompiler.y"
+#line 198 "gocompiler.y"
                                                                                                                         {;}
-#line 1690 "y.tab.c"
+#line 1689 "y.tab.c"
     break;
 
   case 43: /* Statement: FOR LBRACE Statement_rep RBRACE  */
-#line 203 "gocompiler.y"
+#line 202 "gocompiler.y"
                                                                                                                         {;}
-#line 1696 "y.tab.c"
+#line 1695 "y.tab.c"
     break;
 
   case 44: /* Statement: FOR Expr LBRACE Statement_rep RBRACE  */
-#line 205 "gocompiler.y"
+#line 204 "gocompiler.y"
                                                                                                                         {;}
-#line 1702 "y.tab.c"
+#line 1701 "y.tab.c"
     break;
 
   case 45: /* Statement: RETURN  */
-#line 209 "gocompiler.y"
+#line 208 "gocompiler.y"
                                                                                                                         {;}
-#line 1708 "y.tab.c"
+#line 1707 "y.tab.c"
     break;
 
   case 46: /* Statement: RETURN Expr  */
-#line 211 "gocompiler.y"
+#line 210 "gocompiler.y"
                                                                                                                         {;}
-#line 1714 "y.tab.c"
+#line 1713 "y.tab.c"
     break;
 
   case 47: /* Statement: FuncInvocation  */
-#line 215 "gocompiler.y"
+#line 214 "gocompiler.y"
                                                                                                                         {;}
-#line 1720 "y.tab.c"
+#line 1719 "y.tab.c"
     break;
 
   case 48: /* Statement: ParseArgs  */
-#line 217 "gocompiler.y"
+#line 216 "gocompiler.y"
                                                                                                                         {;}
-#line 1726 "y.tab.c"
+#line 1725 "y.tab.c"
     break;
 
   case 49: /* Statement: PRINT LPAR Expr RPAR  */
-#line 221 "gocompiler.y"
+#line 220 "gocompiler.y"
                                                                                                                         {;}
-#line 1732 "y.tab.c"
+#line 1731 "y.tab.c"
     break;
 
   case 50: /* Statement: PRINT LPAR STRLIT RPAR  */
-#line 223 "gocompiler.y"
+#line 222 "gocompiler.y"
                                                                                                                         {;}
-#line 1738 "y.tab.c"
+#line 1737 "y.tab.c"
     break;
 
   case 51: /* Statement: Error_1  */
-#line 227 "gocompiler.y"
+#line 226 "gocompiler.y"
                                                                                                                         {;}
-#line 1744 "y.tab.c"
+#line 1743 "y.tab.c"
     break;
 
   case 52: /* ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR  */
-#line 231 "gocompiler.y"
+#line 230 "gocompiler.y"
                                                                                                                         {;}
-#line 1750 "y.tab.c"
+#line 1749 "y.tab.c"
     break;
 
   case 53: /* ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR Error_1 RPAR  */
-#line 235 "gocompiler.y"
+#line 234 "gocompiler.y"
                                                                                                                         {;}
-#line 1756 "y.tab.c"
+#line 1755 "y.tab.c"
     break;
 
   case 54: /* FuncInvocation: ID LPAR RPAR  */
-#line 239 "gocompiler.y"
+#line 238 "gocompiler.y"
                                                                                                                         {;}
-#line 1762 "y.tab.c"
+#line 1761 "y.tab.c"
     break;
 
   case 55: /* FuncInvocation: ID LPAR Expr RPAR  */
-#line 241 "gocompiler.y"
+#line 240 "gocompiler.y"
                                                                                                                         {;}
-#line 1768 "y.tab.c"
+#line 1767 "y.tab.c"
     break;
 
   case 56: /* FuncInvocation: ID LPAR Expr FuncInvocation_rep RPAR  */
-#line 243 "gocompiler.y"
+#line 242 "gocompiler.y"
                                                                                                                         {;}
-#line 1774 "y.tab.c"
+#line 1773 "y.tab.c"
     break;
 
   case 57: /* FuncInvocation_rep: COMMA Expr  */
-#line 247 "gocompiler.y"
+#line 246 "gocompiler.y"
                                                                                                                         {;}
-#line 1780 "y.tab.c"
+#line 1779 "y.tab.c"
     break;
 
   case 58: /* FuncInvocation_rep: COMMA Expr FuncInvocation_rep  */
-#line 249 "gocompiler.y"
+#line 248 "gocompiler.y"
                                                                                                                         {;}
-#line 1786 "y.tab.c"
+#line 1785 "y.tab.c"
     break;
 
   case 59: /* FuncInvocation: ID LPAR Error_1 RPAR  */
-#line 253 "gocompiler.y"
+#line 252 "gocompiler.y"
                                                                                                                         {;}
-#line 1792 "y.tab.c"
+#line 1791 "y.tab.c"
     break;
 
   case 60: /* Expr: Expr OR Expr  */
-#line 257 "gocompiler.y"
+#line 256 "gocompiler.y"
                                                                                                                         {;}
-#line 1798 "y.tab.c"
+#line 1797 "y.tab.c"
     break;
 
   case 61: /* Expr: Expr AND Expr  */
-#line 259 "gocompiler.y"
+#line 258 "gocompiler.y"
                                                                                                                         {;}
-#line 1804 "y.tab.c"
+#line 1803 "y.tab.c"
     break;
 
   case 62: /* Expr: Expr LT Expr  */
-#line 263 "gocompiler.y"
+#line 262 "gocompiler.y"
                                                                                                                         {;}
-#line 1810 "y.tab.c"
+#line 1809 "y.tab.c"
     break;
 
   case 63: /* Expr: Expr GT Expr  */
-#line 265 "gocompiler.y"
+#line 264 "gocompiler.y"
                                                                                                                         {;}
-#line 1816 "y.tab.c"
+#line 1815 "y.tab.c"
     break;
 
   case 64: /* Expr: Expr LE Expr  */
-#line 267 "gocompiler.y"
+#line 266 "gocompiler.y"
                                                                                                                         {;}
-#line 1822 "y.tab.c"
+#line 1821 "y.tab.c"
     break;
 
   case 65: /* Expr: Expr GE Expr  */
-#line 269 "gocompiler.y"
+#line 268 "gocompiler.y"
                                                                                                                         {;}
-#line 1828 "y.tab.c"
+#line 1827 "y.tab.c"
     break;
 
   case 66: /* Expr: Expr EQ Expr  */
-#line 271 "gocompiler.y"
+#line 270 "gocompiler.y"
                                                                                                                         {;}
-#line 1834 "y.tab.c"
+#line 1833 "y.tab.c"
     break;
 
   case 67: /* Expr: Expr NE Expr  */
-#line 273 "gocompiler.y"
+#line 272 "gocompiler.y"
                                                                                                                         {;}
-#line 1840 "y.tab.c"
+#line 1839 "y.tab.c"
     break;
 
   case 68: /* Expr: Expr PLUS Expr  */
-#line 277 "gocompiler.y"
+#line 276 "gocompiler.y"
                                                                                                                         {;}
-#line 1846 "y.tab.c"
+#line 1845 "y.tab.c"
     break;
 
   case 69: /* Expr: Expr MINUS Expr  */
-#line 279 "gocompiler.y"
+#line 278 "gocompiler.y"
                                                                                                                         {;}
-#line 1852 "y.tab.c"
+#line 1851 "y.tab.c"
     break;
 
   case 70: /* Expr: Expr STAR Expr  */
-#line 281 "gocompiler.y"
+#line 280 "gocompiler.y"
                                                                                                                         {;}
-#line 1858 "y.tab.c"
+#line 1857 "y.tab.c"
     break;
 
   case 71: /* Expr: Expr DIV Expr  */
-#line 283 "gocompiler.y"
+#line 282 "gocompiler.y"
                                                                                                                         {;}
-#line 1864 "y.tab.c"
+#line 1863 "y.tab.c"
     break;
 
   case 72: /* Expr: Expr MOD Expr  */
-#line 285 "gocompiler.y"
+#line 284 "gocompiler.y"
                                                                                                                         {;}
-#line 1870 "y.tab.c"
+#line 1869 "y.tab.c"
     break;
 
   case 73: /* Expr: NOT Expr  */
-#line 289 "gocompiler.y"
+#line 288 "gocompiler.y"
                                                                                                                                                                                                 {;}
-#line 1876 "y.tab.c"
+#line 1875 "y.tab.c"
     break;
 
   case 74: /* Expr: MINUS Expr  */
-#line 291 "gocompiler.y"
+#line 290 "gocompiler.y"
                                                                                                                                                                                 {;}
-#line 1882 "y.tab.c"
+#line 1881 "y.tab.c"
     break;
 
   case 75: /* Expr: PLUS Expr  */
-#line 293 "gocompiler.y"
+#line 292 "gocompiler.y"
                                                                                                                         {;}
-#line 1888 "y.tab.c"
+#line 1887 "y.tab.c"
     break;
 
   case 76: /* Expr: INTLIT  */
-#line 297 "gocompiler.y"
+#line 296 "gocompiler.y"
                                                                                                                         {;}
-#line 1894 "y.tab.c"
+#line 1893 "y.tab.c"
     break;
 
   case 77: /* Expr: REALLIT  */
-#line 299 "gocompiler.y"
+#line 298 "gocompiler.y"
                                                                                                                         {;}
-#line 1900 "y.tab.c"
+#line 1899 "y.tab.c"
     break;
 
   case 78: /* Expr: ID  */
-#line 301 "gocompiler.y"
+#line 300 "gocompiler.y"
                                                                                                                         {;}
-#line 1906 "y.tab.c"
+#line 1905 "y.tab.c"
     break;
 
   case 79: /* Expr: FuncInvocation  */
-#line 303 "gocompiler.y"
+#line 302 "gocompiler.y"
                                                                                                                         {;}
-#line 1912 "y.tab.c"
+#line 1911 "y.tab.c"
     break;
 
   case 80: /* Expr: LPAR Expr RPAR  */
-#line 305 "gocompiler.y"
+#line 304 "gocompiler.y"
                                                                                                                         {;}
-#line 1918 "y.tab.c"
+#line 1917 "y.tab.c"
     break;
 
   case 81: /* Expr: LPAR Error_1 RPAR  */
-#line 309 "gocompiler.y"
+#line 308 "gocompiler.y"
                                                                                                                         {;}
-#line 1924 "y.tab.c"
+#line 1923 "y.tab.c"
     break;
 
   case 82: /* Error_1: error  */
-#line 313 "gocompiler.y"
+#line 312 "gocompiler.y"
                                                                                 {;}
-#line 1930 "y.tab.c"
+#line 1929 "y.tab.c"
     break;
 
 
-#line 1934 "y.tab.c"
+#line 1933 "y.tab.c"
 
       default: break;
     }
@@ -2124,6 +2123,6 @@ yyreturn:
   return yyresult;
 }
 
-#line 314 "gocompiler.y"
+#line 313 "gocompiler.y"
 
 

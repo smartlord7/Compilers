@@ -1,9 +1,8 @@
 %{
-#include "util/error_handling.h"
-#include "util/token_type.h"
+#include "error_handling.h"
+#include "token_type.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "data_structures/abstract_syntax_tree.h"
 
 int yylex (void);
 void yyerror(char* s);
@@ -188,7 +187,7 @@ struct tree_node_t * create_node(int type, void * data);
      	// |
      	;
 	OPT_ELSE: 
-		ELSE LBRACE Statement_rep RBRACE {39;}
+		ELSE LBRACE Statement_rep RBRACE 										{;}
 		| 
 		/*epsilon*/												{;}
 		;

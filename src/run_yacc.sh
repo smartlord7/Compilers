@@ -7,7 +7,7 @@ out_ext='.out'
 
 lex $compiler_name.l
 yacc -d -v gocompiler.y
-cc -o gocompiler.out y.tab.c lex.yy.c util/token_type.c util/error_handling.c
+cc -o gocompiler.out y.tab.c lex.yy.c token_type.c error_handling.c
 
 for test_case in $test_cases
 do
