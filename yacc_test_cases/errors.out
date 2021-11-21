@@ -1,4 +1,5 @@
-Line 14, column 9: syntax error: &&
-Line 16, column 6: syntax error: =
-Line 20, column 10: syntax error: =
+Line 10, column 14: syntax error: )
+Line 14, column 4: syntax error: &&
+Line 16, column 2: syntax error: =
+Line 20, column 21: syntax error: /
 sucesso

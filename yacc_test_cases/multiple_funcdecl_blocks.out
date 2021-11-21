@@ -1,6 +1,5 @@
-Line 13, column 15: syntax error: 6.3
-Line 25, column 12: syntax error: 2
-Line 26, column 17: syntax error: a
-Line 39, column 10: syntax error: =
-Line 40, column 10: syntax error: =
+yytext->"loop"
+yytext->"block me"
+yytext->"and me"
+yytext->"Vou embora"
 sucesso

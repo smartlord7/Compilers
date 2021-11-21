@@ -49,48 +49,53 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    PACKAGE = 258,
-    ID = 259,
-    SEMICOLON = 260,
-    VAR = 261,
-    LPAR = 262,
-    RPAR = 263,
-    COMMA = 264,
-    INT = 265,
-    FLOAT32 = 266,
-    BOOL = 267,
-    STRING = 268,
-    RBRACE = 269,
-    LBRACE = 270,
-    ASSIGN = 271,
-    IF = 272,
-    ELSE = 273,
-    RETURN = 274,
-    FOR = 275,
-    PRINT = 276,
-    STRLIT = 277,
-    BLANK_ID = 278,
-    PARSEINT = 279,
-    CMDARGS = 280,
-    LSQ = 281,
-    RSQ = 282,
-    OR = 283,
-    AND = 284,
-    LT = 285,
-    GT = 286,
-    EQ = 287,
-    NE = 288,
-    LE = 289,
-    GE = 290,
-    PLUS = 291,
-    MINUS = 292,
-    STAR = 293,
-    DIV = 294,
-    MOD = 295,
-    NOT = 296,
-    INTLIT = 297,
-    REALLIT = 298,
-    FUNC = 299
+    YYEMPTY = -2,
+    YYEOF = 0,                     /* "end of file"  */
+    YYerror = 256,                 /* error  */
+    YYUNDEF = 257,                 /* "invalid token"  */
+    PACKAGE = 258,                 /* PACKAGE  */
+    ID = 259,                      /* ID  */
+    SEMICOLON = 260,               /* SEMICOLON  */
+    VAR = 261,                     /* VAR  */
+    LPAR = 262,                    /* LPAR  */
+    RPAR = 263,                    /* RPAR  */
+    COMMA = 264,                   /* COMMA  */
+    INT = 265,                     /* INT  */
+    FLOAT32 = 266,                 /* FLOAT32  */
+    BOOL = 267,                    /* BOOL  */
+    STRING = 268,                  /* STRING  */
+    RBRACE = 269,                  /* RBRACE  */
+    LBRACE = 270,                  /* LBRACE  */
+    ASSIGN = 271,                  /* ASSIGN  */
+    IF = 272,                      /* IF  */
+    ELSE = 273,                    /* ELSE  */
+    RETURN = 274,                  /* RETURN  */
+    FOR = 275,                     /* FOR  */
+    PRINT = 276,                   /* PRINT  */
+    STRLIT = 277,                  /* STRLIT  */
+    BLANKID = 278,                 /* BLANKID  */
+    PARSEINT = 279,                /* PARSEINT  */
+    CMDARGS = 280,                 /* CMDARGS  */
+    LSQ = 281,                     /* LSQ  */
+    RSQ = 282,                     /* RSQ  */
+    OR = 283,                      /* OR  */
+    AND = 284,                     /* AND  */
+    LT = 285,                      /* LT  */
+    GT = 286,                      /* GT  */
+    EQ = 287,                      /* EQ  */
+    NE = 288,                      /* NE  */
+    LE = 289,                      /* LE  */
+    GE = 290,                      /* GE  */
+    PLUS = 291,                    /* PLUS  */
+    MINUS = 292,                   /* MINUS  */
+    STAR = 293,                    /* STAR  */
+    DIV = 294,                     /* DIV  */
+    MOD = 295,                     /* MOD  */
+    NOT = 296,                     /* NOT  */
+    INTLIT = 297,                  /* INTLIT  */
+    REALLIT = 298,                 /* REALLIT  */
+    FUNC = 299,                    /* FUNC  */
+    UNARY = 300                    /* UNARY  */
   };
 #endif
 /* Tokens.  */
@@ -136,17 +141,18 @@ extern int yydebug;
 #define INTLIT 297
 #define REALLIT 298
 #define FUNC 299
+#define UNARY 300
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 63 "gocompiler.y"
+#line 62 "gocompiler.y"
 
 	char * strlit, * id, * reallit, * intlit;
 	void * program;
 
-#line 150 "y.tab.h"
+#line 162 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

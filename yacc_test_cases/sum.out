@@ -1,4 +1,3 @@
-Line 15, column 10: syntax error: =
-Line 16, column 8: syntax error: 0
-Line 19, column 8: syntax error: else
-insucesso
+yytext->"non-negative number please"
+yytext->"now you're trapped"
+sucesso

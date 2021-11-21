@@ -1,6 +1,5 @@
-Line 13, column 13: syntax error: 0
-Line 14, column 13: syntax error: 1
-Line 31, column 8: syntax error: =
-Line 34, column 9: syntax error: "
+yytext->"aksjd"
+Line 34, column 2: syntax error: "aksjd"
 Line 35, column 15: invalid escape sequence (\x)
+Line 35, column 18: syntax error: )
 sucesso

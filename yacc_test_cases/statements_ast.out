@@ -1,7 +1,4 @@
-Line 17, column 15: syntax error: 1
-Line 23, column 14: syntax error: 2
-Line 38, column 16: syntax error: 10
-Line 57, column 11: syntax error: =
-Line 63, column 14: syntax error: 10
-Line 66, column 11: syntax error: else
-insucesso
+yytext->"This is a string literal."
+yytext->"y is greater than 10."
+yytext->"y is lower than 10."
+sucesso

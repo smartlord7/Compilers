@@ -1,0 +1,8 @@
+package main
+
+var (n int;)
+
+func danglingelse(n int) {
+	"aksjd"
+	fmt.Println("\x")
+}
