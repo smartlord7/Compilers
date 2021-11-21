@@ -1208,7 +1208,7 @@ YY_RULE_SETUP
 case 47:
 YY_RULE_SETUP
 #line 145 "gocompiler.l"
-{BEGIN 0; if (!str_error) { yylval.strlit = handle_token(STRING_LIT_); return STRLIT; };}
+{BEGIN 0; if (!str_error) { yylval.strlit = handle_token(STRING_LIT_); return STRLIT; } else { current_column++; };}
 	YY_BREAK
 case 48:
 /* rule 48 can match eol */
@@ -1291,7 +1291,7 @@ case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(STATE_LINE_COMMENT):
 case YY_STATE_EOF(OCTAL):
 #line 165 "gocompiler.l"
-{if (semicolon_flag) {semicolon_flag = 0; return SEMICOLON;} else {return 0;};}
+{last_token_line = current_line; last_token_column = current_column; if (semicolon_flag) {semicolon_flag = 0; return SEMICOLON;} else {return 0;};}
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
@@ -2310,8 +2310,8 @@ int main(int argc, char * argv[]) {
 	}
 
 	if(yyparse() == 0) {
-	    printf("sucesso\n");
-    } else printf("insucesso\n");
+	    //printf("sucesso\n");
+    } //else printf("insucesso\n");
 
 	return EXIT_SUCCESS;
 }
@@ -2390,6 +2390,8 @@ char * handle_token(token_type tok_type) {
 			}
 			return token_types[tok_type];
 	}
+
+	return buf2;
 }
 
 void auto_semicolon() {
@@ -2423,7 +2425,7 @@ void auto_semicolon() {
 
 void yyerror (char * s) {
     if (last_token == STRING_LIT_) {
-        printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column, s, yytext - strlen(buf) - 1);
+        printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column - (int) strlen(buf) - 1, s, yytext - strlen(buf) - 1);
     } else {
         printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column, s, yytext);
     }

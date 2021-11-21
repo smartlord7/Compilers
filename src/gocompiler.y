@@ -188,7 +188,7 @@ struct tree_node_t * create_node(int type, void * data);
      	// |
      	;
 	OPT_ELSE: 
-		ELSE LBRACE Statement_rep RBRACE {39;}
+		ELSE LBRACE Statement_rep RBRACE {;}
 		| 
 		/*epsilon*/												{;}
 		;

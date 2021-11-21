@@ -1791,7 +1791,7 @@ yyreduce:
 
   case 39:
 #line 191 "gocompiler.y"
-                                                 {39;}
+                                                 {;}
 #line 1796 "y.tab.c"
     break;
 
