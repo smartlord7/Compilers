@@ -142,11 +142,11 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 {space}								{current_column++;}
 
 \"																	{buf[0] = '\0'; buf_counter = 0; str_error = 0; BEGIN STATE_STRING; start = current_column++;}
-<STATE_STRING>\"													{BEGIN 0; if (!str_error) yylval.strlit = handle_token(STRING_LIT_); return STRLIT;}
+<STATE_STRING>\"													{BEGIN 0; if (!str_error) { yylval.strlit = handle_token(STRING_LIT_); return STRLIT; };}
 <STATE_STRING>{new_line}											{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING><<EOF>>												{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING>"\\\\"|"\\\""|"\\t"|"\\n"|"\\r"|"\\f"					{buf[buf_counter++] = yytext[0]; buf[buf_counter++] = yytext[1]; current_column += 2;}
-<STATE_STRING>\\[^\n\r]?											{show_error(INVALID_ESCAPE_SEQ, current_column); current_column += yyleng;  str_error = 1;}
+<STATE_STRING>\\[^\n\r]?											{show_error(INVALID_ESCAPE_SEQ, current_column); current_column += yyleng; str_error = 1;}
 <STATE_STRING>.														{buf[buf_counter++] = yytext[0]; current_column++;}
 
 
@@ -213,7 +213,6 @@ char * handle_token(token_type tok_type) {
 			if (verbose) {
 				printf("%s", buf2);
 			}
-			buf[0] = '\0';
 			buf_counter = 0;
             last_token = tok_type;
 			return buf2;
@@ -285,5 +284,9 @@ void auto_semicolon() {
 }
 
 void yyerror (char * s) {
-    printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column, s, yytext);
+    if (last_token == STRING_LIT_) {
+        printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column, s, yytext - strlen(buf) - 1);
+    } else {
+        printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column, s, yytext);
+    }
 }
