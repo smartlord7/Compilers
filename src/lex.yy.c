@@ -2471,7 +2471,7 @@ void auto_semicolon() {
 
 void yyerror (char * s) {
     if (last_token == STRING_LIT_) {
-        printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column, s, yytext - strlen(buf) - 1);
+        printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column - (int) strlen(buf) - 1, s, yytext - strlen(buf) - 1);
     } else {
         printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column, s, yytext);
     }

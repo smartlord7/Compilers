@@ -143,7 +143,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 {space}								{current_column++;}
 
 \"																	{buf[0] = '\0'; buf_counter = 0; str_error = 0; BEGIN STATE_STRING; start = current_column++;}
-<STATE_STRING>\"													{BEGIN 0; if (!str_error) { yylval.strlit = handle_token(STRING_LIT_); return STRLIT; };}
+<STATE_STRING>\"													{BEGIN 0; if (!str_error) { yylval.strlit = handle_token(STRING_LIT_); return STRLIT; } else { current_column++; };}
 <STATE_STRING>{new_line}											{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING><<EOF>>												{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING>"\\\\"|"\\\""|"\\t"|"\\n"|"\\r"|"\\f"					{buf[buf_counter++] = yytext[0]; buf[buf_counter++] = yytext[1]; current_column += 2;}
@@ -163,7 +163,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 
 {whitespaces}														{;}
 {other}																{show_error(ILLEGAL_CHAR, current_column); current_column += yyleng;}
-<<EOF>>                                                             {if (semicolon_flag) {semicolon_flag = 0; return SEMICOLON;} else {return 0;};}
+<<EOF>>                                                             {last_token_line = current_line; last_token_column = current_column; if (semicolon_flag) {semicolon_flag = 0; return SEMICOLON;} else {return 0;};}
 
 %%
 
@@ -299,7 +299,7 @@ char * handle_token(token_type tok_type) {
 			return token_types[tok_type];
 	}
 
-	return NULL;
+	return buf2;
 }
 
 void auto_semicolon() {
@@ -333,7 +333,7 @@ void auto_semicolon() {
 
 void yyerror (char * s) {
     if (last_token == STRING_LIT_) {
-        printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column, s, yytext - strlen(buf) - 1);
+        printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column - (int) strlen(buf) - 1, s, yytext - strlen(buf) - 1);
     } else {
         printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column, s, yytext);
     }
