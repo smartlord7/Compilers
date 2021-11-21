@@ -12,14 +12,56 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78548c38-9559-4c6f-82e2-2c6fcb25f076" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gocompiler.l" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.l" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lex.yy.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lex.yy.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/y.output" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.output" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/y.tab.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/y.tab.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yacc_test_cases/syntax_errors_stmt.out" beforeDir="false" afterPath="$PROJECT_DIR$/yacc_test_cases/syntax_errors_stmt.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/run_yacc.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/run_yacc.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/blocks.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/blocks.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/braces.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/braces.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/circle.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/circle.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/eof.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/eof.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/eof1.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/eof1.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/error_unbalanced_par.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/error_unbalanced_par.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/errors.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/errors.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/expressionHard.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/expressionHard.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/expressions.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/expressions.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/expressions_2.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/expressions_2.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/factorial.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/factorial.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/funcParams.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/funcParams.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/multiple_funcdecl_blocks.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/multiple_funcdecl_blocks.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/precedence.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/precedence.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/result.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/smallest.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/smallest.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/stat_error.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/stat_error.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/stat_error2.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/stat_error2.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/statements.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/statements.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/statements_ast.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/statements_ast.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/sum.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/sum.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/syntax_errors_stmt.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/syntax_errors_stmt.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/testeErros.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/testeErros.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/varfuncdecl.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/varfuncdecl.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/variable_func_declarations.dgo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/variable_func_declarations.out" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

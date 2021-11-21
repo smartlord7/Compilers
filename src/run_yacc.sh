@@ -1,7 +1,7 @@
 #!/bin/bash
 
 compiler_name='gocompiler'
-test_cases='../yacc_test_cases/*.dgo'
+test_cases='yacc_test_cases/*.dgo'
 in_ext='.dgo'
 out_ext='.out'
 
