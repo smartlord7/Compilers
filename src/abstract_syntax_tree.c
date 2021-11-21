@@ -23,6 +23,7 @@ void sub_print_node(struct tree_node_t * node, int level) {
 }
 
 void sub_print(struct list_node_t * to_print, int level) {
+    int block = 1;
     if(to_print->data->type == 5) {
         int count = to_print->data->children->size;
         struct list_node_t * next = to_print->data->children->next;
@@ -32,13 +33,18 @@ void sub_print(struct list_node_t * to_print, int level) {
             next = next->next;
         }
 
-        if(count < 2) return;
+        if(count >= 2)
+            sub_print_node(to_print->data, level);
+        else
+            block = 0;
+    } else {
+            sub_print_node(to_print->data, level);
     }
-    sub_print_node(to_print->data, level);
+
     struct list_node_t * next = to_print->data->children->next;
 
     while(next != NULL) {
-        sub_print(next, level + 1);
+        sub_print(next, level + block);
         next = next->next;
     }
 
@@ -51,5 +57,8 @@ void sub_print(struct list_node_t * to_print, int level) {
 
 void print_tree() {
     printf("%s\n", root->id);
+    if(root->children->next == NULL) {
+        return;
+    }
     sub_print(root->children->next, 1);
 }

@@ -68,12 +68,12 @@
 /* First part of user prologue.  */
 #line 1 "gocompiler.y"
 
-#include "util/error_handling.h"
-#include "util/token_type.h"
+#include "error_handling.h"
+#include "token_type.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "data_structures/abstract_syntax_tree.h"
-#include "data_structures/linked_list.h"
+#include "abstract_syntax_tree.h"
+#include "linked_list.h"
 
 int yylex (void);
 void yyerror(char* s);
@@ -1582,13 +1582,13 @@ yyreduce:
 
   case 4:
 #line 104 "gocompiler.y"
-                                                                                                                        {printf("A\n");}
+                                                                                                                        {(yyval.tree_node) = (yyvsp[-1].tree_node);}
 #line 1587 "y.tab.c"
     break;
 
   case 5:
 #line 106 "gocompiler.y"
-                                                                                                                        {printf("B\n");}
+                                                                                                                        {(yyval.tree_node) = (yyvsp[-2].tree_node); push((yyval.tree_node)->siblings, (yyvsp[0].tree_node));}
 #line 1593 "y.tab.c"
     break;
 
@@ -1829,7 +1829,7 @@ yyreduce:
 
   case 41:
 #line 232 "gocompiler.y"
-                                                                                                                        {(yyval.tree_node) = create_node(-5, "NO");}
+                                                                                                                        {(yyval.tree_node) = create_node(0, "Block");}
 #line 1834 "y.tab.c"
     break;
 

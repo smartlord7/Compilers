@@ -1,10 +1,10 @@
 %{
-#include "util/error_handling.h"
-#include "util/token_type.h"
+#include "error_handling.h"
+#include "token_type.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "data_structures/abstract_syntax_tree.h"
-#include "data_structures/linked_list.h"
+#include "abstract_syntax_tree.h"
+#include "linked_list.h"
 
 int yylex (void);
 void yyerror(char* s);
@@ -101,9 +101,9 @@ struct tree_node_t * root;
     ;
 
     Declarations:
-    	VarDeclaration SEMICOLON											{printf("A\n");}
+    	VarDeclaration SEMICOLON											{$$ = $1;}
     	|
-    	VarDeclaration SEMICOLON Declarations										{printf("B\n");}
+    	VarDeclaration SEMICOLON Declarations										{$$ = $1; push($$->siblings, $3);}
     	|
     	FuncDeclaration SEMICOLON											{$$ = create_node(0, "FuncDecl"); push($$->children, $1);}
     	|
@@ -229,7 +229,7 @@ struct tree_node_t * root;
 	OPT_ELSE: 
 		ELSE LBRACE Statement_rep RBRACE { $$ = create_node(0, "Block"); push($$->children, $3); }
 		| 
-		/*epsilon*/												{$$ = create_node(-5, "NO");}
+		/*epsilon*/												{$$ = create_node(0, "Block");}
 		;
 
     Statement_rep:

@@ -4,9 +4,9 @@
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdarg.h>
-	#include "data_structures/abstract_syntax_tree.h"
-	#include "util/error_handling.h"
-	#include "util/token_type.h"
+	#include "abstract_syntax_tree.h"
+	#include "error_handling.h"
+	#include "token_type.h"
 
 	#define show_error(err_type, curr_column) error(err_type, curr_column, yytext);
 
@@ -143,7 +143,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 {space}								{current_column++;}
 
 \"																	{buf[0] = '\0'; buf_counter = 0; str_error = 0; BEGIN STATE_STRING; start = current_column++;}
-<STATE_STRING>\"													{BEGIN 0; if (!str_error) { yylval.strlit = handle_token(STRING_LIT_); return STRLIT; } else { current_column++; };}
+<STATE_STRING>\"													{BEGIN 0; if (!str_error) { yylval.strlit = strdup(handle_token(STRING_LIT_)); return STRLIT; } else { current_column++; };}
 <STATE_STRING>{new_line}											{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING><<EOF>>												{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING>"\\\\"|"\\\""|"\\t"|"\\n"|"\\r"|"\\f"					{buf[buf_counter++] = yytext[0]; buf[buf_counter++] = yytext[1]; current_column += 2;}

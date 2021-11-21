@@ -671,9 +671,9 @@ char *yytext;
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdarg.h>
-	#include "data_structures/abstract_syntax_tree.h"
-	#include "util/error_handling.h"
-	#include "util/token_type.h"
+	#include "abstract_syntax_tree.h"
+	#include "error_handling.h"
+	#include "token_type.h"
 
 	#define show_error(err_type, curr_column) error(err_type, curr_column, yytext);
 
@@ -1209,7 +1209,7 @@ YY_RULE_SETUP
 case 47:
 YY_RULE_SETUP
 #line 146 "gocompiler.l"
-{BEGIN 0; if (!str_error) { yylval.strlit = handle_token(STRING_LIT_); return STRLIT; };}
+{BEGIN 0; if (!str_error) { yylval.strlit = strdup(handle_token(STRING_LIT_)); return STRLIT; } else { current_column++; };}
 	YY_BREAK
 case 48:
 /* rule 48 can match eol */
@@ -1292,7 +1292,7 @@ case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(STATE_LINE_COMMENT):
 case YY_STATE_EOF(OCTAL):
 #line 166 "gocompiler.l"
-{if (semicolon_flag) {semicolon_flag = 0; return SEMICOLON;} else {return 0;};}
+{last_token_line = current_line; last_token_column = current_column; if (semicolon_flag) {semicolon_flag = 0; return SEMICOLON;} else {return 0;};}
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
@@ -2437,7 +2437,7 @@ char * handle_token(token_type tok_type) {
 			return token_types[tok_type];
 	}
 
-	return NULL;
+	return buf2;
 }
 
 void auto_semicolon() {
