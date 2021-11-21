@@ -35,7 +35,7 @@ struct tree_node_t * create_node(int type, void * data);
 %token FOR
 %token PRINT
 %token STRLIT
-%token BLANK_ID
+%token BLANKID
 %token PARSEINT
 %token CMDARGS
 %token LSQ
@@ -227,7 +227,7 @@ struct tree_node_t * create_node(int type, void * data);
     	;
 
     ParseArgs:
-    	ID COMMA BLANK_ID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR                              			{;}
+    	ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR                              			{;}
     	;
 
     ParseArgs:

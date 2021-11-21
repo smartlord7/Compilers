@@ -82,7 +82,7 @@ struct tree_node_t * my_program;
 struct tree_node_t * create_node(int type, void * data);
 
 
-#line 87 "y.tab.c"
+#line 86 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -119,7 +119,7 @@ struct tree_node_t * create_node(int type, void * data);
 # define YY_YY_Y_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
-# define YYDEBUG 1
+# define YYDEBUG 0
 #endif
 #if YYDEBUG
 extern int yydebug;
@@ -130,53 +130,49 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    YYEMPTY = -2,
-    YYEOF = 0,                     /* "end of file"  */
-    YYerror = 256,                 /* error  */
-    YYUNDEF = 257,                 /* "invalid token"  */
-    PACKAGE = 258,                 /* PACKAGE  */
-    ID = 259,                      /* ID  */
-    SEMICOLON = 260,               /* SEMICOLON  */
-    VAR = 261,                     /* VAR  */
-    LPAR = 262,                    /* LPAR  */
-    RPAR = 263,                    /* RPAR  */
-    COMMA = 264,                   /* COMMA  */
-    INT = 265,                     /* INT  */
-    FLOAT32 = 266,                 /* FLOAT32  */
-    BOOL = 267,                    /* BOOL  */
-    STRING = 268,                  /* STRING  */
-    RBRACE = 269,                  /* RBRACE  */
-    LBRACE = 270,                  /* LBRACE  */
-    ASSIGN = 271,                  /* ASSIGN  */
-    IF = 272,                      /* IF  */
-    ELSE = 273,                    /* ELSE  */
-    RETURN = 274,                  /* RETURN  */
-    FOR = 275,                     /* FOR  */
-    PRINT = 276,                   /* PRINT  */
-    STRLIT = 277,                  /* STRLIT  */
-    BLANKID = 278,                 /* BLANKID  */
-    PARSEINT = 279,                /* PARSEINT  */
-    CMDARGS = 280,                 /* CMDARGS  */
-    LSQ = 281,                     /* LSQ  */
-    RSQ = 282,                     /* RSQ  */
-    OR = 283,                      /* OR  */
-    AND = 284,                     /* AND  */
-    LT = 285,                      /* LT  */
-    GT = 286,                      /* GT  */
-    EQ = 287,                      /* EQ  */
-    NE = 288,                      /* NE  */
-    LE = 289,                      /* LE  */
-    GE = 290,                      /* GE  */
-    PLUS = 291,                    /* PLUS  */
-    MINUS = 292,                   /* MINUS  */
-    STAR = 293,                    /* STAR  */
-    DIV = 294,                     /* DIV  */
-    MOD = 295,                     /* MOD  */
-    NOT = 296,                     /* NOT  */
-    INTLIT = 297,                  /* INTLIT  */
-    REALLIT = 298,                 /* REALLIT  */
-    FUNC = 299,                    /* FUNC  */
-    UNARY = 300                    /* UNARY  */
+    PACKAGE = 258,
+    ID = 259,
+    SEMICOLON = 260,
+    VAR = 261,
+    LPAR = 262,
+    RPAR = 263,
+    COMMA = 264,
+    INT = 265,
+    FLOAT32 = 266,
+    BOOL = 267,
+    STRING = 268,
+    RBRACE = 269,
+    LBRACE = 270,
+    ASSIGN = 271,
+    IF = 272,
+    ELSE = 273,
+    RETURN = 274,
+    FOR = 275,
+    PRINT = 276,
+    STRLIT = 277,
+    BLANKID = 278,
+    PARSEINT = 279,
+    CMDARGS = 280,
+    LSQ = 281,
+    RSQ = 282,
+    OR = 283,
+    AND = 284,
+    LT = 285,
+    GT = 286,
+    EQ = 287,
+    NE = 288,
+    LE = 289,
+    GE = 290,
+    PLUS = 291,
+    MINUS = 292,
+    STAR = 293,
+    DIV = 294,
+    MOD = 295,
+    NOT = 296,
+    INTLIT = 297,
+    REALLIT = 298,
+    FUNC = 299,
+    UNARY = 300
   };
 #endif
 /* Tokens.  */
@@ -200,7 +196,7 @@ extern int yydebug;
 #define FOR 275
 #define PRINT 276
 #define STRLIT 277
-#define BLANK_ID 278
+#define BLANKID 278
 #define PARSEINT 279
 #define CMDARGS 280
 #define LSQ 281
@@ -233,7 +229,7 @@ union YYSTYPE
 	char * strlit, * id, * reallit, * intlit;
 	void * program;
 
-#line 235 "y.tab.c"
+#line 233 "y.tab.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -247,79 +243,6 @@ extern YYSTYPE yylval;
 int yyparse (void);
 
 #endif /* !YY_YY_Y_TAB_H_INCLUDED  */
-/* Symbol kind.  */
-enum yysymbol_kind_t
-{
-  YYSYMBOL_YYEMPTY = -2,
-  YYSYMBOL_YYEOF = 0,                      /* "end of file"  */
-  YYSYMBOL_YYerror = 1,                    /* error  */
-  YYSYMBOL_YYUNDEF = 2,                    /* "invalid token"  */
-  YYSYMBOL_PACKAGE = 3,                    /* PACKAGE  */
-  YYSYMBOL_ID = 4,                         /* ID  */
-  YYSYMBOL_SEMICOLON = 5,                  /* SEMICOLON  */
-  YYSYMBOL_VAR = 6,                        /* VAR  */
-  YYSYMBOL_LPAR = 7,                       /* LPAR  */
-  YYSYMBOL_RPAR = 8,                       /* RPAR  */
-  YYSYMBOL_COMMA = 9,                      /* COMMA  */
-  YYSYMBOL_INT = 10,                       /* INT  */
-  YYSYMBOL_FLOAT32 = 11,                   /* FLOAT32  */
-  YYSYMBOL_BOOL = 12,                      /* BOOL  */
-  YYSYMBOL_STRING = 13,                    /* STRING  */
-  YYSYMBOL_RBRACE = 14,                    /* RBRACE  */
-  YYSYMBOL_LBRACE = 15,                    /* LBRACE  */
-  YYSYMBOL_ASSIGN = 16,                    /* ASSIGN  */
-  YYSYMBOL_IF = 17,                        /* IF  */
-  YYSYMBOL_ELSE = 18,                      /* ELSE  */
-  YYSYMBOL_RETURN = 19,                    /* RETURN  */
-  YYSYMBOL_FOR = 20,                       /* FOR  */
-  YYSYMBOL_PRINT = 21,                     /* PRINT  */
-  YYSYMBOL_STRLIT = 22,                    /* STRLIT  */
-  YYSYMBOL_BLANKID = 23,                   /* BLANKID  */
-  YYSYMBOL_PARSEINT = 24,                  /* PARSEINT  */
-  YYSYMBOL_CMDARGS = 25,                   /* CMDARGS  */
-  YYSYMBOL_LSQ = 26,                       /* LSQ  */
-  YYSYMBOL_RSQ = 27,                       /* RSQ  */
-  YYSYMBOL_OR = 28,                        /* OR  */
-  YYSYMBOL_AND = 29,                       /* AND  */
-  YYSYMBOL_LT = 30,                        /* LT  */
-  YYSYMBOL_GT = 31,                        /* GT  */
-  YYSYMBOL_EQ = 32,                        /* EQ  */
-  YYSYMBOL_NE = 33,                        /* NE  */
-  YYSYMBOL_LE = 34,                        /* LE  */
-  YYSYMBOL_GE = 35,                        /* GE  */
-  YYSYMBOL_PLUS = 36,                      /* PLUS  */
-  YYSYMBOL_MINUS = 37,                     /* MINUS  */
-  YYSYMBOL_STAR = 38,                      /* STAR  */
-  YYSYMBOL_DIV = 39,                       /* DIV  */
-  YYSYMBOL_MOD = 40,                       /* MOD  */
-  YYSYMBOL_NOT = 41,                       /* NOT  */
-  YYSYMBOL_INTLIT = 42,                    /* INTLIT  */
-  YYSYMBOL_REALLIT = 43,                   /* REALLIT  */
-  YYSYMBOL_FUNC = 44,                      /* FUNC  */
-  YYSYMBOL_UNARY = 45,                     /* UNARY  */
-  YYSYMBOL_YYACCEPT = 46,                  /* $accept  */
-  YYSYMBOL_Program = 47,                   /* Program  */
-  YYSYMBOL_Declarations = 48,              /* Declarations  */
-  YYSYMBOL_VarDeclaration = 49,            /* VarDeclaration  */
-  YYSYMBOL_VarSpec = 50,                   /* VarSpec  */
-  YYSYMBOL_VarSpec_1 = 51,                 /* VarSpec_1  */
-  YYSYMBOL_Type = 52,                      /* Type  */
-  YYSYMBOL_FuncDeclaration = 53,           /* FuncDeclaration  */
-  YYSYMBOL_Parameters = 54,                /* Parameters  */
-  YYSYMBOL_Parameters_1 = 55,              /* Parameters_1  */
-  YYSYMBOL_FuncBody = 56,                  /* FuncBody  */
-  YYSYMBOL_VarsAndStatements = 57,         /* VarsAndStatements  */
-  YYSYMBOL_Statement = 58,                 /* Statement  */
-  YYSYMBOL_Statement_1 = 59,               /* Statement_1  */
-  YYSYMBOL_OPT_ELSE = 60,                  /* OPT_ELSE  */
-  YYSYMBOL_Statement_rep = 61,             /* Statement_rep  */
-  YYSYMBOL_ParseArgs = 62,                 /* ParseArgs  */
-  YYSYMBOL_FuncInvocation = 63,            /* FuncInvocation  */
-  YYSYMBOL_FuncInvocation_rep = 64,        /* FuncInvocation_rep  */
-  YYSYMBOL_Expr = 65,                      /* Expr  */
-  YYSYMBOL_Error_1 = 66                    /* Error_1  */
-};
-typedef enum yysymbol_kind_t yysymbol_kind_t;
 
 
 
@@ -636,7 +559,7 @@ union yyalloc
 /* YYNSTATES -- Number of states.  */
 #define YYNSTATES  167
 
-/* YYMAXUTOK -- Last valid token kind.  */
+#define YYUNDEFTOK  2
 #define YYMAXUTOK   300
 
 
@@ -703,14 +626,14 @@ static const yytype_int16 yyrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "\"end of file\"", "error", "\"invalid token\"", "PACKAGE", "ID",
-  "SEMICOLON", "VAR", "LPAR", "RPAR", "COMMA", "INT", "FLOAT32", "BOOL",
-  "STRING", "RBRACE", "LBRACE", "ASSIGN", "IF", "ELSE", "RETURN", "FOR",
-  "PRINT", "STRLIT", "BLANKID", "PARSEINT", "CMDARGS", "LSQ", "RSQ", "OR",
-  "AND", "LT", "GT", "EQ", "NE", "LE", "GE", "PLUS", "MINUS", "STAR",
-  "DIV", "MOD", "NOT", "INTLIT", "REALLIT", "FUNC", "UNARY", "$accept",
-  "Program", "Declarations", "VarDeclaration", "VarSpec", "VarSpec_1",
-  "Type", "FuncDeclaration", "Parameters", "Parameters_1", "FuncBody",
+  "$end", "error", "$undefined", "PACKAGE", "ID", "SEMICOLON", "VAR",
+  "LPAR", "RPAR", "COMMA", "INT", "FLOAT32", "BOOL", "STRING", "RBRACE",
+  "LBRACE", "ASSIGN", "IF", "ELSE", "RETURN", "FOR", "PRINT", "STRLIT",
+  "BLANKID", "PARSEINT", "CMDARGS", "LSQ", "RSQ", "OR", "AND", "LT", "GT",
+  "EQ", "NE", "LE", "GE", "PLUS", "MINUS", "STAR", "DIV", "MOD", "NOT",
+  "INTLIT", "REALLIT", "FUNC", "UNARY", "$accept", "Program",
+  "Declarations", "VarDeclaration", "VarSpec", "VarSpec_1", "Type",
+  "FuncDeclaration", "Parameters", "Parameters_1", "FuncBody",
   "VarsAndStatements", "Statement", "Statement_1", "OPT_ELSE",
   "Statement_rep", "ParseArgs", "FuncInvocation", "FuncInvocation_rep",
   "Expr", "Error_1", YY_NULLPTR
@@ -798,7 +721,7 @@ static const yytype_int16 yypgoto[] =
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int16 yydefgoto[] =
 {
-       0,     2,     8,    51,    13,    22,    23,    10,    32,    41,
+      -1,     2,     8,    51,    13,    22,    23,    10,    32,    41,
       38,    52,   112,    67,   156,   113,    54,    75,   122,    76,
       56
 };
@@ -1646,491 +1569,491 @@ yyreduce:
   case 2:
 #line 79 "gocompiler.y"
                                                                                                                         {;}
-#line 1449 "y.tab.c"
+#line 1573 "y.tab.c"
     break;
 
   case 3:
 #line 81 "gocompiler.y"
                                                                                                                         {;}
-#line 1455 "y.tab.c"
+#line 1579 "y.tab.c"
     break;
 
   case 4:
 #line 85 "gocompiler.y"
                                                                                                                         {;}
-#line 1461 "y.tab.c"
+#line 1585 "y.tab.c"
     break;
 
   case 5:
 #line 87 "gocompiler.y"
                                                                                                                         {;}
-#line 1467 "y.tab.c"
+#line 1591 "y.tab.c"
     break;
 
   case 6:
 #line 89 "gocompiler.y"
                                                                                                                         {;}
-#line 1473 "y.tab.c"
+#line 1597 "y.tab.c"
     break;
 
   case 7:
 #line 91 "gocompiler.y"
                                                                                                                         {;}
-#line 1479 "y.tab.c"
+#line 1603 "y.tab.c"
     break;
 
   case 8:
 #line 95 "gocompiler.y"
                                                                                                                         {;}
-#line 1485 "y.tab.c"
+#line 1609 "y.tab.c"
     break;
 
   case 9:
 #line 97 "gocompiler.y"
                                                                                                                         {;}
-#line 1491 "y.tab.c"
+#line 1615 "y.tab.c"
     break;
 
   case 10:
 #line 101 "gocompiler.y"
                                                                                                                         {;}
-#line 1497 "y.tab.c"
+#line 1621 "y.tab.c"
     break;
 
   case 11:
 #line 105 "gocompiler.y"
                                                                                                                         {;}
-#line 1503 "y.tab.c"
+#line 1627 "y.tab.c"
     break;
 
   case 12:
 #line 107 "gocompiler.y"
                                                                                                                         {;}
-#line 1509 "y.tab.c"
+#line 1633 "y.tab.c"
     break;
 
   case 13:
 #line 111 "gocompiler.y"
                                                                                                                         {;}
-#line 1515 "y.tab.c"
+#line 1639 "y.tab.c"
     break;
 
   case 14:
 #line 113 "gocompiler.y"
                                                                                                                         {;}
-#line 1521 "y.tab.c"
+#line 1645 "y.tab.c"
     break;
 
   case 15:
 #line 115 "gocompiler.y"
                                                                                                                         {;}
-#line 1527 "y.tab.c"
+#line 1651 "y.tab.c"
     break;
 
   case 16:
 #line 117 "gocompiler.y"
                                                                                                                         {;}
-#line 1533 "y.tab.c"
+#line 1657 "y.tab.c"
     break;
 
   case 17:
 #line 121 "gocompiler.y"
                                                                                                                         {;}
-#line 1539 "y.tab.c"
+#line 1663 "y.tab.c"
     break;
 
   case 18:
 #line 123 "gocompiler.y"
                                                                                                                         {;}
-#line 1545 "y.tab.c"
+#line 1669 "y.tab.c"
     break;
 
   case 19:
 #line 125 "gocompiler.y"
                                                                                                                         {;}
-#line 1551 "y.tab.c"
+#line 1675 "y.tab.c"
     break;
 
   case 20:
 #line 127 "gocompiler.y"
                                                                                                                         {;}
-#line 1557 "y.tab.c"
+#line 1681 "y.tab.c"
     break;
 
   case 21:
 #line 131 "gocompiler.y"
                                                                                                                         {;}
-#line 1563 "y.tab.c"
+#line 1687 "y.tab.c"
     break;
 
   case 22:
 #line 133 "gocompiler.y"
                                                                                                                         {;}
-#line 1569 "y.tab.c"
+#line 1693 "y.tab.c"
     break;
 
   case 23:
 #line 137 "gocompiler.y"
                                                                                                                         {;}
-#line 1575 "y.tab.c"
+#line 1699 "y.tab.c"
     break;
 
   case 24:
 #line 139 "gocompiler.y"
                                                                                                                         {;}
-#line 1581 "y.tab.c"
+#line 1705 "y.tab.c"
     break;
 
   case 25:
 #line 143 "gocompiler.y"
                                                                                                                         {;}
-#line 1587 "y.tab.c"
+#line 1711 "y.tab.c"
     break;
 
   case 26:
 #line 145 "gocompiler.y"
                                                                                                                         {;}
-#line 1593 "y.tab.c"
+#line 1717 "y.tab.c"
     break;
 
   case 27:
 #line 149 "gocompiler.y"
                                                                                                                         {;}
-#line 1599 "y.tab.c"
+#line 1723 "y.tab.c"
     break;
 
   case 28:
 #line 151 "gocompiler.y"
                                                                                                                         {;}
-#line 1605 "y.tab.c"
+#line 1729 "y.tab.c"
     break;
 
   case 29:
 #line 153 "gocompiler.y"
                                                                                                                         {;}
-#line 1611 "y.tab.c"
+#line 1735 "y.tab.c"
     break;
 
   case 30:
 #line 155 "gocompiler.y"
                                                                                                                         {;}
-#line 1617 "y.tab.c"
+#line 1741 "y.tab.c"
     break;
 
   case 31:
 #line 157 "gocompiler.y"
                                                                                                                         {;}
-#line 1623 "y.tab.c"
+#line 1747 "y.tab.c"
     break;
 
   case 32:
 #line 159 "gocompiler.y"
                                                                                                                         {;}
-#line 1629 "y.tab.c"
+#line 1753 "y.tab.c"
     break;
 
   case 33:
 #line 163 "gocompiler.y"
                                                                                                                         {;}
-#line 1635 "y.tab.c"
+#line 1759 "y.tab.c"
     break;
 
   case 34:
 #line 167 "gocompiler.y"
                                                                                                                         {;}
-#line 1641 "y.tab.c"
+#line 1765 "y.tab.c"
     break;
 
   case 35:
 #line 169 "gocompiler.y"
                                                                                                                         {;}
-#line 1647 "y.tab.c"
+#line 1771 "y.tab.c"
     break;
 
   case 36:
 #line 173 "gocompiler.y"
                                                                                                                         {;}
-#line 1653 "y.tab.c"
+#line 1777 "y.tab.c"
     break;
 
   case 37:
 #line 175 "gocompiler.y"
                                                                                                                         {;}
-#line 1659 "y.tab.c"
+#line 1783 "y.tab.c"
     break;
 
   case 38:
 #line 181 "gocompiler.y"
                                                                                                                         {;}
-#line 1665 "y.tab.c"
+#line 1789 "y.tab.c"
     break;
 
   case 39:
 #line 190 "gocompiler.y"
                                                                                                                                 {;}
-#line 1671 "y.tab.c"
+#line 1795 "y.tab.c"
     break;
 
   case 40:
 #line 192 "gocompiler.y"
                                                                                                                         {;}
-#line 1677 "y.tab.c"
+#line 1801 "y.tab.c"
     break;
 
   case 41:
 #line 196 "gocompiler.y"
                                                                                                                         {;}
-#line 1683 "y.tab.c"
+#line 1807 "y.tab.c"
     break;
 
   case 42:
 #line 198 "gocompiler.y"
                                                                                                                         {;}
-#line 1689 "y.tab.c"
+#line 1813 "y.tab.c"
     break;
 
   case 43:
 #line 202 "gocompiler.y"
                                                                                                                         {;}
-#line 1695 "y.tab.c"
+#line 1819 "y.tab.c"
     break;
 
   case 44:
 #line 204 "gocompiler.y"
                                                                                                                         {;}
-#line 1701 "y.tab.c"
+#line 1825 "y.tab.c"
     break;
 
   case 45:
 #line 208 "gocompiler.y"
                                                                                                                         {;}
-#line 1707 "y.tab.c"
+#line 1831 "y.tab.c"
     break;
 
   case 46:
 #line 210 "gocompiler.y"
                                                                                                                         {;}
-#line 1713 "y.tab.c"
+#line 1837 "y.tab.c"
     break;
 
   case 47:
 #line 214 "gocompiler.y"
                                                                                                                         {;}
-#line 1719 "y.tab.c"
+#line 1843 "y.tab.c"
     break;
 
   case 48:
 #line 216 "gocompiler.y"
                                                                                                                         {;}
-#line 1725 "y.tab.c"
+#line 1849 "y.tab.c"
     break;
 
   case 49:
 #line 220 "gocompiler.y"
                                                                                                                         {;}
-#line 1731 "y.tab.c"
+#line 1855 "y.tab.c"
     break;
 
   case 50:
 #line 222 "gocompiler.y"
                                                                                                                         {;}
-#line 1737 "y.tab.c"
+#line 1861 "y.tab.c"
     break;
 
-  case 51: /* Statement: Error_1  */
+  case 51:
 #line 226 "gocompiler.y"
                                                                                                                         {;}
-#line 1743 "y.tab.c"
+#line 1867 "y.tab.c"
     break;
 
   case 52:
 #line 230 "gocompiler.y"
                                                                                                                         {;}
-#line 1749 "y.tab.c"
+#line 1873 "y.tab.c"
     break;
 
-  case 53: /* ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR Error_1 RPAR  */
+  case 53:
 #line 234 "gocompiler.y"
                                                                                                                         {;}
-#line 1755 "y.tab.c"
+#line 1879 "y.tab.c"
     break;
 
   case 54:
 #line 238 "gocompiler.y"
                                                                                                                         {;}
-#line 1761 "y.tab.c"
+#line 1885 "y.tab.c"
     break;
 
   case 55:
 #line 240 "gocompiler.y"
                                                                                                                         {;}
-#line 1767 "y.tab.c"
+#line 1891 "y.tab.c"
     break;
 
   case 56:
 #line 242 "gocompiler.y"
                                                                                                                         {;}
-#line 1773 "y.tab.c"
+#line 1897 "y.tab.c"
     break;
 
   case 57:
 #line 246 "gocompiler.y"
                                                                                                                         {;}
-#line 1779 "y.tab.c"
+#line 1903 "y.tab.c"
     break;
 
   case 58:
 #line 248 "gocompiler.y"
                                                                                                                         {;}
-#line 1785 "y.tab.c"
+#line 1909 "y.tab.c"
     break;
 
-  case 59: /* FuncInvocation: ID LPAR Error_1 RPAR  */
+  case 59:
 #line 252 "gocompiler.y"
                                                                                                                         {;}
-#line 1791 "y.tab.c"
+#line 1915 "y.tab.c"
     break;
 
   case 60:
 #line 256 "gocompiler.y"
                                                                                                                         {;}
-#line 1797 "y.tab.c"
+#line 1921 "y.tab.c"
     break;
 
   case 61:
 #line 258 "gocompiler.y"
                                                                                                                         {;}
-#line 1803 "y.tab.c"
+#line 1927 "y.tab.c"
     break;
 
-  case 62: /* Expr: Expr LT Expr  */
+  case 62:
 #line 262 "gocompiler.y"
                                                                                                                         {;}
-#line 1809 "y.tab.c"
+#line 1933 "y.tab.c"
     break;
 
-  case 63: /* Expr: Expr GT Expr  */
+  case 63:
 #line 264 "gocompiler.y"
                                                                                                                         {;}
-#line 1815 "y.tab.c"
+#line 1939 "y.tab.c"
     break;
 
-  case 64: /* Expr: Expr LE Expr  */
+  case 64:
 #line 266 "gocompiler.y"
                                                                                                                         {;}
-#line 1821 "y.tab.c"
+#line 1945 "y.tab.c"
     break;
 
-  case 65: /* Expr: Expr GE Expr  */
+  case 65:
 #line 268 "gocompiler.y"
                                                                                                                         {;}
-#line 1827 "y.tab.c"
+#line 1951 "y.tab.c"
     break;
 
-  case 66: /* Expr: Expr EQ Expr  */
+  case 66:
 #line 270 "gocompiler.y"
                                                                                                                         {;}
-#line 1833 "y.tab.c"
+#line 1957 "y.tab.c"
     break;
 
-  case 67: /* Expr: Expr NE Expr  */
+  case 67:
 #line 272 "gocompiler.y"
                                                                                                                         {;}
-#line 1839 "y.tab.c"
+#line 1963 "y.tab.c"
     break;
 
   case 68:
 #line 276 "gocompiler.y"
                                                                                                                         {;}
-#line 1845 "y.tab.c"
+#line 1969 "y.tab.c"
     break;
 
   case 69:
 #line 278 "gocompiler.y"
                                                                                                                         {;}
-#line 1851 "y.tab.c"
+#line 1975 "y.tab.c"
     break;
 
   case 70:
 #line 280 "gocompiler.y"
                                                                                                                         {;}
-#line 1857 "y.tab.c"
+#line 1981 "y.tab.c"
     break;
 
   case 71:
 #line 282 "gocompiler.y"
                                                                                                                         {;}
-#line 1863 "y.tab.c"
+#line 1987 "y.tab.c"
     break;
 
   case 72:
 #line 284 "gocompiler.y"
                                                                                                                         {;}
-#line 1869 "y.tab.c"
+#line 1993 "y.tab.c"
     break;
 
   case 73:
 #line 288 "gocompiler.y"
                                                                                                                                                                                                 {;}
-#line 1875 "y.tab.c"
+#line 1999 "y.tab.c"
     break;
 
   case 74:
 #line 290 "gocompiler.y"
                                                                                                                                                                                 {;}
-#line 1881 "y.tab.c"
+#line 2005 "y.tab.c"
     break;
 
   case 75:
 #line 292 "gocompiler.y"
                                                                                                                         {;}
-#line 1887 "y.tab.c"
+#line 2011 "y.tab.c"
     break;
 
   case 76:
 #line 296 "gocompiler.y"
                                                                                                                         {;}
-#line 1893 "y.tab.c"
+#line 2017 "y.tab.c"
     break;
 
   case 77:
 #line 298 "gocompiler.y"
                                                                                                                         {;}
-#line 1899 "y.tab.c"
+#line 2023 "y.tab.c"
     break;
 
   case 78:
 #line 300 "gocompiler.y"
                                                                                                                         {;}
-#line 1905 "y.tab.c"
+#line 2029 "y.tab.c"
     break;
 
   case 79:
 #line 302 "gocompiler.y"
                                                                                                                         {;}
-#line 1911 "y.tab.c"
+#line 2035 "y.tab.c"
     break;
 
   case 80:
 #line 304 "gocompiler.y"
                                                                                                                         {;}
-#line 1917 "y.tab.c"
+#line 2041 "y.tab.c"
     break;
 
-  case 81: /* Expr: LPAR Error_1 RPAR  */
+  case 81:
 #line 308 "gocompiler.y"
                                                                                                                         {;}
-#line 1923 "y.tab.c"
+#line 2047 "y.tab.c"
     break;
 
-  case 82: /* Error_1: error  */
+  case 82:
 #line 312 "gocompiler.y"
                                                                                 {;}
-#line 1929 "y.tab.c"
+#line 2053 "y.tab.c"
     break;
 
 
-#line 1933 "y.tab.c"
+#line 2057 "y.tab.c"
 
       default: break;
     }
@@ -2362,7 +2285,6 @@ yyreturn:
 #endif
   return yyresult;
 }
-
 #line 313 "gocompiler.y"
 
 

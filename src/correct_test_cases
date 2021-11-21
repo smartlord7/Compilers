@@ -18,5 +18,7 @@ statements_ast
 stat_error
 stat_error2
 sum
+syntax_errors_stmt
+testeErros
 varfuncdecl
 variable_func_declarationss

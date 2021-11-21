@@ -8,3 +8,5 @@ src/y.tab.c
 src/y.tab.h
 
 cmake-build-debug/
+
+src/y.output
