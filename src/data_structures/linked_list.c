@@ -16,7 +16,6 @@ struct list_node_t * create_list_node(struct tree_node_t * new_data) {
 }
 
 struct list_node_t * push(struct list_node_t * head, struct tree_node_t * new_data) {
-
     struct list_node_t * new_node = create_list_node(new_data);
 
     if(head == NULL) {
