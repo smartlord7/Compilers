@@ -16,15 +16,20 @@ struct tree_node_t * create_node(int type, char * id) {
 }
 
 void sub_print_node(struct tree_node_t * node, int level) {
-    if(node->type == -5) return;
-    for(int i = 0; i < level; i++)
+
+    if(node->type == A_INVALID_NODE) {
+        return;
+    }
+
+    for(int i = 0; i < level; i++) {
         printf("..");
+    }
     printf("%s\n", node->id);
 }
 
 void sub_print(struct list_node_t * to_print, int level) {
     int block = 1;
-    if(to_print->data->type == 5) {
+    if(to_print->data->type == A_PROB_BLOCK) {
         int count = to_print->data->children->size;
         struct list_node_t * next = to_print->data->children->next;
 
@@ -62,3 +67,4 @@ void print_tree() {
     }
     sub_print(root->children->next, 1);
 }
+
