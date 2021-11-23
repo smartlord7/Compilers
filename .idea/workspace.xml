@@ -12,53 +12,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78548c38-9559-4c6f-82e2-2c6fcb25f076" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/non_used_src_files/run2_lex.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/non_used_src_files/run_lex.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/non_used_src_files/script.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/yacc_test_cases/expected results/smallest.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/array_list.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/array_list.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/array_list.test.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/error_handling.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/error_handling.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/error_handling.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/error_handling.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gocompiler.l" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.l" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/correct_test_cases" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gocompiler.y" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.y" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lex.yy.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lex.yy.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/run2_lex.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/run_lex.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/run_yacc.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/run_yacc.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample.deigo" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample.deigo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/script.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/y.output" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.output" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.tab.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/y.tab.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/blocks.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/blocks.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/braces.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/braces.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/circle.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/circle.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/eof.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/eof.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/eof1.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/eof1.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/error_unbalanced_par.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/error_unbalanced_par.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/errors.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/errors.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/expressionHard.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/expressionHard.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/expressions.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/expressions.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/expressions_2.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/expressions_2.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/factorial.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/factorial.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/funcParams.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/funcParams.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/multiple_funcdecl_blocks.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/multiple_funcdecl_blocks.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/precedence.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/precedence.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/smallest.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/smallest.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/stat_error.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/stat_error.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/stat_error2.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/stat_error2.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/statements.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/statements.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/statements_ast.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/statements_ast.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/sum.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/sum.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/syntax_errors_stmt.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/syntax_errors_stmt.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/testeErros.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/testeErros.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/varfuncdecl.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/varfuncdecl.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/yacc_test_cases/variable_func_declarations.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/yacc_test_cases/variable_func_declarations.out" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +154,10 @@
       <workItem from="1637511553718" duration="53000" />
       <workItem from="1637511619602" duration="1087000" />
       <workItem from="1637666307044" duration="154000" />
-      <workItem from="1637667191046" duration="996000" />
+      <workItem from="1637667191046" duration="2766000" />
+      <workItem from="1637674578488" duration="228000" />
+      <workItem from="1637674818226" duration="137000" />
+      <workItem from="1637674970434" duration="1205000" />
     </task>
     <servers />
   </component>
