@@ -203,7 +203,7 @@ struct tree_node_t * root;
     	|
     	VarDeclaration SEMICOLON VarsAndStatements 							{$$ = $1; push($$->siblings, $3);}
     	|
-    	Statement SEMICOLON VarsAndStatements  								{$$ = $1; push($$->siblings, $3);}
+    	Statement SEMICOLON VarsAndStatements  								{if(!yacc_error){$$ = $1; push($$->siblings, $3);};}
     	;
 
     Statement:

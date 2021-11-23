@@ -7,10 +7,9 @@ Program
 ......Assign
 ........Id(a)
 ........IntLit(1)
-......Block
-........Assign
-..........Id(a)
-..........IntLit(1)
+......Assign
+........Id(a)
+........IntLit(1)
 ......Block
 ........Assign
 ..........Id(a)

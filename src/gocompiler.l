@@ -172,7 +172,7 @@ int main(int argc, char * argv[]) {
 		verbose = 1;
 	}
 
-	if(yyparse() == 0) {
+	if(yyparse() == 0 && yacc_error == 0) {
 	    if (argc > 1 && strcmp(argv[1], "-t") == 0) {
 			print_tree();
 		}
@@ -332,6 +332,7 @@ void auto_semicolon() {
 }
 
 void yyerror (char * s) {
+    yacc_error = 1;
     if (last_token == STRING_LIT_) {
         printf ("Line %d, column %d: %s: %s\n", last_token_line, last_token_column - (int) strlen(buf) - 1, s, yytext - strlen(buf) - 1);
     } else {
