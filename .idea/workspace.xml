@@ -15,9 +15,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/abstract_syntax_tree.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/abstract_syntax_tree.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/abstract_syntax_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/abstract_syntax_tree.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gocompiler.y" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.y" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample.deigo" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample.deigo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/y.tab.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,9 +77,9 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -156,6 +157,7 @@
       <workItem from="1637674818226" duration="137000" />
       <workItem from="1637674970434" duration="1205000" />
       <workItem from="1637701564784" duration="2100000" />
+      <workItem from="1637764374823" duration="6318000" />
     </task>
     <servers />
   </component>

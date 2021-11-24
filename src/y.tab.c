@@ -1703,7 +1703,7 @@ yyreduce:
 
   case 35: /* Statement: LBRACE RBRACE  */
 #line 248 "gocompiler.y"
-                                                                                                                        {(yyval.tree_node) = create_node(A_INVALID_NODE, "NO");}
+                                                                                                                        {(yyval.tree_node) = create_node(A_PROB_BLOCK, "Block");}
 #line 1708 "y.tab.c"
     break;
 
