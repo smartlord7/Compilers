@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.7.5.  */
+/* A Bison parser, made by GNU Bison 3.5.1.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software Foundation,
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2020 Free Software Foundation,
    Inc.
 
    This program is free software: you can redistribute it and/or modify
@@ -34,10 +34,6 @@
 /* C LALR(1) parser skeleton written by Richard Stallman, by
    simplifying the original so-called "semantic" parser.  */
 
-/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
-   especially those whose name start with YY_ or yy_.  They are
-   private implementation details that can be changed or removed.  */
-
 /* All symbols defined below should begin with yy or YY, to avoid
    infringing on user name space.  This should be done even for local
    variables, as they might otherwise be expanded by user macros.
@@ -45,11 +41,14 @@
    define necessary library symbols; they are noted "INFRINGES ON
    USER NAME SPACE" below.  */
 
-/* Identify Bison output, and Bison version.  */
-#define YYBISON 30705
+/* Undocumented macros, especially those whose name start with YY_,
+   are private implementation details.  Do not rely on them.  */
 
-/* Bison version string.  */
-#define YYBISON_VERSION "3.7.5"
+/* Identify Bison output.  */
+#define YYBISON 1
+
+/* Bison version.  */
+#define YYBISON_VERSION "3.5.1"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -83,7 +82,7 @@ int yydebug = 1;
 struct tree_node_t * root;
 
 
-#line 87 "y.tab.c"
+#line 86 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -106,6 +105,14 @@ struct tree_node_t * root;
 #  endif
 # endif
 
+/* Enabling verbose error messages.  */
+#ifdef YYERROR_VERBOSE
+# undef YYERROR_VERBOSE
+# define YYERROR_VERBOSE 1
+#else
+# define YYERROR_VERBOSE 0
+#endif
+
 /* Use api.header.include to #include this header
    instead of duplicating it here.  */
 #ifndef YY_YY_Y_TAB_H_INCLUDED
@@ -118,66 +125,57 @@ struct tree_node_t * root;
 extern int yydebug;
 #endif
 
-/* Token kinds.  */
+/* Token type.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
   enum yytokentype
   {
-    YYEMPTY = -2,
-    YYEOF = 0,                     /* "end of file"  */
-    YYerror = 256,                 /* error  */
-    YYUNDEF = 257,                 /* "invalid token"  */
-    PACKAGE = 258,                 /* PACKAGE  */
-    ID = 259,                      /* ID  */
-    SEMICOLON = 260,               /* SEMICOLON  */
-    VAR = 261,                     /* VAR  */
-    LPAR = 262,                    /* LPAR  */
-    RPAR = 263,                    /* RPAR  */
-    COMMA = 264,                   /* COMMA  */
-    INT = 265,                     /* INT  */
-    FLOAT32 = 266,                 /* FLOAT32  */
-    BOOL = 267,                    /* BOOL  */
-    STRING = 268,                  /* STRING  */
-    RBRACE = 269,                  /* RBRACE  */
-    LBRACE = 270,                  /* LBRACE  */
-    ASSIGN = 271,                  /* ASSIGN  */
-    IF = 272,                      /* IF  */
-    ELSE = 273,                    /* ELSE  */
-    RETURN = 274,                  /* RETURN  */
-    FOR = 275,                     /* FOR  */
-    PRINT = 276,                   /* PRINT  */
-    STRLIT = 277,                  /* STRLIT  */
-    BLANKID = 278,                 /* BLANKID  */
-    PARSEINT = 279,                /* PARSEINT  */
-    CMDARGS = 280,                 /* CMDARGS  */
-    LSQ = 281,                     /* LSQ  */
-    RSQ = 282,                     /* RSQ  */
-    OR = 283,                      /* OR  */
-    AND = 284,                     /* AND  */
-    LT = 285,                      /* LT  */
-    GT = 286,                      /* GT  */
-    EQ = 287,                      /* EQ  */
-    NE = 288,                      /* NE  */
-    LE = 289,                      /* LE  */
-    GE = 290,                      /* GE  */
-    PLUS = 291,                    /* PLUS  */
-    MINUS = 292,                   /* MINUS  */
-    STAR = 293,                    /* STAR  */
-    DIV = 294,                     /* DIV  */
-    MOD = 295,                     /* MOD  */
-    NOT = 296,                     /* NOT  */
-    INTLIT = 297,                  /* INTLIT  */
-    REALLIT = 298,                 /* REALLIT  */
-    FUNC = 299,                    /* FUNC  */
-    UNARY = 300                    /* UNARY  */
+    PACKAGE = 258,
+    ID = 259,
+    SEMICOLON = 260,
+    VAR = 261,
+    LPAR = 262,
+    RPAR = 263,
+    COMMA = 264,
+    INT = 265,
+    FLOAT32 = 266,
+    BOOL = 267,
+    STRING = 268,
+    RBRACE = 269,
+    LBRACE = 270,
+    ASSIGN = 271,
+    IF = 272,
+    ELSE = 273,
+    RETURN = 274,
+    FOR = 275,
+    PRINT = 276,
+    STRLIT = 277,
+    BLANKID = 278,
+    PARSEINT = 279,
+    CMDARGS = 280,
+    LSQ = 281,
+    RSQ = 282,
+    OR = 283,
+    AND = 284,
+    LT = 285,
+    GT = 286,
+    EQ = 287,
+    NE = 288,
+    LE = 289,
+    GE = 290,
+    PLUS = 291,
+    MINUS = 292,
+    STAR = 293,
+    DIV = 294,
+    MOD = 295,
+    NOT = 296,
+    INTLIT = 297,
+    REALLIT = 298,
+    FUNC = 299,
+    UNARY = 300
   };
-  typedef enum yytokentype yytoken_kind_t;
 #endif
-/* Token kinds.  */
-#define YYEMPTY -2
-#define YYEOF 0
-#define YYerror 256
-#define YYUNDEF 257
+/* Tokens.  */
 #define PACKAGE 258
 #define ID 259
 #define SEMICOLON 260
@@ -231,7 +229,7 @@ union YYSTYPE
 	char * strlit, * id, * reallit, * intlit;
 	struct tree_node_t * tree_node;
 
-#line 235 "y.tab.c"
+#line 233 "y.tab.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -245,81 +243,6 @@ extern YYSTYPE yylval;
 int yyparse (void);
 
 #endif /* !YY_YY_Y_TAB_H_INCLUDED  */
-/* Symbol kind.  */
-enum yysymbol_kind_t
-{
-  YYSYMBOL_YYEMPTY = -2,
-  YYSYMBOL_YYEOF = 0,                      /* "end of file"  */
-  YYSYMBOL_YYerror = 1,                    /* error  */
-  YYSYMBOL_YYUNDEF = 2,                    /* "invalid token"  */
-  YYSYMBOL_PACKAGE = 3,                    /* PACKAGE  */
-  YYSYMBOL_ID = 4,                         /* ID  */
-  YYSYMBOL_SEMICOLON = 5,                  /* SEMICOLON  */
-  YYSYMBOL_VAR = 6,                        /* VAR  */
-  YYSYMBOL_LPAR = 7,                       /* LPAR  */
-  YYSYMBOL_RPAR = 8,                       /* RPAR  */
-  YYSYMBOL_COMMA = 9,                      /* COMMA  */
-  YYSYMBOL_INT = 10,                       /* INT  */
-  YYSYMBOL_FLOAT32 = 11,                   /* FLOAT32  */
-  YYSYMBOL_BOOL = 12,                      /* BOOL  */
-  YYSYMBOL_STRING = 13,                    /* STRING  */
-  YYSYMBOL_RBRACE = 14,                    /* RBRACE  */
-  YYSYMBOL_LBRACE = 15,                    /* LBRACE  */
-  YYSYMBOL_ASSIGN = 16,                    /* ASSIGN  */
-  YYSYMBOL_IF = 17,                        /* IF  */
-  YYSYMBOL_ELSE = 18,                      /* ELSE  */
-  YYSYMBOL_RETURN = 19,                    /* RETURN  */
-  YYSYMBOL_FOR = 20,                       /* FOR  */
-  YYSYMBOL_PRINT = 21,                     /* PRINT  */
-  YYSYMBOL_STRLIT = 22,                    /* STRLIT  */
-  YYSYMBOL_BLANKID = 23,                   /* BLANKID  */
-  YYSYMBOL_PARSEINT = 24,                  /* PARSEINT  */
-  YYSYMBOL_CMDARGS = 25,                   /* CMDARGS  */
-  YYSYMBOL_LSQ = 26,                       /* LSQ  */
-  YYSYMBOL_RSQ = 27,                       /* RSQ  */
-  YYSYMBOL_OR = 28,                        /* OR  */
-  YYSYMBOL_AND = 29,                       /* AND  */
-  YYSYMBOL_LT = 30,                        /* LT  */
-  YYSYMBOL_GT = 31,                        /* GT  */
-  YYSYMBOL_EQ = 32,                        /* EQ  */
-  YYSYMBOL_NE = 33,                        /* NE  */
-  YYSYMBOL_LE = 34,                        /* LE  */
-  YYSYMBOL_GE = 35,                        /* GE  */
-  YYSYMBOL_PLUS = 36,                      /* PLUS  */
-  YYSYMBOL_MINUS = 37,                     /* MINUS  */
-  YYSYMBOL_STAR = 38,                      /* STAR  */
-  YYSYMBOL_DIV = 39,                       /* DIV  */
-  YYSYMBOL_MOD = 40,                       /* MOD  */
-  YYSYMBOL_NOT = 41,                       /* NOT  */
-  YYSYMBOL_INTLIT = 42,                    /* INTLIT  */
-  YYSYMBOL_REALLIT = 43,                   /* REALLIT  */
-  YYSYMBOL_FUNC = 44,                      /* FUNC  */
-  YYSYMBOL_UNARY = 45,                     /* UNARY  */
-  YYSYMBOL_YYACCEPT = 46,                  /* $accept  */
-  YYSYMBOL_Program = 47,                   /* Program  */
-  YYSYMBOL_Declarations = 48,              /* Declarations  */
-  YYSYMBOL_VarDeclaration = 49,            /* VarDeclaration  */
-  YYSYMBOL_VarSpec = 50,                   /* VarSpec  */
-  YYSYMBOL_VarSpec_1 = 51,                 /* VarSpec_1  */
-  YYSYMBOL_Type = 52,                      /* Type  */
-  YYSYMBOL_FuncHeader = 53,                /* FuncHeader  */
-  YYSYMBOL_FuncDeclaration = 54,           /* FuncDeclaration  */
-  YYSYMBOL_Parameters = 55,                /* Parameters  */
-  YYSYMBOL_Parameters_1 = 56,              /* Parameters_1  */
-  YYSYMBOL_FuncBody = 57,                  /* FuncBody  */
-  YYSYMBOL_VarsAndStatements = 58,         /* VarsAndStatements  */
-  YYSYMBOL_Statement = 59,                 /* Statement  */
-  YYSYMBOL_Statement_1 = 60,               /* Statement_1  */
-  YYSYMBOL_OPT_ELSE = 61,                  /* OPT_ELSE  */
-  YYSYMBOL_Statement_rep = 62,             /* Statement_rep  */
-  YYSYMBOL_ParseArgs = 63,                 /* ParseArgs  */
-  YYSYMBOL_FuncInvocation = 64,            /* FuncInvocation  */
-  YYSYMBOL_FuncInvocation_rep = 65,        /* FuncInvocation_rep  */
-  YYSYMBOL_Expr = 66,                      /* Expr  */
-  YYSYMBOL_Error_1 = 67                    /* Error_1  */
-};
-typedef enum yysymbol_kind_t yysymbol_kind_t;
-
 
 
 
@@ -358,18 +281,6 @@ typedef __INT_LEAST16_TYPE__ yytype_int16;
 typedef int_least16_t yytype_int16;
 #else
 typedef short yytype_int16;
-#endif
-
-/* Work around bug in HP-UX 11.23, which defines these macros
-   incorrectly for preprocessor constants.  This workaround can likely
-   be removed in 2023, as HPE has promised support for HP-UX 11.23
-   (aka HP-UX 11i v2) only through the end of 2022; see Table 2 of
-   <https://h20195.www2.hpe.com/V2/getpdf.aspx/4AA4-7673ENW.pdf>.  */
-#ifdef __hpux
-# undef UINT_LEAST8_MAX
-# undef UINT_LEAST16_MAX
-# define UINT_LEAST8_MAX 255
-# define UINT_LEAST16_MAX 65535
 #endif
 
 #if defined __UINT_LEAST8_MAX__ && __UINT_LEAST8_MAX__ <= __INT_MAX__
@@ -431,7 +342,6 @@ typedef int yytype_uint16;
 
 #define YYSIZEOF(X) YY_CAST (YYPTRDIFF_T, sizeof (X))
 
-
 /* Stored state numbers (used for stacks). */
 typedef yytype_uint8 yy_state_t;
 
@@ -449,7 +359,6 @@ typedef int yy_state_fast_t;
 #  define YY_(Msgid) Msgid
 # endif
 #endif
-
 
 #ifndef YY_ATTRIBUTE_PURE
 # if defined __GNUC__ && 2 < __GNUC__ + (96 <= __GNUC_MINOR__)
@@ -469,9 +378,9 @@ typedef int yy_state_fast_t;
 
 /* Suppress unused-variable warnings by "using" E.  */
 #if ! defined lint || defined __GNUC__
-# define YY_USE(E) ((void) (E))
+# define YYUSE(E) ((void) (E))
 #else
-# define YY_USE(E) /* empty */
+# define YYUSE(E) /* empty */
 #endif
 
 #if defined __GNUC__ && ! defined __ICC && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
@@ -508,7 +417,7 @@ typedef int yy_state_fast_t;
 
 #define YY_ASSERT(E) ((void) (0 && (E)))
 
-#if !defined yyoverflow
+#if ! defined yyoverflow || YYERROR_VERBOSE
 
 /* The parser invokes alloca or malloc; define the necessary symbols.  */
 
@@ -573,7 +482,8 @@ void free (void *); /* INFRINGES ON USER NAME SPACE */
 #   endif
 #  endif
 # endif
-#endif /* !defined yyoverflow */
+#endif /* ! defined yyoverflow || YYERROR_VERBOSE */
+
 
 #if (! defined yyoverflow \
      && (! defined __cplusplus \
@@ -649,16 +559,14 @@ union yyalloc
 /* YYNSTATES -- Number of states.  */
 #define YYNSTATES  165
 
-/* YYMAXUTOK -- Last valid token kind.  */
+#define YYUNDEFTOK  2
 #define YYMAXUTOK   300
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
    as returned by yylex, with out-of-bounds checking.  */
-#define YYTRANSLATE(YYX)                                \
-  (0 <= (YYX) && (YYX) <= YYMAXUTOK                     \
-   ? YY_CAST (yysymbol_kind_t, yytranslate[YYX])        \
-   : YYSYMBOL_YYUNDEF)
+#define YYTRANSLATE(YYX)                                                \
+  (0 <= (YYX) && (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
 
 /* YYTRANSLATE[TOKEN-NUM] -- Symbol number corresponding to TOKEN-NUM
    as returned by yylex.  */
@@ -713,39 +621,26 @@ static const yytype_int16 yyrline[] =
 };
 #endif
 
-/** Accessing symbol of state STATE.  */
-#define YY_ACCESSING_SYMBOL(State) YY_CAST (yysymbol_kind_t, yystos[State])
-
-#if YYDEBUG || 0
-/* The user-facing name of the symbol whose (internal) number is
-   YYSYMBOL.  No bounds checking.  */
-static const char *yysymbol_name (yysymbol_kind_t yysymbol) YY_ATTRIBUTE_UNUSED;
-
+#if YYDEBUG || YYERROR_VERBOSE || 0
 /* YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "\"end of file\"", "error", "\"invalid token\"", "PACKAGE", "ID",
-  "SEMICOLON", "VAR", "LPAR", "RPAR", "COMMA", "INT", "FLOAT32", "BOOL",
-  "STRING", "RBRACE", "LBRACE", "ASSIGN", "IF", "ELSE", "RETURN", "FOR",
-  "PRINT", "STRLIT", "BLANKID", "PARSEINT", "CMDARGS", "LSQ", "RSQ", "OR",
-  "AND", "LT", "GT", "EQ", "NE", "LE", "GE", "PLUS", "MINUS", "STAR",
-  "DIV", "MOD", "NOT", "INTLIT", "REALLIT", "FUNC", "UNARY", "$accept",
-  "Program", "Declarations", "VarDeclaration", "VarSpec", "VarSpec_1",
-  "Type", "FuncHeader", "FuncDeclaration", "Parameters", "Parameters_1",
+  "$end", "error", "$undefined", "PACKAGE", "ID", "SEMICOLON", "VAR",
+  "LPAR", "RPAR", "COMMA", "INT", "FLOAT32", "BOOL", "STRING", "RBRACE",
+  "LBRACE", "ASSIGN", "IF", "ELSE", "RETURN", "FOR", "PRINT", "STRLIT",
+  "BLANKID", "PARSEINT", "CMDARGS", "LSQ", "RSQ", "OR", "AND", "LT", "GT",
+  "EQ", "NE", "LE", "GE", "PLUS", "MINUS", "STAR", "DIV", "MOD", "NOT",
+  "INTLIT", "REALLIT", "FUNC", "UNARY", "$accept", "Program",
+  "Declarations", "VarDeclaration", "VarSpec", "VarSpec_1", "Type",
+  "FuncHeader", "FuncDeclaration", "Parameters", "Parameters_1",
   "FuncBody", "VarsAndStatements", "Statement", "Statement_1", "OPT_ELSE",
   "Statement_rep", "ParseArgs", "FuncInvocation", "FuncInvocation_rep",
   "Expr", "Error_1", YY_NULLPTR
 };
-
-static const char *
-yysymbol_name (yysymbol_kind_t yysymbol)
-{
-  return yytname[yysymbol];
-}
 #endif
 
-#ifdef YYPRINT
+# ifdef YYPRINT
 /* YYTOKNUM[NUM] -- (External) token number corresponding to the
    (internal) symbol number NUM (which must be that of a token).  */
 static const yytype_int16 yytoknum[] =
@@ -756,7 +651,7 @@ static const yytype_int16 yytoknum[] =
      285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
      295,   296,   297,   298,   299,   300
 };
-#endif
+# endif
 
 #define YYPACT_NINF (-66)
 
@@ -824,9 +719,9 @@ static const yytype_int16 yypgoto[] =
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
-static const yytype_uint8 yydefgoto[] =
+static const yytype_int16 yydefgoto[] =
 {
-       0,     2,     8,    39,    14,    25,    26,    10,    11,    50,
+      -1,     2,     8,    39,    14,    25,    26,    10,    11,    50,
      113,    18,    40,   105,    57,   153,   106,    42,    65,   117,
       66,    44
 };
@@ -982,10 +877,10 @@ static const yytype_int8 yyr2[] =
 };
 
 
-enum { YYENOMEM = -2 };
-
 #define yyerrok         (yyerrstatus = 0)
 #define yyclearin       (yychar = YYEMPTY)
+#define YYEMPTY         (-2)
+#define YYEOF           0
 
 #define YYACCEPT        goto yyacceptlab
 #define YYABORT         goto yyabortlab
@@ -1011,9 +906,10 @@ enum { YYENOMEM = -2 };
       }                                                           \
   while (0)
 
-/* Backward compatibility with an undocumented macro.
-   Use YYerror or YYUNDEF. */
-#define YYERRCODE YYUNDEF
+/* Error token number */
+#define YYTERROR        1
+#define YYERRCODE       256
+
 
 
 /* Enable debugging if requested.  */
@@ -1031,18 +927,18 @@ do {                                            \
 } while (0)
 
 /* This macro is provided for backward compatibility. */
-# ifndef YY_LOCATION_PRINT
-#  define YY_LOCATION_PRINT(File, Loc) ((void) 0)
-# endif
+#ifndef YY_LOCATION_PRINT
+# define YY_LOCATION_PRINT(File, Loc) ((void) 0)
+#endif
 
 
-# define YY_SYMBOL_PRINT(Title, Kind, Value, Location)                    \
+# define YY_SYMBOL_PRINT(Title, Type, Value, Location)                    \
 do {                                                                      \
   if (yydebug)                                                            \
     {                                                                     \
       YYFPRINTF (stderr, "%s ", Title);                                   \
       yy_symbol_print (stderr,                                            \
-                  Kind, Value); \
+                  Type, Value); \
       YYFPRINTF (stderr, "\n");                                           \
     }                                                                     \
 } while (0)
@@ -1053,19 +949,18 @@ do {                                                                      \
 `-----------------------------------*/
 
 static void
-yy_symbol_value_print (FILE *yyo,
-                       yysymbol_kind_t yykind, YYSTYPE const * const yyvaluep)
+yy_symbol_value_print (FILE *yyo, int yytype, YYSTYPE const * const yyvaluep)
 {
   FILE *yyoutput = yyo;
-  YY_USE (yyoutput);
+  YYUSE (yyoutput);
   if (!yyvaluep)
     return;
 # ifdef YYPRINT
-  if (yykind < YYNTOKENS)
-    YYPRINT (yyo, yytoknum[yykind], *yyvaluep);
+  if (yytype < YYNTOKENS)
+    YYPRINT (yyo, yytoknum[yytype], *yyvaluep);
 # endif
   YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  YY_USE (yykind);
+  YYUSE (yytype);
   YY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
@@ -1075,13 +970,12 @@ yy_symbol_value_print (FILE *yyo,
 `---------------------------*/
 
 static void
-yy_symbol_print (FILE *yyo,
-                 yysymbol_kind_t yykind, YYSTYPE const * const yyvaluep)
+yy_symbol_print (FILE *yyo, int yytype, YYSTYPE const * const yyvaluep)
 {
   YYFPRINTF (yyo, "%s %s (",
-             yykind < YYNTOKENS ? "token" : "nterm", yysymbol_name (yykind));
+             yytype < YYNTOKENS ? "token" : "nterm", yytname[yytype]);
 
-  yy_symbol_value_print (yyo, yykind, yyvaluep);
+  yy_symbol_value_print (yyo, yytype, yyvaluep);
   YYFPRINTF (yyo, ")");
 }
 
@@ -1114,8 +1008,7 @@ do {                                                            \
 `------------------------------------------------*/
 
 static void
-yy_reduce_print (yy_state_t *yyssp, YYSTYPE *yyvsp,
-                 int yyrule)
+yy_reduce_print (yy_state_t *yyssp, YYSTYPE *yyvsp, int yyrule)
 {
   int yylno = yyrline[yyrule];
   int yynrhs = yyr2[yyrule];
@@ -1127,8 +1020,9 @@ yy_reduce_print (yy_state_t *yyssp, YYSTYPE *yyvsp,
     {
       YYFPRINTF (stderr, "   $%d = ", yyi + 1);
       yy_symbol_print (stderr,
-                       YY_ACCESSING_SYMBOL (+yyssp[yyi + 1 - yynrhs]),
-                       &yyvsp[(yyi + 1) - (yynrhs)]);
+                       yystos[+yyssp[yyi + 1 - yynrhs]],
+                       &yyvsp[(yyi + 1) - (yynrhs)]
+                                              );
       YYFPRINTF (stderr, "\n");
     }
 }
@@ -1143,8 +1037,8 @@ do {                                    \
    multiple parsers can coexist.  */
 int yydebug;
 #else /* !YYDEBUG */
-# define YYDPRINTF(Args) ((void) 0)
-# define YY_SYMBOL_PRINT(Title, Kind, Value, Location)
+# define YYDPRINTF(Args)
+# define YY_SYMBOL_PRINT(Title, Type, Value, Location)
 # define YY_STACK_PRINT(Bottom, Top)
 # define YY_REDUCE_PRINT(Rule)
 #endif /* !YYDEBUG */
@@ -1167,38 +1061,265 @@ int yydebug;
 #endif
 
 
+#if YYERROR_VERBOSE
 
+# ifndef yystrlen
+#  if defined __GLIBC__ && defined _STRING_H
+#   define yystrlen(S) (YY_CAST (YYPTRDIFF_T, strlen (S)))
+#  else
+/* Return the length of YYSTR.  */
+static YYPTRDIFF_T
+yystrlen (const char *yystr)
+{
+  YYPTRDIFF_T yylen;
+  for (yylen = 0; yystr[yylen]; yylen++)
+    continue;
+  return yylen;
+}
+#  endif
+# endif
 
+# ifndef yystpcpy
+#  if defined __GLIBC__ && defined _STRING_H && defined _GNU_SOURCE
+#   define yystpcpy stpcpy
+#  else
+/* Copy YYSRC to YYDEST, returning the address of the terminating '\0' in
+   YYDEST.  */
+static char *
+yystpcpy (char *yydest, const char *yysrc)
+{
+  char *yyd = yydest;
+  const char *yys = yysrc;
 
+  while ((*yyd++ = *yys++) != '\0')
+    continue;
+
+  return yyd - 1;
+}
+#  endif
+# endif
+
+# ifndef yytnamerr
+/* Copy to YYRES the contents of YYSTR after stripping away unnecessary
+   quotes and backslashes, so that it's suitable for yyerror.  The
+   heuristic is that double-quoting is unnecessary unless the string
+   contains an apostrophe, a comma, or backslash (other than
+   backslash-backslash).  YYSTR is taken from yytname.  If YYRES is
+   null, do not copy; instead, return the length of what the result
+   would have been.  */
+static YYPTRDIFF_T
+yytnamerr (char *yyres, const char *yystr)
+{
+  if (*yystr == '"')
+    {
+      YYPTRDIFF_T yyn = 0;
+      char const *yyp = yystr;
+
+      for (;;)
+        switch (*++yyp)
+          {
+          case '\'':
+          case ',':
+            goto do_not_strip_quotes;
+
+          case '\\':
+            if (*++yyp != '\\')
+              goto do_not_strip_quotes;
+            else
+              goto append;
+
+          append:
+          default:
+            if (yyres)
+              yyres[yyn] = *yyp;
+            yyn++;
+            break;
+
+          case '"':
+            if (yyres)
+              yyres[yyn] = '\0';
+            return yyn;
+          }
+    do_not_strip_quotes: ;
+    }
+
+  if (yyres)
+    return yystpcpy (yyres, yystr) - yyres;
+  else
+    return yystrlen (yystr);
+}
+# endif
+
+/* Copy into *YYMSG, which is of size *YYMSG_ALLOC, an error message
+   about the unexpected token YYTOKEN for the state stack whose top is
+   YYSSP.
+
+   Return 0 if *YYMSG was successfully written.  Return 1 if *YYMSG is
+   not large enough to hold the message.  In that case, also set
+   *YYMSG_ALLOC to the required number of bytes.  Return 2 if the
+   required number of bytes is too large to store.  */
+static int
+yysyntax_error (YYPTRDIFF_T *yymsg_alloc, char **yymsg,
+                yy_state_t *yyssp, int yytoken)
+{
+  enum { YYERROR_VERBOSE_ARGS_MAXIMUM = 5 };
+  /* Internationalized format string. */
+  const char *yyformat = YY_NULLPTR;
+  /* Arguments of yyformat: reported tokens (one for the "unexpected",
+     one per "expected"). */
+  char const *yyarg[YYERROR_VERBOSE_ARGS_MAXIMUM];
+  /* Actual size of YYARG. */
+  int yycount = 0;
+  /* Cumulated lengths of YYARG.  */
+  YYPTRDIFF_T yysize = 0;
+
+  /* There are many possibilities here to consider:
+     - If this state is a consistent state with a default action, then
+       the only way this function was invoked is if the default action
+       is an error action.  In that case, don't check for expected
+       tokens because there are none.
+     - The only way there can be no lookahead present (in yychar) is if
+       this state is a consistent state with a default action.  Thus,
+       detecting the absence of a lookahead is sufficient to determine
+       that there is no unexpected or expected token to report.  In that
+       case, just report a simple "syntax error".
+     - Don't assume there isn't a lookahead just because this state is a
+       consistent state with a default action.  There might have been a
+       previous inconsistent state, consistent state with a non-default
+       action, or user semantic action that manipulated yychar.
+     - Of course, the expected token list depends on states to have
+       correct lookahead information, and it depends on the parser not
+       to perform extra reductions after fetching a lookahead from the
+       scanner and before detecting a syntax error.  Thus, state merging
+       (from LALR or IELR) and default reductions corrupt the expected
+       token list.  However, the list is correct for canonical LR with
+       one exception: it will still contain any token that will not be
+       accepted due to an error action in a later state.
+  */
+  if (yytoken != YYEMPTY)
+    {
+      int yyn = yypact[+*yyssp];
+      YYPTRDIFF_T yysize0 = yytnamerr (YY_NULLPTR, yytname[yytoken]);
+      yysize = yysize0;
+      yyarg[yycount++] = yytname[yytoken];
+      if (!yypact_value_is_default (yyn))
+        {
+          /* Start YYX at -YYN if negative to avoid negative indexes in
+             YYCHECK.  In other words, skip the first -YYN actions for
+             this state because they are default actions.  */
+          int yyxbegin = yyn < 0 ? -yyn : 0;
+          /* Stay within bounds of both yycheck and yytname.  */
+          int yychecklim = YYLAST - yyn + 1;
+          int yyxend = yychecklim < YYNTOKENS ? yychecklim : YYNTOKENS;
+          int yyx;
+
+          for (yyx = yyxbegin; yyx < yyxend; ++yyx)
+            if (yycheck[yyx + yyn] == yyx && yyx != YYTERROR
+                && !yytable_value_is_error (yytable[yyx + yyn]))
+              {
+                if (yycount == YYERROR_VERBOSE_ARGS_MAXIMUM)
+                  {
+                    yycount = 1;
+                    yysize = yysize0;
+                    break;
+                  }
+                yyarg[yycount++] = yytname[yyx];
+                {
+                  YYPTRDIFF_T yysize1
+                    = yysize + yytnamerr (YY_NULLPTR, yytname[yyx]);
+                  if (yysize <= yysize1 && yysize1 <= YYSTACK_ALLOC_MAXIMUM)
+                    yysize = yysize1;
+                  else
+                    return 2;
+                }
+              }
+        }
+    }
+
+  switch (yycount)
+    {
+# define YYCASE_(N, S)                      \
+      case N:                               \
+        yyformat = S;                       \
+      break
+    default: /* Avoid compiler warnings. */
+      YYCASE_(0, YY_("syntax error"));
+      YYCASE_(1, YY_("syntax error, unexpected %s"));
+      YYCASE_(2, YY_("syntax error, unexpected %s, expecting %s"));
+      YYCASE_(3, YY_("syntax error, unexpected %s, expecting %s or %s"));
+      YYCASE_(4, YY_("syntax error, unexpected %s, expecting %s or %s or %s"));
+      YYCASE_(5, YY_("syntax error, unexpected %s, expecting %s or %s or %s or %s"));
+# undef YYCASE_
+    }
+
+  {
+    /* Don't count the "%s"s in the final size, but reserve room for
+       the terminator.  */
+    YYPTRDIFF_T yysize1 = yysize + (yystrlen (yyformat) - 2 * yycount) + 1;
+    if (yysize <= yysize1 && yysize1 <= YYSTACK_ALLOC_MAXIMUM)
+      yysize = yysize1;
+    else
+      return 2;
+  }
+
+  if (*yymsg_alloc < yysize)
+    {
+      *yymsg_alloc = 2 * yysize;
+      if (! (yysize <= *yymsg_alloc
+             && *yymsg_alloc <= YYSTACK_ALLOC_MAXIMUM))
+        *yymsg_alloc = YYSTACK_ALLOC_MAXIMUM;
+      return 1;
+    }
+
+  /* Avoid sprintf, as that infringes on the user's name space.
+     Don't have undefined behavior even if the translation
+     produced a string with the wrong number of "%s"s.  */
+  {
+    char *yyp = *yymsg;
+    int yyi = 0;
+    while ((*yyp = *yyformat) != '\0')
+      if (*yyp == '%' && yyformat[1] == 's' && yyi < yycount)
+        {
+          yyp += yytnamerr (yyp, yyarg[yyi++]);
+          yyformat += 2;
+        }
+      else
+        {
+          ++yyp;
+          ++yyformat;
+        }
+  }
+  return 0;
+}
+#endif /* YYERROR_VERBOSE */
 
 /*-----------------------------------------------.
 | Release the memory associated to this symbol.  |
 `-----------------------------------------------*/
 
 static void
-yydestruct (const char *yymsg,
-            yysymbol_kind_t yykind, YYSTYPE *yyvaluep)
+yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep)
 {
-  YY_USE (yyvaluep);
+  YYUSE (yyvaluep);
   if (!yymsg)
     yymsg = "Deleting";
-  YY_SYMBOL_PRINT (yymsg, yykind, yyvaluep, yylocationp);
+  YY_SYMBOL_PRINT (yymsg, yytype, yyvaluep, yylocationp);
 
   YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  YY_USE (yykind);
+  YYUSE (yytype);
   YY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
 
-/* Lookahead token kind.  */
+
+
+/* The lookahead symbol.  */
 int yychar;
 
 /* The semantic value of the lookahead symbol.  */
 YYSTYPE yylval;
 /* Number of syntax errors so far.  */
 int yynerrs;
-
-
 
 
 /*----------.
@@ -1208,36 +1329,43 @@ int yynerrs;
 int
 yyparse (void)
 {
-    yy_state_fast_t yystate = 0;
+    yy_state_fast_t yystate;
     /* Number of tokens to shift before error messages enabled.  */
-    int yyerrstatus = 0;
+    int yyerrstatus;
 
-    /* Refer to the stacks through separate pointers, to allow yyoverflow
+    /* The stacks and their tools:
+       'yyss': related to states.
+       'yyvs': related to semantic values.
+
+       Refer to the stacks through separate pointers, to allow yyoverflow
        to reallocate them elsewhere.  */
 
-    /* Their size.  */
-    YYPTRDIFF_T yystacksize = YYINITDEPTH;
-
-    /* The state stack: array, bottom, top.  */
+    /* The state stack.  */
     yy_state_t yyssa[YYINITDEPTH];
-    yy_state_t *yyss = yyssa;
-    yy_state_t *yyssp = yyss;
+    yy_state_t *yyss;
+    yy_state_t *yyssp;
 
-    /* The semantic value stack: array, bottom, top.  */
+    /* The semantic value stack.  */
     YYSTYPE yyvsa[YYINITDEPTH];
-    YYSTYPE *yyvs = yyvsa;
-    YYSTYPE *yyvsp = yyvs;
+    YYSTYPE *yyvs;
+    YYSTYPE *yyvsp;
+
+    YYPTRDIFF_T yystacksize;
 
   int yyn;
-  /* The return value of yyparse.  */
   int yyresult;
-  /* Lookahead symbol kind.  */
-  yysymbol_kind_t yytoken = YYSYMBOL_YYEMPTY;
+  /* Lookahead token as an internal (translated) token number.  */
+  int yytoken = 0;
   /* The variables used to return semantic value and location from the
      action routines.  */
   YYSTYPE yyval;
 
-
+#if YYERROR_VERBOSE
+  /* Buffer for error messages, and its allocated size.  */
+  char yymsgbuf[128];
+  char *yymsg = yymsgbuf;
+  YYPTRDIFF_T yymsg_alloc = sizeof yymsgbuf;
+#endif
 
 #define YYPOPSTACK(N)   (yyvsp -= (N), yyssp -= (N))
 
@@ -1245,8 +1373,15 @@ yyparse (void)
      Keep to zero when no symbol should be popped.  */
   int yylen = 0;
 
+  yyssp = yyss = yyssa;
+  yyvsp = yyvs = yyvsa;
+  yystacksize = YYINITDEPTH;
+
   YYDPRINTF ((stderr, "Starting parse\n"));
 
+  yystate = 0;
+  yyerrstatus = 0;
+  yynerrs = 0;
   yychar = YYEMPTY; /* Cause a token to be read.  */
   goto yysetstate;
 
@@ -1269,7 +1404,6 @@ yysetstate:
   YY_IGNORE_USELESS_CAST_BEGIN
   *yyssp = YY_CAST (yy_state_t, yystate);
   YY_IGNORE_USELESS_CAST_END
-  YY_STACK_PRINT (yyss, yyssp);
 
   if (yyss + yystacksize - 1 <= yyssp)
 #if !defined yyoverflow && !defined YYSTACK_RELOCATE
@@ -1315,7 +1449,7 @@ yysetstate:
           goto yyexhaustedlab;
         YYSTACK_RELOCATE (yyss_alloc, yyss);
         YYSTACK_RELOCATE (yyvs_alloc, yyvs);
-#  undef YYSTACK_RELOCATE
+# undef YYSTACK_RELOCATE
         if (yyss1 != yyssa)
           YYSTACK_FREE (yyss1);
       }
@@ -1354,28 +1488,17 @@ yybackup:
 
   /* Not known => get a lookahead token if don't already have one.  */
 
-  /* YYCHAR is either empty, or end-of-input, or a valid lookahead.  */
+  /* YYCHAR is either YYEMPTY or YYEOF or a valid lookahead symbol.  */
   if (yychar == YYEMPTY)
     {
-      YYDPRINTF ((stderr, "Reading a token\n"));
+      YYDPRINTF ((stderr, "Reading a token: "));
       yychar = yylex ();
     }
 
   if (yychar <= YYEOF)
     {
-      yychar = YYEOF;
-      yytoken = YYSYMBOL_YYEOF;
+      yychar = yytoken = YYEOF;
       YYDPRINTF ((stderr, "Now at end of input.\n"));
-    }
-  else if (yychar == YYerror)
-    {
-      /* The scanner already issued an error message, process directly
-         to error recovery.  But do not keep the error token as
-         lookahead, it is too special and may lead us to an endless
-         loop in error recovery. */
-      yychar = YYUNDEF;
-      yytoken = YYSYMBOL_YYerror;
-      goto yyerrlab1;
     }
   else
     {
@@ -1445,60 +1568,60 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 2: /* Program: PACKAGE ID SEMICOLON Declarations  */
+  case 2:
 #line 98 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = root = create_node(A_PROGRAM, "Program");
     															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1453 "y.tab.c"
+#line 1576 "y.tab.c"
     break;
 
-  case 3: /* Program: PACKAGE ID SEMICOLON  */
+  case 3:
 #line 101 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = root = create_node(A_PROGRAM, "Program");}
-#line 1459 "y.tab.c"
+#line 1582 "y.tab.c"
     break;
 
-  case 4: /* Declarations: VarDeclaration SEMICOLON  */
+  case 4:
 #line 105 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[-1].tree_node);}
-#line 1465 "y.tab.c"
+#line 1588 "y.tab.c"
     break;
 
-  case 5: /* Declarations: VarDeclaration SEMICOLON Declarations  */
+  case 5:
 #line 107 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[-2].tree_node);
     															push((yyval.tree_node)->siblings, (yyvsp[0].tree_node));}
-#line 1472 "y.tab.c"
+#line 1595 "y.tab.c"
     break;
 
-  case 6: /* Declarations: FuncDeclaration SEMICOLON  */
+  case 6:
 #line 110 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_FUNC_DECL, "FuncDecl");
     															push((yyval.tree_node)->children, (yyvsp[-1].tree_node));}
-#line 1479 "y.tab.c"
+#line 1602 "y.tab.c"
     break;
 
-  case 7: /* Declarations: FuncDeclaration SEMICOLON Declarations  */
+  case 7:
 #line 113 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_FUNC_DECL, "FuncDecl");
     															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
     															push((yyval.tree_node)->siblings, (yyvsp[0].tree_node));}
-#line 1487 "y.tab.c"
+#line 1610 "y.tab.c"
     break;
 
-  case 8: /* VarDeclaration: VAR VarSpec  */
+  case 8:
 #line 119 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[0].tree_node);}
-#line 1493 "y.tab.c"
+#line 1616 "y.tab.c"
     break;
 
-  case 9: /* VarDeclaration: VAR LPAR VarSpec SEMICOLON RPAR  */
+  case 9:
 #line 121 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[-2].tree_node);}
-#line 1499 "y.tab.c"
+#line 1622 "y.tab.c"
     break;
 
-  case 10: /* VarSpec: ID VarSpec_1  */
+  case 10:
 #line 125 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_VAR_DECL, "VarDecl");
     															push((yyval.tree_node)->children, create_node(A_ID, (yyvsp[-1].id)));
@@ -1525,537 +1648,537 @@ yyreduce:
 															(yyval.tree_node)->children->next->next->data = (yyval.tree_node)->children->next->data;
 															(yyval.tree_node)->children->next->data = help;
 															}
-#line 1529 "y.tab.c"
+#line 1652 "y.tab.c"
     break;
 
-  case 11: /* VarSpec_1: Type  */
+  case 11:
 #line 153 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[0].tree_node);}
-#line 1535 "y.tab.c"
+#line 1658 "y.tab.c"
     break;
 
-  case 12: /* VarSpec_1: COMMA ID VarSpec_1  */
+  case 12:
 #line 155 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_VAR_DECL, "VarDecl");
      															push((yyval.tree_node)->children, create_node(A_ID, (yyvsp[-1].id)));
      															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1543 "y.tab.c"
+#line 1666 "y.tab.c"
     break;
 
-  case 13: /* Type: INT  */
+  case 13:
 #line 161 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_INT, "Int");}
-#line 1549 "y.tab.c"
+#line 1672 "y.tab.c"
     break;
 
-  case 14: /* Type: FLOAT32  */
+  case 14:
 #line 163 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_FLOAT32, "Float32");}
-#line 1555 "y.tab.c"
+#line 1678 "y.tab.c"
     break;
 
-  case 15: /* Type: BOOL  */
+  case 15:
 #line 165 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_BOOL, "Bool");}
-#line 1561 "y.tab.c"
+#line 1684 "y.tab.c"
     break;
 
-  case 16: /* Type: STRING  */
+  case 16:
 #line 167 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_STRING, "String");}
-#line 1567 "y.tab.c"
+#line 1690 "y.tab.c"
     break;
 
-  case 17: /* FuncHeader: FUNC ID LPAR RPAR  */
+  case 17:
 #line 171 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_ID, (yyvsp[-2].id));
 															push((yyval.tree_node)->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));}
-#line 1574 "y.tab.c"
+#line 1697 "y.tab.c"
     break;
 
-  case 18: /* FuncHeader: FUNC ID LPAR Parameters RPAR  */
+  case 18:
 #line 174 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_ID, (yyvsp[-3].id));
     															push((yyval.tree_node)->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));
 															push((yyval.tree_node)->siblings->next->data->children, (yyvsp[-1].tree_node));}
-#line 1582 "y.tab.c"
+#line 1705 "y.tab.c"
     break;
 
-  case 19: /* FuncHeader: FUNC ID LPAR RPAR Type  */
+  case 19:
 #line 178 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_ID, (yyvsp[-3].id));
     															push((yyval.tree_node)->siblings, (yyvsp[0].tree_node));
     															push((yyval.tree_node)->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));}
-#line 1590 "y.tab.c"
+#line 1713 "y.tab.c"
     break;
 
-  case 20: /* FuncHeader: FUNC ID LPAR Parameters RPAR Type  */
+  case 20:
 #line 182 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_ID, (yyvsp[-4].id));
 															push((yyval.tree_node)->siblings, (yyvsp[0].tree_node));
 															push((yyval.tree_node)->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));
 															push((yyval.tree_node)->siblings->next->next->data->children, (yyvsp[-2].tree_node));}
-#line 1599 "y.tab.c"
+#line 1722 "y.tab.c"
     break;
 
-  case 21: /* FuncDeclaration: FuncHeader FuncBody  */
+  case 21:
 #line 189 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_FUNC_HEADER, "FuncHeader");
     															push((yyval.tree_node)->children, (yyvsp[-1].tree_node));
     															push((yyval.tree_node)->siblings, (yyvsp[0].tree_node));}
-#line 1607 "y.tab.c"
+#line 1730 "y.tab.c"
     break;
 
-  case 22: /* Parameters: ID Type  */
+  case 22:
 #line 195 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_PARAM_DECL, "ParamDecl");
     															push((yyval.tree_node)->children, (yyvsp[0].tree_node));
     															push((yyval.tree_node)->children, create_node(A_ID, (yyvsp[-1].id)));}
-#line 1615 "y.tab.c"
+#line 1738 "y.tab.c"
     break;
 
-  case 23: /* Parameters: ID Type Parameters_1  */
+  case 23:
 #line 199 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_PARAM_DECL, "ParamDecl");
     															push((yyval.tree_node)->children, (yyvsp[-1].tree_node));
     															push((yyval.tree_node)->children, create_node(A_ID, (yyvsp[-2].id)));
     															push((yyval.tree_node)->siblings, (yyvsp[0].tree_node));}
-#line 1624 "y.tab.c"
+#line 1747 "y.tab.c"
     break;
 
-  case 24: /* Parameters_1: COMMA ID Type  */
+  case 24:
 #line 206 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_PARAM_DECL, "ParamDecl");
     															push((yyval.tree_node)->children, (yyvsp[0].tree_node));
     															push((yyval.tree_node)->children, create_node(A_ID, (yyvsp[-1].id)));}
-#line 1632 "y.tab.c"
+#line 1755 "y.tab.c"
     break;
 
-  case 25: /* Parameters_1: COMMA ID Type Parameters_1  */
+  case 25:
 #line 210 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_PARAM_DECL, "ParamDecl");
     															push((yyval.tree_node)->children, (yyvsp[-1].tree_node));
     															push((yyval.tree_node)->children, create_node(A_ID, (yyvsp[-2].id)));
     															push((yyval.tree_node)->siblings, (yyvsp[0].tree_node));}
-#line 1641 "y.tab.c"
+#line 1764 "y.tab.c"
     break;
 
-  case 26: /* FuncBody: LBRACE RBRACE  */
+  case 26:
 #line 217 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_FUNC_BODY, "FuncBody");}
-#line 1647 "y.tab.c"
+#line 1770 "y.tab.c"
     break;
 
-  case 27: /* FuncBody: LBRACE VarsAndStatements RBRACE  */
+  case 27:
 #line 219 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_FUNC_BODY, "FuncBody");
     															push((yyval.tree_node)->children, (yyvsp[-1].tree_node));}
-#line 1654 "y.tab.c"
+#line 1777 "y.tab.c"
     break;
 
-  case 28: /* VarsAndStatements: SEMICOLON  */
+  case 28:
 #line 224 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_INVALID_NODE, "NO");}
-#line 1660 "y.tab.c"
+#line 1783 "y.tab.c"
     break;
 
-  case 29: /* VarsAndStatements: VarDeclaration SEMICOLON  */
+  case 29:
 #line 226 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[-1].tree_node);}
-#line 1666 "y.tab.c"
+#line 1789 "y.tab.c"
     break;
 
-  case 30: /* VarsAndStatements: Statement SEMICOLON  */
+  case 30:
 #line 228 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[-1].tree_node);}
-#line 1672 "y.tab.c"
+#line 1795 "y.tab.c"
     break;
 
-  case 31: /* VarsAndStatements: SEMICOLON VarsAndStatements  */
+  case 31:
 #line 230 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[0].tree_node);}
-#line 1678 "y.tab.c"
+#line 1801 "y.tab.c"
     break;
 
-  case 32: /* VarsAndStatements: VarDeclaration SEMICOLON VarsAndStatements  */
+  case 32:
 #line 232 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[-2].tree_node);
     															push((yyval.tree_node)->siblings, (yyvsp[0].tree_node));}
-#line 1685 "y.tab.c"
+#line 1808 "y.tab.c"
     break;
 
-  case 33: /* VarsAndStatements: Statement SEMICOLON VarsAndStatements  */
+  case 33:
 #line 235 "gocompiler.y"
                                                                                                                         {if(!yacc_error){
     																(yyval.tree_node) = (yyvsp[-2].tree_node);
     																push((yyval.tree_node)->siblings, (yyvsp[0].tree_node));
     															};}
-#line 1694 "y.tab.c"
+#line 1817 "y.tab.c"
     break;
 
-  case 34: /* Statement: ID ASSIGN Expr  */
+  case 34:
 #line 242 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_ASSIGN, "Assign");
     															push((yyval.tree_node)->children, create_node(0, (yyvsp[-2].id)));
     															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1702 "y.tab.c"
+#line 1825 "y.tab.c"
     break;
 
-  case 35: /* Statement: LBRACE RBRACE  */
+  case 35:
 #line 248 "gocompiler.y"
-                                                                                                                        {(yyval.tree_node) = create_node(A_PROB_BLOCK, "Block");}
-#line 1708 "y.tab.c"
+                                                                                                                        {(yyval.tree_node) = create_node(A_INVALID_NODE, "Block");}
+#line 1831 "y.tab.c"
     break;
 
-  case 36: /* Statement: LBRACE Statement_1 RBRACE  */
+  case 36:
 #line 250 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_PROB_BLOCK, "Block");
     															push((yyval.tree_node)->children, (yyvsp[-1].tree_node));}
-#line 1715 "y.tab.c"
+#line 1838 "y.tab.c"
     break;
 
-  case 37: /* Statement_1: Statement SEMICOLON  */
+  case 37:
 #line 255 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[-1].tree_node);}
-#line 1721 "y.tab.c"
+#line 1844 "y.tab.c"
     break;
 
-  case 38: /* Statement_1: Statement SEMICOLON Statement_1  */
+  case 38:
 #line 257 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[-2].tree_node);
     															push((yyvsp[-2].tree_node)->siblings, (yyvsp[0].tree_node));}
-#line 1728 "y.tab.c"
+#line 1851 "y.tab.c"
     break;
 
-  case 39: /* Statement: IF Expr LBRACE Statement_rep RBRACE OPT_ELSE  */
+  case 39:
 #line 262 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_IF, "If");
 		 													push((yyval.tree_node)->children, (yyvsp[-4].tree_node));
 		 													push((yyval.tree_node)->children, create_node(A_BLOCK, "Block"));
 		 													push((yyval.tree_node)->children->next->next->data->children, (yyvsp[-2].tree_node));
 		 													push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1738 "y.tab.c"
+#line 1861 "y.tab.c"
     break;
 
-  case 40: /* OPT_ELSE: ELSE LBRACE Statement_rep RBRACE  */
+  case 40:
 #line 269 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_BLOCK, "Block");
 															push((yyval.tree_node)->children, (yyvsp[-1].tree_node));}
-#line 1745 "y.tab.c"
+#line 1868 "y.tab.c"
     break;
 
-  case 41: /* OPT_ELSE: %empty  */
+  case 41:
 #line 272 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_BLOCK, "Block");}
-#line 1751 "y.tab.c"
+#line 1874 "y.tab.c"
     break;
 
-  case 42: /* Statement_rep: %empty  */
+  case 42:
 #line 276 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_INVALID_NODE, "NO");}
-#line 1757 "y.tab.c"
+#line 1880 "y.tab.c"
     break;
 
-  case 43: /* Statement_rep: Statement SEMICOLON Statement_rep  */
+  case 43:
 #line 278 "gocompiler.y"
                                                                                                                         {if(!yacc_error){
 															(yyval.tree_node) = (yyvsp[-2].tree_node);
 															push((yyvsp[-2].tree_node)->siblings, (yyvsp[0].tree_node));
 															};}
-#line 1766 "y.tab.c"
+#line 1889 "y.tab.c"
     break;
 
-  case 44: /* Statement: FOR LBRACE Statement_rep RBRACE  */
+  case 44:
 #line 285 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_FOR, "For");
 															push((yyval.tree_node)->children, create_node(A_BLOCK, "Block"));
 															push((yyval.tree_node)->children->next->data->children, (yyvsp[-1].tree_node));
 															}
-#line 1775 "y.tab.c"
+#line 1898 "y.tab.c"
     break;
 
-  case 45: /* Statement: FOR Expr LBRACE Statement_rep RBRACE  */
+  case 45:
 #line 290 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_FOR, "For");
 															push((yyval.tree_node)->children, (yyvsp[-3].tree_node));
 															push((yyval.tree_node)->children, create_node(A_BLOCK, "Block"));
 															push((yyval.tree_node)->children->next->next->data->children, (yyvsp[-1].tree_node));
 															}
-#line 1785 "y.tab.c"
+#line 1908 "y.tab.c"
     break;
 
-  case 46: /* Statement: RETURN  */
+  case 46:
 #line 298 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_RETURN, "Return");}
-#line 1791 "y.tab.c"
+#line 1914 "y.tab.c"
     break;
 
-  case 47: /* Statement: RETURN Expr  */
+  case 47:
 #line 300 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_RETURN, "Return");
     															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1798 "y.tab.c"
+#line 1921 "y.tab.c"
     break;
 
-  case 48: /* Statement: FuncInvocation  */
+  case 48:
 #line 305 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[0].tree_node);}
-#line 1804 "y.tab.c"
+#line 1927 "y.tab.c"
     break;
 
-  case 49: /* Statement: ParseArgs  */
+  case 49:
 #line 307 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[0].tree_node);}
-#line 1810 "y.tab.c"
+#line 1933 "y.tab.c"
     break;
 
-  case 50: /* Statement: PRINT LPAR Expr RPAR  */
+  case 50:
 #line 311 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_PRINT, "Print");
     															push((yyval.tree_node)->children, (yyvsp[-1].tree_node));}
-#line 1817 "y.tab.c"
+#line 1940 "y.tab.c"
     break;
 
-  case 51: /* Statement: PRINT LPAR STRLIT RPAR  */
+  case 51:
 #line 314 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_PRINT, "Print");
     															push((yyval.tree_node)->children, create_node(A_STRLIT, (yyvsp[-1].strlit)));}
-#line 1824 "y.tab.c"
+#line 1947 "y.tab.c"
     break;
 
-  case 52: /* Statement: Error_1  */
+  case 52:
 #line 319 "gocompiler.y"
                                                                                                                         {;}
-#line 1830 "y.tab.c"
+#line 1953 "y.tab.c"
     break;
 
-  case 53: /* ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR  */
+  case 53:
 #line 323 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_PARSE_ARGS, "ParseArgs");
 															push((yyval.tree_node)->children, create_node(A_ID, (yyvsp[-10].id)));
 															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
 															}
-#line 1839 "y.tab.c"
+#line 1962 "y.tab.c"
     break;
 
-  case 54: /* ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR Error_1 RPAR  */
+  case 54:
 #line 330 "gocompiler.y"
                                                                                                                         {;}
-#line 1845 "y.tab.c"
+#line 1968 "y.tab.c"
     break;
 
-  case 55: /* FuncInvocation: ID LPAR RPAR  */
+  case 55:
 #line 334 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_CALL, "Call");
     															push((yyval.tree_node)->children, create_node(A_ID, (yyvsp[-2].id)));}
-#line 1852 "y.tab.c"
+#line 1975 "y.tab.c"
     break;
 
-  case 56: /* FuncInvocation: ID LPAR Expr RPAR  */
+  case 56:
 #line 337 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_CALL, "Call");
 															push((yyval.tree_node)->children, create_node(A_ID, (yyvsp[-3].id)));
 															push((yyval.tree_node)->children, (yyvsp[-1].tree_node));}
-#line 1860 "y.tab.c"
+#line 1983 "y.tab.c"
     break;
 
-  case 57: /* FuncInvocation: ID LPAR Expr FuncInvocation_rep RPAR  */
+  case 57:
 #line 341 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_CALL, "Call");
 															push((yyval.tree_node)->children, create_node(A_ID, (yyvsp[-4].id)));
 															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
 															push((yyval.tree_node)->children, (yyvsp[-1].tree_node));}
-#line 1869 "y.tab.c"
+#line 1992 "y.tab.c"
     break;
 
-  case 58: /* FuncInvocation_rep: COMMA Expr  */
+  case 58:
 #line 348 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[0].tree_node);}
-#line 1875 "y.tab.c"
+#line 1998 "y.tab.c"
     break;
 
-  case 59: /* FuncInvocation_rep: COMMA Expr FuncInvocation_rep  */
+  case 59:
 #line 350 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[-1].tree_node);
     															push((yyval.tree_node)->siblings, (yyvsp[0].tree_node));}
-#line 1882 "y.tab.c"
+#line 2005 "y.tab.c"
     break;
 
-  case 60: /* FuncInvocation: ID LPAR Error_1 RPAR  */
+  case 60:
 #line 355 "gocompiler.y"
                                                                                                                         {;}
-#line 1888 "y.tab.c"
+#line 2011 "y.tab.c"
     break;
 
-  case 61: /* Expr: Expr OR Expr  */
+  case 61:
 #line 359 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_OR, "Or");
     															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
     															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1896 "y.tab.c"
+#line 2019 "y.tab.c"
     break;
 
-  case 62: /* Expr: Expr AND Expr  */
+  case 62:
 #line 363 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_AND, "And");
     															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
     															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1904 "y.tab.c"
+#line 2027 "y.tab.c"
     break;
 
-  case 63: /* Expr: Expr LT Expr  */
+  case 63:
 #line 369 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_LT, "Lt");
     															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
     															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1912 "y.tab.c"
+#line 2035 "y.tab.c"
     break;
 
-  case 64: /* Expr: Expr GT Expr  */
+  case 64:
 #line 373 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_GT, "Gt");
 															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
 															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1920 "y.tab.c"
+#line 2043 "y.tab.c"
     break;
 
-  case 65: /* Expr: Expr LE Expr  */
+  case 65:
 #line 377 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_LE, "Le");
 															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
 															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1928 "y.tab.c"
+#line 2051 "y.tab.c"
     break;
 
-  case 66: /* Expr: Expr GE Expr  */
+  case 66:
 #line 381 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_GE, "Ge");
 															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
 															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1936 "y.tab.c"
+#line 2059 "y.tab.c"
     break;
 
-  case 67: /* Expr: Expr EQ Expr  */
+  case 67:
 #line 385 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_EQ, "Eq");
 															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
 															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1944 "y.tab.c"
+#line 2067 "y.tab.c"
     break;
 
-  case 68: /* Expr: Expr NE Expr  */
+  case 68:
 #line 389 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_NE, "Ne");
 															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
 															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1952 "y.tab.c"
+#line 2075 "y.tab.c"
     break;
 
-  case 69: /* Expr: Expr PLUS Expr  */
+  case 69:
 #line 395 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_ADD, "Add");
 															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
 															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1960 "y.tab.c"
+#line 2083 "y.tab.c"
     break;
 
-  case 70: /* Expr: Expr MINUS Expr  */
+  case 70:
 #line 399 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_SUB, "Sub");
 															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
 															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1968 "y.tab.c"
+#line 2091 "y.tab.c"
     break;
 
-  case 71: /* Expr: Expr STAR Expr  */
+  case 71:
 #line 403 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_MUL, "Mul");
 															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
 															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1976 "y.tab.c"
+#line 2099 "y.tab.c"
     break;
 
-  case 72: /* Expr: Expr DIV Expr  */
+  case 72:
 #line 407 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_DIV, "Div");
 															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
 															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1984 "y.tab.c"
+#line 2107 "y.tab.c"
     break;
 
-  case 73: /* Expr: Expr MOD Expr  */
+  case 73:
 #line 411 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_MOD, "Mod");
     															push((yyval.tree_node)->children, (yyvsp[-2].tree_node));
     															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1992 "y.tab.c"
+#line 2115 "y.tab.c"
     break;
 
-  case 74: /* Expr: NOT Expr  */
+  case 74:
 #line 417 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_NOT, "Not");
     															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 1999 "y.tab.c"
+#line 2122 "y.tab.c"
     break;
 
-  case 75: /* Expr: MINUS Expr  */
+  case 75:
 #line 420 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_MINUS, "Minus");
     															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 2006 "y.tab.c"
+#line 2129 "y.tab.c"
     break;
 
-  case 76: /* Expr: PLUS Expr  */
+  case 76:
 #line 423 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_PLUS, "Plus");
     															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
-#line 2013 "y.tab.c"
+#line 2136 "y.tab.c"
     break;
 
-  case 77: /* Expr: INTLIT  */
+  case 77:
 #line 428 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_INTLIT, (yyvsp[0].intlit));}
-#line 2019 "y.tab.c"
+#line 2142 "y.tab.c"
     break;
 
-  case 78: /* Expr: REALLIT  */
+  case 78:
 #line 430 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_REALLIT, (yyvsp[0].reallit));}
-#line 2025 "y.tab.c"
+#line 2148 "y.tab.c"
     break;
 
-  case 79: /* Expr: ID  */
+  case 79:
 #line 432 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_ID, (yyvsp[0].id));}
-#line 2031 "y.tab.c"
+#line 2154 "y.tab.c"
     break;
 
-  case 80: /* Expr: FuncInvocation  */
+  case 80:
 #line 434 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[0].tree_node);}
-#line 2037 "y.tab.c"
+#line 2160 "y.tab.c"
     break;
 
-  case 81: /* Expr: LPAR Expr RPAR  */
+  case 81:
 #line 436 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = (yyvsp[-1].tree_node);}
-#line 2043 "y.tab.c"
+#line 2166 "y.tab.c"
     break;
 
-  case 82: /* Expr: LPAR Error_1 RPAR  */
+  case 82:
 #line 440 "gocompiler.y"
                                                                                                                         {;}
-#line 2049 "y.tab.c"
+#line 2172 "y.tab.c"
     break;
 
-  case 83: /* Error_1: error  */
+  case 83:
 #line 444 "gocompiler.y"
                                                                                                                         {;}
-#line 2055 "y.tab.c"
+#line 2178 "y.tab.c"
     break;
 
 
-#line 2059 "y.tab.c"
+#line 2182 "y.tab.c"
 
       default: break;
     }
@@ -2070,10 +2193,11 @@ yyreduce:
      case of YYERROR or YYBACKUP, subsequent parser actions might lead
      to an incorrect destructor call or verbose syntax error message
      before the lookahead is translated.  */
-  YY_SYMBOL_PRINT ("-> $$ =", YY_CAST (yysymbol_kind_t, yyr1[yyn]), &yyval, &yyloc);
+  YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
 
   YYPOPSTACK (yylen);
   yylen = 0;
+  YY_STACK_PRINT (yyss, yyssp);
 
   *++yyvsp = yyval;
 
@@ -2097,13 +2221,49 @@ yyreduce:
 yyerrlab:
   /* Make sure we have latest lookahead translation.  See comments at
      user semantic actions for why this is necessary.  */
-  yytoken = yychar == YYEMPTY ? YYSYMBOL_YYEMPTY : YYTRANSLATE (yychar);
+  yytoken = yychar == YYEMPTY ? YYEMPTY : YYTRANSLATE (yychar);
+
   /* If not already recovering from an error, report this error.  */
   if (!yyerrstatus)
     {
       ++yynerrs;
+#if ! YYERROR_VERBOSE
       yyerror (YY_("syntax error"));
+#else
+# define YYSYNTAX_ERROR yysyntax_error (&yymsg_alloc, &yymsg, \
+                                        yyssp, yytoken)
+      {
+        char const *yymsgp = YY_("syntax error");
+        int yysyntax_error_status;
+        yysyntax_error_status = YYSYNTAX_ERROR;
+        if (yysyntax_error_status == 0)
+          yymsgp = yymsg;
+        else if (yysyntax_error_status == 1)
+          {
+            if (yymsg != yymsgbuf)
+              YYSTACK_FREE (yymsg);
+            yymsg = YY_CAST (char *, YYSTACK_ALLOC (YY_CAST (YYSIZE_T, yymsg_alloc)));
+            if (!yymsg)
+              {
+                yymsg = yymsgbuf;
+                yymsg_alloc = sizeof yymsgbuf;
+                yysyntax_error_status = 2;
+              }
+            else
+              {
+                yysyntax_error_status = YYSYNTAX_ERROR;
+                yymsgp = yymsg;
+              }
+          }
+        yyerror (yymsgp);
+        if (yysyntax_error_status == 2)
+          goto yyexhaustedlab;
+      }
+# undef YYSYNTAX_ERROR
+#endif
     }
+
+
 
   if (yyerrstatus == 3)
     {
@@ -2153,14 +2313,13 @@ yyerrorlab:
 yyerrlab1:
   yyerrstatus = 3;      /* Each real token shifted decrements this.  */
 
-  /* Pop stack until we find a state that shifts the error token.  */
   for (;;)
     {
       yyn = yypact[yystate];
       if (!yypact_value_is_default (yyn))
         {
-          yyn += YYSYMBOL_YYerror;
-          if (0 <= yyn && yyn <= YYLAST && yycheck[yyn] == YYSYMBOL_YYerror)
+          yyn += YYTERROR;
+          if (0 <= yyn && yyn <= YYLAST && yycheck[yyn] == YYTERROR)
             {
               yyn = yytable[yyn];
               if (0 < yyn)
@@ -2174,7 +2333,7 @@ yyerrlab1:
 
 
       yydestruct ("Error: popping",
-                  YY_ACCESSING_SYMBOL (yystate), yyvsp);
+                  yystos[yystate], yyvsp);
       YYPOPSTACK (1);
       yystate = *yyssp;
       YY_STACK_PRINT (yyss, yyssp);
@@ -2186,7 +2345,7 @@ yyerrlab1:
 
 
   /* Shift the error token.  */
-  YY_SYMBOL_PRINT ("Shifting", YY_ACCESSING_SYMBOL (yyn), yyvsp, yylsp);
+  YY_SYMBOL_PRINT ("Shifting", yystos[yyn], yyvsp, yylsp);
 
   yystate = yyn;
   goto yynewstate;
@@ -2208,20 +2367,20 @@ yyabortlab:
   goto yyreturn;
 
 
-#if !defined yyoverflow
+#if !defined yyoverflow || YYERROR_VERBOSE
 /*-------------------------------------------------.
 | yyexhaustedlab -- memory exhaustion comes here.  |
 `-------------------------------------------------*/
 yyexhaustedlab:
   yyerror (YY_("memory exhausted"));
   yyresult = 2;
-  goto yyreturn;
+  /* Fall through.  */
 #endif
 
 
-/*-------------------------------------------------------.
-| yyreturn -- parsing is finished, clean up and return.  |
-`-------------------------------------------------------*/
+/*-----------------------------------------------------.
+| yyreturn -- parsing is finished, return the result.  |
+`-----------------------------------------------------*/
 yyreturn:
   if (yychar != YYEMPTY)
     {
@@ -2238,16 +2397,18 @@ yyreturn:
   while (yyssp != yyss)
     {
       yydestruct ("Cleanup: popping",
-                  YY_ACCESSING_SYMBOL (+*yyssp), yyvsp);
+                  yystos[+*yyssp], yyvsp);
       YYPOPSTACK (1);
     }
 #ifndef yyoverflow
   if (yyss != yyssa)
     YYSTACK_FREE (yyss);
 #endif
-
+#if YYERROR_VERBOSE
+  if (yymsg != yymsgbuf)
+    YYSTACK_FREE (yymsg);
+#endif
   return yyresult;
 }
-
 #line 446 "gocompiler.y"
 

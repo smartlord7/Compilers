@@ -245,7 +245,7 @@ struct tree_node_t * root;
     	;
 
     Statement:
-    	LBRACE RBRACE													{$$ = create_node(A_PROB_BLOCK, "Block");}
+    	LBRACE RBRACE													{$$ = create_node(A_INVALID_NODE, "Block");}
     	|
     	LBRACE Statement_1 RBRACE                                       						{$$ = create_node(A_PROB_BLOCK, "Block");
     															push($$->children, $2);}
