@@ -1,3 +1,0 @@
-/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/sancho/Documents/GitRepos/Compilers/cmake-build-debug/CMakeFiles/ArrayList.test.dir

@@ -7,6 +7,8 @@
 	#include "abstract_syntax_tree.h"
 	#include "error_handling.h"
 	#include "token_type.h"
+	#include "symbol_entry.h"
+	#include "tables.h"
 
 	#define show_error(err_type, curr_column) error(err_type, curr_column, yytext);
 
@@ -21,6 +23,7 @@
 		buf_counter = 0;
 	int flag = 0, semicolon_flag = 0, eligible_token = 0;
 	char * buf, * buf2;
+
 
 	static char * handle_token(token_type type);
 	static void auto_semicolon();
@@ -169,7 +172,7 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 
 int main(int argc, char * argv[]) {
 
-    buf = malloc(BUF_SIZE*sizeof(char));
+    /*buf = malloc(BUF_SIZE*sizeof(char));
     buf2 = malloc(BUF_SIZE_2*sizeof(char));
 
 	if (argc > 1 && strcmp(argv[1], "-l") == 0) {
@@ -180,7 +183,7 @@ int main(int argc, char * argv[]) {
 	    if (argc > 1 && strcmp(argv[1], "-t") == 0) {
 			print_tree();
 		}
-    }
+    }*/
 
 	return EXIT_SUCCESS;
 }
