@@ -65,10 +65,37 @@ void sub_print(struct list_node_t * to_print, int level) {
     }
 }
 
+int handle_blocks(struct list_node_t * current) {
+    if(current->data->type == A_INVALID_NODE) return 0;
+
+    int valids = 0;
+
+    struct list_node_t * next = current->data->children->next;
+    while(next != NULL) {
+        valids += handle_blocks(next);
+        next = next->next;
+    }
+
+    next = current->data->siblings->next;
+    while(next != NULL) {
+        valids += handle_blocks(next);
+        next = next->data->siblings->next;
+    }
+
+    if(current->data->type == A_PROB_BLOCK && valids < 2) {
+        current->data->type = A_INVALID_NODE;
+    } else {
+        valids++;
+    }
+
+    return valids;
+}
+
 void print_tree() {
     printf("%s\n", root->id);
     if(root->children->next == NULL) {
         return;
     }
+    handle_blocks(root->children->next);
     sub_print(root->children->next, 1);
 }
