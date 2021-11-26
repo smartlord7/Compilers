@@ -3,7 +3,7 @@
 
 #define ERROR_GENERIC_MSG "Line %d, column %d: "
 #define BUF_SIZE 1024
-#define BUF_SIZE_2 2048
+#define BUF_SIZE_2 8192
 
 typedef enum {
     ILLEGAL_CHAR,

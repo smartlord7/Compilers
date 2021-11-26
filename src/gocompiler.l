@@ -20,7 +20,7 @@
 		verbose = 0,
 		buf_counter = 0;
 	int flag = 0, semicolon_flag = 0, eligible_token = 0;
-	char buf[BUF_SIZE], buf2[BUF_SIZE_2];
+	char * buf, * buf2;
 
 	static char * handle_token(token_type type);
 	static void auto_semicolon();
@@ -168,6 +168,10 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 %%
 
 int main(int argc, char * argv[]) {
+
+    buf = malloc(BUF_SIZE*sizeof(char));
+    buf2 = malloc(BUF_SIZE_2*sizeof(char));
+
 	if (argc > 1 && strcmp(argv[1], "-l") == 0) {
 		verbose = 1;
 	}
@@ -196,17 +200,31 @@ char * handle_token(token_type tok_type) {
 	char * tok = yytext;
 	current_column += yyleng;
 
+	if(strlen(tok) > BUF_SIZE) {
+        buf = malloc(sizeof(strlen(tok))*sizeof(char)+100);
+	}
+
+	if(strlen(tok) > BUF_SIZE_2) {
+        buf2 = malloc(sizeof(strlen(tok))*sizeof(char)+100);
+    }
+
+    int buffer_size = strlen(tok)+100;
+
 
 	switch (tok_type) {
 		case ID_:
 			buf[buf_counter] = '\0';
 
-			snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
+			//printf("\t\t\t\t\t%s\n", tok);
+
+			/* acho que não vou fazer a meta 4, já tenho montes de cenas para corrigir e a 3 para fazer, alone, não lhe vou oferecer colos*/
+
+			snprintf(buf2, buffer_size, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
 			if (verbose) {
 				printf("%s", buf2);
 			}
 
-			snprintf(buf2, BUF_SIZE_2, "Id(%s)", tok);
+			snprintf(buf2, buffer_size, "Id(%s)", tok);
 
 			buf_counter = 0;
             last_token = tok_type;
@@ -215,12 +233,12 @@ char * handle_token(token_type tok_type) {
 		case INT_LIT_:
 			buf[buf_counter] = '\0';
 
-			snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
+			snprintf(buf2, buffer_size, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
 			if (verbose) {
 				printf("%s", buf2);
 			}
 
-			snprintf(buf2, BUF_SIZE_2, "IntLit(%s)", tok);
+			snprintf(buf2, buffer_size, "IntLit(%s)", tok);
 
 			buf_counter = 0;
             last_token = tok_type;
@@ -229,35 +247,35 @@ char * handle_token(token_type tok_type) {
 		case REAL_LIT_:
 			buf[buf_counter] = '\0';
 
-			snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
+			snprintf(buf2, buffer_size, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
 			if (verbose) {
 				printf("%s", buf2);
 			}
 
-			snprintf(buf2, BUF_SIZE_2, "RealLit(%s)", tok);
+			snprintf(buf2, buffer_size, "RealLit(%s)", tok);
 
 			buf_counter = 0;
             last_token = tok_type;
 			return buf2;
 			break;
 		case RESERVED_:
-			snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[tok_type], tok);
+			snprintf(buf2, buffer_size, "%s(\"%s\")\n", token_types[tok_type], tok);
             if (verbose) {
                 printf("%s", buf2);
             }
-			snprintf(buf2, BUF_SIZE_2, "%s", tok);
+			snprintf(buf2, buffer_size, "%s", tok);
 		    last_token = tok_type;
 		    return buf2;
 			break;
 		case STRING_LIT_:
 			buf[buf_counter] = '\0';
 
-			snprintf(buf2, BUF_SIZE_2, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
+			snprintf(buf2, buffer_size, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
 			if (verbose) {
 				printf("%s", buf2);
 			}
 
-			snprintf(buf2, BUF_SIZE_2, "StrLit(\"%s\")", buf);
+			snprintf(buf2, buffer_size, "StrLit(\"%s\")", buf);
 
 			buf_counter = 0;
             last_token = tok_type;
