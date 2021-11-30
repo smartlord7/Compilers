@@ -33,7 +33,20 @@ void push_entry(symbol_table_t * table, entry_t * entry) {
 }
 
 void print_table(symbol_table_t * table) {
-    printf("===== %s() Symbol Table =====\n", table->name);
+    printf("===== %s(%s) Symbol Table =====\n", table->name, get_func_args(table));
+
+    if(table->return_ == NULL) {
+        print_entry(NULL_RETURN_ENTRY_, table->return_);
+    } else {
+        print_entry(FUNC_RETURN_ENTRY_, table->return_);
+    }
+
+    entry_t * entry = table->entries;
+    while (entry != NULL) {
+        print_entry(FUNC_VAR_ENTRY_, entry);
+        entry = entry->next;
+    }
+
 }
 
 global_entry_t * init_global_entry(int type, symbol_table_t * table, entry_t * var) {
@@ -84,7 +97,12 @@ void print_global_table(global_table_t * global_table) {
 
         switch (tmp->type) {
             case TABLE_:
-                printf("%s\t(paramType)\tparam\n", tmp->data->table->name);
+                if(tmp->data->table->return_ == NULL) {
+                    printf("%s\t(%s)\tnone\n", tmp->data->table->name, get_func_args(tmp->data->table));
+                } else {
+                    printf("%s\t(%s)\t%s\n", tmp->data->table->name, get_func_args(tmp->data->table), tmp->data->table->return_->return_type);
+                }
+
                 break;
             case GLOBAL_VAR_:
                 print_entry(VAR_ENTRY_, tmp->data->var);
@@ -110,48 +128,127 @@ void print_global_table(global_table_t * global_table) {
     printf("\n");
 }
 
-char * trim_value(char * original_value) {
-    char * value, * aux;
-    int i;
+char * str_append(char * dest, char * src) {
+    char * tmp = NULL;
+    int i = 0, j = 0;
 
-    aux = (char *) malloc(strlen(original_value) * sizeof(char));
-    strncpy(aux, original_value, strlen(original_value));
+    tmp = (char *) malloc(sizeof(dest) + sizeof(src) - 1);
 
-    i = 0;
-    while (aux[i] != '(') {
+    while (i < strlen(dest)) {
+        tmp[i] = dest[i];
         i++;
     }
-    i++;
-    aux = (aux + i);
 
-    i = strlen(aux);
-    while (aux[i] != ')') {
-        i--;
+    while (j < strlen(src)) {
+        tmp[i] = src[j];
+        i++;
+        j++;
     }
-    aux[i] = '\0';
+    tmp[i] = '\0';
 
-    value = (char *) malloc(i * sizeof(char));
-    strncpy(value, aux, i);
-
-    aux = NULL;
-    free(aux);
-    return value;
+    return tmp;
 }
 
-char * to_lower(char * src_string) {
-    char * src = NULL;
+char * get_func_args(symbol_table_t * table) {
+    char * args = NULL, * tmp = NULL;
+    int first_append = 1;
+    entry_t * entry = NULL;
 
-    src = (char *) malloc(strlen(src_string) * sizeof(char));
-
-    for(int i = 0; i < strlen(src_string); i++) {
-        src[i] = tolower((unsigned char) src_string[i]);
+    entry = table->entries;
+    while (entry != NULL && strcasecmp(entry->return_type, "param") == 0) {
+        if(first_append) {
+            args = (char *) malloc(sizeof(entry->arg_type));
+            strcat(args, entry->arg_type);
+            first_append = 0;
+        } else {
+            args = str_append(args, ", ");
+            args = strcat(args, entry->arg_type);
+        }
+        entry = entry->next;
     }
 
-    return src;
+    if(args == NULL) {
+        return "";
+    }
+
+    return args;
+}
+
+void sub_build_table(symbol_table_t* table, struct list_node_t * node, int build_phase) {
+    struct list_node_t * child = NULL, * grandchild = NULL;
+    entry_t * new_entry = NULL;
+    var_data_t * aux_var = NULL;
+    char * name = NULL, * type = NULL;
+
+    switch (node->data->type) {
+        case A_FUNC_PARAMS:
+            build_phase = T_FUNC_PARAM;
+            break;
+        case A_FUNC_BODY:
+            build_phase = T_FUNC_BODY;
+            break;
+        case A_INT:
+            if(build_phase == T_FUNC_HEADER) {
+                table->return_ = init_entry("return", data_type_text_t[D_INT], NULL);
+            }
+            break;
+        case A_FLOAT32:
+            if(build_phase == T_FUNC_HEADER) {
+                table->return_ = init_entry("return", data_type_text_t[D_FLOAT32], NULL);
+            }
+            break;
+        case A_BOOL:
+            if(build_phase == T_FUNC_HEADER) {
+                table->return_ = init_entry("return", data_type_text_t[D_BOOL], NULL);
+            }
+            break;
+        case A_STRING:
+            if(build_phase == T_FUNC_HEADER) {
+                table->return_ = init_entry("return", data_type_text_t[D_STRING], NULL);
+            }
+            break;
+        case A_PARAM_DECL:
+
+            aux_var = init_var_data(node);
+            type = aux_var->var_type;
+            name = aux_var->var_name;
+
+            new_entry = init_entry(name, "param", type);
+            push_entry(table, new_entry);
+            break;
+        case A_VAR_DECL:
+
+            aux_var = init_var_data(node);
+            type = aux_var->var_type;
+            name = aux_var->var_name;
+
+            new_entry = init_entry(name, type, "");
+            push_entry(table, new_entry);
+            break;
+    }
+
+    child = node->data->children->next;
+    while (child != NULL) {
+        sub_build_table(table, child, build_phase);
+        child = child->next;
+    }
+
+    child = node->data->siblings->next;
+    while (child != NULL) {
+        sub_build_table(table, child, build_phase);
+        child = child->next;
+    }
 }
 
 void build_table(symbol_table_t * table, struct tree_node_t * table_root) {
-    printf("%s\n", table_root->id);
+    struct list_node_t * node = NULL;
+
+    node = table_root->children->next;
+    while (node != NULL) {
+        sub_build_table(table, node, T_FUNC_HEADER);
+        node = node->next;
+    }
+
 }
 
 void build_tables(global_table_t * global_table, struct tree_node_t * tree_root) {
@@ -159,6 +256,7 @@ void build_tables(global_table_t * global_table, struct tree_node_t * tree_root)
     symbol_table_t * new_table = NULL;
     entry_t * new_var = NULL;
     global_entry_t * new_entry = NULL;
+    var_data_t * aux_var = NULL;
     char * var_name, * var_return_type, * func_name;
 
     if(node == NULL) {
@@ -178,7 +276,7 @@ void build_tables(global_table_t * global_table, struct tree_node_t * tree_root)
                             grandchild = child->data->children->next;
                             func_name = trim_value(grandchild->data->id);
                             new_table = init_table(func_name);
-                            build_table(new_table, child->data);
+                            build_table(new_table, node->data);
                             new_entry = init_global_entry(TABLE_, new_table, NULL);
                             push_global_entry(global_table, new_entry);
                             break;
@@ -192,13 +290,10 @@ void build_tables(global_table_t * global_table, struct tree_node_t * tree_root)
                 var_name = NULL;
                 var_return_type = NULL;
 
-                //get var type
-                child = node->data->children->next;
-                var_return_type = to_lower(child->data->id);
+                aux_var = init_var_data(node);
+                var_name = aux_var->var_type;
+                var_return_type = aux_var->var_name;
 
-                //get var name
-                child = child->next;
-                var_name = trim_value(child->data->id);
                 new_var = init_entry(var_name, var_return_type, NULL);
                 new_entry = init_global_entry(GLOBAL_VAR_, NULL, new_var);
                 push_global_entry(global_table, new_entry);

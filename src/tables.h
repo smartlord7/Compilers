@@ -14,11 +14,23 @@ typedef struct {
     entry_t * return_;
 } symbol_table_t;
 
+typedef enum {
+    T_FUNC_HEADER,
+    T_FUNC_PARAM,
+    T_FUNC_BODY,
+} table_phase_t;
+
 symbol_table_t * init_table(char * name);
 
 void push_entry(symbol_table_t * table, entry_t * entry);
 
+char * get_func_args(symbol_table_t * table);
+
 void print_table(symbol_table_t * table);
+
+char * get_func_args(symbol_table_t * table);
+
+char * str_append(char * dest, char * src);
 
 typedef enum {
     TABLE_,

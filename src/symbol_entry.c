@@ -6,6 +6,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <ctype.h>
+
+char * data_type_text_t[] = {
+        "int",
+        "bool",
+        "float32",
+        "string",
+};
 
 entry_t * init_entry(char * name, char * return_type, char * arg_type) {
     entry_t * new_entry = (entry_t *) malloc(sizeof(entry_t));
@@ -45,6 +53,70 @@ void print_entry(int type, entry_t * entry) {
         case VAR_ENTRY_:
             printf("%s\t\t%s\n", entry->name, entry->return_type);
             break;
+        case NULL_RETURN_ENTRY_:
+            printf("return\tnone\t\n");
+            break;
+        case FUNC_RETURN_ENTRY_:
+            printf("%s\t%s\t\n", entry->name, entry->return_type);
+            break;
+        case FUNC_VAR_ENTRY_:
+            printf("%s\t%s\t%s\n", entry->name, entry->arg_type, entry->return_type);
+            break;
     }
 
+}
+
+char * trim_value(char * original_value) {
+    char * value, * aux;
+    int i;
+
+    aux = (char *) malloc(strlen(original_value) * sizeof(char));
+    strncpy(aux, original_value, strlen(original_value));
+
+    i = 0;
+    while (aux[i] != '(') {
+        i++;
+    }
+    i++;
+    aux = (aux + i);
+
+    i = strlen(aux);
+    while (aux[i] != ')') {
+        i--;
+    }
+    aux[i] = '\0';
+
+    value = (char *) malloc(i * sizeof(char));
+    strncpy(value, aux, i);
+
+    aux = NULL;
+    free(aux);
+    return value;
+}
+
+char * to_lower(char * src_string) {
+    char * src = NULL;
+
+    src = (char *) malloc(strlen(src_string) * sizeof(char));
+
+    for(int i = 0; i < strlen(src_string); i++) {
+        src[i] = tolower((unsigned char) src_string[i]);
+    }
+
+    return src;
+}
+
+var_data_t * init_var_data(struct list_node_t * container) {
+    var_data_t * new_var = NULL;
+    struct list_node_t * child = NULL;
+
+    new_var = (var_data_t *) malloc(sizeof(var_data_t));
+
+    child = container->data->children->next;
+    new_var->var_type = to_lower(child->data->id);
+
+    child = child->next;
+    new_var->var_name = trim_value(child->data->id);
+
+    return new_var;
 }
