@@ -13,6 +13,8 @@ struct tree_node_t * create_node(int type, char * id) {
     new_node->children->next = NULL;
     new_node->siblings = (struct list_node_t *) malloc(sizeof(struct list_node_t));
     new_node->siblings->next = NULL;
+    new_node->line = 0;
+    new_node->column = 0;
 
     return new_node;
 }
@@ -26,7 +28,7 @@ void sub_print_node(struct tree_node_t * node, int level) {
     for(int i = 0; i < level; i++) {
         printf("..");
     }
-    printf("%s\n", node->id);
+    printf("%s - line %d, column %d\n", node->id, node->line, node->column);
 }
 
 void sub_print(struct list_node_t * to_print, int level) {
@@ -37,7 +39,7 @@ void sub_print(struct list_node_t * to_print, int level) {
         int count = 0;
 
         while(next != NULL) {
-            if(next->data->type != A_INVALID_NODE) {
+            if (next->data->type != A_INVALID_NODE) {
                 count++;
             }
             next = next->data->siblings->next;
@@ -77,12 +79,12 @@ int handle_blocks(struct list_node_t * current) {
     }
 
     next = current->data->siblings->next;
-    while(next != NULL) {
+    while (next != NULL) {
         valids += handle_blocks(next);
         next = next->data->siblings->next;
     }
 
-    if(current->data->type == A_PROB_BLOCK && valids < 2) {
+    if (current->data->type == A_PROB_BLOCK && valids < 2) {
         current->data->type = A_INVALID_NODE;
     } else {
         valids++;

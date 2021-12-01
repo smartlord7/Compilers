@@ -14,7 +14,8 @@ typedef enum {
 } error_type;
 
 extern const char * error_msgs[];
-extern int current_line, current_column, yacc_error;
+extern int current_line, current_column, last_token_line,
+        last_token_column, yacc_error;
 
 extern void error(error_type err_type, int curr_column, char * text);
 

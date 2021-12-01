@@ -10,6 +10,8 @@
 	#include "symbol_entry.h"
 	#include "tables.h"
 
+	#define YYSTYPE
+
 	#define show_error(err_type, curr_column) error(err_type, curr_column, yytext);
 
 	int	start = 0,
@@ -17,8 +19,6 @@
 		last_token = 0,
 		comment_line = 0,
 		comment_column = 0,
-		last_token_line = 0,
-		last_token_column = 0,
 		verbose = 0,
 		buf_counter = 0;
 	int flag = 0, semicolon_flag = 0, eligible_token = 0;
@@ -29,6 +29,8 @@
 	static void auto_semicolon();
 
 %}
+
+%option yylineno
 
 %X STATE_STRING STATE_LINE_COMMENT STATE_GENERAL_COMMENT OCTAL
 
@@ -202,6 +204,8 @@ char * handle_token(token_type tok_type) {
 
 	last_token_line = current_line;
 	last_token_column = current_column;
+	yylval.line = last_token_line;
+	yylval.column = last_token_column;
 
 	char * tok = yytext;
 	current_column += yyleng;

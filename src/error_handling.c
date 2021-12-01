@@ -3,7 +3,8 @@
 #include "error_handling.h"
 
 int current_line = 1,
-        current_column = 1, yacc_error = 0;
+        current_column = 1, yacc_error = 0,
+        last_token_line = 0, last_token_column = 0;
 
 const char * error_msgs[] = {
         "illegal character (%s)",

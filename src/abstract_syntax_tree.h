@@ -6,8 +6,8 @@
 typedef enum {d_program, d_var_dec, d_func_dec} node_type_t;
 
 struct tree_node_t{
-    char * id;
-    int type, level;
+    char * id, * annotation;
+    int type, level, line, column;
     struct list_node_t * children, * siblings;
 };
 

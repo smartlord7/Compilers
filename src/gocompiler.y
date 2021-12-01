@@ -14,7 +14,6 @@ struct tree_node_t * root;
 
 %}
 
-
 %token <package> PACKAGE
 %token <id> ID
 %token SEMICOLON
@@ -80,6 +79,7 @@ struct tree_node_t * root;
 
 %union{
 	char * strlit, * id, * reallit, * intlit;
+	int line, column;
 	struct tree_node_t * tree_node;
 }
 
