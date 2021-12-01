@@ -1,0 +1,15 @@
+===== Global Symbol Table =====
+i		float32
+f		int
+s		bool
+b		string
+main	()	none
+
+===== Function main() Symbol Table =====
+return		none
+i		int
+f		float32
+s		string
+b		bool
+
+

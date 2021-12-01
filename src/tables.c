@@ -4,7 +4,6 @@
 #include "tables.h"
 #include "abstract_syntax_tree.h"
 #include "linked_list.h"
-#include "ctype.h"
 
 symbol_table_t * init_table(char * name) {
 
@@ -33,7 +32,7 @@ void push_entry(symbol_table_t * table, entry_t * entry) {
 }
 
 void print_table(symbol_table_t * table) {
-    printf("===== %s(%s) Symbol Table =====\n", table->name, get_func_args(table));
+    printf("===== Function %s(%s) Symbol Table =====\n", table->name, get_func_args(table));
 
     if(table->return_ == NULL) {
         print_entry(NULL_RETURN_ENTRY_, table->return_);
@@ -61,11 +60,10 @@ global_entry_t * init_global_entry(int type, symbol_table_t * table, entry_t * v
 }
 
 global_table_t * init_global_table(void) {
-    char * global_header = "Global";
 
     global_table_t * new_table = (global_table_t *) malloc(sizeof(global_table_t));
 
-    new_table->name = (char *) malloc(sizeof(global_header));
+    new_table->name = (char *) malloc(sizeof("Global"));
     strcpy(new_table->name, "Global");
 
     new_table->entries = NULL;
@@ -90,7 +88,7 @@ void push_global_entry(global_table_t * global_table, global_entry_t * entry) {
 
 void print_global_table(global_table_t * global_table) {
 
-    printf("\n===== Global Symbol Table =====\n");
+    printf("===== Global Symbol Table =====\n");
 
     global_entry_t * tmp = global_table->entries;
     while(tmp != NULL) {
@@ -150,7 +148,7 @@ char * str_append(char * dest, char * src) {
 }
 
 char * get_func_args(symbol_table_t * table) {
-    char * args = NULL, * tmp = NULL;
+    char * args = NULL;
     int first_append = 1;
     entry_t * entry = NULL;
 
@@ -175,7 +173,7 @@ char * get_func_args(symbol_table_t * table) {
 }
 
 void sub_build_table(symbol_table_t* table, struct list_node_t * node, int build_phase) {
-    struct list_node_t * child = NULL, * grandchild = NULL;
+    struct list_node_t * child = NULL;
     entry_t * new_entry = NULL;
     var_data_t * aux_var = NULL;
     char * name = NULL, * type = NULL;
@@ -291,11 +289,13 @@ void build_tables(global_table_t * global_table, struct tree_node_t * tree_root)
                 var_return_type = NULL;
 
                 aux_var = init_var_data(node);
-                var_name = aux_var->var_type;
-                var_return_type = aux_var->var_name;
+                var_return_type = aux_var->var_type;
+                var_name = aux_var->var_name;
 
                 new_var = init_entry(var_name, var_return_type, NULL);
+
                 new_entry = init_global_entry(GLOBAL_VAR_, NULL, new_var);
+
                 push_global_entry(global_table, new_entry);
 
                 break;

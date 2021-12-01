@@ -54,7 +54,7 @@ void print_entry(int type, entry_t * entry) {
             printf("%s\t\t%s\n", entry->name, entry->return_type);
             break;
         case NULL_RETURN_ENTRY_:
-            printf("return\tnone\t\n");
+            printf("return\t\tnone\n");
             break;
         case FUNC_RETURN_ENTRY_:
             printf("%s\t%s\t\n", entry->name, entry->return_type);

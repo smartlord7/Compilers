@@ -1,0 +1,37 @@
+===== Global Symbol Table =====
+globalVar_int		int
+globalVar_float32		float32
+globalVar_int	()	int
+function_2	()	none
+main	()	none
+function_1	()	none
+function_1	(int, int)	none
+globalVar_string		string
+global_var_bool		bool
+
+===== Function globalVar_int() Symbol Table =====
+return	int	
+_globalVar_int		int
+_globalVar_string		string
+globalVar_float32		bool
+_globalVar_bool		bool
+
+===== Function function_2() Symbol Table =====
+return		none
+
+===== Function main() Symbol Table =====
+return		none
+main_string		string
+
+===== Function function_1() Symbol Table =====
+return		none
+localVar_1		float32
+
+===== Function function_1(int, int) Symbol Table =====
+return		none
+a	int	param
+b	int	param
+localVar_1		int
+localVar_2		float32
+
+

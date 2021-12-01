@@ -1,4 +1,4 @@
-/snap/clion/169/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /home/joao/Compilers
+/snap/clion/175/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/joao/Compilers
 -- The C compiler identification is GNU 10.3.0
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
@@ -11,8 +11,8 @@ CMake Error at CMakeLists.txt:18 (add_executable):
 
     src/data_structures/array_list.c
 
-  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .h .hh .h++
-  .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .ispc
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
 
 
 CMake Error at CMakeLists.txt:18 (add_executable):
