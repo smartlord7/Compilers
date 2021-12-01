@@ -7,11 +7,9 @@
 
 symbol_table_t * init_table(char * name) {
 
-    symbol_table_t * new_table = (symbol_table_t *) malloc(sizeof(symbol_table_t));
+    symbol_table_t * new_table = (symbol_table_t *) calloc(1, sizeof(symbol_table_t));
     new_table->name = (char *) malloc(sizeof(name));
     strcpy(new_table->name, name);
-    new_table->entries = NULL;
-    new_table->return_ = NULL;
 
     return new_table;
 }
@@ -123,7 +121,6 @@ void print_global_table(global_table_t * global_table) {
 
         tmp = tmp->next;
     }
-    printf("\n");
 }
 
 char * str_append(char * dest, char * src) {
@@ -154,25 +151,25 @@ char * get_func_args(symbol_table_t * table) {
 
     entry = table->entries;
     while (entry != NULL && strcasecmp(entry->return_type, "param") == 0) {
-        if(first_append) {
+        if (first_append) {
             args = (char *) malloc(sizeof(entry->arg_type));
             strcat(args, entry->arg_type);
             first_append = 0;
         } else {
-            args = str_append(args, ", ");
+            args = str_append(args, ",");
             args = strcat(args, entry->arg_type);
         }
         entry = entry->next;
     }
 
-    if(args == NULL) {
+    if (args == NULL) {
         return "";
     }
 
     return args;
 }
 
-void sub_build_table(symbol_table_t* table, struct list_node_t * node, int build_phase) {
+void sub_build_local_table(symbol_table_t * table, struct list_node_t * node, int build_phase) {
     struct list_node_t * child = NULL;
     entry_t * new_entry = NULL;
     var_data_t * aux_var = NULL;
@@ -186,22 +183,22 @@ void sub_build_table(symbol_table_t* table, struct list_node_t * node, int build
             build_phase = T_FUNC_BODY;
             break;
         case A_INT:
-            if(build_phase == T_FUNC_HEADER) {
+            if (build_phase == T_FUNC_HEADER) {
                 table->return_ = init_entry("return", data_type_text_t[D_INT], NULL);
             }
             break;
         case A_FLOAT32:
-            if(build_phase == T_FUNC_HEADER) {
+            if (build_phase == T_FUNC_HEADER) {
                 table->return_ = init_entry("return", data_type_text_t[D_FLOAT32], NULL);
             }
             break;
         case A_BOOL:
-            if(build_phase == T_FUNC_HEADER) {
+            if (build_phase == T_FUNC_HEADER) {
                 table->return_ = init_entry("return", data_type_text_t[D_BOOL], NULL);
             }
             break;
         case A_STRING:
-            if(build_phase == T_FUNC_HEADER) {
+            if (build_phase == T_FUNC_HEADER) {
                 table->return_ = init_entry("return", data_type_text_t[D_STRING], NULL);
             }
             break;
@@ -227,29 +224,28 @@ void sub_build_table(symbol_table_t* table, struct list_node_t * node, int build
 
     child = node->data->children->next;
     while (child != NULL) {
-        sub_build_table(table, child, build_phase);
+        sub_build_local_table(table, child, build_phase);
         child = child->next;
     }
 
     child = node->data->siblings->next;
     while (child != NULL) {
-        sub_build_table(table, child, build_phase);
+        sub_build_local_table(table, child, build_phase);
         child = child->next;
     }
 }
 
-void build_table(symbol_table_t * table, struct tree_node_t * table_root) {
+void build_local_table(symbol_table_t * table, struct tree_node_t * table_root) {
     struct list_node_t * node = NULL;
 
     node = table_root->children->next;
     while (node != NULL) {
-        sub_build_table(table, node, T_FUNC_HEADER);
+        sub_build_local_table(table, node, T_FUNC_HEADER);
         node = node->next;
     }
-
 }
 
-void build_tables(global_table_t * global_table, struct tree_node_t * tree_root) {
+void build_global_table(global_table_t * global_table, struct tree_node_t * tree_root) {
     struct list_node_t * node = tree_root->children->next, * child = NULL, * grandchild = NULL;
     symbol_table_t * new_table = NULL;
     entry_t * new_var = NULL;
@@ -257,12 +253,11 @@ void build_tables(global_table_t * global_table, struct tree_node_t * tree_root)
     var_data_t * aux_var = NULL;
     char * var_name, * var_return_type, * func_name;
 
-    if(node == NULL) {
+    if (node == NULL) {
         return;
     }
 
-    while(node != NULL) {
-
+    while (node != NULL) {
         switch (node->data->type) {
             case A_FUNC_DECL:
                 child = node->data->children->next;
@@ -274,7 +269,7 @@ void build_tables(global_table_t * global_table, struct tree_node_t * tree_root)
                             grandchild = child->data->children->next;
                             func_name = trim_value(grandchild->data->id);
                             new_table = init_table(func_name);
-                            build_table(new_table, node->data);
+                            build_local_table(new_table, node->data);
                             new_entry = init_global_entry(TABLE_, new_table, NULL);
                             push_global_entry(global_table, new_entry);
                             break;

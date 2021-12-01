@@ -5,12 +5,12 @@ globalVar_int	()	int
 function_2	()	none
 main	()	none
 function_1	()	none
-function_1	(int, int)	none
+function_1	(int,int)	none
 globalVar_string		string
 global_var_bool		bool
 
 ===== Function globalVar_int() Symbol Table =====
-return	int	
+return		int
 _globalVar_int		int
 _globalVar_string		string
 globalVar_float32		bool
@@ -27,11 +27,10 @@ main_string		string
 return		none
 localVar_1		float32
 
-===== Function function_1(int, int) Symbol Table =====
+===== Function function_1(int,int) Symbol Table =====
 return		none
 a	int	param
 b	int	param
 localVar_1		int
 localVar_2		float32
-
 

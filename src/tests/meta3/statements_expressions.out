@@ -1,18 +1,18 @@
 ===== Global Symbol Table =====
-func__	(int, float32)	none
-func1	(int, int, float32, float32)	float32
+func__	(int,float32)	none
+func1	(int,int,float32,float32)	float32
 func2	(string)	int
 func3	(bool)	int
-func4	(int, float32, bool)	float32
+func4	(int,float32,bool)	float32
 main	()	none
 
-===== Function func__(int, float32) Symbol Table =====
+===== Function func__(int,float32) Symbol Table =====
 return		none
 a	int	param
 b	float32	param
 
-===== Function func1(int, int, float32, float32) Symbol Table =====
-return	float32	
+===== Function func1(int,int,float32,float32) Symbol Table =====
+return		float32
 a	int	param
 b	int	param
 c	float32	param
@@ -20,15 +20,15 @@ d	float32	param
 integer		int
 
 ===== Function func2(string) Symbol Table =====
-return	int	
+return		int
 a	string	param
 
 ===== Function func3(bool) Symbol Table =====
-return	int	
+return		int
 a	bool	param
 
-===== Function func4(int, float32, bool) Symbol Table =====
-return	float32	
+===== Function func4(int,float32,bool) Symbol Table =====
+return		float32
 a	int	param
 b	float32	param
 c	bool	param
@@ -49,5 +49,4 @@ j		bool
 k		bool
 l		bool
 toBe		bool
-
 

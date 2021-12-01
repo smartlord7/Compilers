@@ -2323,7 +2323,7 @@ int main(int argc, char * argv[]) {
 		}
     }
     my_global_table = init_global_table();
-    build_tables(my_global_table, root);
+    build_global_table(my_global_table, root);
     print_global_table(my_global_table);
 
 	return EXIT_SUCCESS;

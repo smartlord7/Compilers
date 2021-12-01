@@ -3,11 +3,10 @@ factorial	(int)	int
 main	()	none
 
 ===== Function factorial(int) Symbol Table =====
-return	int	
+return		int
 n	int	param
 
 ===== Function main() Symbol Table =====
 return		none
 argument		int
-
 

@@ -34,7 +34,6 @@ n		int
 return		none
 
 ===== Function h(bool) Symbol Table =====
-return	int	
+return		int
 q	bool	param
-
 

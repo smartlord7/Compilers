@@ -1,17 +1,16 @@
 ===== Global Symbol Table =====
 f	()	none
-g	(int, int)	none
+g	(int,int)	none
 main	()	none
 
 ===== Function f() Symbol Table =====
 return		none
 
-===== Function g(int, int) Symbol Table =====
+===== Function g(int,int) Symbol Table =====
 return		none
 a	int	param
 b	int	param
 
 ===== Function main() Symbol Table =====
 return		none
-
 

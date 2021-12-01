@@ -65,6 +65,6 @@ void push_global_entry(global_table_t * global_table, global_entry_t * entry);
 
 void print_global_table(global_table_t * global_table);
 
-void build_tables(global_table_t * global_table, struct tree_node_t * tree_root);
+void build_global_table(global_table_t * global_table, struct tree_node_t * tree_root);
 
 #endif //COMPILERS_SYMBOL_TABLE_H
