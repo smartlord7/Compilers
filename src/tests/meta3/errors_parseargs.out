@@ -1,25 +1,15 @@
-VarDecl
----- Var
-Float32
-Id(ci)
-VarDecl
----- Var
-Float32
-Id(rad)
-VarDecl
----- Var
-Float32
-Id(area)
-VarDecl
----- Var
-Float32
-Id(PI)
-FuncDecl
----- Func
-FuncHeader
 ===== Global Symbol Table =====
 ci		float32
 rad		float32
 area		float32
 PI		float32
+main	()	none
+
+===== Function main() Symbol Table =====
+return		none
+unused	bool	param
+i		int
+f		float32
+s		string
+b		bool
 

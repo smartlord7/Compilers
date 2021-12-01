@@ -1,11 +1,16 @@
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
 ===== Global Symbol Table =====
+f	()	none
+g	(,int)	none
+main	()	none
+
+===== Function f() Symbol Table =====
+return		none
+
+===== Function g(,int) Symbol Table =====
+return		none
+a	int	param
+b	int	param
+
+===== Function main() Symbol Table =====
+return		none
 

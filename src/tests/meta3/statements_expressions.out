@@ -1,20 +1,52 @@
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
 ===== Global Symbol Table =====
+func__	(,float32)	none
+func1	(,int,float32,float32)	float32
+func2	()	int
+func3	()	int
+func4	(,float32,bool)	float32
+main	()	none
+
+===== Function func__(,float32) Symbol Table =====
+return		none
+a	int	param
+b	float32	param
+
+===== Function func1(,int,float32,float32) Symbol Table =====
+return		float32
+a	int	param
+b	int	param
+c	float32	param
+d	float32	param
+integer		int
+
+===== Function func2() Symbol Table =====
+return		int
+a	string	param
+
+===== Function func3() Symbol Table =====
+return		int
+a	bool	param
+
+===== Function func4(,float32,bool) Symbol Table =====
+return		float32
+a	int	param
+b	float32	param
+c	bool	param
+a		float32
+
+===== Function main() Symbol Table =====
+return		none
+a		int
+b		int
+c		int
+d		float32
+e		float32
+f		float32
+g		string
+h		string
+i		string
+j		bool
+k		bool
+l		bool
+toBe		bool
 

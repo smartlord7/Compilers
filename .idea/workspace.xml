@@ -13,8 +13,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78548c38-9559-4c6f-82e2-2c6fcb25f076" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample.deigo" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample.deigo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/symbol_entry.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/symbol_entry.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tables.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tables.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/meta3/errors.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/errors.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/meta3/errors_nonefunccalls.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/errors_nonefunccalls.out" afterDir="false" />

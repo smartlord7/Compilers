@@ -50,6 +50,7 @@ global_entry_t * init_global_entry(int type, symbol_table_t * table, entry_t * v
     global_entry_t * new_global_entry = (global_entry_t *) malloc(sizeof(global_entry_t));
 
     new_global_entry->data = (global_entry_data_t *) malloc(sizeof(global_entry_data_t));
+
     new_global_entry->type = type;
     new_global_entry->data->table = table;
     new_global_entry->data->var = var;
@@ -89,14 +90,17 @@ void print_global_table(global_table_t * global_table) {
     printf("===== Global Symbol Table =====\n");
 
     global_entry_t * tmp = global_table->entries;
+    char * func_args = NULL;
+
     while(tmp != NULL) {
 
         switch (tmp->type) {
             case TABLE_:
+                func_args = get_func_args(tmp->data->table);
                 if(tmp->data->table->return_ == NULL) {
-                    printf("%s\t(%s)\tnone\n", tmp->data->table->name, get_func_args(tmp->data->table));
+                    printf("%s\t(%s)\tnone\n", tmp->data->table->name, func_args);
                 } else {
-                    printf("%s\t(%s)\t%s\n", tmp->data->table->name, get_func_args(tmp->data->table), tmp->data->table->return_->return_type);
+                    printf("%s\t(%s)\t%s\n", tmp->data->table->name, func_args, tmp->data->table->return_->return_type);
                 }
 
                 break;
@@ -127,19 +131,10 @@ char * str_append(char * dest, char * src) {
     char * tmp = NULL;
     int i = 0, j = 0;
 
-    tmp = (char *) malloc(sizeof(dest) + sizeof(src) - 1);
+    tmp = (char *) malloc(sizeof(dest) + sizeof(src) + 10);
 
-    while (i < strlen(dest)) {
-        tmp[i] = dest[i];
-        i++;
-    }
-
-    while (j < strlen(src)) {
-        tmp[i] = src[j];
-        i++;
-        j++;
-    }
-    tmp[i] = '\0';
+    memcpy(tmp, dest, strlen(dest));
+    strcpy(tmp + strlen(dest), src);
 
     return tmp;
 }
@@ -153,11 +148,11 @@ char * get_func_args(symbol_table_t * table) {
     while (entry != NULL && strcasecmp(entry->return_type, "param") == 0) {
         if (first_append) {
             args = (char *) malloc(sizeof(entry->arg_type));
-            strcat(args, entry->arg_type);
+            str_append(args, entry->arg_type);
             first_append = 0;
         } else {
             args = str_append(args, ",");
-            args = strcat(args, entry->arg_type);
+            args = str_append(args, entry->arg_type);
         }
         entry = entry->next;
     }
@@ -257,17 +252,31 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
         return;
     }
 
-    printf("%s\n", node->data->id);
-
     switch (node->data->type) {
         case A_FUNC_DECL:
-            printf("---- Func\n");
 
             child = node->data->children->next;
 
+            while (child != NULL){
+
+                switch (child->data->type) {
+                    case A_FUNC_HEADER:
+
+                        grandchild = child->data->children->next;
+                        func_name = trim_value(grandchild->data->id);
+                        new_table = init_table(func_name);
+                        build_local_table(new_table, node->data);
+                        new_entry = init_global_entry(TABLE_, new_table, NULL);
+                        push_global_entry(global_table, new_entry);
+
+                        break;
+                }
+
+                child = child->data->siblings->next;
+            }
+
             break;
         case A_VAR_DECL:
-            printf("---- Var\n");
 
             var_name = NULL;
             var_return_type = NULL;
@@ -301,12 +310,7 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
 }
 
 void build_global_table(global_table_t * global_table, struct tree_node_t * tree_root) {
-    struct list_node_t * node = tree_root->children->next, * child = NULL, * grandchild = NULL;
-    symbol_table_t * new_table = NULL;
-    entry_t * new_var = NULL;
-    global_entry_t * new_entry = NULL;
-    var_data_t * aux_var = NULL;
-    char * var_name, * var_return_type, * func_name;
+    struct list_node_t * node = tree_root->children->next, * child = NULL;
 
     if (node == NULL) {
         return;
@@ -317,47 +321,4 @@ void build_global_table(global_table_t * global_table, struct tree_node_t * tree
         sub_build_global_table(global_table, child);
         child = child->next;
     }
-
-    /*
-    while (node != NULL) {
-        switch (node->data->type) {
-            case A_FUNC_DECL:
-                child = node->data->children->next;
-
-                while (child != NULL) {
-
-                    switch (child->data->type) {
-                        case A_FUNC_HEADER:
-                            grandchild = child->data->children->next;
-                            func_name = trim_value(grandchild->data->id);
-                            new_table = init_table(func_name);
-                            build_local_table(new_table, node->data);
-                            new_entry = init_global_entry(TABLE_, new_table, NULL);
-                            push_global_entry(global_table, new_entry);
-                            break;
-                    }
-
-                    child = child->data->siblings->next;
-                }
-
-                break;
-            case A_VAR_DECL:
-                var_name = NULL;
-                var_return_type = NULL;
-
-                aux_var = init_var_data(node);
-                var_return_type = aux_var->var_type;
-                var_name = aux_var->var_name;
-
-                new_var = init_entry(var_name, var_return_type, NULL);
-
-                new_entry = init_global_entry(GLOBAL_VAR_, NULL, new_var);
-
-                push_global_entry(global_table, new_entry);
-
-                break;
-        }
-
-        node = node->data->siblings->next;
-    }*/
 }

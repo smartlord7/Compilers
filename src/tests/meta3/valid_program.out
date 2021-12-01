@@ -1,101 +1,3 @@
-VarDecl
----- Var
-Int
-Id(ia)
-VarDecl
----- Var
-Int
-Id(ib)
-VarDecl
----- Var
-Int
-Id(ic)
-VarDecl
----- Var
-Int
-Id(id)
-VarDecl
----- Var
-Int
-Id(ie)
-VarDecl
----- Var
-Float32
-Id(fa)
-VarDecl
----- Var
-Float32
-Id(fb)
-VarDecl
----- Var
-Float32
-Id(fc)
-VarDecl
----- Var
-Float32
-Id(fd)
-VarDecl
----- Var
-Float32
-Id(fe)
-VarDecl
----- Var
-Bool
-Id(ba)
-VarDecl
----- Var
-Bool
-Id(bb)
-VarDecl
----- Var
-Bool
-Id(bc)
-VarDecl
----- Var
-Bool
-Id(bd)
-VarDecl
----- Var
-String
-Id(sa)
-VarDecl
----- Var
-String
-Id(sb)
-VarDecl
----- Var
-String
-Id(sc)
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
-FuncDecl
----- Func
-FuncHeader
 ===== Global Symbol Table =====
 ia		int
 ib		int
@@ -114,4 +16,66 @@ bd		bool
 sa		string
 sb		string
 sc		string
+fca	()	none
+fcb	()	int
+fcd	()	float32
+fce	()	string
+fcf	()	bool
+fcg	(,float32)	int
+fch	(,float32,string)	float32
+fci	(,int,float32,float32,string)	float32
+fcj	(,int,float32,float32,bool)	int
+main	()	none
+
+===== Function fca() Symbol Table =====
+return		none
+
+===== Function fcb() Symbol Table =====
+return		int
+fafcb		int
+
+===== Function fcd() Symbol Table =====
+return		float32
+
+===== Function fce() Symbol Table =====
+return		string
+strfce		string
+
+===== Function fcf() Symbol Table =====
+return		bool
+bafcf		bool
+
+===== Function fcg(,float32) Symbol Table =====
+return		int
+iafcg	int	param
+fafcg	float32	param
+
+===== Function fch(,float32,string) Symbol Table =====
+return		float32
+iafch	int	param
+fafch	float32	param
+safch	string	param
+
+===== Function fci(,int,float32,float32,string) Symbol Table =====
+return		float32
+iafci	int	param
+ibfci	int	param
+fafci	float32	param
+fbfci	float32	param
+safci	string	param
+
+===== Function fcj(,int,float32,float32,bool) Symbol Table =====
+return		int
+iafcj	int	param
+ibfcj	int	param
+fafcj	float32	param
+fbfcj	float32	param
+bafcj	bool	param
+fcjia		int
+fcjib		int
+
+===== Function main() Symbol Table =====
+return		none
+mia		int
+mib		int
 

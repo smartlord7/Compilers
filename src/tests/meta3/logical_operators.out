@@ -1,25 +1,14 @@
-VarDecl
----- Var
-Float32
-Id(i)
-VarDecl
----- Var
-Int
-Id(f)
-VarDecl
----- Var
-Bool
-Id(s)
-VarDecl
----- Var
-String
-Id(b)
-FuncDecl
----- Func
-FuncHeader
 ===== Global Symbol Table =====
 i		float32
 f		int
 s		bool
 b		string
+main	()	none
+
+===== Function main() Symbol Table =====
+return		none
+i		int
+f		float32
+s		string
+b		bool
 

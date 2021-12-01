@@ -88,12 +88,14 @@ char * trim_value(char * original_value) {
 
 char * to_lower(char * src_string) {
     char * src = NULL;
+    int i;
 
-    src = (char *) malloc(strlen(src_string) * sizeof(char));
+    src = (char *) malloc((strlen(src_string) + 1) * sizeof(char));
 
-    for(int i = 0; i < strlen(src_string); i++) {
+    for(i = 0; i < strlen(src_string); i++) {
         src[i] = tolower((unsigned char) src_string[i]);
     }
+    src[i] = '\0';
 
     return src;
 }
