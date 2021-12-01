@@ -11,8 +11,17 @@
   <component name="ChangeListManager">
     <list default="true" id="78548c38-9559-4c6f-82e2-2c6fcb25f076" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gocompiler.l" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.l" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample.deigo" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample.deigo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/symbol_entry.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/symbol_entry.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/errors.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/errors.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/errors_nonefunccalls.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/errors_nonefunccalls.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/errors_parseargs.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/errors_parseargs.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/factorial.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/factorial.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/logical_operators.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/logical_operators.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/statements_expressions.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/statements_expressions.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/valid_program.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/valid_program.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/variable_func_assign_errors.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/variable_func_assign_errors.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/variable_func_symtab_aast.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/variable_func_symtab_aast.out" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,12 +76,12 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="ArrayList.test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Project" TARGET_NAME="ArrayList.test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project" RUN_TARGET_NAME="ArrayList.test">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArrayList.test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Project" TARGET_NAME="ArrayList.test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project" RUN_TARGET_NAME="ArrayList.test">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -166,7 +175,8 @@
       <workItem from="1638273130081" duration="2513000" />
       <workItem from="1638300746243" duration="173000" />
       <workItem from="1638307631161" duration="2205000" />
-      <workItem from="1638350331537" duration="1216000" />
+      <workItem from="1638350331537" duration="1644000" />
+      <workItem from="1638353095427" duration="769000" />
     </task>
     <servers />
   </component>

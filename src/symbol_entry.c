@@ -70,27 +70,21 @@ char * trim_value(char * original_value) {
     char * value, * aux;
     int i;
 
-    aux = (char *) malloc(strlen(original_value) * sizeof(char));
-    strncpy(aux, original_value, strlen(original_value));
+    while (original_value[0] != '(') {
+        original_value++;
+    }
+    aux = ++original_value;
 
     i = 0;
-    while (aux[i] != '(') {
+    while (original_value[0] != ')') {
+        original_value++;
         i++;
     }
-    i++;
-    aux = (aux + i);
 
-    i = strlen(aux);
-    while (aux[i] != ')') {
-        i--;
-    }
-    aux[i] = '\0';
-
-    value = (char *) malloc(i * sizeof(char));
+    value = (char *) malloc((i + 1) * sizeof(char));
     strncpy(value, aux, i);
+    value[i] = '\0';
 
-    aux = NULL;
-    free(aux);
     return value;
 }
 
