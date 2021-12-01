@@ -1,61 +1,61 @@
 ===== Global Symbol Table =====
 oneFunc	()	none
-twoFunc	()	none
-treeFunc	(,float32)	none
-fourFunc	(,float32,string)	none
-fiveFunc	(,float32,string,bool)	none
-sixFunc	()	int
-sevenFunc	(,float32)	float32
-eightFunc	(,float32,string)	string
-nineFunc	(,float32,string,bool)	bool
-tenFunc	()	int
-variable_func_declaratio!	()	none
+twoFunc	(int)	none
+treeFunc	(int,float32)	none
+fourFunc	(int,float32,string)	none
+fiveFunc	(int,float32,string,bool)	none
+sixFunc	(int)	int
+sevenFunc	(int,float32)	float32
+eightFunc	(int,float32,string)	string
+nineFunc	(int,float32,string,bool)	bool
+tenFunc	(int)	int
+variable_func_declarations	()	none
 
 ===== Function oneFunc() Symbol Table =====
 return		none
 
-===== Function twoFunc() Symbol Table =====
+===== Function twoFunc(int) Symbol Table =====
 return		none
 one	int	param
 
-===== Function treeFunc(,float32) Symbol Table =====
+===== Function treeFunc(int,float32) Symbol Table =====
 return		none
 one	int	param
 two	float32	param
 thisDoesNothingHere		float32
 
-===== Function fourFunc(,float32,string) Symbol Table =====
+===== Function fourFunc(int,float32,string) Symbol Table =====
 return		none
 one	int	param
 two	float32	param
 three	string	param
 
-===== Function fiveFunc(,float32,string,bool) Symbol Table =====
+===== Function fiveFunc(int,float32,string,bool) Symbol Table =====
 return		none
 one	int	param
 two	float32	param
 three	string	param
 four	bool	param
 
-===== Function sixFunc() Symbol Table =====
+===== Function sixFunc(int) Symbol Table =====
 return		int
 one	int	param
 oneInSixFunc		int
 
-===== Function sevenFunc(,float32) Symbol Table =====
+===== Function sevenFunc(int,float32) Symbol Table =====
 return		float32
 one	int	param
 two	float32	param
 oneTwoSevenFunc		float32
 twoTwoSevenFunc		float32
 
-===== Function eightFunc(,float32,string) Symbol Table =====
+===== Function eightFunc(int,float32,string) Symbol Table =====
 return		string
 one	int	param
 two	float32	param
 three	string	param
 
-===== Function nineFunc(,float32,string,bool) Symbol Table =====
+===== Function nineFunc(int,float32,string,bool) Symbol Table =====
 return		bool
 one	int	param
 two	float32	param
@@ -63,7 +63,7 @@ three	string	param
 four	bool	param
 oneThing		bool
 
-===== Function tenFunc() Symbol Table =====
+===== Function tenFunc(int) Symbol Table =====
 return		int
 one	int	param
 a		float32
@@ -72,7 +72,7 @@ c		float32
 d		float32
 j		int
 
-===== Function variable_func_declaratio!() Symbol Table =====
+===== Function variable_func_declarations() Symbol Table =====
 return		none
 stringThing		string
 

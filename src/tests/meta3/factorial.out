@@ -1,8 +1,8 @@
 ===== Global Symbol Table =====
-factorial	()	int
+factorial	(int)	int
 main	()	none
 
-===== Function factorial() Symbol Table =====
+===== Function factorial(int) Symbol Table =====
 return		int
 n	int	param
 

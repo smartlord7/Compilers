@@ -8,7 +8,7 @@
 symbol_table_t * init_table(char * name) {
 
     symbol_table_t * new_table = (symbol_table_t *) calloc(1, sizeof(symbol_table_t));
-    new_table->name = (char *) malloc(sizeof(name));
+    new_table->name = (char *) malloc((strlen(name) + 1) * sizeof(char));
     strcpy(new_table->name, name);
 
     return new_table;
@@ -147,8 +147,8 @@ char * get_func_args(symbol_table_t * table) {
     entry = table->entries;
     while (entry != NULL && strcasecmp(entry->return_type, "param") == 0) {
         if (first_append) {
-            args = (char *) malloc(sizeof(entry->arg_type));
-            str_append(args, entry->arg_type);
+            args = (char *) calloc(strlen((entry->arg_type) + 1) * sizeof(char));
+            strcpy(args, entry->arg_type);
             first_append = 0;
         } else {
             args = str_append(args, ",");
@@ -159,7 +159,9 @@ char * get_func_args(symbol_table_t * table) {
 
     if (args == NULL) {
         return "";
+
     }
+    args[strlen(args)] = '\0';
 
     return args;
 }

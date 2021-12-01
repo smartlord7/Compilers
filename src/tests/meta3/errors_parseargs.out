@@ -3,9 +3,9 @@ ci		float32
 rad		float32
 area		float32
 PI		float32
-main	()	none
+main	(bool)	none
 
-===== Function main() Symbol Table =====
+===== Function main(bool) Symbol Table =====
 return		none
 unused	bool	param
 i		int

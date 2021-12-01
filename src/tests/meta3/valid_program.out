@@ -21,10 +21,10 @@ fcb	()	int
 fcd	()	float32
 fce	()	string
 fcf	()	bool
-fcg	(,float32)	int
-fch	(,float32,string)	float32
-fci	(,int,float32,float32,string)	float32
-fcj	(,int,float32,float32,bool)	int
+fcg	(int,float32)	int
+fch	(int,float32,string)	float32
+fci	(int,int,float32,float32,string)	float32
+fcj	(int,int,float32,float32,bool)	int
 main	()	none
 
 ===== Function fca() Symbol Table =====
@@ -45,18 +45,18 @@ strfce		string
 return		bool
 bafcf		bool
 
-===== Function fcg(,float32) Symbol Table =====
+===== Function fcg(int,float32) Symbol Table =====
 return		int
 iafcg	int	param
 fafcg	float32	param
 
-===== Function fch(,float32,string) Symbol Table =====
+===== Function fch(int,float32,string) Symbol Table =====
 return		float32
 iafch	int	param
 fafch	float32	param
 safch	string	param
 
-===== Function fci(,int,float32,float32,string) Symbol Table =====
+===== Function fci(int,int,float32,float32,string) Symbol Table =====
 return		float32
 iafci	int	param
 ibfci	int	param
@@ -64,7 +64,7 @@ fafci	float32	param
 fbfci	float32	param
 safci	string	param
 
-===== Function fcj(,int,float32,float32,bool) Symbol Table =====
+===== Function fcj(int,int,float32,float32,bool) Symbol Table =====
 return		int
 iafcj	int	param
 ibfcj	int	param

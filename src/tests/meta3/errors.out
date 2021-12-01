@@ -8,7 +8,7 @@ main	()	none
 undef	()	none
 types	()	none
 g	()	none
-h	()	int
+h	(bool)	int
 
 ===== Function f() Symbol Table =====
 return		none
@@ -33,7 +33,7 @@ n		int
 ===== Function g() Symbol Table =====
 return		none
 
-===== Function h() Symbol Table =====
+===== Function h(bool) Symbol Table =====
 return		int
 q	bool	param
 

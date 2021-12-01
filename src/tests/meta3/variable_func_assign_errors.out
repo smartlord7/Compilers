@@ -5,7 +5,7 @@ globalVar_int	()	int
 function_2	()	none
 main	()	none
 function_1	()	none
-function_1	(,int)	none
+function_1	(int,int)	none
 globalVar_string		string
 global_var_bool		bool
 
@@ -27,7 +27,7 @@ main_string		string
 return		none
 localVar_1		float32
 
-===== Function function_1(,int) Symbol Table =====
+===== Function function_1(int,int) Symbol Table =====
 return		none
 a	int	param
 b	int	param
