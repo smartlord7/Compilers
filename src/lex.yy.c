@@ -2359,10 +2359,6 @@ char * handle_token(token_type tok_type) {
 		case ID_:
 			buf[buf_counter] = '\0';
 
-			//printf("\t\t\t\t\t%s\n", tok);
-
-			/* acho que não vou fazer a meta 4, já tenho montes de cenas para corrigir e a 3 para fazer, alone, não lhe vou oferecer colos*/
-
 			snprintf(buf2, buffer_size, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
 			if (verbose) {
 				printf("%s", buf2);
@@ -2444,7 +2440,6 @@ char * handle_token(token_type tok_type) {
 		case RPAR_:
 		case RSQ_:
 		case RBRACE_:
-		    // eligible_token = 1;
 
 		    if (verbose) {
                 printf("%s\n", token_types[tok_type]);

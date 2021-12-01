@@ -10,40 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78548c38-9559-4c6f-82e2-2c6fcb25f076" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/errors.dgo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/errors.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/errors_nonefunccalls.dgo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/errors_nonefunccalls.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/errors_parseargs.dgo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/errors_parseargs.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/expected_results/errors.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/expected_results/errors_nonefunccalls.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/expected_results/errors_parseargs.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/expected_results/factorial.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/expected_results/logical_operators.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/expected_results/statements_expressions.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/expected_results/valid_program.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/expected_results/variable_func_assign_errors.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/expected_results/variable_func_symtab_aast.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/factorial.dgo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/factorial.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/logical_operators.dgo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/logical_operators.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/statements_expressions.dgo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/statements_expressions.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/valid_program.dgo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/valid_program.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/variable_func_assign_errors.dgo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/variable_func_assign_errors.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/variable_func_symtab_aast.dgo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/meta3/variable_func_symtab_aast.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/run_semantics.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/run_semantics.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler.l" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.l" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample.deigo" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample.deigo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/symbol_entry.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/symbol_entry.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tables.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tables.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +166,7 @@
       <workItem from="1638273130081" duration="2513000" />
       <workItem from="1638300746243" duration="173000" />
       <workItem from="1638307631161" duration="2205000" />
-      <workItem from="1638350331537" duration="748000" />
+      <workItem from="1638350331537" duration="1216000" />
     </task>
     <servers />
   </component>
