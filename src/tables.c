@@ -245,6 +245,33 @@ void build_local_table(symbol_table_t * table, struct tree_node_t * table_root) 
     }
 }
 
+void sub_build_global_table(global_table_t * global_table, struct list_node_t * node) {
+    struct list_node_t * child = NULL, * grandchild = NULL;
+    symbol_table_t * new_table = NULL;
+    entry_t * new_var = NULL;
+    global_entry_t * new_entry = NULL;
+    var_data_t * aux_var = NULL;
+    char * var_name, * var_return_type, * func_name;
+
+    if (node == NULL) {
+        return;
+    }
+
+    printf("%s\n", node->data->id);
+
+    child = node->data->children->next;
+    while (child != NULL) {
+        sub_build_global_table(global_table, child);
+        child = child->next;
+    }
+
+    child = node->data->siblings->next;
+    while (child != NULL) {
+        sub_build_global_table(global_table, child);
+        child = child->next;
+    }
+}
+
 void build_global_table(global_table_t * global_table, struct tree_node_t * tree_root) {
     struct list_node_t * node = tree_root->children->next, * child = NULL, * grandchild = NULL;
     symbol_table_t * new_table = NULL;
@@ -257,6 +284,13 @@ void build_global_table(global_table_t * global_table, struct tree_node_t * tree
         return;
     }
 
+    child = tree_root->children->next;
+    while (child != NULL) {
+        sub_build_global_table(global_table, child);
+        child = child->next;
+    }
+
+    /*
     while (node != NULL) {
         switch (node->data->type) {
             case A_FUNC_DECL:
@@ -297,5 +331,5 @@ void build_global_table(global_table_t * global_table, struct tree_node_t * tree
         }
 
         node = node->data->siblings->next;
-    }
+    }*/
 }

@@ -1,4 +1,17 @@
+VarDecl
+Int
+Id(ia)
+VarDecl
+Int
+Id(ib)
+VarDecl
+Int
+Id(ic)
+VarDecl
+Int
+Id(id)
+VarDecl
+Int
+Id(ie)
 ===== Global Symbol Table =====
-ia		int
-ib		int
 
