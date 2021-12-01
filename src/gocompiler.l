@@ -10,8 +10,6 @@
 	#include "symbol_entry.h"
 	#include "tables.h"
 
-	#define YYSTYPE
-
 	#define show_error(err_type, curr_column) error(err_type, curr_column, yytext);
 
 	int	start = 0,
@@ -23,7 +21,9 @@
 		buf_counter = 0;
 	int flag = 0, semicolon_flag = 0, eligible_token = 0;
 	char * buf, * buf2;
-	global_table_t * my_global_table;
+	global_table_t * global_table;
+
+	struct tree_node_t * root = NULL;
 
 	static char * handle_token(token_type type);
 	static void auto_semicolon();
@@ -181,14 +181,17 @@ int main(int argc, char * argv[]) {
 		verbose = 1;
 	}
 
-	if(yyparse() == 0 && yacc_error == 0) {
+	if (yyparse() == 0 && yacc_error == 0) {
 	    if (argc > 1 && strcmp(argv[1], "-t") == 0) {
-			print_tree();
+			print_tree(root, 0);
 		}
     }
-    my_global_table = init_global_table();
-    build_global_table(my_global_table, root);
-    print_global_table(my_global_table);
+
+    global_table = init_global_table();
+    build_global_table(global_table, root);
+    print_global_table(global_table);
+    annotate_tree(root, global_table, NULL);
+    print_tree(root, 1);
 
 	return EXIT_SUCCESS;
 }

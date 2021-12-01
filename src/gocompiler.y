@@ -10,7 +10,7 @@ int yylex (void);
 void yyerror(char* s);
 
 int yydebug = 1;
-struct tree_node_t * root;
+extern struct tree_node_t * root;
 
 %}
 

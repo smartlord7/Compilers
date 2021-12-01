@@ -16,6 +16,8 @@ struct list_node_t {
     struct list_node_t * next;
 };
 
+typedef struct list_node_t list_node_t;
+
 struct list_node_t * push(struct list_node_t * head, struct tree_node_t * new_data);
 void print_list(struct list_node_t * head);
 

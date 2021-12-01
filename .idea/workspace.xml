@@ -13,7 +13,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78548c38-9559-4c6f-82e2-2c6fcb25f076" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/abstract_syntax_tree.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/abstract_syntax_tree.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abstract_syntax_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/abstract_syntax_tree.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tables.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tables.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tables.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/tables.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/errors.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/errors.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/errors_nonefunccalls.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/errors_nonefunccalls.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/errors_parseargs.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/errors_parseargs.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/factorial.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/factorial.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/logical_operators.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/logical_operators.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/statements_expressions.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/statements_expressions.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/valid_program.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/valid_program.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/variable_func_assign_errors.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/variable_func_assign_errors.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/meta3/variable_func_symtab_aast.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/variable_func_symtab_aast.out" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +74,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="structure.view.defaults.are.configured" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -222,7 +237,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/tables.h</url>
-          <line>57</line>
+          <line>49</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>

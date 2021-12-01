@@ -1,15 +1,17 @@
 #ifndef COMPILERS_ABSTRACT_SYNTAX_TREE_H
 #define COMPILERS_ABSTRACT_SYNTAX_TREE_H
 
-#include "linked_list.h"
+#include "tables.h"
 
-typedef enum {d_program, d_var_dec, d_func_dec} node_type_t;
+#define ANNOTATION_BOOL "bool"
+#define ANNOTATION_INT "int"
+#define ANNOTATION_FLOAT32 "float32"
+#define ANNOTATION_STRING "string"
 
-struct tree_node_t{
-    char * id, * annotation;
-    int type, level, line, column;
-    struct list_node_t * children, * siblings;
-};
+#define ANNOTATION_BOOL_F "(bool)"
+#define ANNOTATION_INT_F "(int)"
+#define ANNOTATION_FLOAT32_F "(float32)"
+#define ANNOTATION_STRING_F "(string)"
 
 typedef enum {
     A_PROGRAM,
@@ -53,11 +55,23 @@ typedef enum {
     A_STRLIT,
     A_INTLIT,
     A_REALLIT,
-} ast_node_types;
+} ast_node_type_t;
 
-struct tree_node_t * create_node(int type, char * id);
-extern struct tree_node_t * root;
+struct tree_node_t{
+    char * id, * annotation;
+    ast_node_type_t type;
+    int level, line, column;
+    struct list_node_t * children, * siblings;
+};
 
-void print_tree();
+typedef struct tree_node_t tree_node_t;
+
+typedef struct local_table_t local_table_t;
+typedef struct global_table_t global_table_t;
+typedef struct global_entry_t global_entry_t;
+
+extern struct tree_node_t * create_node(int type, char * id);
+extern void print_tree(struct tree_node_t * node, int is_annotated);
+extern void annotate_tree(struct tree_node_t * node, global_table_t * global_table, global_entry_t * global_entry);
 
 #endif //COMPILERS_ABSTRACT_SYNTAX_TREE_H

@@ -2,21 +2,19 @@
 #include <string.h>
 #include <stdio.h>
 #include "tables.h"
-#include "abstract_syntax_tree.h"
-#include "linked_list.h"
 
-symbol_table_t * init_table(char * name) {
+local_table_t * init_table(char * name) {
 
-    symbol_table_t * new_table = (symbol_table_t *) calloc(1, sizeof(symbol_table_t));
+    local_table_t * new_table = (local_table_t *) calloc(1, sizeof(local_table_t));
     new_table->name = (char *) malloc((strlen(name) + 1) * sizeof(char));
     strcpy(new_table->name, name);
 
     return new_table;
 }
 
-void push_entry(symbol_table_t * table, entry_t * entry) {
+void push_entry(local_table_t * table, entry_t * entry) {
 
-    if(table->entries == NULL) {
+    if (table->entries == NULL) {
         table->entries = entry;
         return;
     }
@@ -29,7 +27,7 @@ void push_entry(symbol_table_t * table, entry_t * entry) {
     tmp->next = entry;
 }
 
-void print_table(symbol_table_t * table) {
+void print_table(local_table_t * table) {
     printf("===== Function %s(%s) Symbol Table =====\n", table->name, get_func_args(table));
 
     if(table->return_ == NULL) {
@@ -46,7 +44,7 @@ void print_table(symbol_table_t * table) {
 
 }
 
-global_entry_t * init_global_entry(int type, symbol_table_t * table, entry_t * var) {
+global_entry_t * init_global_entry(int type, local_table_t * table, entry_t * var) {
     global_entry_t * new_global_entry = (global_entry_t *) malloc(sizeof(global_entry_t));
 
     new_global_entry->data = (global_entry_data_t *) malloc(sizeof(global_entry_data_t));
@@ -72,7 +70,7 @@ global_table_t * init_global_table(void) {
 
 void push_global_entry(global_table_t * global_table, global_entry_t * entry) {
 
-    if(global_table->entries == NULL) {
+    if (global_table->entries == NULL) {
         global_table->entries = entry;
         return;
     }
@@ -139,7 +137,7 @@ char * str_append(char * dest, char * src) {
     return tmp;
 }
 
-char * get_func_args(symbol_table_t * table) {
+char * get_func_args(local_table_t * table) {
     char * args = NULL;
     int first_append = 1;
     entry_t * entry = NULL;
@@ -166,7 +164,7 @@ char * get_func_args(symbol_table_t * table) {
     return args;
 }
 
-void sub_build_local_table(symbol_table_t * table, struct list_node_t * node, int build_phase) {
+void sub_build_local_table(local_table_t * table, struct list_node_t * node, int build_phase) {
     struct list_node_t * child = NULL;
     entry_t * new_entry = NULL;
     var_data_t * aux_var = NULL;
@@ -232,7 +230,7 @@ void sub_build_local_table(symbol_table_t * table, struct list_node_t * node, in
     }
 }
 
-void build_local_table(symbol_table_t * table, struct tree_node_t * table_root) {
+void build_local_table(local_table_t * table, struct tree_node_t * table_root) {
     struct list_node_t * node = NULL;
 
     node = table_root->children->next;
@@ -244,7 +242,7 @@ void build_local_table(symbol_table_t * table, struct tree_node_t * table_root) 
 
 void sub_build_global_table(global_table_t * global_table, struct list_node_t * node) {
     struct list_node_t * child = NULL, * grandchild = NULL;
-    symbol_table_t * new_table = NULL;
+    local_table_t * new_table = NULL;
     entry_t * new_var = NULL;
     global_entry_t * new_entry = NULL;
     var_data_t * aux_var = NULL;
@@ -323,4 +321,8 @@ void build_global_table(global_table_t * global_table, struct tree_node_t * tree
         sub_build_global_table(global_table, child);
         child = child->next;
     }
+}
+
+local_table_t * find_function_table(global_table_t * global_table) {
+
 }
