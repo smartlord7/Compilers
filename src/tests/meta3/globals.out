@@ -1,17 +1,27 @@
 VarDecl
+---- Var
 Int
 Id(ia)
 VarDecl
+---- Var
 Int
 Id(ib)
 VarDecl
+---- Var
 Int
 Id(ic)
 VarDecl
+---- Var
 Int
 Id(id)
 VarDecl
+---- Var
 Int
 Id(ie)
 ===== Global Symbol Table =====
+ia		int
+ib		int
+ic		int
+id		int
+ie		int
 

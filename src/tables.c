@@ -259,6 +259,34 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
 
     printf("%s\n", node->data->id);
 
+    switch (node->data->type) {
+        case A_FUNC_DECL:
+            printf("---- Func\n");
+
+            child = node->data->children->next;
+
+            break;
+        case A_VAR_DECL:
+            printf("---- Var\n");
+
+            var_name = NULL;
+            var_return_type = NULL;
+
+            aux_var = init_var_data(node);
+            var_return_type = aux_var->var_type;
+            var_name = aux_var->var_name;
+
+            new_var = init_entry(var_name, var_return_type, NULL);
+
+            new_entry = init_global_entry(GLOBAL_VAR_, NULL, new_var);
+
+            push_global_entry(global_table, new_entry);
+
+            break;
+        default:
+            return;
+    }
+
     child = node->data->children->next;
     while (child != NULL) {
         sub_build_global_table(global_table, child);

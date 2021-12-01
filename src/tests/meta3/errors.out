@@ -1,114 +1,38 @@
 VarDecl
+---- Var
 Float32
 Id(a)
 VarDecl
+---- Var
 Int
 Id(i)
 VarDecl
+---- Var
 Bool
 Id(i)
 FuncDecl
+---- Func
 FuncHeader
-Id(f)
-FuncParams
-FuncBody
-Call
-Id(g)
-Call
-Id(h)
 FuncDecl
+---- Func
 FuncHeader
-Id(f)
-FuncParams
-FuncBody
 FuncDecl
+---- Func
 FuncHeader
-Id(main)
-FuncParams
-FuncBody
-VarDecl
-Int
-Id(x)
-VarDecl
-Int
-Id(y)
-VarDecl
-Bool
-Id(b)
-Assign
-Id(b)
-And
-IntLit(1)
-IntLit(1)
-Assign
-Id(i)
-Add
-Id(i)
-IntLit(007)
-Call
-Id(h)
-Call
-Id(h)
-Not
-Id(i)
-Assign
-Id(x)
-RealLit(1.0)
-For
-Id(x)
-Block
-If
-Id(x)
-Block
-Call
-Id(h)
-Add
-Id(a)
-Id(x)
-Return
-NO
-Block
-NO
 FuncDecl
+---- Func
 FuncHeader
-Id(undef)
-FuncParams
-FuncBody
-For
-Lt
-IntLit(1)
-Id(undeclared)
-Block
-NO
 FuncDecl
+---- Func
 FuncHeader
-Id(types)
-FuncParams
-FuncBody
-VarDecl
-Float32
-Id(x)
-VarDecl
-Int
-Id(n)
-Assign
-Id(x)
-Add
-Id(n)
-Id(x)
 FuncDecl
+---- Func
 FuncHeader
-Id(g)
-FuncParams
-FuncBody
 FuncDecl
+---- Func
 FuncHeader
-Id(h)
-Int
-FuncParams
-ParamDecl
-Bool
-Id(q)
-FuncBody
 ===== Global Symbol Table =====
+a		float32
+i		int
+i		bool
 

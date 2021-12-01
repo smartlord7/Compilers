@@ -1,96 +1,37 @@
 VarDecl
+---- Var
 Int
 Id(globalVar_int)
 VarDecl
+---- Var
 Float32
 Id(globalVar_float32)
 FuncDecl
+---- Func
 FuncHeader
-Id(globalVar_int)
-Int
-FuncParams
-FuncBody
-VarDecl
-Int
-Id(_globalVar_int)
-VarDecl
-String
-Id(_globalVar_string)
-VarDecl
-Bool
-Id(globalVar_float32)
-VarDecl
-Bool
-Id(_globalVar_bool)
-Assign
-Id(globalVar_float32)
-Id(_globalVar_string)
-Return
-Id(_globalVar_int)
 FuncDecl
+---- Func
 FuncHeader
-Id(function_2)
-FuncParams
-FuncBody
 FuncDecl
+---- Func
 FuncHeader
-Id(main)
-FuncParams
-FuncBody
-VarDecl
-String
-Id(main_string)
-Call
-Id(function_1)
-IntLit(12)
-IntLit(13)
-Call
-Id(function_1)
-Call
-Id(function_2)
-Call
-Id(function_2)
-IntLit(123)
-Id(main_string)
 FuncDecl
+---- Func
 FuncHeader
-Id(function_1)
-FuncParams
-FuncBody
-VarDecl
-Float32
-Id(localVar_1)
-Assign
-Id(localVar_1)
-Id(globalVar_int)
 FuncDecl
+---- Func
 FuncHeader
-Id(function_1)
-FuncParams
-ParamDecl
-Int
-Id(a)
-ParamDecl
-Int
-Id(b)
-FuncBody
 VarDecl
-Int
-Id(localVar_1)
-VarDecl
-Float32
-Id(localVar_2)
-Assign
-Id(localVar_1)
-Id(globalVar_float32)
-Assign
-Id(localVar_2)
-Id(globalVar_int)
-VarDecl
+---- Var
 String
 Id(globalVar_string)
 VarDecl
+---- Var
 Bool
 Id(global_var_bool)
 ===== Global Symbol Table =====
+globalVar_int		int
+globalVar_float32		float32
+globalVar_string		string
+global_var_bool		bool
 
