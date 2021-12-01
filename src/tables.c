@@ -147,7 +147,7 @@ char * get_func_args(symbol_table_t * table) {
     entry = table->entries;
     while (entry != NULL && strcasecmp(entry->return_type, "param") == 0) {
         if (first_append) {
-            args = (char *) calloc(strlen((entry->arg_type) + 1) * sizeof(char));
+            args = (char *) malloc(strlen((entry->arg_type) + 1) * sizeof(char));
             strcpy(args, entry->arg_type);
             first_append = 0;
         } else {
