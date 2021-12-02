@@ -12,7 +12,20 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78548c38-9559-4c6f-82e2-2c6fcb25f076" name="Default Changelist" comment="" />
+    <list default="true" id="78548c38-9559-4c6f-82e2-2c6fcb25f076" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/data_types.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data_types.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abstract_syntax_tree.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/abstract_syntax_tree.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample.deigo" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample.deigo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/symbol_entry.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/symbol_entry.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/symbol_entry.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/symbol_entry.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tables.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tables.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/y.output" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/y.tab.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/y.tab.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/y.tab.h" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

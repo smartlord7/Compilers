@@ -251,6 +251,8 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             break;
 
         case A_ADD:
+        case A_SUB:
+        case A_PLUS:
         case A_MINUS:
         case A_MUL:
         case A_DIV:

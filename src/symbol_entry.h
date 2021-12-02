@@ -1,22 +1,8 @@
-
-//
-// Created by joao on 24/11/21.
-//
-
 #ifndef COMPILERS_SYMBOL_ENTRY_H
 #define COMPILERS_SYMBOL_ENTRY_H
 
 #include "linked_list.h"
-
-enum data_type_t{
-    D_INT,
-    D_BOOL,
-    D_FLOAT32,
-    D_STRING,
-    D_NONE,
-    D_PARAM,
-};
-typedef enum data_type_t data_type_t;
+#include "data_types.h"
 
 extern char * data_type_text_t[];
 

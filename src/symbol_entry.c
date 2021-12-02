@@ -1,8 +1,5 @@
-//
-// Created by joao on 24/11/21.
-//
-
 #include "symbol_entry.h"
+#include "data_types.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>

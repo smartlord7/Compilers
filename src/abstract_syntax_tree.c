@@ -38,7 +38,6 @@ void print_ast_node(struct tree_node_t * node, int level, int is_annotated) {
     }
 
     printf("\n");
-
 }
 
 void sub_print_tree(struct list_node_t * to_print, int level, int is_annotated) {

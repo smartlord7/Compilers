@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.7.6.  */
+/* A Bison parser, made by GNU Bison 3.5.1.  */
 
 /* Bison interface for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software Foundation,
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2020 Free Software Foundation,
    Inc.
 
    This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -31,9 +31,8 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
-   especially those whose name start with YY_ or yy_.  They are
-   private implementation details that can be changed or removed.  */
+/* Undocumented macros, especially those whose name start with YY_,
+   are private implementation details.  Do not rely on them.  */
 
 #ifndef YY_YY_Y_TAB_H_INCLUDED
 # define YY_YY_Y_TAB_H_INCLUDED
@@ -45,66 +44,57 @@
 extern int yydebug;
 #endif
 
-/* Token kinds.  */
+/* Token type.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
   enum yytokentype
   {
-    YYEMPTY = -2,
-    YYEOF = 0,                     /* "end of file"  */
-    YYerror = 256,                 /* error  */
-    YYUNDEF = 257,                 /* "invalid token"  */
-    PACKAGE = 258,                 /* PACKAGE  */
-    ID = 259,                      /* ID  */
-    SEMICOLON = 260,               /* SEMICOLON  */
-    VAR = 261,                     /* VAR  */
-    LPAR = 262,                    /* LPAR  */
-    RPAR = 263,                    /* RPAR  */
-    COMMA = 264,                   /* COMMA  */
-    INT = 265,                     /* INT  */
-    FLOAT32 = 266,                 /* FLOAT32  */
-    BOOL = 267,                    /* BOOL  */
-    STRING = 268,                  /* STRING  */
-    RBRACE = 269,                  /* RBRACE  */
-    LBRACE = 270,                  /* LBRACE  */
-    ASSIGN = 271,                  /* ASSIGN  */
-    IF = 272,                      /* IF  */
-    ELSE = 273,                    /* ELSE  */
-    RETURN = 274,                  /* RETURN  */
-    FOR = 275,                     /* FOR  */
-    PRINT = 276,                   /* PRINT  */
-    STRLIT = 277,                  /* STRLIT  */
-    BLANKID = 278,                 /* BLANKID  */
-    PARSEINT = 279,                /* PARSEINT  */
-    CMDARGS = 280,                 /* CMDARGS  */
-    LSQ = 281,                     /* LSQ  */
-    RSQ = 282,                     /* RSQ  */
-    OR = 283,                      /* OR  */
-    AND = 284,                     /* AND  */
-    LT = 285,                      /* LT  */
-    GT = 286,                      /* GT  */
-    EQ = 287,                      /* EQ  */
-    NE = 288,                      /* NE  */
-    LE = 289,                      /* LE  */
-    GE = 290,                      /* GE  */
-    PLUS = 291,                    /* PLUS  */
-    MINUS = 292,                   /* MINUS  */
-    STAR = 293,                    /* STAR  */
-    DIV = 294,                     /* DIV  */
-    MOD = 295,                     /* MOD  */
-    NOT = 296,                     /* NOT  */
-    INTLIT = 297,                  /* INTLIT  */
-    REALLIT = 298,                 /* REALLIT  */
-    FUNC = 299,                    /* FUNC  */
-    UNARY = 300                    /* UNARY  */
+    PACKAGE = 258,
+    ID = 259,
+    SEMICOLON = 260,
+    VAR = 261,
+    LPAR = 262,
+    RPAR = 263,
+    COMMA = 264,
+    INT = 265,
+    FLOAT32 = 266,
+    BOOL = 267,
+    STRING = 268,
+    RBRACE = 269,
+    LBRACE = 270,
+    ASSIGN = 271,
+    IF = 272,
+    ELSE = 273,
+    RETURN = 274,
+    FOR = 275,
+    PRINT = 276,
+    STRLIT = 277,
+    BLANKID = 278,
+    PARSEINT = 279,
+    CMDARGS = 280,
+    LSQ = 281,
+    RSQ = 282,
+    OR = 283,
+    AND = 284,
+    LT = 285,
+    GT = 286,
+    EQ = 287,
+    NE = 288,
+    LE = 289,
+    GE = 290,
+    PLUS = 291,
+    MINUS = 292,
+    STAR = 293,
+    DIV = 294,
+    MOD = 295,
+    NOT = 296,
+    INTLIT = 297,
+    REALLIT = 298,
+    FUNC = 299,
+    UNARY = 300
   };
-  typedef enum yytokentype yytoken_kind_t;
 #endif
-/* Token kinds.  */
-#define YYEMPTY -2
-#define YYEOF 0
-#define YYerror 256
-#define YYUNDEF 257
+/* Tokens.  */
 #define PACKAGE 258
 #define ID 259
 #define SEMICOLON 260
@@ -159,7 +149,7 @@ union YYSTYPE
 	int line, column;
 	struct tree_node_t * tree_node;
 
-#line 163 "y.tab.h"
+#line 153 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
