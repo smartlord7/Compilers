@@ -8,21 +8,13 @@
 
 #include "linked_list.h"
 
-struct entry_t {
-    char * name, * return_type, * arg_type;
-    int used;
-    struct entry_t * next;
-};
-
-typedef struct entry_t entry_t;
-
-entry_t * init_entry(char * name, char * return_type, char * arg_type);
-
 typedef enum {
     D_INT,
     D_BOOL,
     D_FLOAT32,
     D_STRING,
+    D_NONE,
+    D_PARAM,
 } data_type_t;
 
 extern char * data_type_text_t[];
@@ -35,6 +27,15 @@ typedef enum {
     FUNC_VAR_ENTRY_,
 } entry_types;
 
+struct entry_t {
+    char * name;
+    data_type_t return_type, arg_type;
+    int used;
+    struct entry_t * next;
+};
+
+typedef struct entry_t entry_t;
+
 typedef struct {
     char * var_name;
     char * var_type;
@@ -42,6 +43,7 @@ typedef struct {
 
 typedef struct list_node_t list_node_t;
 
+extern entry_t * init_entry(char * name, data_type_t return_type, data_type_t arg_type);
 extern var_data_t * init_var_data(list_node_t * container);
 extern void print_entry(int type, entry_t * entry);
 extern char * trim_value(char * original_value);

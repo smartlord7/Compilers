@@ -98,7 +98,7 @@ void print_global_table(global_table_t * global_table) {
                 if(tmp->data->table->return_ == NULL) {
                     printf("%s\t(%s)\tnone\n", tmp->data->table->name, func_args);
                 } else {
-                    printf("%s\t(%s)\t%s\n", tmp->data->table->name, func_args, tmp->data->table->return_->return_type);
+                    printf("%s\t(%s)\t%s\n", tmp->data->table->name, func_args, data_type_text_t[tmp->data->table->return_->return_type]);
                 }
 
                 break;
@@ -145,14 +145,14 @@ char * get_func_args(local_table_t * table) {
     entry_t * entry = NULL;
 
     entry = table->entries;
-    while (entry != NULL && strcasecmp(entry->return_type, "param") == 0) {
+    while (entry != NULL && entry->return_type == D_PARAM) {
         if (first_append) {
-            args = (char *) malloc(strlen((entry->arg_type) + 1) * sizeof(char));
-            strcpy(args, entry->arg_type);
+            args = (char *) malloc(strlen(data_type_text_t[(entry->arg_type)] + 1) * sizeof(char));
+            strcpy(args, data_type_text_t[entry->arg_type]);
             first_append = 0;
         } else {
             args = str_append(args, ",");
-            args = str_append(args, entry->arg_type);
+            args = str_append(args, data_type_text_t[entry->arg_type]);
         }
         entry = entry->next;
     }
@@ -176,48 +176,65 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
         case A_FUNC_PARAMS:
             build_phase = T_FUNC_PARAM;
             break;
+
         case A_FUNC_BODY:
             build_phase = T_FUNC_BODY;
             break;
+
         case A_INT:
             if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", data_type_text_t[D_INT], NULL);
+                table->return_ = init_entry("return", D_INT, D_NONE);
             }
             break;
+
         case A_FLOAT32:
             if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", data_type_text_t[D_FLOAT32], NULL);
+                table->return_ = init_entry("return", D_FLOAT32, D_NONE);
             }
             break;
+
         case A_BOOL:
             if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", data_type_text_t[D_BOOL], NULL);
+                table->return_ = init_entry("return", D_BOOL, D_NONE);
             }
             break;
+
         case A_STRING:
             if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", data_type_text_t[D_STRING], NULL);
+                table->return_ = init_entry("return", D_STRING, D_NONE);
             }
             break;
-        case A_PARAM_DECL:
 
+        case A_PARAM_DECL:
             aux_var = init_var_data(node);
             type = aux_var->var_type;
             name = aux_var->var_name;
 
-            new_entry = init_entry(name, "param", type);
+            int var_type = 0;
+            while (strcmp(type, data_type_text_t[var_type]) != 0) {
+                var_type++;
+            }
+
+            new_entry = init_entry(name, D_PARAM, (data_type_t) var_type);
             push_entry(table, new_entry);
             break;
+
         case A_VAR_DECL:
             aux_var = init_var_data(node);
             type = aux_var->var_type;
             name = aux_var->var_name;
 
+            var_type = 0;
+            while (strcmp(type, data_type_text_t[var_type]) != 0) {
+                var_type++;
+            }
+
             check_var_existence(global_table, table, name,SYMBOL_DECL);
 
-            new_entry = init_entry(name, type, "");
+            new_entry = init_entry(name, (data_type_t) var_type, D_NONE);
             push_entry(table, new_entry);
             break;
+
         case A_EQ:
         case A_NE:
         case A_LT:
@@ -230,6 +247,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             //TODO: check children types
             node->data->annotation = ANNOTATION_BOOL;
             break;
+
         case A_ADD:
         case A_MINUS:
         case A_MUL:
@@ -241,15 +259,27 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             }*/
 
             break;
+
         case A_STRLIT:
             node->data->annotation = ANNOTATION_STRING;
             break;
+
         case A_INTLIT:
             node->data->annotation = ANNOTATION_INT;
             break;
+
         case A_REALLIT:
             node->data->annotation = ANNOTATION_FLOAT32;
             break;
+        case A_CALL:
+            flag = 1;
+            break;
+        case A_ID:
+            if (flag) {
+
+                flag = 0;
+            }
+
         default:
             break;
     }
@@ -260,13 +290,13 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
         child = child->next;
     }
 
+    flag = 0;
+
     child = node->data->siblings->next;
     while (child != NULL) {
         sub_build_local_table(global_table, table, child, build_phase, flag);
         child = child->next;
     }
-
-    flag = 0;
 }
 
 void build_local_table(global_table_t * global_table, local_table_t * table, struct tree_node_t * table_root) {
@@ -328,9 +358,14 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
             var_return_type = aux_var->var_type;
             var_name = aux_var->var_name;
 
+            int var_type = 0;
+            while (strcmp(var_return_type, data_type_text_t[var_type]) != 0) {
+                var_type++;
+            }
+
             check_var_existence(global_table, NULL, var_name, SYMBOL_DECL);
 
-            new_var = init_entry(var_name, var_return_type, NULL);
+            new_var = init_entry(var_name, (data_type_t) var_type, D_NONE);
 
             new_entry = init_global_entry(GLOBAL_VAR_, NULL, new_var);
 
