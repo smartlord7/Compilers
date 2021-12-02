@@ -17,7 +17,7 @@ char * data_type_text_t[] = {
 entry_t * init_entry(char * name, data_type_t return_type, data_type_t arg_type) {
     entry_t * new_entry = (entry_t *) calloc(1, sizeof(entry_t));
 
-    new_entry->name = (char *) malloc(sizeof(name));
+    new_entry->name = (char *) calloc(1,sizeof(name));
     strcpy(new_entry->name, name);
 
     new_entry->return_type = return_type;

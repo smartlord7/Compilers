@@ -37,11 +37,11 @@ Program
 ......FuncParams
 ....FuncBody
 ......Call
-........Id(g)
+........Id(g) - (int,int)
 ........IntLit(1) - int
 ........IntLit(1) - int
 ......Call
-........Id(g)
+........Id(g) - (int,int)
 ........IntLit(1) - int
 ........Call
-..........Id(f)
+..........Id(f) - ()

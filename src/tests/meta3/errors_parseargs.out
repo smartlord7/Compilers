@@ -46,73 +46,73 @@ Program
 ......VarDecl
 ........Bool
 ........Id(b)
-......ParseArgs
-........Id(f)
-........Id(f)
-......ParseArgs
-........Id(f)
-........Id(i)
-......ParseArgs
-........Id(i)
-........Id(f)
-......ParseArgs
-........Id(i)
-........Id(i)
+......ParseArgs - float32
+........Id(f) - float32
+........Id(f) - float32
+......ParseArgs - float32
+........Id(f) - float32
+........Id(i) - int
+......ParseArgs - int
+........Id(i) - int
+........Id(f) - float32
+......ParseArgs - int
+........Id(i) - int
+........Id(i) - int
 ......Print
-........Id(f)
+........Id(f) - float32
 ......Print
+........Id(i) - int
+......Print
+........Id(s) - string
+......Print
+........Id(b) - bool
+......Assign
 ........Id(i)
-......Print
-........Id(s)
-......Print
+........Add
+..........Id(i) - int
+..........Id(f) - float32
+......Assign
+........Id(i)
+........Add
+..........Id(f) - float32
+..........Id(i) - int
+......Assign
+........Id(i)
+........Add
+..........Id(f) - float32
+..........Id(f) - float32
+......Assign
+........Id(i)
+........Add
+..........Id(b) - bool
+..........Id(b) - bool
+......Assign
 ........Id(b)
-......Assign
-........Id(i)
 ........Add
-..........Id(i)
-..........Id(f)
-......Assign
-........Id(i)
-........Add
-..........Id(f)
-..........Id(i)
-......Assign
-........Id(i)
-........Add
-..........Id(f)
-..........Id(f)
-......Assign
-........Id(i)
-........Add
-..........Id(b)
-..........Id(b)
-......Assign
-........Id(b)
-........Add
-..........Id(b)
-..........Id(b)
+..........Id(b) - bool
+..........Id(b) - bool
 ......Assign
 ........Id(b)
 ........Gt - bool
-..........Id(b)
-..........Id(b)
+..........Id(b) - bool
+..........Id(b) - bool
 ......Assign
 ........Id(b)
 ........Le - bool
-..........Id(b)
-..........Id(b)
+..........Id(b) - bool
+..........Id(b) - bool
 ......Assign
 ........Id(b)
 ........Eq - bool
-..........Id(b)
-..........Id(b)
+..........Id(b) - bool
+..........Id(b) - bool
 ......Assign
 ........Id(b)
 ........Ne - bool
-..........Id(b)
-..........Id(b)
+..........Id(b) - bool
+..........Id(b) - bool
 ......Assign
 ........Id(i)
 ........Add
-..........Id(s)
-..........Id(s)
+..........Id(s) - string
+..........Id(s) - string

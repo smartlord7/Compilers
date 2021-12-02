@@ -2376,7 +2376,6 @@ int main(int argc, char * argv[]) {
         print_global_table(global_table);
         print_tree(root, 1);
     }
-
 	return EXIT_SUCCESS;
 }
 

@@ -166,13 +166,13 @@ char * get_func_args(local_table_t * table) {
     return args;
 }
 
-void sub_build_local_table(global_table_t * global_table, local_table_t * table, struct list_node_t * node, table_phase_t build_phase, int flag) {
+void sub_build_local_table(global_table_t * global_table, local_table_t * table, struct list_node_t * node, table_phase_t build_phase, symbol_father_t flag) {
     struct list_node_t * child = NULL;
-    entry_t * new_entry = NULL;
-    var_data_t * aux_var = NULL;
-    data_type_t data_type = 0;
+    entry_t * new_entry = NULL, * aux_entry = NULL;
+    local_table_t * aux_table = NULL;
+    var_data_t * aux_var_data = NULL;
     symbol_check_t feedback = 0;
-    char * name = NULL, * type = NULL;
+    char * name = NULL, * type = NULL, * value = NULL;
 
     switch (node->data->type) {
         case A_FUNC_PARAMS:
@@ -208,9 +208,11 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             break;
 
         case A_PARAM_DECL:
-            aux_var = init_var_data(node);
-            type = aux_var->var_type;
-            name = aux_var->var_name;
+            flag = FATHER_PARAM_DECL;
+
+            aux_var_data = init_var_data(node);
+            type = aux_var_data->var_type;
+            name = aux_var_data->var_name;
 
             int var_type = 0;
             while (strcmp(type, data_type_text_t[var_type]) != 0) {
@@ -222,16 +224,18 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             break;
 
         case A_VAR_DECL:
-            aux_var = init_var_data(node);
-            type = aux_var->var_type;
-            name = aux_var->var_name;
+            flag = FATHER_VAR_DECL;
+
+            aux_var_data = init_var_data(node);
+            type = aux_var_data->var_type;
+            name = aux_var_data->var_name;
 
             var_type = 0;
             while (strcmp(type, data_type_text_t[var_type]) != 0) {
                 var_type++;
             }
 
-            feedback = get_var(global_table, table, name,SYMBOL_DECL, &data_type);
+            aux_entry = get_var(global_table, table, name,SYMBOL_DECL, &feedback);
 
             new_entry = init_entry(name, (data_type_t) var_type, D_NONE);
             push_entry(table, new_entry);
@@ -257,6 +261,9 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
         case A_MUL:
         case A_DIV:
         case A_MOD:
+
+
+
             //TODO: check children types
             /*switch (node->data->children->next->type) {
 
@@ -275,13 +282,71 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
         case A_REALLIT:
             node->data->annotation = ANNOTATION_FLOAT32;
             break;
-        case A_CALL:
-            flag = 1;
-            break;
-        case A_ID:
-            if (flag) {
 
-                flag = 0;
+        case A_CALL:
+            flag = FATHER_CALL;
+
+            child = node->data->children->next;
+            value = trim_value(child->data->id);
+            aux_table = get_func(global_table, value, SYMBOL_USAGE, &feedback);
+
+            if(feedback == SYMBOL_FOUND) {
+                if(aux_table->return_ != NULL) {
+                    node->data->annotation = data_type_text_t[aux_table->return_->arg_type - 4];
+                }
+            } else {
+                //TODO Add error scenario
+            }
+
+            break;
+
+        case A_PARSE_ARGS:
+            flag = FATHER_CALL;
+
+            child = node->data->children->next;
+            value = trim_value(child->data->id);
+            aux_entry = get_var(global_table,table, value, SYMBOL_USAGE, &feedback);
+
+            if(feedback == SYMBOL_FOUND) {
+                if(aux_entry->return_type != D_NONE) {
+                    node->data->annotation = data_type_text_t[aux_entry->return_type];
+                }
+
+            } else {
+                //TODO Add error scenario
+            }
+
+        case A_ID:
+            value = trim_value(node->data->id);
+
+            if (flag == FATHER_CALL) {
+                aux_table = get_func(global_table, value, SYMBOL_USAGE, &feedback);
+
+                if(feedback == SYMBOL_FOUND) {
+
+                    value = (char *) malloc((strlen("(") + 1) * sizeof(char));
+                    strcpy(value, "(");
+                    value = str_append(value, get_func_args(aux_table));
+                    value = str_append(value, ")");
+
+                    node->data->annotation = value;
+                } else if(feedback == SYMBOL_NOT_FOUND) {
+
+                }
+
+                flag = FATHER_VOID;
+            } else if(flag == FATHER_VOID){
+                aux_entry = get_var(global_table, table, value, SYMBOL_USAGE, &feedback);
+
+                if(feedback == SYMBOL_FOUND) {
+                    if(strcmp(data_type_text_t[aux_entry->return_type], "param") == 0) {
+                        node->data->annotation = data_type_text_t[aux_entry->arg_type];
+                    } else {
+                        node->data->annotation = data_type_text_t[aux_entry->return_type];
+                    }
+
+                }
+
             }
 
         default:
@@ -291,10 +356,13 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
     child = node->data->children->next;
     while (child != NULL) {
         sub_build_local_table(global_table, table, child, build_phase, flag);
+        if(flag == FATHER_CALL) {
+            flag = FATHER_VOID;
+        }
         child = child->next;
     }
 
-    flag = 0;
+    flag = FATHER_VOID;
 
     child = node->data->siblings->next;
     while (child != NULL) {
@@ -318,8 +386,7 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
     local_table_t * new_table = NULL;
     entry_t * new_var = NULL;
     global_entry_t * new_entry = NULL;
-    var_data_t * aux_var = NULL;
-    data_type_t data_type = 0;
+    var_data_t * aux_var_data = NULL;
     symbol_check_t feedback = 0;
     char * var_name, * var_return_type, * func_name;
 
@@ -340,12 +407,16 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
                         grandchild = child->data->children->next;
                         func_name = trim_value(grandchild->data->id);
 
-                        feedback = get_func(global_table, func_name, SYMBOL_DECL, &data_type);
+                        get_func(global_table, func_name, SYMBOL_DECL, &feedback);
 
-                        new_table = init_table(func_name);
-                        build_local_table(global_table, new_table, node->data);
-                        new_entry = init_global_entry(TABLE_, new_table, NULL);
-                        push_global_entry(global_table, new_entry);
+                        if(feedback == SYMBOL_NOT_FOUND) {
+                            new_table = init_table(func_name);
+                            new_entry = init_global_entry(TABLE_, new_table, NULL);
+                            push_global_entry(global_table, new_entry);
+                            build_local_table(global_table, new_table, node->data);
+                        } else if(feedback == SYMBOL_REPEATED) {
+                            printf("function repeated\n");
+                        }
 
                         break;
                     default:
@@ -360,22 +431,24 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
             var_name = NULL;
             var_return_type = NULL;
 
-            aux_var = init_var_data(node);
-            var_return_type = aux_var->var_type;
-            var_name = aux_var->var_name;
+            aux_var_data = init_var_data(node);
+            var_return_type = aux_var_data->var_type;
+            var_name = aux_var_data->var_name;
 
             int var_type = 0;
             while (strcmp(var_return_type, data_type_text_t[var_type]) != 0) {
                 var_type++;
             }
 
-            feedback = get_var(global_table, NULL, var_name, SYMBOL_DECL, &data_type);
+            get_var(global_table, NULL, var_name, SYMBOL_DECL, &feedback);
 
-            new_var = init_entry(var_name, (data_type_t) var_type, D_NONE);
+            if(feedback == SYMBOL_NOT_FOUND) {
+                new_var = init_entry(var_name, (data_type_t) var_type, D_NONE);
+                new_entry = init_global_entry(GLOBAL_VAR_, NULL, new_var);
+                push_global_entry(global_table, new_entry);
 
-            new_entry = init_global_entry(GLOBAL_VAR_, NULL, new_var);
-
-            push_global_entry(global_table, new_entry);
+            } else if(feedback == SYMBOL_REPEATED) {
+            }
 
             break;
         default:
@@ -409,9 +482,10 @@ void build_global_table(global_table_t * global_table, struct tree_node_t * tree
     }
 }
 
-symbol_check_t get_var(global_table_t * global_table, local_table_t * local_table, char * var_name, symbol_check_mode_t mode, data_type_t * type) {
+entry_t * get_var(global_table_t * global_table, local_table_t * local_table, char * var_name, symbol_check_mode_t mode, symbol_check_t * feedback) {
     global_entry_t * global_entry = NULL;
     entry_t * local_entry = NULL;
+    * feedback = SYMBOL_NOT_FOUND;
 
     if(local_table != NULL) {
         local_entry = local_table->entries;
@@ -420,12 +494,13 @@ symbol_check_t get_var(global_table_t * global_table, local_table_t * local_tabl
             if(strcmp(local_entry->name, var_name) == 0) {
 
                 if(mode == SYMBOL_DECL) {
-                    return SYMBOL_REPEATED;
+                    * feedback = SYMBOL_REPEATED;
+                    return NULL;
 
                 } else if (mode == SYMBOL_USAGE) {
                     local_entry->used = 1;
-                    * type = local_entry->return_type;
-                    return SYMBOL_FOUND;
+                    * feedback = SYMBOL_FOUND;
+                    return local_entry;
                 }
             }
 
@@ -438,8 +513,8 @@ symbol_check_t get_var(global_table_t * global_table, local_table_t * local_tabl
 
                 if (global_entry->type == GLOBAL_VAR_ && strcmp(global_entry->data->var->name, var_name) == 0) {
                     global_entry->used = 1;
-                    * type = global_entry->data->table->return_->return_type;
-                    return SYMBOL_FOUND;
+                    * feedback = SYMBOL_FOUND;
+                    return global_entry->data->var;
                 }
 
                 global_entry = global_entry->next;
@@ -451,34 +526,37 @@ symbol_check_t get_var(global_table_t * global_table, local_table_t * local_tabl
         while (global_entry != NULL) {
 
             if(global_entry->type == GLOBAL_VAR_ && strcmp(global_entry->data->var->name, var_name) == 0) {
-                return SYMBOL_REPEATED;
+                * feedback = SYMBOL_REPEATED;
+                return NULL;
             }
 
             global_entry = global_entry->next;
         }
     }
 
-    return SYMBOL_NOT_FOUND;
+    return NULL;
 }
 
-symbol_check_t get_func(global_table_t * global_table, char * func_name, symbol_check_mode_t mode, data_type_t * type) {
+local_table_t * get_func(global_table_t * global_table, char * func_name, symbol_check_mode_t mode, symbol_check_t * feedback) {
     global_entry_t * global_entry = NULL;
+    * feedback = SYMBOL_NOT_FOUND;
 
     global_entry = global_table->entries;
     while (global_entry != NULL) {
 
         if(global_entry->type == TABLE_ && strcmp(global_entry->data->table->name, func_name) == 0) {
             if(mode == SYMBOL_DECL) {
-                return SYMBOL_REPEATED;
+                * feedback = SYMBOL_REPEATED;
+                return NULL;
             } else if (mode == SYMBOL_USAGE) {
                 global_entry->used = 1;
-                * type = global_entry->data->table->return_->return_type;
-                return SYMBOL_FOUND;
+                * feedback = SYMBOL_FOUND;
+                return global_entry->data->table;
             }
         }
 
         global_entry = global_entry->next;
     }
 
-    return SYMBOL_NOT_FOUND;
+    return NULL;
 }

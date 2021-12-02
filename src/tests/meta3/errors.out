@@ -1,19 +1,13 @@
-->found repeating symbol in global scope
-->found repeating function in global scope
+function repeated
 ===== Global Symbol Table =====
 a		float32
 i		int
-i		bool
-f	()	none
 f	()	none
 main	()	none
 undef	()	none
 types	()	none
 g	()	none
 h	(bool)	int
-
-===== Function f() Symbol Table =====
-return		none
 
 ===== Function f() Symbol Table =====
 return		none
@@ -85,28 +79,28 @@ Program
 ......Assign
 ........Id(i)
 ........Add
-..........Id(i)
+..........Id(i) - int
 ..........IntLit(007) - int
 ......Call
 ........Id(h)
 ......Call
 ........Id(h)
 ........Not - bool
-..........Id(i)
+..........Id(i) - int
 ......Assign
 ........Id(x)
 ........RealLit(1.0) - float32
 ......For
-........Id(x)
+........Id(x) - int
 ........Block
 ..........If
-............Id(x)
+............Id(x) - int
 ............Block
 ..............Call
 ................Id(h)
 ................Add
-..................Id(a)
-..................Id(x)
+..................Id(a) - float32
+..................Id(x) - int
 ..............Return
 ............Block
 ..FuncDecl
@@ -133,8 +127,8 @@ Program
 ......Assign
 ........Id(x)
 ........Add
-..........Id(n)
-..........Id(x)
+..........Id(n) - int
+..........Id(x) - float32
 ..FuncDecl
 ....FuncHeader
 ......Id(g)

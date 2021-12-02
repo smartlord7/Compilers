@@ -106,15 +106,15 @@ Program
 ........Id(thisDoesNothingHere)
 ......For
 ........Le - bool
-..........Id(one)
+..........Id(one) - int
 ..........IntLit(123) - int
 ........Block
 ..........Assign
 ............Id(thisDoesNothingHere)
 ............Add
 ..............Add
-................Id(thisDoesNothingHere)
-................Id(two)
+................Id(thisDoesNothingHere) - float32
+................Id(two) - float32
 ..............RealLit(.010e3) - float32
 ..........Assign
 ............Id(one)
@@ -122,10 +122,10 @@ Program
 ..............Add
 ................Add
 ..................Add
-....................Id(one)
-....................Id(one)
-..................Id(one)
-................Id(one)
+....................Id(one) - int
+....................Id(one) - int
+..................Id(one) - int
+................Id(one) - int
 ..............IntLit(1) - int
 ..FuncDecl
 ....FuncHeader
@@ -172,9 +172,9 @@ Program
 ........Id(oneInSixFunc)
 ......Assign
 ........Id(oneInSixFunc)
-........Id(one)
+........Id(one) - int
 ......Return
-........Id(oneInSixFunc)
+........Id(oneInSixFunc) - int
 ..FuncDecl
 ....FuncHeader
 ......Id(sevenFunc)
@@ -199,18 +199,18 @@ Program
 ......Assign
 ........Id(twoTwoSevenFunc)
 ........Add
-..........Id(two)
-..........Id(oneTwoSevenFunc)
+..........Id(two) - float32
+..........Id(oneTwoSevenFunc) - float32
 ......If
 ........Eq - bool
-..........Id(one)
+..........Id(one) - int
 ..........IntLit(1) - int
 ........Block
 ..........Return
-............Id(twoTwoSevenFunc)
+............Id(twoTwoSevenFunc) - float32
 ........Block
 ......Return
-........Id(oneTwoSevenFunc)
+........Id(oneTwoSevenFunc) - float32
 ..FuncDecl
 ....FuncHeader
 ......Id(eightFunc)
@@ -227,7 +227,7 @@ Program
 ..........Id(three)
 ....FuncBody
 ......Return
-........Id(three)
+........Id(three) - string
 ..FuncDecl
 ....FuncHeader
 ......Id(nineFunc)
@@ -250,13 +250,13 @@ Program
 ........Bool
 ........Id(oneThing)
 ......If
-........Id(four)
+........Id(four) - bool
 ........Block
 ..........Return
-............Id(four)
+............Id(four) - bool
 ........Block
 ......Return
-........Id(oneThing)
+........Id(oneThing) - bool
 ..FuncDecl
 ....FuncHeader
 ......Id(tenFunc)
@@ -285,7 +285,7 @@ Program
 ........Id(j)
 ........Add
 ..........IntLit(6) - int
-..........Id(one)
+..........Id(one) - int
 ......Assign
 ........Id(a)
 ........RealLit(.01) - float32
@@ -293,40 +293,40 @@ Program
 ........Id(b)
 ........Add
 ..........RealLit(.123) - float32
-..........Id(a)
+..........Id(a) - float32
 ......Assign
 ........Id(c)
 ........Add
-..........Id(b)
-..........Id(a)
+..........Id(b) - float32
+..........Id(a) - float32
 ......Assign
 ........Id(a)
-........Id(c)
+........Id(c) - float32
 ......Assign
 ........Id(d)
 ........Add
-..........Id(a)
-..........Id(b)
+..........Id(a) - float32
+..........Id(b) - float32
 ......Assign
 ........Id(a)
-........Id(d)
+........Id(d) - float32
 ......Assign
 ........Id(d)
 ........Add
-..........Id(a)
-..........Call
-............Id(sevenFunc)
-............Id(j)
-............Id(a)
+..........Id(a) - float32
+..........Call - int
+............Id(sevenFunc) - (int,float32)
+............Id(j) - int
+............Id(a) - float32
 ......Call
-........Id(twoFunc)
-........Id(j)
+........Id(twoFunc) - (int)
+........Id(j) - int
 ......Call
-........Id(treeFunc)
-........Id(j)
-........Id(a)
+........Id(treeFunc) - (int,float32)
+........Id(j) - int
+........Id(a) - float32
 ......Return
-........Id(j)
+........Id(j) - int
 ..FuncDecl
 ....FuncHeader
 ......Id(variable_func_declarations)
@@ -336,43 +336,43 @@ Program
 ........String
 ........Id(stringThing)
 ......Call
-........Id(oneFunc)
+........Id(oneFunc) - ()
 ......Call
-........Id(twoFunc)
-........Call
-..........Id(sixFunc)
+........Id(twoFunc) - (int)
+........Call - int
+..........Id(sixFunc) - (int)
 ..........IntLit(1) - int
 ......Call
-........Id(treeFunc)
+........Id(treeFunc) - (int,float32)
 ........IntLit(1) - int
 ........RealLit(.123) - float32
 ......Call
-........Id(fourFunc)
-........Call
-..........Id(sixFunc)
+........Id(fourFunc) - (int,float32,string)
+........Call - int
+..........Id(sixFunc) - (int)
 ..........IntLit(1) - int
 ........RealLit(.321) - float32
-........Id(stringThing)
+........Id(stringThing) - string
 ......Call
-........Id(fiveFunc)
+........Id(fiveFunc) - (int,float32,string,bool)
 ........IntLit(1) - int
 ........RealLit(.2) - float32
-........Id(stringThing)
+........Id(stringThing) - string
 ........Gt - bool
 ..........IntLit(1) - int
 ..........IntLit(2) - int
-......Call
-........Id(sixFunc)
+......Call - int
+........Id(sixFunc) - (int)
 ........IntLit(1) - int
-......Call
-........Id(eightFunc)
+......Call - int
+........Id(eightFunc) - (int,float32,string)
 ........IntLit(1) - int
 ........RealLit(.1) - float32
-........Id(stringThing)
-......Call
-........Id(sevenFunc)
+........Id(stringThing) - string
+......Call - int
+........Id(sevenFunc) - (int,float32)
 ........IntLit(1) - int
 ........RealLit(.2) - float32
-......Call
-........Id(tenFunc)
+......Call - int
+........Id(tenFunc) - (int)
 ........IntLit(1) - int

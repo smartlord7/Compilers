@@ -1,4 +1,4 @@
-->found repeating function in global scope
+function repeated
 ===== Global Symbol Table =====
 globalVar_int		int
 globalVar_float32		float32
@@ -6,7 +6,6 @@ globalVar_int	()	int
 function_2	()	none
 main	()	none
 function_1	()	none
-function_1	(int,int)	none
 globalVar_string		string
 global_var_bool		bool
 
@@ -28,13 +27,6 @@ main_string		string
 return		none
 localVar_1		float32
 
-===== Function function_1(int,int) Symbol Table =====
-return		none
-a	int	param
-b	int	param
-localVar_1		int
-localVar_2		float32
-
 Program
 ..VarDecl
 ....Int
@@ -44,7 +36,7 @@ Program
 ....Id(globalVar_float32)
 ..FuncDecl
 ....FuncHeader
-......Id(globalVar_int)
+......Id(globalVar_int) - int
 ......Int
 ......FuncParams
 ....FuncBody
@@ -62,9 +54,9 @@ Program
 ........Id(_globalVar_bool)
 ......Assign
 ........Id(globalVar_float32)
-........Id(_globalVar_string)
+........Id(_globalVar_string) - string
 ......Return
-........Id(_globalVar_int)
+........Id(_globalVar_int) - int
 ..FuncDecl
 ....FuncHeader
 ......Id(function_2)
@@ -85,11 +77,11 @@ Program
 ......Call
 ........Id(function_1)
 ......Call
-........Id(function_2)
+........Id(function_2) - ()
 ......Call
-........Id(function_2)
+........Id(function_2) - ()
 ........IntLit(123) - int
-........Id(main_string)
+........Id(main_string) - string
 ..FuncDecl
 ....FuncHeader
 ......Id(function_1)
@@ -100,7 +92,7 @@ Program
 ........Id(localVar_1)
 ......Assign
 ........Id(localVar_1)
-........Id(globalVar_int)
+........Id(globalVar_int) - int
 ..FuncDecl
 ....FuncHeader
 ......Id(function_1)
