@@ -8,14 +8,15 @@
 
 #include "linked_list.h"
 
-typedef enum {
+enum data_type_t{
     D_INT,
     D_BOOL,
     D_FLOAT32,
     D_STRING,
     D_NONE,
     D_PARAM,
-} data_type_t;
+};
+typedef enum data_type_t data_type_t;
 
 extern char * data_type_text_t[];
 

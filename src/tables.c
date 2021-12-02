@@ -170,6 +170,8 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
     struct list_node_t * child = NULL;
     entry_t * new_entry = NULL;
     var_data_t * aux_var = NULL;
+    data_type_t data_type = 0;
+    symbol_check_t feedback = 0;
     char * name = NULL, * type = NULL;
 
     switch (node->data->type) {
@@ -229,7 +231,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                 var_type++;
             }
 
-            check_var_existence(global_table, table, name,SYMBOL_DECL);
+            feedback = get_var(global_table, table, name,SYMBOL_DECL, &data_type);
 
             new_entry = init_entry(name, (data_type_t) var_type, D_NONE);
             push_entry(table, new_entry);
@@ -315,6 +317,8 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
     entry_t * new_var = NULL;
     global_entry_t * new_entry = NULL;
     var_data_t * aux_var = NULL;
+    data_type_t data_type = 0;
+    symbol_check_t feedback = 0;
     char * var_name, * var_return_type, * func_name;
 
     if (node == NULL) {
@@ -334,7 +338,7 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
                         grandchild = child->data->children->next;
                         func_name = trim_value(grandchild->data->id);
 
-                        check_func_existence(global_table, func_name, SYMBOL_DECL);
+                        feedback = get_func(global_table, func_name, SYMBOL_DECL, &data_type);
 
                         new_table = init_table(func_name);
                         build_local_table(global_table, new_table, node->data);
@@ -363,7 +367,7 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
                 var_type++;
             }
 
-            check_var_existence(global_table, NULL, var_name, SYMBOL_DECL);
+            feedback = get_var(global_table, NULL, var_name, SYMBOL_DECL, &data_type);
 
             new_var = init_entry(var_name, (data_type_t) var_type, D_NONE);
 
@@ -403,12 +407,11 @@ void build_global_table(global_table_t * global_table, struct tree_node_t * tree
     }
 }
 
-symbol_check_t check_var_existence(global_table_t * global_table, local_table_t * local_table, char * var_name, symbol_check_mode_t mode) {
+symbol_check_t get_var(global_table_t * global_table, local_table_t * local_table, char * var_name, symbol_check_mode_t mode, data_type_t * type) {
     global_entry_t * global_entry = NULL;
     entry_t * local_entry = NULL;
 
     if(local_table != NULL) {
-
         local_entry = local_table->entries;
         while (local_entry != NULL) {
 
@@ -420,6 +423,7 @@ symbol_check_t check_var_existence(global_table_t * global_table, local_table_t 
 
                 } else if (mode == SYMBOL_USAGE) {
                     local_entry->used = 1;
+                    * type = local_entry->return_type;
                     return SYMBOL_FOUND;
                 }
             }
@@ -434,6 +438,7 @@ symbol_check_t check_var_existence(global_table_t * global_table, local_table_t 
                 if (global_entry->type == GLOBAL_VAR_ && strcmp(global_entry->data->var->name, var_name) == 0) {
                     printf("->found symbol in global scope\n");
                     global_entry->used = 1;
+                    * type = global_entry->data->table->return_->return_type;
                     return SYMBOL_FOUND;
                 }
 
@@ -442,7 +447,6 @@ symbol_check_t check_var_existence(global_table_t * global_table, local_table_t 
         }
 
     } else {
-
         global_entry = global_table->entries;
         while (global_entry != NULL) {
 
@@ -458,7 +462,7 @@ symbol_check_t check_var_existence(global_table_t * global_table, local_table_t 
     return SYMBOL_NOT_FOUND;
 }
 
-symbol_check_t check_func_existence(global_table_t * global_table, char * func_name, symbol_check_mode_t mode) {
+symbol_check_t get_func(global_table_t * global_table, char * func_name, symbol_check_mode_t mode, data_type_t * type) {
     global_entry_t * global_entry = NULL;
 
     global_entry = global_table->entries;
@@ -470,6 +474,7 @@ symbol_check_t check_func_existence(global_table_t * global_table, char * func_n
                 return SYMBOL_REPEATED;
             } else if (mode == SYMBOL_USAGE) {
                 global_entry->used = 1;
+                * type = global_entry->data->table->return_->return_type;
                 return SYMBOL_FOUND;
             }
         }

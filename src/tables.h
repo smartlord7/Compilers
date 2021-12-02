@@ -5,7 +5,6 @@
 #ifndef COMPILERS_SYMBOL_TABLE_H
 #define COMPILERS_SYMBOL_TABLE_H
 
-#include "abstract_syntax_tree.h"
 #include "symbol_entry.h"
 
 typedef struct entry_t entry_t;
@@ -63,6 +62,7 @@ struct global_table_t {
 
 typedef struct global_table_t global_table_t;
 typedef struct tree_node_t tree_node_t;
+typedef enum data_type_t data_type_t;
 
 extern local_table_t * init_table(char * name);
 extern void push_entry(local_table_t * table, entry_t * entry);
@@ -76,7 +76,7 @@ extern global_table_t * init_global_table(void);
 extern void push_global_entry(global_table_t * global_table, global_entry_t * entry);
 extern void print_global_table(global_table_t * global_table);
 extern void build_global_table(global_table_t * global_table, tree_node_t * tree_root);
-extern symbol_check_t check_var_existence(global_table_t * global_table, local_table_t * local_table, char * var_name, symbol_check_mode_t mode);
-extern symbol_check_t check_func_existence(global_table_t * global_table, char * func_name, symbol_check_mode_t mode);
+extern symbol_check_t get_var(global_table_t * global_table, local_table_t * local_table, char * var_name, symbol_check_mode_t mode, data_type_t * type);
+extern symbol_check_t get_func(global_table_t * global_table, char * func_name, symbol_check_mode_t mode, data_type_t * type);
 
 #endif //COMPILERS_SYMBOL_TABLE_H
