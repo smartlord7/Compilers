@@ -10,6 +10,7 @@
 
 struct entry_t {
     char * name, * return_type, * arg_type;
+    int used;
     struct entry_t * next;
 };
 

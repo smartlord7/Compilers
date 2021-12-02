@@ -42,8 +42,9 @@ typedef struct global_entry_data_t global_entry_data_t;
 
 struct global_entry_t {
     global_entry_data_t * data;
-    struct global_entry_t * next;
     global_entry_type type;
+    int used;
+    struct global_entry_t * next;
 };
 
 typedef struct local_table_t local_table_t;

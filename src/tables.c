@@ -45,7 +45,7 @@ void print_table(local_table_t * table) {
 }
 
 global_entry_t * init_global_entry(int type, local_table_t * table, entry_t * var) {
-    global_entry_t * new_global_entry = (global_entry_t *) malloc(sizeof(global_entry_t));
+    global_entry_t * new_global_entry = (global_entry_t *) calloc(1, sizeof(global_entry_t));
 
     new_global_entry->data = (global_entry_data_t *) malloc(sizeof(global_entry_data_t));
 
@@ -351,6 +351,7 @@ symbol_check_t check_var_existence(global_table_t * global_table, local_table_t 
                     return SYMBOL_REPEATED;
 
                 } else if (mode == SYMBOL_USAGE) {
+                    local_entry->used = 1;
                     return SYMBOL_FOUND;
                 }
             }
@@ -364,6 +365,7 @@ symbol_check_t check_var_existence(global_table_t * global_table, local_table_t 
 
                 if (global_entry->type == GLOBAL_VAR_ && strcmp(global_entry->data->var->name, var_name) == 0) {
                     printf("->found symbol in global scope\n");
+                    global_entry->used = 1;
                     return SYMBOL_FOUND;
                 }
 
@@ -399,6 +401,7 @@ symbol_check_t check_func_existence(global_table_t * global_table, char * func_n
                 printf("->found repeating function in global scope\n");
                 return SYMBOL_REPEATED;
             } else if (mode == SYMBOL_USAGE) {
+                global_entry->used = 1;
                 return SYMBOL_FOUND;
             }
         }
