@@ -13,7 +13,7 @@
 #define ANNOTATION_FLOAT32_F "(float32)"
 #define ANNOTATION_STRING_F "(string)"
 
-typedef enum {
+ enum ast_node_type_t {
     A_PROGRAM,
     A_FUNC_DECL,
     A_VAR_DECL,
@@ -37,6 +37,7 @@ typedef enum {
     A_CALL,
     A_OR,
     A_AND,
+    A_NOT,
     A_LT,
     A_GT,
     A_LE,
@@ -48,14 +49,15 @@ typedef enum {
     A_MUL,
     A_DIV,
     A_MOD,
-    A_NOT,
     A_PLUS,
     A_MINUS,
     A_PROB_BLOCK,
     A_STRLIT,
     A_INTLIT,
     A_REALLIT,
-} ast_node_type_t;
+};
+
+typedef enum ast_node_type_t ast_node_type_t;
 
 struct tree_node_t{
     char * id, * annotation;
@@ -65,7 +67,6 @@ struct tree_node_t{
 };
 
 typedef struct tree_node_t tree_node_t;
-
 typedef struct local_table_t local_table_t;
 typedef struct global_table_t global_table_t;
 typedef struct global_entry_t global_entry_t;

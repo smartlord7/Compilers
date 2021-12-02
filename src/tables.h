@@ -1,11 +1,8 @@
-//
-// Created by joao on 24/11/21.
-//
-
 #ifndef COMPILERS_SYMBOL_TABLE_H
 #define COMPILERS_SYMBOL_TABLE_H
 
 #include "symbol_entry.h"
+#include "data_types.h"
 
 typedef struct entry_t entry_t;
 

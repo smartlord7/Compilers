@@ -12,7 +12,9 @@ typedef enum {
     NULL_RETURN_ENTRY_,
     FUNC_RETURN_ENTRY_,
     FUNC_VAR_ENTRY_,
-} entry_types;
+} entry_type;
+
+typedef enum data_type_t data_type_t;
 
 struct entry_t {
     char * name;
@@ -20,7 +22,6 @@ struct entry_t {
     int used;
     struct entry_t * next;
 };
-
 typedef struct entry_t entry_t;
 
 typedef struct {
