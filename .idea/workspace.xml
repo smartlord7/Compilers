@@ -12,23 +12,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78548c38-9559-4c6f-82e2-2c6fcb25f076" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/abstract_syntax_tree.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/abstract_syntax_tree.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/abstract_syntax_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/abstract_syntax_tree.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tables.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tables.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tables.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/tables.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/meta3/errors.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/errors.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/meta3/errors_nonefunccalls.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/errors_nonefunccalls.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/meta3/errors_parseargs.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/errors_parseargs.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/meta3/factorial.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/factorial.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/meta3/logical_operators.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/logical_operators.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/meta3/statements_expressions.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/statements_expressions.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/meta3/valid_program.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/valid_program.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/meta3/variable_func_assign_errors.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/variable_func_assign_errors.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/meta3/variable_func_symtab_aast.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/variable_func_symtab_aast.out" afterDir="false" />
-    </list>
+    <list default="true" id="78548c38-9559-4c6f-82e2-2c6fcb25f076" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +52,7 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/yacc_test_cases" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -182,6 +166,9 @@
       <workItem from="1638370988850" duration="673000" />
       <workItem from="1638372224795" duration="7000" />
       <workItem from="1638373201729" duration="6000" />
+      <workItem from="1638444679870" duration="825000" />
+      <workItem from="1638445814079" duration="136000" />
+      <workItem from="1638451372988" duration="5726000" />
     </task>
     <servers />
   </component>
@@ -234,11 +221,6 @@
           <url>file://$PROJECT_DIR$/src/data_structures/array_list.c</url>
           <line>5</line>
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/tables.h</url>
-          <line>49</line>
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

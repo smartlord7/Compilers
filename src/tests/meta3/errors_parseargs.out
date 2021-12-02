@@ -26,7 +26,7 @@ Program
 ..VarDecl
 ....Float32
 ....Id(PI)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(main)
 ......FuncParams

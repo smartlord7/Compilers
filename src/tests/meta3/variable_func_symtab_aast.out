@@ -77,12 +77,12 @@ return		none
 stringThing		string
 
 Program
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(oneFunc)
 ......FuncParams
 ....FuncBody
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(twoFunc)
 ......FuncParams
@@ -90,7 +90,7 @@ Program
 ..........Int
 ..........Id(one)
 ....FuncBody
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(treeFunc)
 ......FuncParams
@@ -127,7 +127,7 @@ Program
 ..................Id(one)
 ................Id(one)
 ..............IntLit(1)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(fourFunc)
 ......FuncParams
@@ -141,7 +141,7 @@ Program
 ..........String
 ..........Id(three)
 ....FuncBody
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(fiveFunc)
 ......FuncParams
@@ -158,7 +158,7 @@ Program
 ..........Bool
 ..........Id(four)
 ....FuncBody
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(sixFunc)
 ......Int
@@ -175,7 +175,7 @@ Program
 ........Id(one)
 ......Return
 ........Id(oneInSixFunc)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(sevenFunc)
 ......Float32
@@ -211,7 +211,7 @@ Program
 ........Block
 ......Return
 ........Id(oneTwoSevenFunc)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(eightFunc)
 ......String
@@ -228,7 +228,7 @@ Program
 ....FuncBody
 ......Return
 ........Id(three)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(nineFunc)
 ......Bool
@@ -257,7 +257,7 @@ Program
 ........Block
 ......Return
 ........Id(oneThing)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(tenFunc)
 ......Int
@@ -327,7 +327,7 @@ Program
 ........Id(a)
 ......Return
 ........Id(j)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(variable_func_declarations)
 ......FuncParams

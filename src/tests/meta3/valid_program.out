@@ -131,12 +131,12 @@ Program
 ..VarDecl
 ....String
 ....Id(sc)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(fca)
 ......FuncParams
 ....FuncBody
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(fcb)
 ......Int
@@ -150,7 +150,7 @@ Program
 ........IntLit(132)
 ......Return
 ........Id(fafcb)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(fcd)
 ......Float32
@@ -160,7 +160,7 @@ Program
 ........Add
 ..........RealLit(.1e1)
 ..........RealLit(0.007)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(fce)
 ......String
@@ -171,7 +171,7 @@ Program
 ........Id(strfce)
 ......Return
 ........Id(strfce)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(fcf)
 ......Bool
@@ -182,7 +182,7 @@ Program
 ........Id(bafcf)
 ......Return
 ........Id(bafcf)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(fcg)
 ......Int
@@ -208,7 +208,7 @@ Program
 ......Return
 ........Call
 ..........Id(fcb)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(fch)
 ......Float32
@@ -251,7 +251,7 @@ Program
 ........Block
 ......Return
 ........RealLit(.01)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(fci)
 ......Float32
@@ -318,7 +318,7 @@ Program
 ..........Return
 ............Call
 ..............Id(fcd)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(fcj)
 ......Int
@@ -443,7 +443,7 @@ Program
 ......Return
 ........Minus
 ..........IntLit(101)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(main)
 ......FuncParams

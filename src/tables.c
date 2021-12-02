@@ -119,6 +119,8 @@ void print_global_table(global_table_t * global_table) {
                 print_table(tmp->data->table);
                 printf("\n");
                 break;
+            default:
+                break;
         }
 
         tmp = tmp->next;
@@ -164,7 +166,7 @@ char * get_func_args(local_table_t * table) {
     return args;
 }
 
-void sub_build_local_table(local_table_t * table, struct list_node_t * node, int build_phase) {
+void sub_build_local_table(global_table_t * global_table, local_table_t * table, struct list_node_t * node, int build_phase) {
     struct list_node_t * child = NULL;
     entry_t * new_entry = NULL;
     var_data_t * aux_var = NULL;
@@ -212,30 +214,34 @@ void sub_build_local_table(local_table_t * table, struct list_node_t * node, int
             type = aux_var->var_type;
             name = aux_var->var_name;
 
+            check_var_existence(global_table, table, name,SYMBOL_DECL);
+
             new_entry = init_entry(name, type, "");
             push_entry(table, new_entry);
+            break;
+        default:
             break;
     }
 
     child = node->data->children->next;
     while (child != NULL) {
-        sub_build_local_table(table, child, build_phase);
+        sub_build_local_table(global_table, table, child, build_phase);
         child = child->next;
     }
 
     child = node->data->siblings->next;
     while (child != NULL) {
-        sub_build_local_table(table, child, build_phase);
+        sub_build_local_table(global_table, table, child, build_phase);
         child = child->next;
     }
 }
 
-void build_local_table(local_table_t * table, struct tree_node_t * table_root) {
+void build_local_table(global_table_t * global_table, local_table_t * table, struct tree_node_t * table_root) {
     struct list_node_t * node = NULL;
 
     node = table_root->children->next;
     while (node != NULL) {
-        sub_build_local_table(table, node, T_FUNC_HEADER);
+        sub_build_local_table(global_table, table, node, T_FUNC_HEADER);
         node = node->next;
     }
 }
@@ -264,11 +270,16 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
 
                         grandchild = child->data->children->next;
                         func_name = trim_value(grandchild->data->id);
+
+                        check_func_existence(global_table, func_name, SYMBOL_DECL);
+
                         new_table = init_table(func_name);
-                        build_local_table(new_table, node->data);
+                        build_local_table(global_table, new_table, node->data);
                         new_entry = init_global_entry(TABLE_, new_table, NULL);
                         push_global_entry(global_table, new_entry);
 
+                        break;
+                    default:
                         break;
                 }
 
@@ -277,13 +288,14 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
 
             break;
         case A_VAR_DECL:
-
             var_name = NULL;
             var_return_type = NULL;
 
             aux_var = init_var_data(node);
             var_return_type = aux_var->var_type;
             var_name = aux_var->var_name;
+
+            check_var_existence(global_table, NULL, var_name, SYMBOL_DECL);
 
             new_var = init_entry(var_name, var_return_type, NULL);
 
@@ -323,6 +335,76 @@ void build_global_table(global_table_t * global_table, struct tree_node_t * tree
     }
 }
 
-local_table_t * find_function_table(global_table_t * global_table) {
+symbol_check_t check_var_existence(global_table_t * global_table, local_table_t * local_table, char * var_name, symbol_check_mode_t mode) {
+    global_entry_t * global_entry = NULL;
+    entry_t * local_entry = NULL;
 
+    if(local_table != NULL) {
+
+        local_entry = local_table->entries;
+        while (local_entry != NULL) {
+
+            if(strcmp(local_entry->name, var_name) == 0) {
+
+                if(mode == SYMBOL_DECL) {
+                    printf("->found repeating symbol in local scope\n");
+                    return SYMBOL_REPEATED;
+
+                } else if (mode == SYMBOL_USAGE) {
+                    return SYMBOL_FOUND;
+                }
+            }
+
+            local_entry = local_entry->next;
+        }
+
+        if(mode == SYMBOL_USAGE) {
+            global_entry = global_table->entries;
+            while (global_entry != NULL) {
+
+                if (global_entry->type == GLOBAL_VAR_ && strcmp(global_entry->data->var->name, var_name) == 0) {
+                    printf("->found symbol in global scope\n");
+                    return SYMBOL_FOUND;
+                }
+
+                global_entry = global_entry->next;
+            }
+        }
+
+    } else {
+
+        global_entry = global_table->entries;
+        while (global_entry != NULL) {
+
+            if(global_entry->type == GLOBAL_VAR_ && strcmp(global_entry->data->var->name, var_name) == 0) {
+                printf("->found repeating symbol in global scope\n");
+                return SYMBOL_REPEATED;
+            }
+
+            global_entry = global_entry->next;
+        }
+    }
+
+    return SYMBOL_NOT_FOUND;
+}
+
+symbol_check_t check_func_existence(global_table_t * global_table, char * func_name, symbol_check_mode_t mode) {
+    global_entry_t * global_entry = NULL;
+
+    global_entry = global_table->entries;
+    while (global_entry != NULL) {
+
+        if(global_entry->type == TABLE_ && strcmp(global_entry->data->table->name, func_name) == 0) {
+            if(mode == SYMBOL_DECL) {
+                printf("->found repeating function in global scope\n");
+                return SYMBOL_REPEATED;
+            } else if (mode == SYMBOL_USAGE) {
+                return SYMBOL_FOUND;
+            }
+        }
+
+        global_entry = global_entry->next;
+    }
+
+    return SYMBOL_NOT_FOUND;
 }

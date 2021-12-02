@@ -1,3 +1,4 @@
+->found repeating symbol in local scope
 ===== Global Symbol Table =====
 func__	(int,float32)	none
 func1	(int,int,float32,float32)	float32
@@ -51,7 +52,7 @@ l		bool
 toBe		bool
 
 Program
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(func__)
 ......FuncParams
@@ -64,7 +65,7 @@ Program
 ....FuncBody
 ......Return
 ........IntLit(1)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(func1)
 ......Float32
@@ -87,7 +88,7 @@ Program
 ........Id(integer)
 ......Return
 ........Id(integer)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(func2)
 ......Int
@@ -96,7 +97,7 @@ Program
 ..........String
 ..........Id(a)
 ....FuncBody
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(func3)
 ......Int
@@ -107,7 +108,7 @@ Program
 ....FuncBody
 ......Return
 ........IntLit(1)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(func4)
 ......Float32
@@ -127,7 +128,7 @@ Program
 ........Id(a)
 ......Return
 ........Id(a)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(main)
 ......FuncParams

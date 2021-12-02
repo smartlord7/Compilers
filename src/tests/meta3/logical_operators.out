@@ -25,7 +25,7 @@ Program
 ..VarDecl
 ....String
 ....Id(b)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(main)
 ......FuncParams

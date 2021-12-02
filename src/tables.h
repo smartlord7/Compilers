@@ -27,6 +27,17 @@ typedef enum {
     GLOBAL_VAR_,
 } global_entry_type;
 
+typedef enum {
+    SYMBOL_NOT_FOUND,
+    SYMBOL_FOUND,
+    SYMBOL_REPEATED,
+} symbol_check_t;
+
+typedef enum {
+    SYMBOL_DECL,
+    SYMBOL_USAGE,
+} symbol_check_mode_t;
+
 typedef struct global_entry_data_t global_entry_data_t;
 
 struct global_entry_t {
@@ -64,5 +75,7 @@ extern global_table_t * init_global_table(void);
 extern void push_global_entry(global_table_t * global_table, global_entry_t * entry);
 extern void print_global_table(global_table_t * global_table);
 extern void build_global_table(global_table_t * global_table, tree_node_t * tree_root);
+extern symbol_check_t check_var_existence(global_table_t * global_table, local_table_t * local_table, char * var_name, symbol_check_mode_t mode);
+extern symbol_check_t check_func_existence(global_table_t * global_table, char * func_name, symbol_check_mode_t mode);
 
 #endif //COMPILERS_SYMBOL_TABLE_H

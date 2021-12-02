@@ -1,3 +1,5 @@
+->found repeating symbol in global scope
+->found repeating function in global scope
 ===== Global Symbol Table =====
 a		float32
 i		int
@@ -47,7 +49,7 @@ Program
 ..VarDecl
 ....Bool
 ....Id(i)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(f)
 ......FuncParams
@@ -56,12 +58,12 @@ Program
 ........Id(g)
 ......Call
 ........Id(h)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(f)
 ......FuncParams
 ....FuncBody
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(main)
 ......FuncParams
@@ -107,7 +109,7 @@ Program
 ..................Id(x)
 ..............Return
 ............Block
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(undef)
 ......FuncParams
@@ -117,7 +119,7 @@ Program
 ..........IntLit(1)
 ..........Id(undeclared)
 ........Block
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(types)
 ......FuncParams
@@ -133,12 +135,12 @@ Program
 ........Add
 ..........Id(n)
 ..........Id(x)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(g)
 ......FuncParams
 ....FuncBody
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(h)
 ......Int

@@ -15,12 +15,12 @@ b	int	param
 return		none
 
 Program
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(f)
 ......FuncParams
 ....FuncBody
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(g)
 ......FuncParams
@@ -31,7 +31,7 @@ Program
 ..........Int
 ..........Id(b)
 ....FuncBody
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(main)
 ......FuncParams

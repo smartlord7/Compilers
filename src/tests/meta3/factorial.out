@@ -11,7 +11,7 @@ return		none
 argument		int
 
 Program
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(factorial)
 ......Int
@@ -36,7 +36,7 @@ Program
 ............Sub
 ..............Id(n)
 ..............IntLit(1)
-..FuncDecl - bool
+..FuncDecl
 ....FuncHeader
 ......Id(main)
 ......FuncParams
