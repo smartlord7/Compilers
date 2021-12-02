@@ -420,7 +420,6 @@ symbol_check_t get_var(global_table_t * global_table, local_table_t * local_tabl
             if(strcmp(local_entry->name, var_name) == 0) {
 
                 if(mode == SYMBOL_DECL) {
-                    printf("->found repeating symbol in local scope\n");
                     return SYMBOL_REPEATED;
 
                 } else if (mode == SYMBOL_USAGE) {
@@ -438,7 +437,6 @@ symbol_check_t get_var(global_table_t * global_table, local_table_t * local_tabl
             while (global_entry != NULL) {
 
                 if (global_entry->type == GLOBAL_VAR_ && strcmp(global_entry->data->var->name, var_name) == 0) {
-                    printf("->found symbol in global scope\n");
                     global_entry->used = 1;
                     * type = global_entry->data->table->return_->return_type;
                     return SYMBOL_FOUND;
@@ -453,7 +451,6 @@ symbol_check_t get_var(global_table_t * global_table, local_table_t * local_tabl
         while (global_entry != NULL) {
 
             if(global_entry->type == GLOBAL_VAR_ && strcmp(global_entry->data->var->name, var_name) == 0) {
-                printf("->found repeating symbol in global scope\n");
                 return SYMBOL_REPEATED;
             }
 
@@ -472,7 +469,6 @@ symbol_check_t get_func(global_table_t * global_table, char * func_name, symbol_
 
         if(global_entry->type == TABLE_ && strcmp(global_entry->data->table->name, func_name) == 0) {
             if(mode == SYMBOL_DECL) {
-                printf("->found repeating function in global scope\n");
                 return SYMBOL_REPEATED;
             } else if (mode == SYMBOL_USAGE) {
                 global_entry->used = 1;

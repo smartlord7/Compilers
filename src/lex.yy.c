@@ -2370,13 +2370,12 @@ int main(int argc, char * argv[]) {
 	    if (argc > 1 && strcmp(argv[1], "-t") == 0) {
 			print_tree(root, 0);
 		}
-    }
 
-    global_table = init_global_table();
-    build_global_table(global_table, root);
-    print_global_table(global_table);
-    annotate_tree(root, global_table, NULL);
-    print_tree(root, 1);
+        global_table = init_global_table();
+        build_global_table(global_table, root);
+        print_global_table(global_table);
+        print_tree(root, 1);
+    }
 
 	return EXIT_SUCCESS;
 }
