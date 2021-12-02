@@ -80,13 +80,13 @@ Program
 ......Assign
 ........Id(b)
 ........And - bool
-..........IntLit(1)
-..........IntLit(1)
+..........IntLit(1) - int
+..........IntLit(1) - int
 ......Assign
 ........Id(i)
 ........Add
 ..........Id(i)
-..........IntLit(007)
+..........IntLit(007) - int
 ......Call
 ........Id(h)
 ......Call
@@ -95,7 +95,7 @@ Program
 ..........Id(i)
 ......Assign
 ........Id(x)
-........RealLit(1.0)
+........RealLit(1.0) - float32
 ......For
 ........Id(x)
 ........Block
@@ -116,7 +116,7 @@ Program
 ....FuncBody
 ......For
 ........Lt - bool
-..........IntLit(1)
+..........IntLit(1) - int
 ..........Id(undeclared)
 ........Block
 ..FuncDecl

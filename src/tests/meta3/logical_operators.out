@@ -32,13 +32,13 @@ Program
 ....FuncBody
 ......Assign
 ........Id(i)
-........RealLit(1.1)
+........RealLit(1.1) - float32
 ......VarDecl
 ........Int
 ........Id(i)
 ......Assign
 ........Id(i)
-........IntLit(1)
+........IntLit(1) - int
 ......VarDecl
 ........Float32
 ........Id(f)
@@ -121,4 +121,4 @@ Program
 ........Id(s)
 ......ParseArgs
 ........Id(i)
-........IntLit(1)
+........IntLit(1) - int

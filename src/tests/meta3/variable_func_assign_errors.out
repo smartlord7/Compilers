@@ -80,15 +80,15 @@ Program
 ........Id(main_string)
 ......Call
 ........Id(function_1)
-........IntLit(12)
-........IntLit(13)
+........IntLit(12) - int
+........IntLit(13) - int
 ......Call
 ........Id(function_1)
 ......Call
 ........Id(function_2)
 ......Call
 ........Id(function_2)
-........IntLit(123)
+........IntLit(123) - int
 ........Id(main_string)
 ..FuncDecl
 ....FuncHeader

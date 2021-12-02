@@ -23,10 +23,10 @@ Program
 ......If
 ........Eq - bool
 ..........Id(n)
-..........IntLit(0)
+..........IntLit(0) - int
 ........Block
 ..........Return
-............IntLit(1)
+............IntLit(1) - int
 ........Block
 ......Return
 ........Mul
@@ -35,7 +35,7 @@ Program
 ............Id(factorial)
 ............Sub
 ..............Id(n)
-..............IntLit(1)
+..............IntLit(1) - int
 ..FuncDecl
 ....FuncHeader
 ......Id(main)
@@ -46,7 +46,7 @@ Program
 ........Id(argument)
 ......ParseArgs
 ........Id(argument)
-........IntLit(1)
+........IntLit(1) - int
 ......Print
 ........Call
 ..........Id(factorial)

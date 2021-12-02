@@ -64,7 +64,7 @@ Program
 ..........Id(b)
 ....FuncBody
 ......Return
-........IntLit(1)
+........IntLit(1) - int
 ..FuncDecl
 ....FuncHeader
 ......Id(func1)
@@ -107,7 +107,7 @@ Program
 ..........Id(a)
 ....FuncBody
 ......Return
-........IntLit(1)
+........IntLit(1) - int
 ..FuncDecl
 ....FuncHeader
 ......Id(func4)
@@ -190,24 +190,24 @@ Program
 ..........Call
 ............Id(f0)
 ............Id(a)
-............IntLit(1)
+............IntLit(1) - int
 ............Id(d)
-............RealLit(1.0)
+............RealLit(1.0) - float32
 ......Assign
 ........Id(a)
 ........Call
 ..........Id(func2)
-..........IntLit(1)
-..........IntLit(1)
-..........RealLit(1.0)
-..........RealLit(1.0)
+..........IntLit(1) - int
+..........IntLit(1) - int
+..........RealLit(1.0) - float32
+..........RealLit(1.0) - float32
 ......ParseArgs
 ........Id(a)
 ........Call
 ..........Id(func1)
 ..........Id(a)
-..........IntLit(123)
-..........RealLit(.1e1)
+..........IntLit(123) - int
+..........RealLit(.1e1) - float32
 ..........Id(f)
 ......Assign
 ........Id(a)
@@ -266,10 +266,10 @@ Program
 ............Id(b)
 ......Assign
 ........Id(f)
-........RealLit(1.1)
+........RealLit(1.1) - float32
 ......Assign
 ........Id(a)
-........RealLit(1.0)
+........RealLit(1.0) - float32
 ......Call
 ........Id(func3)
 ........Gt - bool
@@ -302,15 +302,15 @@ Program
 ......Assign
 ........Id(a)
 ........Eq - bool
-..........IntLit(12)
-..........IntLit(32)
+..........IntLit(12) - int
+..........IntLit(32) - int
 ......Print
-........StrLit("((What a mess)) ")
+........StrLit("((What a mess)) ") - string
 ......Assign
 ........Id(j)
 ........Eq - bool
-..........IntLit(12)
-..........IntLit(32)
+..........IntLit(12) - int
+..........IntLit(32) - int
 ......For
 ........Block
 ..........Call

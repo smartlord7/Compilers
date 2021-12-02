@@ -166,7 +166,7 @@ char * get_func_args(local_table_t * table) {
     return args;
 }
 
-void sub_build_local_table(global_table_t * global_table, local_table_t * table, struct list_node_t * node, int build_phase) {
+void sub_build_local_table(global_table_t * global_table, local_table_t * table, struct list_node_t * node, table_phase_t build_phase, int flag) {
     struct list_node_t * child = NULL;
     entry_t * new_entry = NULL;
     var_data_t * aux_var = NULL;
@@ -209,7 +209,6 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             push_entry(table, new_entry);
             break;
         case A_VAR_DECL:
-
             aux_var = init_var_data(node);
             type = aux_var->var_type;
             name = aux_var->var_name;
@@ -219,21 +218,55 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             new_entry = init_entry(name, type, "");
             push_entry(table, new_entry);
             break;
+        case A_EQ:
+        case A_NE:
+        case A_LT:
+        case A_LE:
+        case A_GT:
+        case A_GE:
+        case A_NOT:
+        case A_AND:
+        case A_OR:
+            //TODO: check children types
+            node->data->annotation = ANNOTATION_BOOL;
+            break;
+        case A_ADD:
+        case A_MINUS:
+        case A_MUL:
+        case A_DIV:
+        case A_MOD:
+            //TODO: check children types
+            /*switch (node->data->children->next->type) {
+
+            }*/
+
+            break;
+        case A_STRLIT:
+            node->data->annotation = ANNOTATION_STRING;
+            break;
+        case A_INTLIT:
+            node->data->annotation = ANNOTATION_INT;
+            break;
+        case A_REALLIT:
+            node->data->annotation = ANNOTATION_FLOAT32;
+            break;
         default:
             break;
     }
 
     child = node->data->children->next;
     while (child != NULL) {
-        sub_build_local_table(global_table, table, child, build_phase);
+        sub_build_local_table(global_table, table, child, build_phase, flag);
         child = child->next;
     }
 
     child = node->data->siblings->next;
     while (child != NULL) {
-        sub_build_local_table(global_table, table, child, build_phase);
+        sub_build_local_table(global_table, table, child, build_phase, flag);
         child = child->next;
     }
+
+    flag = 0;
 }
 
 void build_local_table(global_table_t * global_table, local_table_t * table, struct tree_node_t * table_root) {
@@ -241,7 +274,7 @@ void build_local_table(global_table_t * global_table, local_table_t * table, str
 
     node = table_root->children->next;
     while (node != NULL) {
-        sub_build_local_table(global_table, table, node, T_FUNC_HEADER);
+        sub_build_local_table(global_table, table, node, T_FUNC_HEADER, 0);
         node = node->next;
     }
 }

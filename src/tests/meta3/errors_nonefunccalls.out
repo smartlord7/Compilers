@@ -38,10 +38,10 @@ Program
 ....FuncBody
 ......Call
 ........Id(g)
-........IntLit(1)
-........IntLit(1)
+........IntLit(1) - int
+........IntLit(1) - int
 ......Call
 ........Id(g)
-........IntLit(1)
+........IntLit(1) - int
 ........Call
 ..........Id(f)

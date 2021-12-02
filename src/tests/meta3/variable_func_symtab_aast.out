@@ -107,7 +107,7 @@ Program
 ......For
 ........Le - bool
 ..........Id(one)
-..........IntLit(123)
+..........IntLit(123) - int
 ........Block
 ..........Assign
 ............Id(thisDoesNothingHere)
@@ -115,7 +115,7 @@ Program
 ..............Add
 ................Id(thisDoesNothingHere)
 ................Id(two)
-..............RealLit(.010e3)
+..............RealLit(.010e3) - float32
 ..........Assign
 ............Id(one)
 ............Add
@@ -126,7 +126,7 @@ Program
 ....................Id(one)
 ..................Id(one)
 ................Id(one)
-..............IntLit(1)
+..............IntLit(1) - int
 ..FuncDecl
 ....FuncHeader
 ......Id(fourFunc)
@@ -195,7 +195,7 @@ Program
 ........Id(twoTwoSevenFunc)
 ......Assign
 ........Id(oneTwoSevenFunc)
-........RealLit(.52e4)
+........RealLit(.52e4) - float32
 ......Assign
 ........Id(twoTwoSevenFunc)
 ........Add
@@ -204,7 +204,7 @@ Program
 ......If
 ........Eq - bool
 ..........Id(one)
-..........IntLit(1)
+..........IntLit(1) - int
 ........Block
 ..........Return
 ............Id(twoTwoSevenFunc)
@@ -284,15 +284,15 @@ Program
 ......Assign
 ........Id(j)
 ........Add
-..........IntLit(6)
+..........IntLit(6) - int
 ..........Id(one)
 ......Assign
 ........Id(a)
-........RealLit(.01)
+........RealLit(.01) - float32
 ......Assign
 ........Id(b)
 ........Add
-..........RealLit(.123)
+..........RealLit(.123) - float32
 ..........Id(a)
 ......Assign
 ........Id(c)
@@ -341,38 +341,38 @@ Program
 ........Id(twoFunc)
 ........Call
 ..........Id(sixFunc)
-..........IntLit(1)
+..........IntLit(1) - int
 ......Call
 ........Id(treeFunc)
-........IntLit(1)
-........RealLit(.123)
+........IntLit(1) - int
+........RealLit(.123) - float32
 ......Call
 ........Id(fourFunc)
 ........Call
 ..........Id(sixFunc)
-..........IntLit(1)
-........RealLit(.321)
+..........IntLit(1) - int
+........RealLit(.321) - float32
 ........Id(stringThing)
 ......Call
 ........Id(fiveFunc)
-........IntLit(1)
-........RealLit(.2)
+........IntLit(1) - int
+........RealLit(.2) - float32
 ........Id(stringThing)
 ........Gt - bool
-..........IntLit(1)
-..........IntLit(2)
+..........IntLit(1) - int
+..........IntLit(2) - int
 ......Call
 ........Id(sixFunc)
-........IntLit(1)
+........IntLit(1) - int
 ......Call
 ........Id(eightFunc)
-........IntLit(1)
-........RealLit(.1)
+........IntLit(1) - int
+........RealLit(.1) - float32
 ........Id(stringThing)
 ......Call
 ........Id(sevenFunc)
-........IntLit(1)
-........RealLit(.2)
+........IntLit(1) - int
+........RealLit(.2) - float32
 ......Call
 ........Id(tenFunc)
-........IntLit(1)
+........IntLit(1) - int

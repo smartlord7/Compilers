@@ -161,6 +161,8 @@ void sub_annotate_tree(struct list_node_t * node, global_table_t * global_table,
             switch (node->data->children->next->type) {
 
             }
+        default:
+            break;
     }
 
     child = node->data->children->next;
