@@ -212,7 +212,7 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
 
                     return result1;
                 } else {
-                    node->data->annotation = "filhos de tipos diferentes\n";
+                    //TODO Add error scenario
                 }
             } else {
 
@@ -436,7 +436,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                     }
 
                 } else {
-                    node->data->annotation = "vai dar bosta\n";
+                    //TODO Add error scenario
                 }
             } else {
                 switch (result1) {
@@ -588,9 +588,9 @@ void build_local_table(global_table_t * global_table, local_table_t * table, str
     }
 }
 
-void sub_build_global_table(global_table_t * global_table, struct list_node_t * node) {
+void sub_build_global_table(global_table_t * global_table, struct list_node_t * node, passage_t passage) {
     struct list_node_t * child = NULL, * grandchild = NULL;
-    local_table_t * new_table = NULL;
+    local_table_t * new_table = NULL, * aux_local_table = NULL;
     entry_t * new_var = NULL;
     global_entry_t * new_entry = NULL;
     var_data_t * aux_var_data = NULL;
@@ -611,20 +611,40 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
                 switch (child->data->type) {
                     case A_FUNC_HEADER:
 
+
+
                         grandchild = child->data->children->next;
                         func_name = trim_value(grandchild->data->id);
 
-                        get_func(global_table, func_name, SYMBOL_DECL, &feedback);
+                        if(passage == FIRST_PASSAGE) {
+                            get_func(global_table, func_name, SYMBOL_DECL, &feedback);
 
-                        if(feedback == SYMBOL_NOT_FOUND) {
-                            new_table = init_table(func_name);
-                            new_entry = init_global_entry(TABLE_, new_table, NULL);
-                            push_global_entry(global_table, new_entry);
-                            build_local_table(global_table, new_table, node->data);
-                        } else if(feedback == SYMBOL_REPEATED) {
-                            printf("function repeated\n");
+                            switch (feedback) {
+                                case SYMBOL_NOT_FOUND:
+                                    new_table = init_table(func_name);
+                                    new_entry = init_global_entry(TABLE_, new_table, NULL);
+                                    push_global_entry(global_table, new_entry);
+                                    break;
+                                case SYMBOL_REPEATED:
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                        } else if(passage == SECOND_PASSAGE) {
+                            aux_local_table = get_func(global_table, func_name, SYMBOL_USAGE, &feedback);
+
+                            switch (feedback) {
+                                case SYMBOL_FOUND:
+                                    build_local_table(global_table, aux_local_table, node->data);
+                                    break;
+                                case SYMBOL_REPEATED:
+                                    break;
+                                default:
+                                    break;
+                            }
+
                         }
-
                         break;
                     default:
                         break;
@@ -647,14 +667,21 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
                 var_type++;
             }
 
-            get_var(global_table, NULL, var_name, SYMBOL_DECL, &feedback);
+            if(passage == FIRST_PASSAGE) {
+                get_var(global_table, NULL, var_name, SYMBOL_DECL, &feedback);
 
-            if(feedback == SYMBOL_NOT_FOUND) {
-                new_var = init_entry(var_name, (data_type_t) var_type, D_NONE);
-                new_entry = init_global_entry(GLOBAL_VAR_, NULL, new_var);
-                push_global_entry(global_table, new_entry);
+                switch (feedback) {
+                    case SYMBOL_NOT_FOUND:
+                        new_var = init_entry(var_name, (data_type_t) var_type, D_NONE);
+                        new_entry = init_global_entry(GLOBAL_VAR_, NULL, new_var);
+                        push_global_entry(global_table, new_entry);
+                        break;
+                    case SYMBOL_REPEATED:
+                        break;
+                    default:
+                        break;
+                }
 
-            } else if(feedback == SYMBOL_REPEATED) {
             }
 
             break;
@@ -664,18 +691,18 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
 
     child = node->data->children->next;
     while (child != NULL) {
-        sub_build_global_table(global_table, child);
+        sub_build_global_table(global_table, child, passage);
         child = child->next;
     }
 
     child = node->data->siblings->next;
     while (child != NULL) {
-        sub_build_global_table(global_table, child);
+        sub_build_global_table(global_table, child, passage);
         child = child->next;
     }
 }
 
-void build_global_table(global_table_t * global_table, struct tree_node_t * tree_root) {
+void build_global_table(global_table_t * global_table, struct tree_node_t * tree_root, passage_t passage) {
     struct list_node_t * node = tree_root->children->next, * child = NULL;
 
     if (node == NULL) {
@@ -684,7 +711,7 @@ void build_global_table(global_table_t * global_table, struct tree_node_t * tree
 
     child = tree_root->children->next;
     while (child != NULL) {
-        sub_build_global_table(global_table, child);
+        sub_build_global_table(global_table, child, passage);
         child = child->next;
     }
 }

@@ -1,4 +1,3 @@
-function repeated
 ===== Global Symbol Table =====
 a		float32
 i		int
@@ -49,9 +48,9 @@ Program
 ......FuncParams
 ....FuncBody
 ......Call
-........Id(g)
+........Id(g) - ()
 ......Call
-........Id(h)
+........Id(h) - ()
 ..FuncDecl
 ....FuncHeader
 ......Id(f)
@@ -82,13 +81,12 @@ Program
 ..........Id(i) - int
 ..........IntLit(007) - int
 ......Call
-........Id(h)
+........Id(h) - ()
 ......Call
-........Id(h)
+........Id(h) - ()
 ........Not - bool
 ..........Id(i) - int
-......Assign - vai dar bosta
-
+......Assign
 ........Id(x) - int
 ........RealLit(1.0) - float32
 ......For
@@ -98,9 +96,8 @@ Program
 ............Id(x) - int
 ............Block
 ..............Call
-................Id(h)
-................Add - vai dar bosta
-
+................Id(h) - ()
+................Add
 ..................Id(a) - float32
 ..................Id(x) - int
 ..............Return
@@ -126,11 +123,9 @@ Program
 ......VarDecl
 ........Int
 ........Id(n)
-......Assign - vai dar bosta
-
+......Assign
 ........Id(x) - float32
-........Add - vai dar bosta
-
+........Add
 ..........Id(n) - int
 ..........Id(x) - float32
 ..FuncDecl

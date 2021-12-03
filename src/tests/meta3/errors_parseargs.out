@@ -66,28 +66,22 @@ Program
 ........Id(s) - string
 ......Print
 ........Id(b) - bool
-......Assign - vai dar bosta
-
+......Assign
 ........Id(i) - int
-........Add - vai dar bosta
-
+........Add
 ..........Id(i) - int
 ..........Id(f) - float32
-......Assign - vai dar bosta
-
+......Assign
 ........Id(i) - int
-........Add - vai dar bosta
-
+........Add
 ..........Id(f) - float32
 ..........Id(i) - int
-......Assign - vai dar bosta
-
+......Assign
 ........Id(i) - int
 ........Add - float32
 ..........Id(f) - float32
 ..........Id(f) - float32
-......Assign - vai dar bosta
-
+......Assign
 ........Id(i) - int
 ........Add - bool
 ..........Id(b) - bool
@@ -117,8 +111,7 @@ Program
 ........Ne - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
-......Assign - vai dar bosta
-
+......Assign
 ........Id(i) - int
 ........Add - string
 ..........Id(s) - string

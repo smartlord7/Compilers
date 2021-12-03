@@ -1,4 +1,3 @@
-function repeated
 ===== Global Symbol Table =====
 globalVar_int		int
 globalVar_float32		float32
@@ -26,6 +25,10 @@ main_string		string
 ===== Function function_1() Symbol Table =====
 return		none
 localVar_1		float32
+a		int	param
+b		int	param
+localVar_1		int
+localVar_2		float32
 
 Program
 ..VarDecl
@@ -52,8 +55,7 @@ Program
 ......VarDecl
 ........Bool
 ........Id(_globalVar_bool)
-......Assign - vai dar bosta
-
+......Assign
 ........Id(globalVar_float32) - bool
 ........Id(_globalVar_string) - string
 ......Return
@@ -72,11 +74,11 @@ Program
 ........String
 ........Id(main_string)
 ......Call
-........Id(function_1)
+........Id(function_1) - ()
 ........IntLit(12) - int
 ........IntLit(13) - int
 ......Call
-........Id(function_1)
+........Id(function_1) - ()
 ......Call
 ........Id(function_2) - ()
 ......Call
@@ -91,8 +93,7 @@ Program
 ......VarDecl
 ........Float32
 ........Id(localVar_1)
-......Assign - vai dar bosta
-
+......Assign
 ........Id(localVar_1) - float32
 ........Id(globalVar_int) - int
 ..FuncDecl
@@ -112,12 +113,12 @@ Program
 ......VarDecl
 ........Float32
 ........Id(localVar_2)
+......Assign - float32
+........Id(localVar_1) - float32
+........Id(globalVar_float32) - float32
 ......Assign
-........Id(localVar_1)
-........Id(globalVar_float32)
-......Assign
-........Id(localVar_2)
-........Id(globalVar_int)
+........Id(localVar_2) - float32
+........Id(globalVar_int) - int
 ..VarDecl
 ....String
 ....Id(globalVar_string)

@@ -64,6 +64,11 @@ struct global_table_t {
     global_entry_t * entries;
 };
 
+typedef enum {
+    FIRST_PASSAGE,
+    SECOND_PASSAGE,
+} passage_t;
+
 typedef struct global_table_t global_table_t;
 typedef struct tree_node_t tree_node_t;
 typedef enum data_type_t data_type_t;
@@ -79,7 +84,7 @@ extern global_table_t * my_global_table;
 extern global_table_t * init_global_table(void);
 extern void push_global_entry(global_table_t * global_table, global_entry_t * entry);
 extern void print_global_table(global_table_t * global_table);
-extern void build_global_table(global_table_t * global_table, tree_node_t * tree_root);
+extern void build_global_table(global_table_t * global_table, tree_node_t * tree_root, passage_t passage);
 extern entry_t * get_var(global_table_t * global_table, local_table_t * local_table, char * var_name, symbol_check_mode_t mode, symbol_check_t * feedback);
 extern local_table_t * get_func(global_table_t * global_table, char * func_name, symbol_check_mode_t mode, symbol_check_t * feedback);
 
