@@ -71,14 +71,14 @@ Program
 ......VarDecl
 ........Bool
 ........Id(b)
-......Assign
+......Assign - bool
 ........Id(b) - bool
 ........And - bool
 ..........IntLit(1) - int
 ..........IntLit(1) - int
-......Assign
+......Assign - int
 ........Id(i) - int
-........Add
+........Add - int
 ..........Id(i) - int
 ..........IntLit(007) - int
 ......Call
@@ -87,7 +87,8 @@ Program
 ........Id(h)
 ........Not - bool
 ..........Id(i) - int
-......Assign
+......Assign - vai dar bosta
+
 ........Id(x) - int
 ........RealLit(1.0) - float32
 ......For
@@ -98,7 +99,8 @@ Program
 ............Block
 ..............Call
 ................Id(h)
-................Add
+................Add - vai dar bosta
+
 ..................Id(a) - float32
 ..................Id(x) - int
 ..............Return
@@ -124,9 +126,11 @@ Program
 ......VarDecl
 ........Int
 ........Id(n)
-......Assign
+......Assign - vai dar bosta
+
 ........Id(x) - float32
-........Add
+........Add - vai dar bosta
+
 ..........Id(n) - int
 ..........Id(x) - float32
 ..FuncDecl

@@ -66,53 +66,60 @@ Program
 ........Id(s) - string
 ......Print
 ........Id(b) - bool
-......Assign
+......Assign - vai dar bosta
+
 ........Id(i) - int
-........Add
+........Add - vai dar bosta
+
 ..........Id(i) - int
 ..........Id(f) - float32
-......Assign
+......Assign - vai dar bosta
+
 ........Id(i) - int
-........Add
+........Add - vai dar bosta
+
 ..........Id(f) - float32
 ..........Id(i) - int
-......Assign
+......Assign - vai dar bosta
+
 ........Id(i) - int
-........Add
+........Add - float32
 ..........Id(f) - float32
 ..........Id(f) - float32
-......Assign
+......Assign - vai dar bosta
+
 ........Id(i) - int
-........Add
+........Add - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
-......Assign
+......Assign - bool
 ........Id(b) - bool
-........Add
+........Add - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
-......Assign
+......Assign - bool
 ........Id(b) - bool
 ........Gt - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
-......Assign
+......Assign - bool
 ........Id(b) - bool
 ........Le - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
-......Assign
+......Assign - bool
 ........Id(b) - bool
 ........Eq - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
-......Assign
+......Assign - bool
 ........Id(b) - bool
 ........Ne - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
-......Assign
+......Assign - vai dar bosta
+
 ........Id(i) - int
-........Add
+........Add - string
 ..........Id(s) - string
 ..........Id(s) - string

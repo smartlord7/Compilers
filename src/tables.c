@@ -165,12 +165,154 @@ char * get_func_args(local_table_t * table) {
     return args;
 }
 
+data_type_t get_child_type(global_table_t * global_table, local_table_t * local_table, list_node_t * node) {
+    char * value = NULL;
+    symbol_check_t feedback;
+    entry_t * aux_entry = NULL;
+    local_table_t * aux_table;
+    data_type_t result1, result2;
+    list_node_t * child;
+
+    switch (node->data->type) {
+        case A_ADD:
+        case A_SUB:
+        case A_PLUS:
+        case A_MINUS:
+        case A_MUL:
+        case A_DIV:
+        case A_MOD:
+        case A_ASSIGN:
+
+            //get first child type
+            child = node->data->children->next;
+            result1 = get_child_type(global_table, local_table, child);
+
+            child = child->next;
+            if(child != NULL) {
+                result2 = get_child_type(global_table, local_table, child);
+
+                if(result1 == result2) {
+
+                    switch (result1) {
+                        case D_INT:
+                            node->data->annotation = "int";
+                            break;
+                        case D_FLOAT32:
+                            node->data->annotation = "float32";
+                            break;
+                        case D_BOOL:
+                            node->data->annotation = "bool";
+                            break;
+                        case D_STRING:
+                            node->data->annotation = "string";
+                            break;
+                        default:
+                            break;
+                    }
+
+                    return result1;
+                } else {
+                    node->data->annotation = "filhos de tipos diferentes\n";
+                }
+            } else {
+
+                switch (result1) {
+                    case D_INT:
+                        node->data->annotation = "int";
+                        break;
+                    case D_FLOAT32:
+                        node->data->annotation = "float32";
+                        break;
+                    case D_BOOL:
+                        node->data->annotation = "bool";
+                        break;
+                    case D_STRING:
+                        node->data->annotation = "string";
+                        break;
+                    default:
+                        break;
+                }
+
+                return result1;
+            }
+
+            break;
+        case A_ID:
+
+            value = trim_value(node->data->id);
+            aux_entry = get_var(global_table, local_table, value, SYMBOL_USAGE, &feedback);
+
+            if(feedback == SYMBOL_FOUND) {
+                if(strcmp(data_type_text_t[aux_entry->return_type], "param") == 0) {
+                    return aux_entry->arg_type;
+                } else {
+                    return aux_entry->return_type;
+                }
+
+            } else {
+                //TODO Add error scenario
+            }
+
+        case A_CALL:
+            child = node->data->children->next;
+            value = trim_value(child->data->id);
+            aux_table = get_func(global_table, value, SYMBOL_USAGE, &feedback);
+
+            if(feedback == SYMBOL_FOUND) {
+                if(aux_table->return_ != NULL) {
+                    return aux_table->return_->return_type;
+                }
+            } else {
+                //TODO Add error scenario
+            }
+
+            break;
+
+        case A_PARSE_ARGS:
+            child = node->data->children->next;
+            value = trim_value(child->data->id);
+            aux_entry = get_var(global_table,local_table, value, SYMBOL_USAGE, &feedback);
+
+            if(feedback == SYMBOL_FOUND) {
+                if(aux_entry->return_type != D_NONE) {
+                    return aux_entry->return_type;
+                }
+
+            } else {
+                //TODO Add error scenario
+            }
+        case A_INTLIT:
+            return D_INT;
+        case A_REALLIT:
+            return D_FLOAT32;
+        case A_BOOL:
+            return D_BOOL;
+        case A_STRING:
+            return D_STRING;
+        case A_EQ:
+        case A_NE:
+        case A_LT:
+        case A_LE:
+        case A_GT:
+        case A_GE:
+        case A_NOT:
+        case A_AND:
+        case A_OR:
+            return D_BOOL;
+        default:
+            break;
+    }
+
+    return D_NONE;
+}
+
 void sub_build_local_table(global_table_t * global_table, local_table_t * table, struct list_node_t * node, table_phase_t build_phase, symbol_father_t flag) {
     struct list_node_t * child = NULL;
     entry_t * new_entry = NULL, * aux_entry = NULL;
     local_table_t * aux_table = NULL;
     var_data_t * aux_var_data = NULL;
     symbol_check_t feedback = 0;
+    data_type_t result1, result2;
     char * name = NULL, * type = NULL, * value = NULL;
 
     switch (node->data->type) {
@@ -260,15 +402,62 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
         case A_MUL:
         case A_DIV:
         case A_MOD:
-
-            //TODO: check children types
-            /*switch (node->data->children->next->type) {
-
-            }*/
-
-            break;
-
         case A_ASSIGN:
+            child = node->data->children->next;
+
+            while (child != NULL) {
+                sub_build_local_table(global_table, table, child, build_phase, flag);
+                child = child->next;
+            }
+
+            child = node->data->children->next;
+            result1 = get_child_type(global_table, table, child);
+
+            child = child->next;
+            if(child != NULL) {
+                result2 = get_child_type(global_table, table, child);
+
+                if(result1 == result2) {
+                    switch (result1) {
+                        case D_INT:
+                            node->data->annotation = "int";
+                            break;
+                        case D_FLOAT32:
+                            node->data->annotation = "float32";
+                            break;
+                        case D_BOOL:
+                            node->data->annotation = "bool";
+                            break;
+                        case D_STRING:
+                            node->data->annotation = "string";
+                            break;
+                        default:
+                            break;
+                    }
+
+                } else {
+                    node->data->annotation = "vai dar bosta\n";
+                }
+            } else {
+                switch (result1) {
+                    case D_INT:
+                        node->data->annotation = "int";
+                        break;
+                    case D_FLOAT32:
+                        node->data->annotation = "float32";
+                        break;
+                    case D_BOOL:
+                        node->data->annotation = "bool";
+                        break;
+                    case D_STRING:
+                        node->data->annotation = "string";
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+
             break;
 
         case A_STRLIT:

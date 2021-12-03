@@ -109,19 +109,19 @@ Program
 ..........Id(one) - int
 ..........IntLit(123) - int
 ........Block
-..........Assign
+..........Assign - float32
 ............Id(thisDoesNothingHere) - float32
-............Add
-..............Add
+............Add - float32
+..............Add - float32
 ................Id(thisDoesNothingHere) - float32
 ................Id(two) - float32
 ..............RealLit(.010e3) - float32
-..........Assign
+..........Assign - int
 ............Id(one) - int
-............Add
-..............Add
-................Add
-..................Add
+............Add - int
+..............Add - int
+................Add - int
+..................Add - int
 ....................Id(one) - int
 ....................Id(one) - int
 ..................Id(one) - int
@@ -170,7 +170,7 @@ Program
 ......VarDecl
 ........Int
 ........Id(oneInSixFunc)
-......Assign
+......Assign - int
 ........Id(oneInSixFunc) - int
 ........Id(one) - int
 ......Return
@@ -193,12 +193,12 @@ Program
 ......VarDecl
 ........Float32
 ........Id(twoTwoSevenFunc)
-......Assign
+......Assign - float32
 ........Id(oneTwoSevenFunc) - float32
 ........RealLit(.52e4) - float32
-......Assign
+......Assign - float32
 ........Id(twoTwoSevenFunc) - float32
-........Add
+........Add - float32
 ..........Id(two) - float32
 ..........Id(oneTwoSevenFunc) - float32
 ......If
@@ -281,38 +281,38 @@ Program
 ......VarDecl
 ........Int
 ........Id(j)
-......Assign
+......Assign - int
 ........Id(j) - int
-........Add
+........Add - int
 ..........IntLit(6) - int
 ..........Id(one) - int
-......Assign
+......Assign - float32
 ........Id(a) - float32
 ........RealLit(.01) - float32
-......Assign
+......Assign - float32
 ........Id(b) - float32
-........Add
+........Add - float32
 ..........RealLit(.123) - float32
 ..........Id(a) - float32
-......Assign
+......Assign - float32
 ........Id(c) - float32
-........Add
+........Add - float32
 ..........Id(b) - float32
 ..........Id(a) - float32
-......Assign
+......Assign - float32
 ........Id(a) - float32
 ........Id(c) - float32
-......Assign
+......Assign - float32
 ........Id(d) - float32
-........Add
+........Add - float32
 ..........Id(a) - float32
 ..........Id(b) - float32
-......Assign
+......Assign - float32
 ........Id(a) - float32
 ........Id(d) - float32
-......Assign
+......Assign - float32
 ........Id(d) - float32
-........Add
+........Add - float32
 ..........Id(a) - float32
 ..........Call - float32
 ............Id(sevenFunc) - (int,float32)

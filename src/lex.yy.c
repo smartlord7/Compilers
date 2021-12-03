@@ -2373,8 +2373,11 @@ int main(int argc, char * argv[]) {
 
         global_table = init_global_table();
         build_global_table(global_table, root);
-        print_global_table(global_table);
-        print_tree(root, 1);
+
+        if (argc > 1 && strcmp(argv[1], "-s") == 0) {
+            print_global_table(global_table);
+            print_tree(root, 1);
+        }
     }
 	return EXIT_SUCCESS;
 }

@@ -52,7 +52,8 @@ Program
 ......VarDecl
 ........Bool
 ........Id(_globalVar_bool)
-......Assign
+......Assign - vai dar bosta
+
 ........Id(globalVar_float32) - bool
 ........Id(_globalVar_string) - string
 ......Return
@@ -90,7 +91,8 @@ Program
 ......VarDecl
 ........Float32
 ........Id(localVar_1)
-......Assign
+......Assign - vai dar bosta
+
 ........Id(localVar_1) - float32
 ........Id(globalVar_int) - int
 ..FuncDecl

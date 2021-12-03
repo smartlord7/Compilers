@@ -30,13 +30,13 @@ Program
 ......Id(main)
 ......FuncParams
 ....FuncBody
-......Assign
+......Assign - float32
 ........Id(i) - float32
 ........RealLit(1.1) - float32
 ......VarDecl
 ........Int
 ........Id(i)
-......Assign
+......Assign - int
 ........Id(i) - int
 ........IntLit(1) - int
 ......VarDecl
@@ -48,74 +48,74 @@ Program
 ......VarDecl
 ........Bool
 ........Id(b)
-......Assign
+......Assign - bool
 ........Id(b) - bool
 ........Ne - bool
 ..........Id(i) - int
 ..........Id(i) - int
-......Assign
+......Assign - bool
 ........Id(b) - bool
 ........Eq - bool
 ..........Id(f) - float32
 ..........Id(f) - float32
-......Assign
+......Assign - bool
 ........Id(b) - bool
 ........And - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
-......Assign
+......Assign - bool
 ........Id(b) - bool
 ........Eq - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
-......Assign
+......Assign - int
 ........Id(i) - int
-........Add
+........Add - int
 ..........Id(i) - int
 ..........Id(i) - int
-......Assign
+......Assign - int
 ........Id(i) - int
-........Div
+........Div - int
 ..........Id(i) - int
 ..........Id(i) - int
-......Assign
+......Assign - float32
 ........Id(f) - float32
-........Mul
+........Mul - float32
 ..........Id(f) - float32
 ..........Id(f) - float32
-......Assign
+......Assign - float32
 ........Id(f) - float32
-........Sub
+........Sub - float32
 ..........Id(f) - float32
 ..........Id(f) - float32
-......Assign
+......Assign - int
 ........Id(i) - int
-........Sub
-..........Add
-............Mod
+........Sub - int
+..........Add - int
+............Mod - int
 ..............Id(i) - int
 ..............Id(i) - int
-............Mod
-..............Mul
-................Mod
+............Mod - int
+..............Mul - int
+................Mod - int
 ..................Id(i) - int
 ..................Id(i) - int
 ................Id(i) - int
 ..............Id(i) - int
-..........Mod
-............Div
-..............Mod
+..........Mod - int
+............Div - int
+..............Mod - int
 ................Id(i) - int
 ................Id(i) - int
 ..............Id(i) - int
 ............Id(i) - int
-......Assign
+......Assign - float32
 ........Id(f) - float32
-........Minus
+........Minus - float32
 ..........Id(f) - float32
-......Assign
+......Assign - float32
 ........Id(f) - float32
-........Plus
+........Plus - float32
 ..........Id(f) - float32
 ......Print
 ........Id(s) - string

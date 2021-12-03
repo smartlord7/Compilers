@@ -29,11 +29,11 @@ Program
 ............IntLit(1) - int
 ........Block
 ......Return
-........Mul
+........Mul - int
 ..........Id(n) - int
 ..........Call - int
 ............Id(factorial) - (int)
-............Sub
+............Sub - int
 ..............Id(n) - int
 ..............IntLit(1) - int
 ..FuncDecl

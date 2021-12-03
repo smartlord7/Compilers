@@ -13,7 +13,7 @@ for test_case in $test_cases
 do
 	echo -e "Running test case ${test_case}"
 	echo "----------------------------------------------------"
-	./gocompiler.out < $test_case > "${test_case//${in_ext}/${out_ext}}"
+	./gocompiler.out -s < $test_case > "${test_case//${in_ext}/${out_ext}}"
 	#cat "${test_case//${in_ext}/${out_ext}}"
 	diff "${test_case//${in_ext}/${out_ext}}" "${test_case::-3}out"
 	echo -e ""
