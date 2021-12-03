@@ -240,7 +240,7 @@ extern struct tree_node_t * root;
 
     Statement:
     	ID ASSIGN Expr                                                      						{$$ = create_node(A_ASSIGN, "Assign");
-    															push($$->children, create_node(0, $1));
+    															push($$->children, create_node(A_ID, $1));
     															push($$->children, $3);}
     	;
 

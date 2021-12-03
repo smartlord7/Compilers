@@ -47,30 +47,30 @@ bafcf		bool
 
 ===== Function fcg(int,float32) Symbol Table =====
 return		int
-iafcg	int	param
-fafcg	float32	param
+iafcg		int	param
+fafcg		float32	param
 
 ===== Function fch(int,float32,string) Symbol Table =====
 return		float32
-iafch	int	param
-fafch	float32	param
-safch	string	param
+iafch		int	param
+fafch		float32	param
+safch		string	param
 
 ===== Function fci(int,int,float32,float32,string) Symbol Table =====
 return		float32
-iafci	int	param
-ibfci	int	param
-fafci	float32	param
-fbfci	float32	param
-safci	string	param
+iafci		int	param
+ibfci		int	param
+fafci		float32	param
+fbfci		float32	param
+safci		string	param
 
 ===== Function fcj(int,int,float32,float32,bool) Symbol Table =====
 return		int
-iafcj	int	param
-ibfcj	int	param
-fafcj	float32	param
-fbfcj	float32	param
-bafcj	bool	param
+iafcj		int	param
+ibfcj		int	param
+fafcj		float32	param
+fbfcj		float32	param
+bafcj		bool	param
 fcjia		int
 fcjib		int
 
@@ -146,7 +146,7 @@ Program
 ........Int
 ........Id(fafcb)
 ......Assign
-........Id(fafcb)
+........Id(fafcb) - int
 ........IntLit(132) - int
 ......Return
 ........Id(fafcb) - int
@@ -196,7 +196,7 @@ Program
 ....FuncBody
 ......If
 ........Gt - bool
-..........Call - int
+..........Call - float32
 ............Id(fcd) - ()
 ..........Id(fafcg) - float32
 ........Block
@@ -227,7 +227,7 @@ Program
 ........Id(fcg) - (int,float32)
 ........Call - int
 ..........Id(fcb) - ()
-........Call - int
+........Call - float32
 ..........Id(fcd) - ()
 ......Print
 ........Id(safch) - string
@@ -235,18 +235,18 @@ Program
 ........Id(bb) - bool
 ........Block
 ..........Assign
-............Id(iafch)
+............Id(iafch) - int
 ............Add
 ..............Id(ia) - int
 ..............Id(ib) - int
 ..........Assign
-............Id(fafch)
+............Id(fafch) - float32
 ............Id(fa) - float32
 ..........Assign
-............Id(fb)
+............Id(fb) - float32
 ............Id(fafch) - float32
 ..........Assign
-............Id(id)
+............Id(id) - int
 ............Id(iafch) - int
 ........Block
 ......Return
@@ -272,20 +272,20 @@ Program
 ..........String
 ..........Id(safci)
 ....FuncBody
-......Call - int
+......Call - float32
 ........Id(fch) - (int,float32,string)
 ........Call - int
 ..........Id(fcg) - (int,float32)
 ..........Call - int
 ............Id(fcb) - ()
-..........Call - int
+..........Call - float32
 ............Id(fcd) - ()
-........Call - int
+........Call - float32
 ..........Id(fcd) - ()
-........Call - int
+........Call - string
 ..........Id(fce) - ()
 ......Assign
-........Id(iafci)
+........Id(iafci) - int
 ........Add
 ..........Add
 ............Add
@@ -295,28 +295,28 @@ Program
 ..........Call - int
 ............Id(fcb) - ()
 ......If
-........Call - int
+........Call - bool
 ..........Id(fcf) - ()
 ........Block
 ..........Print
 ............Id(safci) - string
 ..........Return
-............Call - int
+............Call - float32
 ..............Id(fch) - (int,float32,string)
 ..............Id(ia) - int
 ..............Id(fa) - float32
 ..............Id(sa) - string
 ........Block
 ..........Assign
-............Id(fafci)
+............Id(fafci) - float32
 ............Add
 ..............Mul
 ................Id(fa) - float32
 ................Id(fbfci) - float32
-..............Call - int
+..............Call - float32
 ................Id(fcd) - ()
 ..........Return
-............Call - int
+............Call - float32
 ..............Id(fcd) - ()
 ..FuncDecl
 ....FuncHeader
@@ -346,7 +346,7 @@ Program
 ........Int
 ........Id(fcjib)
 ......Assign
-........Id(fcjia)
+........Id(fcjia) - int
 ........Sub
 ..........Add
 ............Id(ia) - int
@@ -362,12 +362,12 @@ Program
 ..........Call - int
 ............Id(fcg) - (int,float32)
 ............Id(fcjia) - int
-............Call - int
+............Call - float32
 ..............Id(fci) - (int,int,float32,float32,string)
 ..............Call - int
 ................Id(fcb) - ()
 ..............Id(fcjib) - int
-..............Call - int
+..............Call - float32
 ................Id(fch) - (int,float32,string)
 ................Call - int
 ..................Id(fcb) - ()
@@ -380,11 +380,11 @@ Program
 ............Id(ba) - bool
 ............Block
 ..............Assign
-................Id(fc)
+................Id(fc) - float32
 ................RealLit(.01) - float32
 ............Block
 ..............Assign
-................Id(fc)
+................Id(fc) - float32
 ................Add
 ..................Id(fc) - float32
 ..................Id(fe) - float32
@@ -392,11 +392,11 @@ Program
 ................Id(bafcj) - bool
 ................Block
 ..................For
-....................Call - int
+....................Call - bool
 ......................Id(fcf) - ()
 ....................Block
 ......................Assign
-........................Id(fcjib)
+........................Id(fcjib) - int
 ........................Sub
 ..........................Add
 ............................Add
@@ -413,7 +413,7 @@ Program
 ..............................Id(fa) - float32
 ..........................Id(ibfcj) - int
 ......................Assign
-........................Id(fbfcj)
+........................Id(fbfcj) - float32
 ........................Id(fafcj) - float32
 ................Block
 ........Block
@@ -424,16 +424,16 @@ Program
 ............Id(bc) - bool
 ............Block
 ..............Assign
-................Id(bd)
+................Id(bd) - bool
 ................And - bool
 ..................Id(bd) - bool
 ..................Id(ba) - bool
 ..............Assign
-................Id(bd)
+................Id(bd) - bool
 ................Or - bool
 ..................And - bool
 ....................Id(ba) - bool
-....................Call - int
+....................Call - bool
 ......................Id(fcf) - ()
 ..................And - bool
 ....................Id(bd) - bool
@@ -449,34 +449,34 @@ Program
 ......FuncParams
 ....FuncBody
 ......Assign
-........Id(ia)
+........Id(ia) - int
 ........IntLit(1) - int
 ......Assign
-........Id(ib)
+........Id(ib) - int
 ........IntLit(1) - int
 ......Assign
-........Id(ic)
+........Id(ic) - int
 ........IntLit(1) - int
 ......Assign
-........Id(id)
+........Id(id) - int
 ........IntLit(1) - int
 ......Assign
-........Id(ie)
+........Id(ie) - int
 ........IntLit(1) - int
 ......Assign
-........Id(fa)
+........Id(fa) - float32
 ........RealLit(.1) - float32
 ......Assign
-........Id(fb)
+........Id(fb) - float32
 ........RealLit(.1) - float32
 ......Assign
-........Id(fc)
+........Id(fc) - float32
 ........RealLit(.1) - float32
 ......Assign
-........Id(fd)
+........Id(fd) - float32
 ........RealLit(.1) - float32
 ......Assign
-........Id(fe)
+........Id(fe) - float32
 ........RealLit(.1) - float32
 ......VarDecl
 ........Int
@@ -489,7 +489,7 @@ Program
 ..........Gt - bool
 ............Id(ia) - int
 ............Id(ib) - int
-..........Call - int
+..........Call - bool
 ............Id(fcf) - ()
 ........Block
 ..........If
@@ -504,32 +504,32 @@ Program
 ....................Id(fcb) - ()
 ..................Id(fe) - float32
 ................Id(mia) - int
-................Call - int
+................Call - float32
 ..................Id(fci) - (int,int,float32,float32,string)
 ..................Call - int
 ....................Id(fcg) - (int,float32)
 ....................Call - int
 ......................Id(fcb) - ()
-....................Call - int
+....................Call - float32
 ......................Id(fcd) - ()
 ..................IntLit(123) - int
-..................Call - int
+..................Call - float32
 ....................Id(fch) - (int,float32,string)
 ....................Id(ia) - int
-....................Call - int
+....................Call - float32
 ......................Id(fcd) - ()
-....................Call - int
+....................Call - string
 ......................Id(fce) - ()
-..................Call - int
+..................Call - float32
 ....................Id(fcd) - ()
 ..................Id(sc) - string
-................Call - int
+................Call - float32
 ..................Id(fcd) - ()
-................Call - int
+................Call - bool
 ..................Id(fcf) - ()
 ............Block
 ..............Assign
-................Id(mib)
+................Id(mib) - int
 ................Call - int
 ..................Id(fcj) - (int,int,float32,float32,bool)
 ..................IntLit(12) - int
@@ -539,13 +539,13 @@ Program
 ..................Id(ba) - bool
 ............Block
 ..............Assign
-................Id(mib)
+................Id(mib) - int
 ................Add
 ..................Id(ia) - int
 ..................Call - int
 ....................Id(fcb) - ()
 ......Assign
-........Id(mia)
+........Id(mia) - int
 ........Add
 ..........Id(mib) - int
 ..........Call - int
@@ -559,7 +559,7 @@ Program
 ..................Call - int
 ....................Id(fcb) - ()
 ................Add
-..................Call - int
+..................Call - float32
 ....................Id(fcd) - ()
 ..................RealLit(123.321) - float32
 ............Add
@@ -579,7 +579,7 @@ Program
 ..................Call - int
 ....................Id(fcb) - ()
 ..................Id(fa) - float32
-............Call - int
+............Call - float32
 ..............Id(fci) - (int,int,float32,float32,string)
 ..............Add
 ................Id(ia) - int
@@ -588,27 +588,27 @@ Program
 ..............Sub
 ................Id(fa) - float32
 ................Div
-..................Call - int
+..................Call - float32
 ....................Id(fcd) - ()
 ..................RealLit(.1e12) - float32
-..............Call - int
+..............Call - float32
 ................Id(fcd) - ()
-..............Call - int
+..............Call - string
 ................Id(fce) - ()
-............Call - int
+............Call - float32
 ..............Id(fch) - (int,float32,string)
 ..............Add
 ................IntLit(312) - int
 ................IntLit(12) - int
 ..............Add
-................Call - int
+................Call - float32
 ..................Id(fcd) - ()
 ................RealLit(.1e23) - float32
-..............Call - int
+..............Call - string
 ................Id(fce) - ()
 ............Or - bool
 ..............And - bool
-................Call - int
+................Call - bool
 ..................Id(fcf) - ()
 ................Id(ba) - bool
 ..............Id(bb) - bool

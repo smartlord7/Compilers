@@ -1,8 +1,13 @@
 package main;
 
-func factorial(n int) int {
-    return n * factorial(n-1);
-};
+var f int;
+var s bool;
+var b string;
 
-func main() {
-};
+func main () {
+
+    var i int;
+
+    /* usa o i local que agora é int */
+    i = 1;
+}

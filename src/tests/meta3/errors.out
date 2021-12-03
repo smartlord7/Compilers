@@ -31,7 +31,7 @@ return		none
 
 ===== Function h(bool) Symbol Table =====
 return		int
-q	bool	param
+q		bool	param
 
 Program
 ..VarDecl
@@ -72,12 +72,12 @@ Program
 ........Bool
 ........Id(b)
 ......Assign
-........Id(b)
+........Id(b) - bool
 ........And - bool
 ..........IntLit(1) - int
 ..........IntLit(1) - int
 ......Assign
-........Id(i)
+........Id(i) - int
 ........Add
 ..........Id(i) - int
 ..........IntLit(007) - int
@@ -88,7 +88,7 @@ Program
 ........Not - bool
 ..........Id(i) - int
 ......Assign
-........Id(x)
+........Id(x) - int
 ........RealLit(1.0) - float32
 ......For
 ........Id(x) - int
@@ -125,7 +125,7 @@ Program
 ........Int
 ........Id(n)
 ......Assign
-........Id(x)
+........Id(x) - float32
 ........Add
 ..........Id(n) - int
 ..........Id(x) - float32

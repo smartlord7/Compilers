@@ -16,56 +16,56 @@ return		none
 
 ===== Function twoFunc(int) Symbol Table =====
 return		none
-one	int	param
+one		int	param
 
 ===== Function treeFunc(int,float32) Symbol Table =====
 return		none
-one	int	param
-two	float32	param
+one		int	param
+two		float32	param
 thisDoesNothingHere		float32
 
 ===== Function fourFunc(int,float32,string) Symbol Table =====
 return		none
-one	int	param
-two	float32	param
-three	string	param
+one		int	param
+two		float32	param
+three		string	param
 
 ===== Function fiveFunc(int,float32,string,bool) Symbol Table =====
 return		none
-one	int	param
-two	float32	param
-three	string	param
-four	bool	param
+one		int	param
+two		float32	param
+three		string	param
+four		bool	param
 
 ===== Function sixFunc(int) Symbol Table =====
 return		int
-one	int	param
+one		int	param
 oneInSixFunc		int
 
 ===== Function sevenFunc(int,float32) Symbol Table =====
 return		float32
-one	int	param
-two	float32	param
+one		int	param
+two		float32	param
 oneTwoSevenFunc		float32
 twoTwoSevenFunc		float32
 
 ===== Function eightFunc(int,float32,string) Symbol Table =====
 return		string
-one	int	param
-two	float32	param
-three	string	param
+one		int	param
+two		float32	param
+three		string	param
 
 ===== Function nineFunc(int,float32,string,bool) Symbol Table =====
 return		bool
-one	int	param
-two	float32	param
-three	string	param
-four	bool	param
+one		int	param
+two		float32	param
+three		string	param
+four		bool	param
 oneThing		bool
 
 ===== Function tenFunc(int) Symbol Table =====
 return		int
-one	int	param
+one		int	param
 a		float32
 b		float32
 c		float32
@@ -110,14 +110,14 @@ Program
 ..........IntLit(123) - int
 ........Block
 ..........Assign
-............Id(thisDoesNothingHere)
+............Id(thisDoesNothingHere) - float32
 ............Add
 ..............Add
 ................Id(thisDoesNothingHere) - float32
 ................Id(two) - float32
 ..............RealLit(.010e3) - float32
 ..........Assign
-............Id(one)
+............Id(one) - int
 ............Add
 ..............Add
 ................Add
@@ -171,7 +171,7 @@ Program
 ........Int
 ........Id(oneInSixFunc)
 ......Assign
-........Id(oneInSixFunc)
+........Id(oneInSixFunc) - int
 ........Id(one) - int
 ......Return
 ........Id(oneInSixFunc) - int
@@ -194,10 +194,10 @@ Program
 ........Float32
 ........Id(twoTwoSevenFunc)
 ......Assign
-........Id(oneTwoSevenFunc)
+........Id(oneTwoSevenFunc) - float32
 ........RealLit(.52e4) - float32
 ......Assign
-........Id(twoTwoSevenFunc)
+........Id(twoTwoSevenFunc) - float32
 ........Add
 ..........Id(two) - float32
 ..........Id(oneTwoSevenFunc) - float32
@@ -282,39 +282,39 @@ Program
 ........Int
 ........Id(j)
 ......Assign
-........Id(j)
+........Id(j) - int
 ........Add
 ..........IntLit(6) - int
 ..........Id(one) - int
 ......Assign
-........Id(a)
+........Id(a) - float32
 ........RealLit(.01) - float32
 ......Assign
-........Id(b)
+........Id(b) - float32
 ........Add
 ..........RealLit(.123) - float32
 ..........Id(a) - float32
 ......Assign
-........Id(c)
+........Id(c) - float32
 ........Add
 ..........Id(b) - float32
 ..........Id(a) - float32
 ......Assign
-........Id(a)
+........Id(a) - float32
 ........Id(c) - float32
 ......Assign
-........Id(d)
+........Id(d) - float32
 ........Add
 ..........Id(a) - float32
 ..........Id(b) - float32
 ......Assign
-........Id(a)
+........Id(a) - float32
 ........Id(d) - float32
 ......Assign
-........Id(d)
+........Id(d) - float32
 ........Add
 ..........Id(a) - float32
-..........Call - int
+..........Call - float32
 ............Id(sevenFunc) - (int,float32)
 ............Id(j) - int
 ............Id(a) - float32
@@ -364,12 +364,12 @@ Program
 ......Call - int
 ........Id(sixFunc) - (int)
 ........IntLit(1) - int
-......Call - int
+......Call - string
 ........Id(eightFunc) - (int,float32,string)
 ........IntLit(1) - int
 ........RealLit(.1) - float32
 ........Id(stringThing) - string
-......Call - int
+......Call - float32
 ........Id(sevenFunc) - (int,float32)
 ........IntLit(1) - int
 ........RealLit(.2) - float32

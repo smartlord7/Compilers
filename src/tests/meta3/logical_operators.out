@@ -31,13 +31,13 @@ Program
 ......FuncParams
 ....FuncBody
 ......Assign
-........Id(i)
+........Id(i) - float32
 ........RealLit(1.1) - float32
 ......VarDecl
 ........Int
 ........Id(i)
 ......Assign
-........Id(i)
+........Id(i) - int
 ........IntLit(1) - int
 ......VarDecl
 ........Float32
@@ -49,47 +49,47 @@ Program
 ........Bool
 ........Id(b)
 ......Assign
-........Id(b)
+........Id(b) - bool
 ........Ne - bool
 ..........Id(i) - int
 ..........Id(i) - int
 ......Assign
-........Id(b)
+........Id(b) - bool
 ........Eq - bool
 ..........Id(f) - float32
 ..........Id(f) - float32
 ......Assign
-........Id(b)
+........Id(b) - bool
 ........And - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
 ......Assign
-........Id(b)
+........Id(b) - bool
 ........Eq - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
 ......Assign
-........Id(i)
+........Id(i) - int
 ........Add
 ..........Id(i) - int
 ..........Id(i) - int
 ......Assign
-........Id(i)
+........Id(i) - int
 ........Div
 ..........Id(i) - int
 ..........Id(i) - int
 ......Assign
-........Id(f)
+........Id(f) - float32
 ........Mul
 ..........Id(f) - float32
 ..........Id(f) - float32
 ......Assign
-........Id(f)
+........Id(f) - float32
 ........Sub
 ..........Id(f) - float32
 ..........Id(f) - float32
 ......Assign
-........Id(i)
+........Id(i) - int
 ........Sub
 ..........Add
 ............Mod
@@ -110,11 +110,11 @@ Program
 ..............Id(i) - int
 ............Id(i) - int
 ......Assign
-........Id(f)
+........Id(f) - float32
 ........Minus
 ..........Id(f) - float32
 ......Assign
-........Id(f)
+........Id(f) - float32
 ........Plus
 ..........Id(f) - float32
 ......Print

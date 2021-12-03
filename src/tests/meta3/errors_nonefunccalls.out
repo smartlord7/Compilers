@@ -8,8 +8,8 @@ return		none
 
 ===== Function g(int,int) Symbol Table =====
 return		none
-a	int	param
-b	int	param
+a		int	param
+b		int	param
 
 ===== Function main() Symbol Table =====
 return		none

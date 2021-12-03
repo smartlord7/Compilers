@@ -1697,7 +1697,7 @@ yyreduce:
   case 34: /* Statement: ID ASSIGN Expr  */
 #line 242 "gocompiler.y"
                                                                                                                         {(yyval.tree_node) = create_node(A_ASSIGN, "Assign");
-    															push((yyval.tree_node)->children, create_node(0, (yyvsp[-2].id)));
+    															push((yyval.tree_node)->children, create_node(A_ID, (yyvsp[-2].id)));
     															push((yyval.tree_node)->children, (yyvsp[0].tree_node));}
 #line 1703 "y.tab.c"
     break;

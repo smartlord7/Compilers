@@ -47,7 +47,13 @@ void print_entry(int type, entry_t * entry) {
             printf("%s\t\t%s\n", entry->name, data_type_text_t[entry->return_type]);
             break;
         case FUNC_VAR_ENTRY_:
-            printf("%s\t%s\t%s\n", entry->name, data_type_text_t[entry->arg_type], data_type_text_t[entry->return_type]);
+
+            if(strcmp(data_type_text_t[entry->return_type], "param") == 0) {
+                printf("%s\t\t%s\t%s\n", entry->name, data_type_text_t[entry->arg_type], data_type_text_t[entry->return_type]);
+            } else {
+                printf("%s\t%s\t%s\n", entry->name, data_type_text_t[entry->arg_type], data_type_text_t[entry->return_type]);
+            }
+
             break;
     }
 }

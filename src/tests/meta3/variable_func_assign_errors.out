@@ -53,7 +53,7 @@ Program
 ........Bool
 ........Id(_globalVar_bool)
 ......Assign
-........Id(globalVar_float32)
+........Id(globalVar_float32) - bool
 ........Id(_globalVar_string) - string
 ......Return
 ........Id(_globalVar_int) - int
@@ -91,7 +91,7 @@ Program
 ........Float32
 ........Id(localVar_1)
 ......Assign
-........Id(localVar_1)
+........Id(localVar_1) - float32
 ........Id(globalVar_int) - int
 ..FuncDecl
 ....FuncHeader

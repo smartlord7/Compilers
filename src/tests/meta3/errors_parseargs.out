@@ -7,7 +7,7 @@ main	(bool)	none
 
 ===== Function main(bool) Symbol Table =====
 return		none
-unused	bool	param
+unused		bool	param
 i		int
 f		float32
 s		string
@@ -67,52 +67,52 @@ Program
 ......Print
 ........Id(b) - bool
 ......Assign
-........Id(i)
+........Id(i) - int
 ........Add
 ..........Id(i) - int
 ..........Id(f) - float32
 ......Assign
-........Id(i)
+........Id(i) - int
 ........Add
 ..........Id(f) - float32
 ..........Id(i) - int
 ......Assign
-........Id(i)
+........Id(i) - int
 ........Add
 ..........Id(f) - float32
 ..........Id(f) - float32
 ......Assign
-........Id(i)
+........Id(i) - int
 ........Add
 ..........Id(b) - bool
 ..........Id(b) - bool
 ......Assign
-........Id(b)
+........Id(b) - bool
 ........Add
 ..........Id(b) - bool
 ..........Id(b) - bool
 ......Assign
-........Id(b)
+........Id(b) - bool
 ........Gt - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
 ......Assign
-........Id(b)
+........Id(b) - bool
 ........Le - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
 ......Assign
-........Id(b)
+........Id(b) - bool
 ........Eq - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
 ......Assign
-........Id(b)
+........Id(b) - bool
 ........Ne - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
 ......Assign
-........Id(i)
+........Id(i) - int
 ........Add
 ..........Id(s) - string
 ..........Id(s) - string

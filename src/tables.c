@@ -129,7 +129,6 @@ void print_global_table(global_table_t * global_table) {
 
 char * str_append(char * dest, char * src) {
     char * tmp = NULL;
-    int i = 0, j = 0;
 
     tmp = (char *) malloc(sizeof(dest) + sizeof(src) + 10);
 
@@ -262,13 +261,14 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
         case A_DIV:
         case A_MOD:
 
-
-
             //TODO: check children types
             /*switch (node->data->children->next->type) {
 
             }*/
 
+            break;
+
+        case A_ASSIGN:
             break;
 
         case A_STRLIT:
@@ -292,7 +292,23 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
 
             if(feedback == SYMBOL_FOUND) {
                 if(aux_table->return_ != NULL) {
-                    node->data->annotation = data_type_text_t[aux_table->return_->arg_type - 4];
+
+                    switch (aux_table->return_->return_type) {
+                        case D_INT:
+                            node->data->annotation = "int";
+                            break;
+                        case D_FLOAT32:
+                            node->data->annotation = "float32";
+                            break;
+                        case D_BOOL:
+                            node->data->annotation = "bool";
+                            break;
+                        case D_STRING:
+                            node->data->annotation = "string";
+                            break;
+                        default:
+                            break;
+                    }
                 }
             } else {
                 //TODO Add error scenario
@@ -345,6 +361,8 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                         node->data->annotation = data_type_text_t[aux_entry->return_type];
                     }
 
+                } else {
+                    //TODO Add error scenario
                 }
 
             }
