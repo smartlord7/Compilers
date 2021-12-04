@@ -62,6 +62,10 @@ char * trim_value(char * original_value) {
     char * value, * aux;
     int i;
 
+    if(original_value == NULL) {
+        return NULL;
+    }
+
     while (original_value[0] != '(') {
         original_value++;
     }

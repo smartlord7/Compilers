@@ -1,0 +1,51 @@
+Line 80, column 0: Cannot find symbol Id(func__)
+Line 80, column 0: Cannot find symbol Id(func1)
+Line 80, column 0: Cannot find symbol Id(func2)
+Line 80, column 0: Cannot find symbol Id(func3)
+Line 80, column 0: Cannot find symbol Id(func4)
+Line 80, column 0: Cannot find symbol Id(main)
+Line 80, column 0: Cannot find symbol Call
+Line 80, column 0: Cannot find symbol Id(f0)
+Line 80, column 0: Cannot find symbol Call
+Line 80, column 0: Cannot find symbol Id(f0)
+Line 80, column 0: Cannot find symbol Call
+Line 80, column 0: Operator Add cannot be applied to types float32, 
+Line 80, column 0: Cannot find symbol Call
+Line 80, column 0: Cannot find symbol Id(f0)
+Line 80, column 0: Cannot find symbol Call
+Line 80, column 0: Operator Add cannot be applied to types float32, 
+Line 80, column 0: Operator Assign cannot be applied to types float32, 
+Line 80, column 0: Cannot find symbol Call
+Line 80, column 0: Cannot find symbol Id(f0)
+Line 80, column 0: Cannot find symbol Call
+Line 80, column 0: Operator Add cannot be applied to types float32, 
+Line 80, column 0: Cannot find symbol Call
+Line 80, column 0: Cannot find symbol Id(f0)
+Line 80, column 0: Cannot find symbol ParseArgs
+Line 80, column 0: Cannot find symbol Id(func2)
+Line 80, column 0: Cannot find symbol Id(func2)
+Line 80, column 0: Operator Assign cannot be applied to types int, 
+Line 80, column 0: Cannot find symbol Id(func2)
+Line 80, column 0: Operator Add cannot be applied to types int, float32
+Line 80, column 0: Operator Add cannot be applied to types int, float32
+Line 80, column 0: Operator Add cannot be applied to types , float32
+Line 80, column 0: Operator Add cannot be applied to types int, float32
+Line 80, column 0: Operator Add cannot be applied to types int, float32
+Line 80, column 0: Operator Add cannot be applied to types int, float32
+Line 80, column 0: Operator Add cannot be applied to types , float32
+Line 80, column 0: Operator Add cannot be applied to types int, float32
+Line 80, column 0: Cannot find symbol ParseArgs
+Line 80, column 0: Operator Assign cannot be applied to types int, float32
+Line 80, column 0: Cannot find symbol ParseArgs
+Line 80, column 0: Operator Assign cannot be applied to types int, bool
+Line 80, column 0: Cannot find symbol ParseArgs
+Line 80, column 0: Cannot find symbol Call
+Line 80, column 0: Cannot find symbol Id(func_)
+Line 80, column 0: Cannot find symbol Id(noWhereToBeFound)
+Line 80, column 0: Cannot find symbol Call
+Line 80, column 0: Cannot find symbol Id(noWhereToBeFound)
+Line 80, column 0: Cannot find symbol Id(noWhereToBeFound)
+Line 80, column 0: Cannot find symbol Call
+Line 80, column 0: Cannot find symbol Id(noWhereToBeFound)
+Line 80, column 0: Cannot find symbol Call
+Line 80, column 0: Cannot find symbol Id(noWhereToBeFound)
