@@ -213,8 +213,6 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
 
                     return result1;
                 } else {
-                    semantic_error_flag = 1;
-                    semantic_error(OPERATOR_INVALID_2, node->data, result1, result2);
                 }
             } else {
 
@@ -252,8 +250,6 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
                 }
 
             } else if (feedback == SYMBOL_NOT_FOUND){
-                semantic_error_flag = 1;
-                semantic_error(SYMBOL_MISSING, node->data, D_NONE, D_NONE);
             }
 
         case A_CALL:
@@ -268,8 +264,6 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
                         return aux_table->return_->return_type;
                     }
                 } else if (feedback == SYMBOL_NOT_FOUND) {
-                    semantic_error_flag = 1;
-                    semantic_error(SYMBOL_MISSING, node->data, D_NONE, D_NONE);
                 }
             }
 
@@ -286,8 +280,6 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
                 }
 
             } else if (feedback == SYMBOL_NOT_FOUND) {
-                semantic_error_flag = 1;
-                semantic_error(SYMBOL_MISSING, node->data, D_NONE, D_NONE);
             }
         case A_INTLIT:
             return D_INT;
@@ -444,8 +436,6 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                     }
 
                 } else {
-                    semantic_error_flag = 1;
-                    semantic_error(OPERATOR_INVALID_2, node->data, result1, result2);
                 }
             } else {
                 switch (result1) {
@@ -509,8 +499,6 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                     }
                 }
             } else if (feedback == SYMBOL_NOT_FOUND) {
-                semantic_error_flag = 1;
-                semantic_error(SYMBOL_MISSING, node->data, D_NONE, D_NONE);
             }
 
             break;
@@ -528,8 +516,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                 }
 
             } else if (feedback == SYMBOL_NOT_FOUND) {
-                semantic_error_flag = 1;
-                semantic_error(SYMBOL_MISSING, node->data, D_NONE, D_NONE);
+
             }
 
         case A_ID:
@@ -547,8 +534,6 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
 
                     node->data->annotation = value;
                 } else if(feedback == SYMBOL_NOT_FOUND) {
-                    semantic_error_flag = 1;
-                    semantic_error(SYMBOL_MISSING, node->data, D_NONE, D_NONE);
                 }
 
                 flag = FATHER_VOID;
@@ -563,8 +548,6 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                     }
 
                 } else if(feedback == SYMBOL_NOT_FOUND) {
-                    semantic_error_flag = 1;
-                    semantic_error(SYMBOL_MISSING, node->data, D_NONE, D_NONE);
                 }
 
             }
