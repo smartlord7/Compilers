@@ -41,19 +41,19 @@ extern void semantic_error(error_type err_type, tree_node_t * token, data_type_t
 
     switch (err_type) {
         case SYMBOL_ALREADY_DEFINED:
-            error_inner(err_type, token->column, token->id, data_type_text_t[type_1], data_type_text_t[type_2]);
+            error_inner(err_type, token->column, token->id, data_types[type_1], data_types[type_2]);
             break;
         case SYMBOL_MISSING:
             error_inner(err_type, token->column, token->id);
             break;
         case OPERATOR_INVALID_1:
-            error_inner(err_type, token->column, token->id, data_type_text_t[type_1]);
+            error_inner(err_type, token->column, token->id, data_types[type_1]);
             break;
         case OPERATOR_INVALID_2:
-            error_inner(err_type, token->column, token->id, data_type_text_t[type_1], data_type_text_t[type_2]);
+            error_inner(err_type, token->column, token->id, data_types[type_1], data_types[type_2]);
             break;
         case INCOMPATIBLE_TYPE:
-            error_inner(err_type, token->column, data_type_text_t[type_1], token->id);
+            error_inner(err_type, token->column, data_types[type_1], token->id);
             break;
         case SYMBOL_NEVER_USED:
             error_inner(err_type, token->column, token->id);

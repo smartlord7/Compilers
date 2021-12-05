@@ -4,8 +4,6 @@
 #include "linked_list.h"
 #include "data_types.h"
 
-extern char * data_type_text_t[];
-
 typedef enum {
     RETURN_ENTRY_,
     VAR_ENTRY_,

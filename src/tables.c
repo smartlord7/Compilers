@@ -99,7 +99,7 @@ void print_global_table(global_table_t * global_table) {
                 if(tmp->data->table->return_ == NULL) {
                     printf("%s\t(%s)\tnone\n", tmp->data->table->name, func_args);
                 } else {
-                    printf("%s\t(%s)\t%s\n", tmp->data->table->name, func_args, data_type_text_t[tmp->data->table->return_->return_type]);
+                    printf("%s\t(%s)\t%s\n", tmp->data->table->name, func_args, data_types[tmp->data->table->return_->return_type]);
                 }
 
                 break;
@@ -147,12 +147,12 @@ char * get_func_args(local_table_t * table) {
     entry = table->entries;
     while (entry != NULL && entry->return_type == D_PARAM) {
         if (first_append) {
-            args = (char *) malloc(strlen(data_type_text_t[(entry->arg_type)] + 1) * sizeof(char));
-            strcpy(args, data_type_text_t[entry->arg_type]);
+            args = (char *) malloc(strlen(data_types[(entry->arg_type)] + 1) * sizeof(char));
+            strcpy(args, data_types[entry->arg_type]);
             first_append = 0;
         } else {
             args = str_append(args, ",");
-            args = str_append(args, data_type_text_t[entry->arg_type]);
+            args = str_append(args, data_types[entry->arg_type]);
         }
         entry = entry->next;
     }
@@ -243,7 +243,7 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
             aux_entry = get_var(global_table, local_table, value, SYMBOL_USAGE, &feedback);
 
             if(feedback == SYMBOL_FOUND) {
-                if(strcmp(data_type_text_t[aux_entry->return_type], "param") == 0) {
+                if(strcmp(data_types[aux_entry->return_type], "param") == 0) {
                     return aux_entry->arg_type;
                 } else {
                     return aux_entry->return_type;
@@ -356,7 +356,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             name = aux_var_data->var_name;
 
             int var_type = 0;
-            while (strcmp(type, data_type_text_t[var_type]) != 0) {
+            while (strcmp(type, data_types[var_type]) != 0) {
                 var_type++;
             }
 
@@ -372,7 +372,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             name = aux_var_data->var_name;
 
             var_type = 0;
-            while (strcmp(type, data_type_text_t[var_type]) != 0) {
+            while (strcmp(type, data_types[var_type]) != 0) {
                 var_type++;
             }
 
@@ -512,7 +512,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
 
             if(feedback == SYMBOL_FOUND) {
                 if(aux_entry->return_type != D_NONE) {
-                    node->data->annotation = data_type_text_t[aux_entry->return_type];
+                    node->data->annotation = data_types[aux_entry->return_type];
                 }
 
             } else if (feedback == SYMBOL_NOT_FOUND) {
@@ -541,10 +541,10 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                 aux_entry = get_var(global_table, table, value, SYMBOL_USAGE, &feedback);
 
                 if(feedback == SYMBOL_FOUND) {
-                    if(strcmp(data_type_text_t[aux_entry->return_type], "param") == 0) {
-                        node->data->annotation = data_type_text_t[aux_entry->arg_type];
+                    if(strcmp(data_types[aux_entry->return_type], "param") == 0) {
+                        node->data->annotation = data_types[aux_entry->arg_type];
                     } else {
-                        node->data->annotation = data_type_text_t[aux_entry->return_type];
+                        node->data->annotation = data_types[aux_entry->return_type];
                     }
 
                 } else if(feedback == SYMBOL_NOT_FOUND) {
@@ -659,7 +659,7 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
             var_name = aux_var_data->var_name;
 
             int var_type = 0;
-            while (strcmp(var_return_type, data_type_text_t[var_type]) != 0) {
+            while (strcmp(var_return_type, data_types[var_type]) != 0) {
                 var_type++;
             }
 

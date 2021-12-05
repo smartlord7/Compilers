@@ -5,15 +5,6 @@
 #include "strings.h"
 #include "symbol_entry.h"
 
-char * data_type_text_t[] = {
-        "int",
-        "bool",
-        "float32",
-        "string",
-        "",
-        "param",
-};
-
 entry_t * init_entry(char * name, data_type_t return_type, data_type_t arg_type) {
     entry_t * new_entry = (entry_t *) calloc(1, sizeof(entry_t));
 
@@ -32,26 +23,26 @@ void print_entry(int type, entry_t * entry) {
     switch (type) {
         case RETURN_ENTRY_:
             if(entry->return_type == D_NONE) {
-                printf("%s\t%s\t%s\n", entry->name, data_type_text_t[entry->arg_type], data_type_text_t[entry->return_type]);
+                printf("%s\t%s\t%s\n", entry->name, data_types[entry->arg_type], data_types[entry->return_type]);
             } else {
-                printf("%s\t%s\tnone\n", entry->name, data_type_text_t[entry->return_type]);
+                printf("%s\t%s\tnone\n", entry->name, data_types[entry->return_type]);
             }
             break;
         case VAR_ENTRY_:
-            printf("%s\t\t%s\n", entry->name, data_type_text_t[entry->return_type]);
+            printf("%s\t\t%s\n", entry->name, data_types[entry->return_type]);
             break;
         case NULL_RETURN_ENTRY_:
             printf("return\t\tnone\n");
             break;
         case FUNC_RETURN_ENTRY_:
-            printf("%s\t\t%s\n", entry->name, data_type_text_t[entry->return_type]);
+            printf("%s\t\t%s\n", entry->name, data_types[entry->return_type]);
             break;
         case FUNC_VAR_ENTRY_:
 
-            if(strcmp(data_type_text_t[entry->return_type], "param") == 0) {
-                printf("%s\t\t%s\t%s\n", entry->name, data_type_text_t[entry->arg_type], data_type_text_t[entry->return_type]);
+            if(strcmp(data_types[entry->return_type], "param") == 0) {
+                printf("%s\t\t%s\t%s\n", entry->name, data_types[entry->arg_type], data_types[entry->return_type]);
             } else {
-                printf("%s\t%s\t%s\n", entry->name, data_type_text_t[entry->arg_type], data_type_text_t[entry->return_type]);
+                printf("%s\t%s\t%s\n", entry->name, data_types[entry->arg_type], data_types[entry->return_type]);
             }
 
             break;
