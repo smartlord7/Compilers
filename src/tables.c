@@ -86,7 +86,6 @@ void push_global_entry(global_table_t * global_table, global_entry_t * entry) {
 }
 
 void print_global_table(global_table_t * global_table) {
-
     printf("===== Global Symbol Table =====\n");
 
     global_entry_t * tmp = global_table->entries;
@@ -132,7 +131,7 @@ void print_global_table(global_table_t * global_table) {
 char * str_append(char * dest, char * src) {
     char * tmp = NULL;
 
-    tmp = (char *) malloc(sizeof(dest) + sizeof(src) + 10);
+    tmp = (char *) malloc((strlen(dest) + strlen(src) + 1) * sizeof(char));
 
     memcpy(tmp, dest, strlen(dest));
     strcpy(tmp + strlen(dest), src);

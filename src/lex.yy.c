@@ -2347,20 +2347,19 @@ char * handle_token(token_type tok_type) {
 	yylval.node->column = last_token_column;
 
 	char * tok = yytext,
-	       ** aux = NULL,
 	       * aux2 = NULL;
 
 	current_column += yyleng;
 
-	if(strlen(tok) > BUF_SIZE) {
-        buf = malloc(sizeof(strlen(tok))*sizeof(char)+100);
+	if (strlen(tok) > BUF_SIZE) {
+        buf = malloc(sizeof(strlen(tok)) * sizeof(char) + 100);
 	}
 
-	if(strlen(tok) > BUF_SIZE_2) {
-        buf2 = malloc(sizeof(strlen(tok))*sizeof(char)+100);
+	if (strlen(tok) > BUF_SIZE_2) {
+        buf2 = malloc(sizeof(strlen(tok)) * sizeof(char) + 100);
     }
 
-    int buffer_size = strlen(tok)+100;
+    int buffer_size = strlen(tok) + 100;
 
     switch (tok_type) {
         case ID_:
@@ -2375,6 +2374,9 @@ char * handle_token(token_type tok_type) {
         case STRING_LIT_:
             aux2 = "StrLit";
             break;
+
+        default:
+        break;
     }
 
 	switch (tok_type) {
@@ -2442,6 +2444,7 @@ char * handle_token(token_type tok_type) {
 				printf("%s\n", token_types[tok_type]);
 			}
 			return token_types[tok_type];
+			break;
 	}
 
 	return buf2;
