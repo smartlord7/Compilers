@@ -145,7 +145,7 @@ char * get_func_args(local_table_t * table) {
     entry_t * entry = NULL;
 
     entry = table->entries;
-    while (entry != NULL && entry->return_type == D_PARAM) {
+    while (entry != NULL && entry->return_type == DATA_PARAM) {
         if (first_append) {
             args = (char *) malloc(strlen(data_types[(entry->arg_type)] + 1) * sizeof(char));
             strcpy(args, data_types[entry->arg_type]);
@@ -195,17 +195,17 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
                 if(result1 == result2) {
 
                     switch (result1) {
-                        case D_INT:
-                            node->data->annotation = "int";
+                        case DATATYPE_INT:
+                            node->data->annotation = ANNOTATION_INT;
                             break;
-                        case D_FLOAT32:
-                            node->data->annotation = "float32";
+                        case DATATYPE_FLOAT32:
+                            node->data->annotation = ANNOTATION_FLOAT32;
                             break;
-                        case D_BOOL:
-                            node->data->annotation = "bool";
+                        case DATATYPE_BOOL:
+                            node->data->annotation = ANNOTATION_BOOL;
                             break;
-                        case D_STRING:
-                            node->data->annotation = "string";
+                        case DATATYPE_STRING:
+                            node->data->annotation = ANNOTATION_STRING;
                             break;
                         default:
                             break;
@@ -217,17 +217,17 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
             } else {
 
                 switch (result1) {
-                    case D_INT:
-                        node->data->annotation = "int";
+                    case DATATYPE_INT:
+                        node->data->annotation = ANNOTATION_INT;
                         break;
-                    case D_FLOAT32:
-                        node->data->annotation = "float32";
+                    case DATATYPE_FLOAT32:
+                        node->data->annotation = ANNOTATION_FLOAT32;
                         break;
-                    case D_BOOL:
-                        node->data->annotation = "bool";
+                    case DATATYPE_BOOL:
+                        node->data->annotation = ANNOTATION_BOOL;
                         break;
-                    case D_STRING:
-                        node->data->annotation = "string";
+                    case DATATYPE_STRING:
+                        node->data->annotation = ANNOTATION_STRING;
                         break;
                     default:
                         break;
@@ -275,20 +275,20 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
             aux_entry = get_var(global_table,local_table, value, SYMBOL_USAGE, &feedback);
 
             if(feedback == SYMBOL_FOUND) {
-                if(aux_entry->return_type != D_NONE) {
+                if(aux_entry->return_type != DATATYPE_NONE) {
                     return aux_entry->return_type;
                 }
 
             } else if (feedback == SYMBOL_NOT_FOUND) {
             }
         case A_INTLIT:
-            return D_INT;
+            return DATATYPE_INT;
         case A_REALLIT:
-            return D_FLOAT32;
+            return DATATYPE_FLOAT32;
         case A_BOOL:
-            return D_BOOL;
+            return DATATYPE_BOOL;
         case A_STRING:
-            return D_STRING;
+            return DATATYPE_STRING;
         case A_EQ:
         case A_NE:
         case A_LT:
@@ -298,12 +298,12 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
         case A_NOT:
         case A_AND:
         case A_OR:
-            return D_BOOL;
+            return DATATYPE_BOOL;
         default:
             break;
     }
 
-    return D_NONE;
+    return DATATYPE_NONE;
 }
 
 void sub_build_local_table(global_table_t * global_table, local_table_t * table, struct list_node_t * node, table_phase_t build_phase, symbol_father_t flag) {
@@ -326,25 +326,25 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
 
         case A_INT:
             if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", D_INT, D_NONE);
+                table->return_ = init_entry("return", DATATYPE_INT, DATATYPE_NONE);
             }
             break;
 
         case A_FLOAT32:
             if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", D_FLOAT32, D_NONE);
+                table->return_ = init_entry("return", DATATYPE_FLOAT32, DATATYPE_NONE);
             }
             break;
 
         case A_BOOL:
             if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", D_BOOL, D_NONE);
+                table->return_ = init_entry("return", DATATYPE_BOOL, DATATYPE_NONE);
             }
             break;
 
         case A_STRING:
             if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", D_STRING, D_NONE);
+                table->return_ = init_entry("return", DATATYPE_STRING, DATATYPE_NONE);
             }
             break;
 
@@ -360,7 +360,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                 var_type++;
             }
 
-            new_entry = init_entry(name, D_PARAM, (data_type_t) var_type);
+            new_entry = init_entry(name, DATA_PARAM, (data_type_t) var_type);
             push_entry(table, new_entry);
             break;
 
@@ -378,7 +378,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
 
             aux_entry = get_var(global_table, table, name,SYMBOL_DECL, &feedback);
 
-            new_entry = init_entry(name, (data_type_t) var_type, D_NONE);
+            new_entry = init_entry(name, (data_type_t) var_type, DATATYPE_NONE);
             push_entry(table, new_entry);
             break;
 
@@ -419,17 +419,17 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
 
                 if(result1 == result2) {
                     switch (result1) {
-                        case D_INT:
-                            node->data->annotation = "int";
+                        case DATATYPE_INT:
+                            node->data->annotation = ANNOTATION_INT;
                             break;
-                        case D_FLOAT32:
-                            node->data->annotation = "float32";
+                        case DATATYPE_FLOAT32:
+                            node->data->annotation = ANNOTATION_FLOAT32;
                             break;
-                        case D_BOOL:
-                            node->data->annotation = "bool";
+                        case DATATYPE_BOOL:
+                            node->data->annotation = ANNOTATION_BOOL;
                             break;
-                        case D_STRING:
-                            node->data->annotation = "string";
+                        case DATATYPE_STRING:
+                            node->data->annotation = ANNOTATION_STRING;
                             break;
                         default:
                             break;
@@ -439,17 +439,17 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                 }
             } else {
                 switch (result1) {
-                    case D_INT:
-                        node->data->annotation = "int";
+                    case DATATYPE_INT:
+                        node->data->annotation = ANNOTATION_INT;
                         break;
-                    case D_FLOAT32:
-                        node->data->annotation = "float32";
+                    case DATATYPE_FLOAT32:
+                        node->data->annotation = ANNOTATION_FLOAT32;
                         break;
-                    case D_BOOL:
-                        node->data->annotation = "bool";
+                    case DATATYPE_BOOL:
+                        node->data->annotation = ANNOTATION_BOOL;
                         break;
-                    case D_STRING:
-                        node->data->annotation = "string";
+                    case DATATYPE_STRING:
+                        node->data->annotation = ANNOTATION_STRING;
                         break;
                     default:
                         break;
@@ -482,17 +482,17 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                 if(aux_table->return_ != NULL) {
 
                     switch (aux_table->return_->return_type) {
-                        case D_INT:
-                            node->data->annotation = "int";
+                        case DATATYPE_INT:
+                            node->data->annotation = ANNOTATION_INT;
                             break;
-                        case D_FLOAT32:
-                            node->data->annotation = "float32";
+                        case DATATYPE_FLOAT32:
+                            node->data->annotation = ANNOTATION_FLOAT32;
                             break;
-                        case D_BOOL:
-                            node->data->annotation = "bool";
+                        case DATATYPE_BOOL:
+                            node->data->annotation = ANNOTATION_BOOL;
                             break;
-                        case D_STRING:
-                            node->data->annotation = "string";
+                        case DATATYPE_STRING:
+                            node->data->annotation = ANNOTATION_STRING;
                             break;
                         default:
                             break;
@@ -511,7 +511,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             aux_entry = get_var(global_table,table, value, SYMBOL_USAGE, &feedback);
 
             if(feedback == SYMBOL_FOUND) {
-                if(aux_entry->return_type != D_NONE) {
+                if(aux_entry->return_type != DATATYPE_NONE) {
                     node->data->annotation = data_types[aux_entry->return_type];
                 }
 
@@ -668,7 +668,7 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
 
                 switch (feedback) {
                     case SYMBOL_NOT_FOUND:
-                        new_var = init_entry(var_name, (data_type_t) var_type, D_NONE);
+                        new_var = init_entry(var_name, (data_type_t) var_type, DATATYPE_NONE);
                         new_entry = init_global_entry(GLOBAL_VAR_, NULL, new_var);
                         push_global_entry(global_table, new_entry);
                         break;

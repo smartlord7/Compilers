@@ -38,7 +38,6 @@ void error(error_type err_type, int curr_column, char * text) {
 }
 
 extern void semantic_error(error_type err_type, tree_node_t * token, data_type_t type_1, data_type_t type_2) {
-
     switch (err_type) {
         case SYMBOL_ALREADY_DEFINED:
             error_inner(err_type, token->column, token->id, data_types[type_1], data_types[type_2]);
@@ -61,6 +60,4 @@ extern void semantic_error(error_type err_type, tree_node_t * token, data_type_t
         default:
             break;
     }
-
-
 }

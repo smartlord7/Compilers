@@ -22,7 +22,7 @@ entry_t * init_entry(char * name, data_type_t return_type, data_type_t arg_type)
 void print_entry(int type, entry_t * entry) {
     switch (type) {
         case RETURN_ENTRY_:
-            if(entry->return_type == D_NONE) {
+            if(entry->return_type == DATATYPE_NONE) {
                 printf("%s\t%s\t%s\n", entry->name, data_types[entry->arg_type], data_types[entry->return_type]);
             } else {
                 printf("%s\t%s\tnone\n", entry->name, data_types[entry->return_type]);

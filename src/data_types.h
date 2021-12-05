@@ -6,13 +6,13 @@
 #define DEFAULT_OFFSET 21
 
 typedef enum data_type_t{
-    D_INT,
-    D_BOOL,
-    D_FLOAT32,
-    D_STRING,
-    D_NONE, // used also for unary operators
-    D_PARAM,
-    D_UNDEF
+    DATATYPE_INT,
+    DATATYPE_BOOL,
+    DATATYPE_FLOAT32,
+    DATATYPE_STRING,
+    DATATYPE_NONE, // used also for unary operators
+    DATATYPE_UNDEF,
+    DATA_PARAM,
 } data_type_t;
 
 #include "abstract_syntax_tree.h"

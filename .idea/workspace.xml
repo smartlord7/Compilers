@@ -17,11 +17,11 @@
       <change beforePath="$PROJECT_DIR$/src/data_types.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_types.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data_types.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_types.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/error_handling.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/error_handling.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gocompiler.l" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.l" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lex.yy.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lex.yy.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gocompiler.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/gocompiler.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/linked_list.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/linked_list.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/linked_list.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/linked_list.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/non_used_src_files/array_list.test.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/non_used_src_files/array_list.test.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/symbol_entry.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/symbol_entry.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/symbol_entry.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/symbol_entry.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tables.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/tables.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/meta3/errors.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/errors.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/meta3/errors_nonefunccalls.out" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/meta3/errors_nonefunccalls.out" afterDir="false" />
