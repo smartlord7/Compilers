@@ -4,10 +4,10 @@
 #include "strings.h"
 
 char * trim_value(char * original_value) {
-    char * value, * aux;
-    int i;
+    char * value = original_value, * aux = NULL;
+    int i, found = 0;
 
-    if(original_value == NULL) {
+    if (original_value == NULL) {
         return NULL;
     }
 
@@ -19,12 +19,15 @@ char * trim_value(char * original_value) {
     i = 0;
     while (original_value[0] != ')') {
         original_value++;
+        found = 1;
         i++;
     }
 
-    value = (char *) malloc((i + 1) * sizeof(char));
-    strncpy(value, aux, i);
-    value[i] = '\0';
+    if (found) {
+        value = (char *) malloc((i + 1) * sizeof(char));
+        strncpy(value, aux, i);
+        value[i] = '\0';
+    }
 
     return value;
 }

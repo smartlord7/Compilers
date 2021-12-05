@@ -11,7 +11,6 @@
 	#include "error_handling.h"
 	#include "abstract_syntax_tree.h"
 
-
 	#define show_error(err_type, curr_column) error(err_type, curr_column, yytext);
 
 	int	start = 0,
@@ -190,16 +189,14 @@ int main(int argc, char * argv[]) {
         init_data_types_rules();
         global_table = init_global_table();
         build_global_table(global_table, root, FIRST_PASSAGE);
+        build_global_table(global_table, root, SECOND_PASSAGE);
 
-        if (semantic_error_flag == 0) {
-            build_global_table(global_table, root, SECOND_PASSAGE);
-
-            if (argc > 1 && strcmp(argv[1], "-s") == 0 && semantic_error_flag == 0) {
-                print_global_table(global_table);
-                print_tree(root, 1);
-            }
+        if (argc > 1 && strcmp(argv[1], "-s") == 0 && semantic_error_flag == 0) {
+            print_global_table(global_table);
+            print_tree(root, 1);
         }
     }
+
 	return EXIT_SUCCESS;
 }
 

@@ -63,7 +63,7 @@ typedef enum ast_node_type_t ast_node_type_t;
 struct tree_node_t{
     char * id, * annotation;
     ast_node_type_t type;
-    int level, line, column;
+    int level, line, column, errored;
     struct list_node_t * children, * siblings;
 };
 

@@ -19,13 +19,13 @@ typedef enum {
     OPERATOR_INVALID_2,
     INCOMPATIBLE_TYPE,
     SYMBOL_NEVER_USED,
-} error_type;
+} error_type_t;
 
 extern const char * error_msgs[];
 extern int current_line, current_column, last_token_line,
         last_token_column, yacc_error, semantic_error_flag;
 
-extern void error(error_type err_type, int curr_column, char * text);
-extern void semantic_error(error_type err_type, tree_node_t * token, data_type_t type_1, data_type_t type_2);
+extern void error(error_type_t err_type, int curr_column, char * text);
+extern void semantic_error(error_type_t err_type, tree_node_t * node, data_type_t type_1, data_type_t type_2);
 
 #endif //GOCOMPILER_L_ERROR_HANDLING_H

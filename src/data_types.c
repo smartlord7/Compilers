@@ -37,8 +37,8 @@ void set_data_type_rule(data_type_t type1, data_type_t type2, ast_node_type_t op
 data_type_t check_op_data_types(data_type_t type1, data_type_t type2, ast_node_type_t operator) {
     int * value = rules[type1][type2][operator];
 
-    if (rules[type1][type2][operator][0]) {
-        return rules[type1][type2][operator][1];
+    if (value[0]) {
+        return value[1];
     }
 
     return DATATYPE_UNDEF;
