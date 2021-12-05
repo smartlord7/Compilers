@@ -15,7 +15,7 @@ extern struct tree_node_t * root;
 %}
 
 %token PACKAGE
-%token <id> ID
+%token <node> ID
 %token SEMICOLON
 %token VAR
 %token LPAR
@@ -33,7 +33,7 @@ extern struct tree_node_t * root;
 %token RETURN
 %token FOR
 %token PRINT
-%token <strlit> STRLIT
+%token <node> STRLIT
 %token BLANKID
 %token PARSEINT
 %token CMDARGS
@@ -53,8 +53,8 @@ extern struct tree_node_t * root;
 %token DIV
 %token MOD
 %token NOT
-%token <intlit> INTLIT
-%token <reallit> REALLIT
+%token <node> INTLIT
+%token <node> REALLIT
 %token FUNC
 %type <node> Program
 %type <node> Declarations
@@ -78,8 +78,6 @@ extern struct tree_node_t * root;
 %type <node> FuncInvocation_rep
 
 %union{
-	char * id, * intlit, * reallit, * strlit;
-	int * line, * column;
 	struct tree_node_t * node;
 }
 
@@ -123,7 +121,7 @@ extern struct tree_node_t * root;
 
     VarSpec:
     	ID VarSpec_1													{$$ = create_node(A_VAR_DECL, "VarDecl");
-    															push($$->children, create_node(A_ID, $1));
+    															push($$->children, create_node(A_ID, $1->id));
     															push($$->children, $2);
 
 															struct list_node_t * father = $$->children->next->next;
@@ -153,7 +151,7 @@ extern struct tree_node_t * root;
     	Type														{$$ = $1;}
     	|
      	COMMA ID VarSpec_1												{$$ = create_node(A_VAR_DECL, "VarDecl");
-     															push($$->children, create_node(A_ID, $2));
+     															push($$->children, create_node(A_ID, $2->id));
      															push($$->children, $3);}
      	;
 
@@ -168,18 +166,18 @@ extern struct tree_node_t * root;
 	;
 
 	FuncHeader:
-		FUNC ID LPAR RPAR											{$$ = create_node(A_ID, $2);
+		FUNC ID LPAR RPAR											{$$ = create_node(A_ID, $2->id);
 															push($$->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));}
     	|
-    	FUNC ID LPAR Parameters RPAR											{$$ = create_node(A_ID, $2);
+    	FUNC ID LPAR Parameters RPAR											{$$ = create_node(A_ID, $2->id);
     															push($$->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));
 															push($$->siblings->next->data->children, $4);}
     	|
-    	FUNC ID LPAR RPAR Type												{$$ = create_node(A_ID, $2);
+    	FUNC ID LPAR RPAR Type												{$$ = create_node(A_ID, $2->id);
     															push($$->siblings, $5);
     															push($$->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));}
     	|
-    	FUNC ID LPAR Parameters RPAR Type										{$$ = create_node(A_ID, $2);
+    	FUNC ID LPAR Parameters RPAR Type										{$$ = create_node(A_ID, $2->id);
 															push($$->siblings, $6);
 															push($$->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));
 															push($$->siblings->next->next->data->children, $4);}
@@ -194,22 +192,22 @@ extern struct tree_node_t * root;
     Parameters:
     	ID Type														{$$ = create_node(A_PARAM_DECL, "ParamDecl");
     															push($$->children, $2);
-    															push($$->children, create_node(A_ID, $1));}
+    															push($$->children, create_node(A_ID, $1->id));}
     	|
     	ID Type Parameters_1                                        							{$$ = create_node(A_PARAM_DECL, "ParamDecl");
     															push($$->children, $2);
-    															push($$->children, create_node(A_ID, $1));
+    															push($$->children, create_node(A_ID, $1->id));
     															push($$->siblings, $3);}
 	;
 
     Parameters_1:
     	COMMA ID Type													{$$ = create_node(A_PARAM_DECL, "ParamDecl");
     															push($$->children, $3);
-    															push($$->children, create_node(A_ID, $2));}
+    															push($$->children, create_node(A_ID, $2->id));}
     	|
     	COMMA ID Type Parameters_1											{$$ = create_node(A_PARAM_DECL, "ParamDecl");
     															push($$->children, $3);
-    															push($$->children, create_node(A_ID, $2));
+    															push($$->children, create_node(A_ID, $2->id));
     															push($$->siblings, $4);}
     	;
 
@@ -240,7 +238,7 @@ extern struct tree_node_t * root;
 
     Statement:
     	ID ASSIGN Expr                                                      						{$$ = create_node(A_ASSIGN, "Assign");
-    															push($$->children, create_node(A_ID, $1));
+    															push($$->children, create_node(A_ID, $1->id));
     															push($$->children, $3);}
     	;
 
@@ -312,7 +310,7 @@ extern struct tree_node_t * root;
     															push($$->children, $3);}
     	|
     	PRINT LPAR STRLIT RPAR                                          						{$$ = create_node(A_PRINT, "Print");
-    															push($$->children, create_node(A_STRLIT, $3));}
+    															push($$->children, create_node(A_STRLIT, $3->id));}
     	;
 
     Statement:
@@ -321,7 +319,7 @@ extern struct tree_node_t * root;
 
     ParseArgs:
     	ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR                        				{$$ = create_node(A_PARSE_ARGS, "ParseArgs");
-															push($$->children, create_node(A_ID, $1));
+															push($$->children, create_node(A_ID, $1->id));
 															push($$->children, $9);
 															}
     	;
@@ -332,14 +330,14 @@ extern struct tree_node_t * root;
 
     FuncInvocation:
     	ID LPAR RPAR 													{$$ = create_node(A_CALL, "Call");
-    															push($$->children, create_node(A_ID, $1));}
+    															push($$->children, create_node(A_ID, $1->id));}
     	|
 	ID LPAR Expr RPAR 												{$$ = create_node(A_CALL, "Call");
-															push($$->children, create_node(A_ID, $1));
+															push($$->children, create_node(A_ID, $1->id));
 															push($$->children, $3);}
 	|
 	ID LPAR Expr FuncInvocation_rep RPAR										{$$ = create_node(A_CALL, "Call");
-															push($$->children, create_node(A_ID, $1));
+															push($$->children, create_node(A_ID, $1->id));
 															push($$->children, $3);
 															push($$->children, $4);}
 	;
@@ -425,11 +423,11 @@ extern struct tree_node_t * root;
     	;
 
     Expr:
-    	INTLIT 														{$$ = create_node(A_INTLIT, $1);}
+    	INTLIT 														{$$ = create_node(A_INTLIT, $1->id);}
     	|
-    	REALLIT 													{$$ = create_node(A_REALLIT, $1);}
+    	REALLIT 													{$$ = create_node(A_REALLIT, $1->id);}
     	|
-    	ID 														{$$ = create_node(A_ID, $1);}
+    	ID 														{$$ = create_node(A_ID, $1->id);}
     	|
     	FuncInvocation 													{$$ = $1;}
     	|

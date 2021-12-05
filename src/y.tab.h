@@ -145,11 +145,9 @@ union YYSTYPE
 {
 #line 80 "gocompiler.y"
 
-	char * id, * intlit, * reallit, * strlit;
-	int * line, * column;
 	struct tree_node_t * node;
 
-#line 153 "y.tab.h"
+#line 151 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

@@ -55,6 +55,7 @@
     A_STRLIT,
     A_INTLIT,
     A_REALLIT,
+    A_DUMMY,
 };
 
 typedef enum ast_node_type_t ast_node_type_t;

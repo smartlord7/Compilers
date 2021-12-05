@@ -1,12 +1,13 @@
-#include "abstract_syntax_tree.h"
-#include "tables.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include "y.tab.h"
+#include "tables.h"
+#include "abstract_syntax_tree.h"
 
 int check_block(struct list_node_t * block);
 
 struct tree_node_t * create_node(int type, char * id) {
-    struct tree_node_t * new_node = (struct tree_node_t *) malloc(sizeof(struct tree_node_t));
+    struct tree_node_t * new_node = (struct tree_node_t *) calloc(1,sizeof(struct tree_node_t));
 
     new_node->id = id;
     new_node->type = type;
@@ -14,8 +15,11 @@ struct tree_node_t * create_node(int type, char * id) {
     new_node->children->next = NULL;
     new_node->siblings = (struct list_node_t *) malloc(sizeof(struct list_node_t));
     new_node->siblings->next = NULL;
-    new_node->line = 0;
-    new_node->column = 0;
+
+    if (yylval.node != NULL) {
+        new_node->line = yylval.node->line;
+        new_node->column = yylval.node->column;
+    }
 
     return new_node;
 }
@@ -30,7 +34,6 @@ void print_ast_node(struct tree_node_t * node, int level, int is_annotated) {
         printf("..");
     }
 
-    // TODO MISSING LINE AND COLUMN
     printf("%s", node->id);
 
     if (is_annotated && node->annotation != NULL) {

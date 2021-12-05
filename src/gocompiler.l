@@ -27,7 +27,6 @@
 
 	static char * handle_token(token_type type);
 	static void auto_semicolon();
-
 %}
 
 %X STATE_STRING STATE_LINE_COMMENT STATE_GENERAL_COMMENT
@@ -174,8 +173,7 @@ int main(int argc, char * argv[]) {
 
     buf = malloc(BUF_SIZE*sizeof(char));
     buf2 = malloc(BUF_SIZE_2*sizeof(char));
-    yylval.line = &last_token_line;
-    yylval.column = &current_column;
+    yylval.node = create_node(A_DUMMY, "");
 
 
 	if (argc > 1 && strcmp(argv[1], "-l") == 0) {
@@ -213,6 +211,8 @@ char * handle_token(token_type tok_type) {
 
 	last_token_line = current_line;
 	last_token_column = current_column;
+	yylval.node->line = last_token_line;
+	yylval.node->column = last_token_column;
 
 	char * tok = yytext,
 	       ** aux = NULL,
@@ -232,19 +232,15 @@ char * handle_token(token_type tok_type) {
 
     switch (tok_type) {
         case ID_:
-            aux = &yylval.id;
             aux2 = "Id";
             break;
         case INT_LIT_:
-            aux = &yylval.intlit;
             aux2 = "IntLit";
             break;
         case REAL_LIT_:
-            aux = &yylval.reallit;
             aux2 = "RealLit";
             break;
         case STRING_LIT_:
-            aux = &yylval.strlit;
             aux2 = "StrLit";
             break;
     }
@@ -268,7 +264,7 @@ char * handle_token(token_type tok_type) {
 
 			buf_counter = 0;
             last_token = tok_type;
-            * aux = strdup(buf2);
+            yylval.node = create_node(A_DUMMY, strdup(buf2));
 
 			return buf2;
 			break;
