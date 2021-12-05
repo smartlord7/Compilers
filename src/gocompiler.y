@@ -14,7 +14,7 @@ extern struct tree_node_t * root;
 
 %}
 
-%token <package> PACKAGE
+%token PACKAGE
 %token <id> ID
 %token SEMICOLON
 %token VAR
@@ -56,31 +56,31 @@ extern struct tree_node_t * root;
 %token <intlit> INTLIT
 %token <reallit> REALLIT
 %token FUNC
-%type <tree_node> Program
-%type <tree_node> Declarations
-%type <tree_node> FuncDeclaration
-%type <tree_node> FuncHeader
-%type <tree_node> Type
-%type <tree_node> Parameters
-%type <tree_node> Parameters_1
-%type <tree_node> FuncBody
-%type <tree_node> VarsAndStatements
-%type <tree_node> VarDeclaration
-%type <tree_node> VarSpec
-%type <tree_node> VarSpec_1 
-%type <tree_node> Statement 
-%type <tree_node> Statement_1
-%type <tree_node> Statement_rep
-%type <tree_node> OPT_ELSE 
-%type <tree_node> Expr
-%type <tree_node> ParseArgs
-%type <tree_node> FuncInvocation
-%type <tree_node> FuncInvocation_rep
+%type <node> Program
+%type <node> Declarations
+%type <node> FuncDeclaration
+%type <node> FuncHeader
+%type <node> Type
+%type <node> Parameters
+%type <node> Parameters_1
+%type <node> FuncBody
+%type <node> VarsAndStatements
+%type <node> VarDeclaration
+%type <node> VarSpec
+%type <node> VarSpec_1
+%type <node> Statement
+%type <node> Statement_1
+%type <node> Statement_rep
+%type <node> OPT_ELSE
+%type <node> Expr
+%type <node> ParseArgs
+%type <node> FuncInvocation
+%type <node> FuncInvocation_rep
 
 %union{
-	char * strlit, * id, * reallit, * intlit;
-	int line, column;
-	struct tree_node_t * tree_node;
+	char * id, * intlit, * reallit, * strlit;
+	int * line, * column;
+	struct tree_node_t * node;
 }
 
 // Operator precedence order definition -> See Go language specification

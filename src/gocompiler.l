@@ -18,11 +18,11 @@
 		comment_line = 0,
 		comment_column = 0,
 		verbose = 0,
-		buf_counter = 0;
-	int flag = 0, semicolon_flag = 0, eligible_token = 0;
-	char * buf, * buf2;
-	global_table_t * global_table;
-
+		buf_counter = 0,
+	    flag = 0,
+	    semicolon_flag = 0;
+	char * buf = NULL, * buf2 = NULL;
+	global_table_t * global_table = NULL;
 	struct tree_node_t * root = NULL;
 
 	static char * handle_token(token_type type);
@@ -30,9 +30,7 @@
 
 %}
 
-%option yylineno
-
-%X STATE_STRING STATE_LINE_COMMENT STATE_GENERAL_COMMENT OCTAL
+%X STATE_STRING STATE_LINE_COMMENT STATE_GENERAL_COMMENT
 
 semicolon 							";"
 comma								","
@@ -141,14 +139,14 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 
 {new_line}							{handle_token(NEW_LINE_); if(semicolon_flag == 1) {semicolon_flag = 0; return SEMICOLON;};}
 {reserved}							{handle_token(RESERVED_); return RESERVED_;}
-{id}								{yylval.id = strdup(handle_token(ID_)); return ID;}
-{int_lit}							{yylval.intlit = strdup(handle_token(INT_LIT_)); return INTLIT;}
+{id}								{handle_token(ID_); return ID;}
+{int_lit}							{handle_token(INT_LIT_); return INTLIT;}
 {invalid_octal_lit}					{show_error(INVALID_OCTAL_CONST, current_column); current_column += yyleng;}
-{real_lit}							{yylval.reallit = strdup(handle_token(REAL_LIT_)); return REALLIT;}
+{real_lit}							{handle_token(REAL_LIT_); return REALLIT;}
 {space}								{current_column++;}
 
 \"																	{buf[0] = '\0'; buf_counter = 0; str_error = 0; BEGIN STATE_STRING; start = current_column++;}
-<STATE_STRING>\"													{BEGIN 0; if (!str_error) { yylval.strlit = strdup(handle_token(STRING_LIT_)); return STRLIT; } else { current_column++; };}
+<STATE_STRING>\"													{BEGIN 0; if (!str_error) { handle_token(STRING_LIT_); return STRLIT; } else { current_column++; };}
 <STATE_STRING>{new_line}											{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING><<EOF>>												{BEGIN 0; show_error(UNTERMINATED_STR_LIT, start); current_line++; current_column = 1;}
 <STATE_STRING>"\\\\"|"\\\""|"\\t"|"\\n"|"\\r"|"\\f"					{buf[buf_counter++] = yytext[0]; buf[buf_counter++] = yytext[1]; current_column += 2;}
@@ -176,6 +174,9 @@ int main(int argc, char * argv[]) {
 
     buf = malloc(BUF_SIZE*sizeof(char));
     buf2 = malloc(BUF_SIZE_2*sizeof(char));
+    yylval.line = &last_token_line;
+    yylval.column = &current_column;
+
 
 	if (argc > 1 && strcmp(argv[1], "-l") == 0) {
 		verbose = 1;
@@ -212,10 +213,11 @@ char * handle_token(token_type tok_type) {
 
 	last_token_line = current_line;
 	last_token_column = current_column;
-	yylval.line = last_token_line;
-	yylval.column = last_token_column;
 
-	char * tok = yytext;
+	char * tok = yytext,
+	       ** aux = NULL,
+	       * aux2 = NULL;
+
 	current_column += yyleng;
 
 	if(strlen(tok) > BUF_SIZE) {
@@ -228,48 +230,46 @@ char * handle_token(token_type tok_type) {
 
     int buffer_size = strlen(tok)+100;
 
+    switch (tok_type) {
+        case ID_:
+            aux = &yylval.id;
+            aux2 = "Id";
+            break;
+        case INT_LIT_:
+            aux = &yylval.intlit;
+            aux2 = "IntLit";
+            break;
+        case REAL_LIT_:
+            aux = &yylval.reallit;
+            aux2 = "RealLit";
+            break;
+        case STRING_LIT_:
+            aux = &yylval.strlit;
+            aux2 = "StrLit";
+            break;
+    }
 
 	switch (tok_type) {
 		case ID_:
-			buf[buf_counter] = '\0';
-
-			snprintf(buf2, buffer_size, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
-			if (verbose) {
-				printf("%s", buf2);
-			}
-
-			snprintf(buf2, buffer_size, "Id(%s)", tok);
-
-			buf_counter = 0;
-            last_token = tok_type;
-			return buf2;
-			break;
 		case INT_LIT_:
-			buf[buf_counter] = '\0';
-
-			snprintf(buf2, buffer_size, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
-			if (verbose) {
-				printf("%s", buf2);
-			}
-
-			snprintf(buf2, buffer_size, "IntLit(%s)", tok);
-
-			buf_counter = 0;
-            last_token = tok_type;
-			return buf2;
-			break;
 		case REAL_LIT_:
+		case STRING_LIT_:
 			buf[buf_counter] = '\0';
-
-			snprintf(buf2, buffer_size, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
+			snprintf(buf2, buffer_size, "%s(\"%s\")\n", token_types[tok_type], buf);
 			if (verbose) {
 				printf("%s", buf2);
 			}
 
-			snprintf(buf2, buffer_size, "RealLit(%s)", tok);
+            if (tok_type != STRING_LIT_) {
+                snprintf(buf2, buffer_size, "%s(%s)", aux2, tok);
+            } else {
+                snprintf(buf2, buffer_size, "%s(\"%s\")", aux2, buf);
+            }
 
 			buf_counter = 0;
             last_token = tok_type;
+            * aux = strdup(buf2);
+
 			return buf2;
 			break;
 		case RESERVED_:
@@ -280,20 +280,6 @@ char * handle_token(token_type tok_type) {
 			snprintf(buf2, buffer_size, "%s", tok);
 		    last_token = tok_type;
 		    return buf2;
-			break;
-		case STRING_LIT_:
-			buf[buf_counter] = '\0';
-
-			snprintf(buf2, buffer_size, "%s(\"%s\")\n", token_types[STRING_LIT_], buf);
-			if (verbose) {
-				printf("%s", buf2);
-			}
-
-			snprintf(buf2, buffer_size, "StrLit(\"%s\")", buf);
-
-			buf_counter = 0;
-            last_token = tok_type;
-			return buf2;
 			break;
 		case NEW_LINE_:
 		case IGNORE_NEW_LINE_:

@@ -34,6 +34,5 @@ typedef struct list_node_t list_node_t;
 extern entry_t * init_entry(char * name, data_type_t return_type, data_type_t arg_type);
 extern var_data_t * init_var_data(list_node_t * container);
 extern void print_entry(int type, entry_t * entry);
-extern char * trim_value(char * original_value);
 
 #endif //COMPILERS_SYMBOL_ENTRY_H

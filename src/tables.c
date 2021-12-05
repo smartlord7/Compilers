@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "tables.h"
-#include "error_handling.h"
+#include "strings.h"
 
 local_table_t * init_table(char * name) {
 
