@@ -2374,9 +2374,8 @@ char * handle_token(token_type tok_type) {
         case STRING_LIT_:
             aux2 = "StrLit";
             break;
-
         default:
-        break;
+            break;
     }
 
 	switch (tok_type) {

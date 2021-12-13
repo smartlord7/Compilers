@@ -96,7 +96,7 @@ void print_global_table(global_table_t * global_table) {
         switch (tmp->type) {
             case TABLE_:
                 func_args = get_func_args(tmp->data->table);
-                if(tmp->data->table->return_ == NULL) {
+                if(tmp->data->table->return_->return_type == DATATYPE_NONE) {
                     printf("%s\t(%s)\tnone\n", tmp->data->table->name, func_args);
                 } else {
                     printf("%s\t(%s)\t%s\n", tmp->data->table->name, func_args, data_types[tmp->data->table->return_->return_type]);
@@ -612,7 +612,6 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
             child = node->data->children->next;
 
             while (child != NULL){
-
                 switch (child->data->type) {
                     case A_FUNC_HEADER:
                         grandchild = child->data->children->next;
@@ -628,6 +627,32 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
                             switch (feedback) {
                                 case SYMBOL_NOT_FOUND:
                                     new_table = init_table(func_name);
+
+                                    grandchild = grandchild->data->siblings->next;
+
+                                    switch (grandchild->data->type) {
+                                        case A_FUNC_PARAMS:
+                                            new_table->return_ = init_entry("return", DATATYPE_NONE, DATATYPE_NONE);
+                                            break;
+                                        case A_INT:
+                                            new_table->return_ = init_entry("return", DATATYPE_INT, DATATYPE_NONE);
+                                            break;
+
+                                        case A_FLOAT32:
+                                            new_table->return_ = init_entry("return", DATATYPE_FLOAT32, DATATYPE_NONE);
+                                            break;
+
+                                        case A_BOOL:
+                                            new_table->return_ = init_entry("return", DATATYPE_BOOL, DATATYPE_NONE);
+                                            break;
+
+                                        case A_STRING:
+                                            new_table->return_ = init_entry("return", DATATYPE_STRING, DATATYPE_NONE);
+                                            break;
+                                        default:
+                                            break;
+                                    }
+
                                     new_entry = init_global_entry(TABLE_, new_table, NULL);
                                     push_global_entry(global_table, new_entry);
 
@@ -648,7 +673,6 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
                             switch (feedback) {
                                 case SYMBOL_FOUND:
                                     build_local_table(global_table, aux_local_table, node->data, passage);
-
                                     break;
                                 default:
                                     break;

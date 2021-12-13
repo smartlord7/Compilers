@@ -35,7 +35,11 @@ void print_entry(int type, entry_t * entry) {
             printf("return\t\tnone\n");
             break;
         case FUNC_RETURN_ENTRY_:
-            printf("%s\t\t%s\n", entry->name, data_types[entry->return_type]);
+            if(entry->return_type == DATATYPE_NONE) {
+                printf("%s\t\tnone\n", entry->name);
+            } else {
+                printf("%s\t\t%s\n", entry->name, data_types[entry->return_type]);
+            }
             break;
         case FUNC_VAR_ENTRY_:
 
