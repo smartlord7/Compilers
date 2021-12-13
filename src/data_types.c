@@ -14,6 +14,24 @@ char * data_types[] = {
         "param",
 };
 
+char * operator_types[] = {
+        "=",
+        "||",
+        "&&",
+        "!",
+        "<",
+        ">",
+        "<=",
+        ">=",
+        "==",
+        "!=",
+        "+",
+        "-",
+        "*",
+        "/",
+        "",
+};
+
 void set_data_type_rules_offset(int offset) {
     offset = offset;
 }
@@ -96,4 +114,39 @@ void init_data_types_rules() {
 
     // allow the usage of the unary operator "not" with bools
     set_data_type_rule(DATATYPE_BOOL, DATATYPE_NONE, A_NOT, 1, DATATYPE_BOOL);
+}
+
+operator_t get_operator_type(ast_node_type_t node_type) {
+    switch (node_type) {
+        case A_ASSIGN:
+            return O_ASSIGN;
+        case A_OR:
+            return O_OR;
+        case A_AND:
+            return O_AND;
+        case A_NOT:
+            return O_NOT;
+        case A_LE:
+            return O_LE;
+        case A_GE:
+            return O_GE;
+        case A_LT:
+            return O_LT;
+        case A_GT:
+            return O_GT;
+        case A_EQ:
+            return O_EQ;
+        case A_NE:
+            return O_NE;
+        case A_ADD:
+            return O_ADD;
+        case A_SUB:
+            return O_SUB;
+        case A_MUL:
+            return O_MUL;
+        case A_DIV:
+            return O_DIV;
+        default:
+            return O_NONE;
+    }
 }

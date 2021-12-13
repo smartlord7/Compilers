@@ -1,19 +1,43 @@
+// gocompiler < errors.dgo | sort
+//
+// errors are sorted for uniform presentation
+
 package main;
 
-func factorial(n int) string {
-    if n == 0 {
-        return 1;
-    };
-    return n * factorial(n-1);
-};
+var a float32;
+
+var i int;
+var i bool;
+
+func f() { g(); h(); };
+func f() {};
 
 func main() {
-    var argument int;
-    var aux float32;
-    argument,_ = strconv.Atoi(os.Args[1]);
-    aux = beta();
+    var x, y int;
+    var b bool;
+    b = 1 && 1;
+    i = i + 007;
+    h();
+    h(!i);
+    x = 1.0;
+    for x {
+        if x {
+            h(a+x);
+            return;
+        };
+    };
 };
 
-func beta() float32 {
-    return 0.0;
+func undef() {
+    for 1 < undeclared {
+    };
 };
+
+func types() {
+    var x float32;
+    var n int;
+    x = n + x;
+};
+
+func g() { };
+func h(q bool) int {};

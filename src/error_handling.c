@@ -63,13 +63,13 @@ extern void semantic_error(error_type_t err_type, tree_node_t * node, data_type_
             error_inner2(err_type, node->line, node->column, aux);
             break;
         case OPERATOR_INVALID_1:
-            error_inner2(err_type, node->line, node->column, node->id, data_types[type_1]);
+            error_inner2(err_type, node->line, node->column, operator_types[get_operator_type(node->type)], data_types[type_1]);
             break;
         case OPERATOR_INVALID_2:
-            error_inner2(err_type, node->line, node->column, node->id, data_types[type_1], data_types[type_2]);
+            error_inner2(err_type, node->line, node->column, operator_types[get_operator_type(node->type)], data_types[type_1], data_types[type_2]);
             break;
         case INCOMPATIBLE_TYPE:
-            error_inner2(err_type, node->line, node->column, data_types[type_1], node->id);
+            error_inner2(err_type, node->line, node->column, data_types[type_1], to_lower(node->id));
             break;
         case SYMBOL_NEVER_USED:
             error_inner2(err_type, node->line, node->column, aux);
