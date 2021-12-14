@@ -1,47 +1,47 @@
+===== Global Symbol Table =====
+f	()	none
+g	(int,int)	none
+main	()	none
 
+===== Function f() Symbol Table =====
+return		none
 
-
-
+===== Function g(int,int) Symbol Table =====
+return		none
 a		int	param
 b		int	param
-........Call
-......Call
-......Call
-f	()	none
-....FuncBody
-....FuncBody
-....FuncBody
-..FuncDecl
-..FuncDecl
-..FuncDecl
-....FuncHeader
-....FuncHeader
-....FuncHeader
-......FuncParams
-......FuncParams
-......FuncParams
-===== Function f() Symbol Table =====
-===== Function g(int,int) Symbol Table =====
+
 ===== Function main() Symbol Table =====
-g	(int,int)	none
-===== Global Symbol Table =====
-..........Id(a)
-..........Id(b)
-..........Id(f) - ()
-......Id(f)
-......Id(g)
-........Id(g) - (int,int)
-........Id(g) - (int,int)
-......Id(main)
-..........Int
-..........Int
-........IntLit(1) - int
-........IntLit(1) - int
-........IntLit(1) - int
-main	()	none
-........ParamDecl
-........ParamDecl
+return		none
+
 Program
-return		none
-return		none
-return		none
+..FuncDecl
+....FuncHeader
+......Id(f)
+......FuncParams
+....FuncBody
+..FuncDecl
+....FuncHeader
+......Id(g)
+......FuncParams
+........ParamDecl
+..........Int
+..........Id(a)
+........ParamDecl
+..........Int
+..........Id(b)
+....FuncBody
+..FuncDecl
+....FuncHeader
+......Id(main)
+......FuncParams
+....FuncBody
+......Call
+........Id(g) - (int,int)
+........IntLit(1) - int
+........IntLit(1) - int
+......Call
+........Id(g) - (int,int)
+........IntLit(1) - int
+........Call
+..........Id(f) - ()

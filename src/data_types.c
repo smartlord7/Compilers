@@ -150,3 +150,24 @@ operator_t get_operator_type(ast_node_type_t node_type) {
             return O_NONE;
     }
 }
+
+data_type_t check_bool(ast_node_type_t type) {
+    switch (type) {
+        case A_BOOL:
+        case A_ASSIGN:
+        case A_OR:
+        case A_AND:
+        case A_NOT:
+        case A_LT:
+        case A_GT:
+        case A_LE:
+        case A_GE:
+        case A_EQ:
+        case A_NE:
+            return DATATYPE_BOOL;
+        default:
+            return DATATYPE_UNDEF;
+
+
+    }
+}

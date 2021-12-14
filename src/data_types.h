@@ -45,5 +45,6 @@ extern void set_data_type_rule(data_type_t type1, data_type_t type2, ast_node_ty
 extern data_type_t check_op_data_types(data_type_t type1, data_type_t type2, ast_node_type_t operator);
 extern void init_data_types_rules();
 extern operator_t get_operator_type(ast_node_type_t node_type);
+extern data_type_t check_bool(ast_node_type_t type);
 
 #endif //COMPILERS_DATA_TYPES_H
