@@ -1,1 +1,53 @@
-Line 6, column 6: Incompatible type  in if statement
+
+
+
+argument		int
+........Block
+........Block
+..........Call - int
+........Call - int
+........Eq - bool
+factorial	(int)	int
+....FuncBody
+....FuncBody
+..FuncDecl
+..FuncDecl
+....FuncHeader
+....FuncHeader
+......FuncParams
+......FuncParams
+===== Function factorial(int) Symbol Table =====
+===== Function main() Symbol Table =====
+===== Global Symbol Table =====
+........Id(argument)
+..........Id(argument) - int
+........Id(argument) - int
+......Id(factorial)
+............Id(factorial) - (int)
+..........Id(factorial) - (int)
+......Id(main)
+..........Id(n)
+..............Id(n) - int
+..........Id(n) - int
+..........Id(n) - int
+......If
+..........Int
+........Int
+......Int
+..........IntLit(0) - int
+..............IntLit(1) - int
+............IntLit(1) - int
+........IntLit(1) - int
+main	()	none
+........Mul - int
+n		int	param
+........ParamDecl
+......ParseArgs - int
+......Print
+Program
+..........Return
+......Return
+return		int
+return		none
+............Sub - int
+......VarDecl

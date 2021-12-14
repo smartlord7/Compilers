@@ -172,7 +172,7 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
     list_node_t * child = NULL;
     entry_t * aux_entry = NULL;
     symbol_check_t feedback;
-    data_type_t result0, result1, result2;
+    data_type_t result1, result2;
 
     switch (node->data->type) {
         case A_ADD:
@@ -305,7 +305,7 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
         case A_GT:
         case A_GE:
 
-            child = node->data->children->next;
+            /*child = node->data->children->next;
             result1 = get_child_type(global_table, local_table, child);
             child = child->next;
             if(child != NULL) {
@@ -320,14 +320,14 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
                     semantic_error(OPERATOR_INVALID_2, node->data, result1, result2);
                 }
 
-            }
+            }*/
             node->data->annotation = ANNOTATION_BOOL;
             break;
 
         case A_NOT:
         case A_AND:
         case A_OR:
-            child = node->data->children->next;
+            /*child = node->data->children->next;
             result1 = get_child_type(global_table, local_table, child);
             child = child->next;
             if(child != NULL) {
@@ -337,7 +337,7 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
                     node->data->errored = 1;
                     semantic_error(OPERATOR_INVALID_2, node->data, result1, result2);
                 }
-            }
+            }*/
             return DATATYPE_BOOL;
         default:
             break;
@@ -352,7 +352,8 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
     local_table_t * aux_table = NULL;
     var_data_t * aux_var_data = NULL;
     symbol_check_t feedback = 0;
-    data_type_t result0, result1, result2;
+    data_type_t result1, result2;
+    //data_type_t result0;
     char * name = NULL, * type = NULL, * value = NULL;
 
     switch (node->data->type) {
@@ -428,7 +429,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
         case A_LE:
         case A_GT:
         case A_GE:
-            child = node->data->children->next;
+            /*child = node->data->children->next;
             result1 = get_child_type(global_table, table, child);
             child = child->next;
 
@@ -444,19 +445,19 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                     semantic_error(OPERATOR_INVALID_2, node->data, result1, result2);
                 }
 
-            }
+            }*/
             node->data->annotation = ANNOTATION_BOOL;
             break;
 
         case A_NOT:
 
-            child = node->data->children->next;
+            /*child = node->data->children->next;
             result1 = get_child_type(global_table, table, child);
 
             if(result1 != DATATYPE_BOOL && !node->data->errored) {
                 node->data->errored = 1;
                 semantic_error(OPERATOR_INVALID_1, node->data, result1, 0);
-            }
+            }*/
 
             node->data->annotation = ANNOTATION_BOOL;
             break;
@@ -464,7 +465,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
         case A_AND:
         case A_OR:
 
-            child = node->data->children->next;
+            /*child = node->data->children->next;
             result1 = get_child_type(global_table, table, child);
             child = child->next;
             if(child != NULL) {
@@ -474,7 +475,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                     node->data->errored = 1;
                     semantic_error(OPERATOR_INVALID_2, node->data, result1, result2);
                 }
-            }
+            }*/
 
             node->data->annotation = ANNOTATION_BOOL;
             break;
@@ -647,22 +648,22 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
 
             break;
         case A_IF:
-            child = node->data->children->next;
+            /*child = node->data->children->next;
             result0 = get_child_type(global_table, table, child);
 
             if(result0 != DATATYPE_BOOL && !child->data->errored) {
                 semantic_error(INCOMPATIBLE_TYPE, node->data, result0, 0);
-            }
+            }*/
 
             break;
         case A_FOR:
-            child = node->data->children->next;
+            /*child = node->data->children->next;
 
             if(child->data->type == A_ID && !child->data->errored) {
-                child->data->errored;
+                child->data->errored = 1;
                 result0 = get_child_type(global_table, table, child);
                 semantic_error(INCOMPATIBLE_TYPE, node->data, result0, 0);
-            }
+            }*/
 
         default:
             break;

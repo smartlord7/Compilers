@@ -1,12 +1,7 @@
 Line 10, column 7: Symbol i already defined
 Line 13, column 10: Symbol f already defined
-Line 18, column 15: Operator && cannot be applied to types int, int
-Line 21, column 9: Operator ! cannot be applied to type int
 Line 22, column 12: Operator = cannot be applied to types int, float32
 Line 25, column 18: Operator + cannot be applied to types float32, int
-Line 27, column 10: Incompatible type int in if statement
-Line 28, column 5: Incompatible type int in for statement
 Line 32, column 24: Cannot find symbol undeclared
-Line 32, column 24: Operator < cannot be applied to types int, undef
 Line 39, column 14: Operator = cannot be applied to types float32, 
 Line 39, column 14: Operator + cannot be applied to types int, float32
