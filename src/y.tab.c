@@ -1446,14 +1446,14 @@ yyreduce:
     {
   case 2: /* Program: PACKAGE ID SEMICOLON Declarations  */
 #line 96 "gocompiler.y"
-                                                                                                                        {(yyval.node) = root = create_node(A_PROGRAM, "Program");
+                                                                                                                        {(yyval.node) = root = create_node(0, 0, A_PROGRAM, "Program");
     															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1452 "y.tab.c"
     break;
 
   case 3: /* Program: PACKAGE ID SEMICOLON  */
 #line 99 "gocompiler.y"
-                                                                                                                        {(yyval.node) = root = create_node(A_PROGRAM, "Program");}
+                                                                                                                        { (yyval.node) = root = create_node(0, 0, A_PROGRAM, "Program");}
 #line 1458 "y.tab.c"
     break;
 
@@ -1472,14 +1472,14 @@ yyreduce:
 
   case 6: /* Declarations: FuncDeclaration SEMICOLON  */
 #line 108 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_FUNC_DECL, "FuncDecl");
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_FUNC_DECL, "FuncDecl");
     															push((yyval.node)->children, (yyvsp[-1].node));}
 #line 1478 "y.tab.c"
     break;
 
   case 7: /* Declarations: FuncDeclaration SEMICOLON Declarations  */
 #line 111 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_FUNC_DECL, "FuncDecl");
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_FUNC_DECL, "FuncDecl");
     															push((yyval.node)->children, (yyvsp[-2].node));
     															push((yyval.node)->siblings, (yyvsp[0].node));}
 #line 1486 "y.tab.c"
@@ -1499,31 +1499,31 @@ yyreduce:
 
   case 10: /* VarSpec: ID VarSpec_1  */
 #line 123 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_VAR_DECL, "VarDecl");
-    															push((yyval.node)->children, create_node(A_ID, (yyvsp[-1].node)->id));
-    															push((yyval.node)->children, (yyvsp[0].node));
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_VAR_DECL, "VarDecl");
+                                                                        push((yyval.node)->children, create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_ID, (yyvsp[-1].node)->id));
+                                                                        push((yyval.node)->children, (yyvsp[0].node));
 
-															struct list_node_t * father = (yyval.node)->children->next->next;
-															while(1) {
-																if(father->data->children->next == NULL) break;
-																father = father->data->children->next->next;
-															}
-															struct tree_node_t * help = father->data;
+                                                                        struct list_node_t * father = (yyval.node)->children->next->next;
+                                                                        while(1) {
+                                                                            if(father->data->children->next == NULL) break;
+                                                                            father = father->data->children->next->next;
+                                                                        }
+                                                                        struct tree_node_t * help = father->data;
 
-															father = (yyval.node)->children->next->next;
-															while(1) {
-																if(father->data->children->next == NULL) break;
-																struct tree_node_t * new_node = create_node(A_VAR_DECL, "VarDecl");
-																push(new_node->children, help);
-																push(new_node->children, create_node(A_ID, father->data->children->next->data->id));
+                                                                        father = (yyval.node)->children->next->next;
+                                                                        while(1) {
+                                                                            if(father->data->children->next == NULL) break;
+                                                                            struct tree_node_t * new_node = create_node(0, 0, A_VAR_DECL, "VarDecl");
+                                                                            push(new_node->children, help);
+                                                                            push(new_node->children, create_node(father->data->children->next->data->line, father->data->children->next->data->column, A_ID, father->data->children->next->data->id));
 
-																push((yyval.node)->siblings, new_node);
-																father = father->data->children->next->next;
-															}
+                                                                            push((yyval.node)->siblings, new_node);
+                                                                            father = father->data->children->next->next;
+                                                                        }
 
-															(yyval.node)->children->next->next->data = (yyval.node)->children->next->data;
-															(yyval.node)->children->next->data = help;
-															}
+                                                                        (yyval.node)->children->next->next->data = (yyval.node)->children->next->data;
+                                                                        (yyval.node)->children->next->data = help;
+                                                                        }
 #line 1528 "y.tab.c"
     break;
 
@@ -1535,71 +1535,71 @@ yyreduce:
 
   case 12: /* VarSpec_1: COMMA ID VarSpec_1  */
 #line 153 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_VAR_DECL, "VarDecl");
-     															push((yyval.node)->children, create_node(A_ID, (yyvsp[-1].node)->id));
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_VAR_DECL, "VarDecl");
+     															push((yyval.node)->children, create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_ID, (yyvsp[-1].node)->id));
      															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1542 "y.tab.c"
     break;
 
   case 13: /* Type: INT  */
 #line 159 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_INT, "Int");}
+                                                                                                                        {(yyval.node) = create_node((yyvsp[0].node)->line, (yyvsp[0].node)->column, A_INT, "Int");}
 #line 1548 "y.tab.c"
     break;
 
   case 14: /* Type: FLOAT32  */
 #line 161 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_FLOAT32, "Float32");}
+                                                                                                                        {(yyval.node) = create_node((yyvsp[0].node)->line, (yyvsp[0].node)->column, A_FLOAT32, "Float32");}
 #line 1554 "y.tab.c"
     break;
 
   case 15: /* Type: BOOL  */
 #line 163 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_BOOL, "Bool");}
+                                                                                                                        {(yyval.node) = create_node((yyvsp[0].node)->line, (yyvsp[0].node)->column, A_BOOL, "Bool");}
 #line 1560 "y.tab.c"
     break;
 
   case 16: /* Type: STRING  */
 #line 165 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_STRING, "String");}
+                                                                                                                        {(yyval.node) = create_node((yyvsp[0].node)->line, (yyvsp[0].node)->column, A_STRING, "String");}
 #line 1566 "y.tab.c"
     break;
 
   case 17: /* FuncHeader: FUNC ID LPAR RPAR  */
 #line 169 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_ID, (yyvsp[-2].node)->id);
-															push((yyval.node)->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));}
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-2].node)->line, (yyvsp[-2].node)->column, A_ID, (yyvsp[-2].node)->id);
+															push((yyval.node)->siblings, create_node(0, 0, A_FUNC_PARAMS, "FuncParams"));}
 #line 1573 "y.tab.c"
     break;
 
   case 18: /* FuncHeader: FUNC ID LPAR Parameters RPAR  */
 #line 172 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_ID, (yyvsp[-3].node)->id);
-    															push((yyval.node)->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-3].node)->line, (yyvsp[-3].node)->column, A_ID, (yyvsp[-3].node)->id);
+    															push((yyval.node)->siblings, create_node(0, 0, A_FUNC_PARAMS, "FuncParams"));
 															push((yyval.node)->siblings->next->data->children, (yyvsp[-1].node));}
 #line 1581 "y.tab.c"
     break;
 
   case 19: /* FuncHeader: FUNC ID LPAR RPAR Type  */
 #line 176 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_ID, (yyvsp[-3].node)->id);
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-3].node)->line, (yyvsp[-3].node)->column, A_ID, (yyvsp[-3].node)->id);
     															push((yyval.node)->siblings, (yyvsp[0].node));
-    															push((yyval.node)->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));}
+    															push((yyval.node)->siblings, create_node(0, 0, A_FUNC_PARAMS, "FuncParams"));}
 #line 1589 "y.tab.c"
     break;
 
   case 20: /* FuncHeader: FUNC ID LPAR Parameters RPAR Type  */
 #line 180 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_ID, (yyvsp[-4].node)->id);
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-4].node)->line, (yyvsp[-4].node)->column, A_ID, (yyvsp[-4].node)->id);
 															push((yyval.node)->siblings, (yyvsp[0].node));
-															push((yyval.node)->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));
+															push((yyval.node)->siblings, create_node(0, 0, A_FUNC_PARAMS, "FuncParams"));
 															push((yyval.node)->siblings->next->next->data->children, (yyvsp[-2].node));}
 #line 1598 "y.tab.c"
     break;
 
   case 21: /* FuncDeclaration: FuncHeader FuncBody  */
 #line 187 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_FUNC_HEADER, "FuncHeader");
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_FUNC_HEADER, "FuncHeader");
     															push((yyval.node)->children, (yyvsp[-1].node));
     															push((yyval.node)->siblings, (yyvsp[0].node));}
 #line 1606 "y.tab.c"
@@ -1607,54 +1607,54 @@ yyreduce:
 
   case 22: /* Parameters: ID Type  */
 #line 193 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_PARAM_DECL, "ParamDecl");
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_PARAM_DECL, "ParamDecl");
     															push((yyval.node)->children, (yyvsp[0].node));
-    															push((yyval.node)->children, create_node(A_ID, (yyvsp[-1].node)->id));}
+    															push((yyval.node)->children, create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_ID, (yyvsp[-1].node)->id));}
 #line 1614 "y.tab.c"
     break;
 
   case 23: /* Parameters: ID Type Parameters_1  */
 #line 197 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_PARAM_DECL, "ParamDecl");
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_PARAM_DECL, "ParamDecl");
     															push((yyval.node)->children, (yyvsp[-1].node));
-    															push((yyval.node)->children, create_node(A_ID, (yyvsp[-2].node)->id));
+    															push((yyval.node)->children, create_node((yyvsp[-2].node)->line, (yyvsp[-2].node)->column, A_ID, (yyvsp[-2].node)->id));
     															push((yyval.node)->siblings, (yyvsp[0].node));}
 #line 1623 "y.tab.c"
     break;
 
   case 24: /* Parameters_1: COMMA ID Type  */
 #line 204 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_PARAM_DECL, "ParamDecl");
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_PARAM_DECL, "ParamDecl");
     															push((yyval.node)->children, (yyvsp[0].node));
-    															push((yyval.node)->children, create_node(A_ID, (yyvsp[-1].node)->id));}
+    															push((yyval.node)->children, create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_ID, (yyvsp[-1].node)->id));}
 #line 1631 "y.tab.c"
     break;
 
   case 25: /* Parameters_1: COMMA ID Type Parameters_1  */
 #line 208 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_PARAM_DECL, "ParamDecl");
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_PARAM_DECL, "ParamDecl");
     															push((yyval.node)->children, (yyvsp[-1].node));
-    															push((yyval.node)->children, create_node(A_ID, (yyvsp[-2].node)->id));
+    															push((yyval.node)->children, create_node((yyvsp[-2].node)->line, (yyvsp[-2].node)->column, A_ID, (yyvsp[-2].node)->id));
     															push((yyval.node)->siblings, (yyvsp[0].node));}
 #line 1640 "y.tab.c"
     break;
 
   case 26: /* FuncBody: LBRACE RBRACE  */
 #line 215 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_FUNC_BODY, "FuncBody");}
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_FUNC_BODY, "FuncBody");}
 #line 1646 "y.tab.c"
     break;
 
   case 27: /* FuncBody: LBRACE VarsAndStatements RBRACE  */
 #line 217 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_FUNC_BODY, "FuncBody");
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_FUNC_BODY, "FuncBody");
     															push((yyval.node)->children, (yyvsp[-1].node));}
 #line 1653 "y.tab.c"
     break;
 
   case 28: /* VarsAndStatements: SEMICOLON  */
 #line 222 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_INVALID_NODE, "NO");}
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_INVALID_NODE, "NO");}
 #line 1659 "y.tab.c"
     break;
 
@@ -1694,21 +1694,21 @@ yyreduce:
 
   case 34: /* Statement: ID ASSIGN Expr  */
 #line 240 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_ASSIGN, "Assign");
-    															push((yyval.node)->children, create_node(A_ID, (yyvsp[-2].node)->id));
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_ASSIGN, "Assign");
+    															push((yyval.node)->children, create_node((yyvsp[-2].node)->line, (yyvsp[-2].node)->column, A_ID, (yyvsp[-2].node)->id));
     															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1701 "y.tab.c"
     break;
 
   case 35: /* Statement: LBRACE RBRACE  */
 #line 246 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_INVALID_NODE, "Block");}
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_INVALID_NODE, "Block");}
 #line 1707 "y.tab.c"
     break;
 
   case 36: /* Statement: LBRACE Statement_1 RBRACE  */
 #line 248 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_PROB_BLOCK, "Block");
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_PROB_BLOCK, "Block");
     															push((yyval.node)->children, (yyvsp[-1].node));}
 #line 1714 "y.tab.c"
     break;
@@ -1728,9 +1728,9 @@ yyreduce:
 
   case 39: /* Statement: IF Expr LBRACE Statement_rep RBRACE OPT_ELSE  */
 #line 260 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_IF, "If");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-5].node)->line, (yyvsp[-5].node)->column, A_IF, "If");
 		 													push((yyval.node)->children, (yyvsp[-4].node));
-		 													push((yyval.node)->children, create_node(A_BLOCK, "Block"));
+		 													push((yyval.node)->children, create_node(0, 0, A_BLOCK, "Block"));
 		 													push((yyval.node)->children->next->next->data->children, (yyvsp[-2].node));
 		 													push((yyval.node)->children, (yyvsp[0].node));}
 #line 1737 "y.tab.c"
@@ -1738,20 +1738,20 @@ yyreduce:
 
   case 40: /* OPT_ELSE: ELSE LBRACE Statement_rep RBRACE  */
 #line 267 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_BLOCK, "Block");
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_BLOCK, "Block");
 															push((yyval.node)->children, (yyvsp[-1].node));}
 #line 1744 "y.tab.c"
     break;
 
   case 41: /* OPT_ELSE: %empty  */
 #line 270 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_BLOCK, "Block");}
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_BLOCK, "Block");}
 #line 1750 "y.tab.c"
     break;
 
   case 42: /* Statement_rep: %empty  */
 #line 274 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_INVALID_NODE, "NO");}
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_INVALID_NODE, "NO");}
 #line 1756 "y.tab.c"
     break;
 
@@ -1766,8 +1766,8 @@ yyreduce:
 
   case 44: /* Statement: FOR LBRACE Statement_rep RBRACE  */
 #line 283 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_FOR, "For");
-															push((yyval.node)->children, create_node(A_BLOCK, "Block"));
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-3].node)->line, (yyvsp[-3].node)->column, A_FOR, "For");
+															push((yyval.node)->children, create_node(0, 0, A_BLOCK, "Block"));
 															push((yyval.node)->children->next->data->children, (yyvsp[-1].node));
 															}
 #line 1774 "y.tab.c"
@@ -1775,9 +1775,9 @@ yyreduce:
 
   case 45: /* Statement: FOR Expr LBRACE Statement_rep RBRACE  */
 #line 288 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_FOR, "For");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-4].node)->line, (yyvsp[-4].node)->column, A_FOR, "For");
 															push((yyval.node)->children, (yyvsp[-3].node));
-															push((yyval.node)->children, create_node(A_BLOCK, "Block"));
+															push((yyval.node)->children, create_node(0, 0, A_BLOCK, "Block"));
 															push((yyval.node)->children->next->next->data->children, (yyvsp[-1].node));
 															}
 #line 1784 "y.tab.c"
@@ -1785,13 +1785,13 @@ yyreduce:
 
   case 46: /* Statement: RETURN  */
 #line 296 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_RETURN, "Return");}
+                                                                                                                        {(yyval.node) = create_node((yyvsp[0].node)->line, (yyvsp[0].node)->column, A_RETURN, "Return");}
 #line 1790 "y.tab.c"
     break;
 
   case 47: /* Statement: RETURN Expr  */
 #line 298 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_RETURN, "Return");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_RETURN, "Return");
     															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1797 "y.tab.c"
     break;
@@ -1810,15 +1810,15 @@ yyreduce:
 
   case 50: /* Statement: PRINT LPAR Expr RPAR  */
 #line 309 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_PRINT, "Print");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-3].node)->line, (yyvsp[-3].node)->column, A_PRINT, "Print");
     															push((yyval.node)->children, (yyvsp[-1].node));}
 #line 1816 "y.tab.c"
     break;
 
   case 51: /* Statement: PRINT LPAR STRLIT RPAR  */
 #line 312 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_PRINT, "Print");
-    															push((yyval.node)->children, create_node(A_STRLIT, (yyvsp[-1].node)->id));}
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-3].node)->line, (yyvsp[-3].node)->column, A_PRINT, "Print");
+    															push((yyval.node)->children, create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_STRLIT, (yyvsp[-1].node)->id));}
 #line 1823 "y.tab.c"
     break;
 
@@ -1830,8 +1830,8 @@ yyreduce:
 
   case 53: /* ParseArgs: ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR  */
 #line 321 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_PARSE_ARGS, "ParseArgs");
-															push((yyval.node)->children, create_node(A_ID, (yyvsp[-10].node)->id));
+                                                                                                                        {/*might be wrong and be cmdargs*/(yyval.node) = create_node((yyvsp[-6].node)->line, (yyvsp[-6].node)->column, A_PARSE_ARGS, "ParseArgs");
+															push((yyval.node)->children, create_node((yyvsp[-10].node)->line, (yyvsp[-10].node)->column, A_ID, (yyvsp[-10].node)->id));
 															push((yyval.node)->children, (yyvsp[-2].node));
 															}
 #line 1838 "y.tab.c"
@@ -1845,23 +1845,23 @@ yyreduce:
 
   case 55: /* FuncInvocation: ID LPAR RPAR  */
 #line 332 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_CALL, "Call");
-    															push((yyval.node)->children, create_node(A_ID, (yyvsp[-2].node)->id));}
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_CALL, "Call");
+    															push((yyval.node)->children, create_node((yyvsp[-2].node)->line, (yyvsp[-2].node)->column, A_ID, (yyvsp[-2].node)->id));}
 #line 1851 "y.tab.c"
     break;
 
   case 56: /* FuncInvocation: ID LPAR Expr RPAR  */
 #line 335 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_CALL, "Call");
-															push((yyval.node)->children, create_node(A_ID, (yyvsp[-3].node)->id));
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_CALL, "Call");
+															push((yyval.node)->children, create_node((yyvsp[-3].node)->line, (yyvsp[-3].node)->column, A_ID, (yyvsp[-3].node)->id));
 															push((yyval.node)->children, (yyvsp[-1].node));}
 #line 1859 "y.tab.c"
     break;
 
   case 57: /* FuncInvocation: ID LPAR Expr FuncInvocation_rep RPAR  */
 #line 339 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_CALL, "Call");
-															push((yyval.node)->children, create_node(A_ID, (yyvsp[-4].node)->id));
+                                                                                                                        {(yyval.node) = create_node(0, 0, A_CALL, "Call");
+															push((yyval.node)->children, create_node((yyvsp[-4].node)->line, (yyvsp[-4].node)->column, A_ID, (yyvsp[-4].node)->id));
 															push((yyval.node)->children, (yyvsp[-2].node));
 															push((yyval.node)->children, (yyvsp[-1].node));}
 #line 1868 "y.tab.c"
@@ -1888,7 +1888,7 @@ yyreduce:
 
   case 61: /* Expr: Expr OR Expr  */
 #line 357 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_OR, "Or");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_OR, "Or");
     															push((yyval.node)->children, (yyvsp[-2].node));
     															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1895 "y.tab.c"
@@ -1896,7 +1896,7 @@ yyreduce:
 
   case 62: /* Expr: Expr AND Expr  */
 #line 361 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_AND, "And");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_AND, "And");
     															push((yyval.node)->children, (yyvsp[-2].node));
     															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1903 "y.tab.c"
@@ -1904,7 +1904,7 @@ yyreduce:
 
   case 63: /* Expr: Expr LT Expr  */
 #line 367 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_LT, "Lt");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_LT, "Lt");
     															push((yyval.node)->children, (yyvsp[-2].node));
     															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1911 "y.tab.c"
@@ -1912,7 +1912,7 @@ yyreduce:
 
   case 64: /* Expr: Expr GT Expr  */
 #line 371 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_GT, "Gt");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_GT, "Gt");
 															push((yyval.node)->children, (yyvsp[-2].node));
 															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1919 "y.tab.c"
@@ -1920,7 +1920,7 @@ yyreduce:
 
   case 65: /* Expr: Expr LE Expr  */
 #line 375 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_LE, "Le");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_LE, "Le");
 															push((yyval.node)->children, (yyvsp[-2].node));
 															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1927 "y.tab.c"
@@ -1928,7 +1928,7 @@ yyreduce:
 
   case 66: /* Expr: Expr GE Expr  */
 #line 379 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_GE, "Ge");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_GE, "Ge");
 															push((yyval.node)->children, (yyvsp[-2].node));
 															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1935 "y.tab.c"
@@ -1936,7 +1936,7 @@ yyreduce:
 
   case 67: /* Expr: Expr EQ Expr  */
 #line 383 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_EQ, "Eq");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_EQ, "Eq");
 															push((yyval.node)->children, (yyvsp[-2].node));
 															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1943 "y.tab.c"
@@ -1944,7 +1944,7 @@ yyreduce:
 
   case 68: /* Expr: Expr NE Expr  */
 #line 387 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_NE, "Ne");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_NE, "Ne");
 															push((yyval.node)->children, (yyvsp[-2].node));
 															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1951 "y.tab.c"
@@ -1952,7 +1952,7 @@ yyreduce:
 
   case 69: /* Expr: Expr PLUS Expr  */
 #line 393 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_ADD, "Add");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_ADD, "Add");
 															push((yyval.node)->children, (yyvsp[-2].node));
 															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1959 "y.tab.c"
@@ -1960,7 +1960,7 @@ yyreduce:
 
   case 70: /* Expr: Expr MINUS Expr  */
 #line 397 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_SUB, "Sub");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_SUB, "Sub");
 															push((yyval.node)->children, (yyvsp[-2].node));
 															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1967 "y.tab.c"
@@ -1968,7 +1968,7 @@ yyreduce:
 
   case 71: /* Expr: Expr STAR Expr  */
 #line 401 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_MUL, "Mul");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_MUL, "Mul");
 															push((yyval.node)->children, (yyvsp[-2].node));
 															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1975 "y.tab.c"
@@ -1976,7 +1976,7 @@ yyreduce:
 
   case 72: /* Expr: Expr DIV Expr  */
 #line 405 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_DIV, "Div");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_DIV, "Div");
 															push((yyval.node)->children, (yyvsp[-2].node));
 															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1983 "y.tab.c"
@@ -1984,7 +1984,7 @@ yyreduce:
 
   case 73: /* Expr: Expr MOD Expr  */
 #line 409 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_MOD, "Mod");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_MOD, "Mod");
     															push((yyval.node)->children, (yyvsp[-2].node));
     															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1991 "y.tab.c"
@@ -1992,40 +1992,40 @@ yyreduce:
 
   case 74: /* Expr: NOT Expr  */
 #line 415 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_NOT, "Not");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_NOT, "Not");
     															push((yyval.node)->children, (yyvsp[0].node));}
 #line 1998 "y.tab.c"
     break;
 
   case 75: /* Expr: MINUS Expr  */
 #line 418 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_MINUS, "Minus");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_MINUS, "Minus");
     															push((yyval.node)->children, (yyvsp[0].node));}
 #line 2005 "y.tab.c"
     break;
 
   case 76: /* Expr: PLUS Expr  */
 #line 421 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_PLUS, "Plus");
+                                                                                                                        {(yyval.node) = create_node((yyvsp[-1].node)->line, (yyvsp[-1].node)->column, A_PLUS, "Plus");
     															push((yyval.node)->children, (yyvsp[0].node));}
 #line 2012 "y.tab.c"
     break;
 
   case 77: /* Expr: INTLIT  */
 #line 426 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_INTLIT, (yyvsp[0].node)->id);}
+                                                                                                                        {(yyval.node) = create_node((yyvsp[0].node)->line, (yyvsp[0].node)->column, A_INTLIT, (yyvsp[0].node)->id);}
 #line 2018 "y.tab.c"
     break;
 
   case 78: /* Expr: REALLIT  */
 #line 428 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_REALLIT, (yyvsp[0].node)->id);}
+                                                                                                                        {(yyval.node) = create_node((yyvsp[0].node)->line, (yyvsp[0].node)->column, A_REALLIT, (yyvsp[0].node)->id);}
 #line 2024 "y.tab.c"
     break;
 
   case 79: /* Expr: ID  */
 #line 430 "gocompiler.y"
-                                                                                                                        {(yyval.node) = create_node(A_ID, (yyvsp[0].node)->id);}
+                                                                                                                        {(yyval.node) = create_node((yyvsp[0].node)->line, (yyvsp[0].node)->column, A_ID, (yyvsp[0].node)->id);}
 #line 2030 "y.tab.c"
     break;
 

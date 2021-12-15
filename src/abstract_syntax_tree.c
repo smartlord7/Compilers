@@ -6,7 +6,7 @@
 
 int check_block(struct list_node_t * block);
 
-struct tree_node_t * create_node(int type, char * id) {
+struct tree_node_t * create_node(int line, int column, int type, char * id) {
     struct tree_node_t * new_node = (struct tree_node_t *) calloc(1,sizeof(struct tree_node_t));
 
     new_node->id = id;
@@ -15,11 +15,8 @@ struct tree_node_t * create_node(int type, char * id) {
     new_node->children->next = NULL;
     new_node->siblings = (struct list_node_t *) malloc(sizeof(struct list_node_t));
     new_node->siblings->next = NULL;
-
-    if (yylval.node != NULL) {
-        new_node->line = yylval.node->line;
-        new_node->column = yylval.node->column;
-    }
+    new_node->line = line;
+    new_node->column = column;
 
     return new_node;
 }

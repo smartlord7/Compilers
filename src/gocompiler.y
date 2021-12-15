@@ -14,48 +14,48 @@ extern struct tree_node_t * root;
 
 %}
 
-%token PACKAGE
+%token <node> PACKAGE
 %token <node> ID
-%token SEMICOLON
-%token VAR
-%token LPAR
-%token RPAR
-%token COMMA
-%token INT
-%token FLOAT32
-%token BOOL
-%token STRING
-%token RBRACE
-%token LBRACE
-%token ASSIGN
-%token IF
-%token ELSE
-%token RETURN
-%token FOR
-%token PRINT
+%token <node> SEMICOLON
+%token <node> VAR
+%token <node> LPAR
+%token <node> RPAR
+%token <node> COMMA
+%token <node> INT
+%token <node> FLOAT32
+%token <node> BOOL
+%token <node> STRING
+%token <node> RBRACE
+%token <node> LBRACE
+%token <node> ASSIGN
+%token <node> IF
+%token <node> ELSE
+%token <node> RETURN
+%token <node> FOR
+%token <node> PRINT
 %token <node> STRLIT
-%token BLANKID
-%token PARSEINT
-%token CMDARGS
-%token LSQ
-%token RSQ
-%token OR
-%token AND
-%token LT
-%token GT
-%token EQ
-%token NE
-%token LE
-%token GE
-%token PLUS
-%token MINUS
-%token STAR
-%token DIV
-%token MOD
-%token NOT
+%token <node> BLANKID
+%token <node> PARSEINT
+%token <node> CMDARGS
+%token <node> LSQ
+%token <node> RSQ
+%token <node> OR
+%token <node> AND
+%token <node> LT
+%token <node> GT
+%token <node> EQ
+%token <node> NE
+%token <node> LE
+%token <node> GE
+%token <node> PLUS
+%token <node> MINUS
+%token <node> STAR
+%token <node> DIV
+%token <node> MOD
+%token <node> NOT
 %token <node> INTLIT
 %token <node> REALLIT
-%token FUNC
+%token <node> FUNC
 %type <node> Program
 %type <node> Declarations
 %type <node> FuncDeclaration
@@ -93,10 +93,10 @@ extern struct tree_node_t * root;
 
 %%
     Program:
-    	PACKAGE ID SEMICOLON Declarations										{$$ = root = create_node(A_PROGRAM, "Program");
+    	PACKAGE ID SEMICOLON Declarations										{$$ = root = create_node(0, 0, A_PROGRAM, "Program");
     															push($$->children, $4);}
     	|
-    	PACKAGE ID SEMICOLON												{$$ = root = create_node(A_PROGRAM, "Program");}
+    	PACKAGE ID SEMICOLON												{ $$ = root = create_node(0, 0, A_PROGRAM, "Program");}
     ;
 
     Declarations:
@@ -105,10 +105,10 @@ extern struct tree_node_t * root;
     	VarDeclaration SEMICOLON Declarations										{$$ = $1;
     															push($$->siblings, $3);}
     	|
-    	FuncDeclaration SEMICOLON											{$$ = create_node(A_FUNC_DECL, "FuncDecl");
+    	FuncDeclaration SEMICOLON											{$$ = create_node(0, 0, A_FUNC_DECL, "FuncDecl");
     															push($$->children, $1);}
     	|
-    	FuncDeclaration SEMICOLON Declarations										{$$ = create_node(A_FUNC_DECL, "FuncDecl");
+    	FuncDeclaration SEMICOLON Declarations										{$$ = create_node(0, 0, A_FUNC_DECL, "FuncDecl");
     															push($$->children, $1);
     															push($$->siblings, $3);}
     	;
@@ -120,106 +120,106 @@ extern struct tree_node_t * root;
     	;
 
     VarSpec:
-    	ID VarSpec_1													{$$ = create_node(A_VAR_DECL, "VarDecl");
-    															push($$->children, create_node(A_ID, $1->id));
-    															push($$->children, $2);
+    	ID VarSpec_1													{$$ = create_node(0, 0, A_VAR_DECL, "VarDecl");
+                                                                        push($$->children, create_node($1->line, $1->column, A_ID, $1->id));
+                                                                        push($$->children, $2);
 
-															struct list_node_t * father = $$->children->next->next;
-															while(1) {
-																if(father->data->children->next == NULL) break;
-																father = father->data->children->next->next;
-															}
-															struct tree_node_t * help = father->data;
+                                                                        struct list_node_t * father = $$->children->next->next;
+                                                                        while(1) {
+                                                                            if(father->data->children->next == NULL) break;
+                                                                            father = father->data->children->next->next;
+                                                                        }
+                                                                        struct tree_node_t * help = father->data;
 
-															father = $$->children->next->next;
-															while(1) {
-																if(father->data->children->next == NULL) break;
-																struct tree_node_t * new_node = create_node(A_VAR_DECL, "VarDecl");
-																push(new_node->children, help);
-																push(new_node->children, create_node(A_ID, father->data->children->next->data->id));
+                                                                        father = $$->children->next->next;
+                                                                        while(1) {
+                                                                            if(father->data->children->next == NULL) break;
+                                                                            struct tree_node_t * new_node = create_node(0, 0, A_VAR_DECL, "VarDecl");
+                                                                            push(new_node->children, help);
+                                                                            push(new_node->children, create_node(father->data->children->next->data->line, father->data->children->next->data->column, A_ID, father->data->children->next->data->id));
 
-																push($$->siblings, new_node);
-																father = father->data->children->next->next;
-															}
+                                                                            push($$->siblings, new_node);
+                                                                            father = father->data->children->next->next;
+                                                                        }
 
-															$$->children->next->next->data = $$->children->next->data;
-															$$->children->next->data = help;
-															}
+                                                                        $$->children->next->next->data = $$->children->next->data;
+                                                                        $$->children->next->data = help;
+                                                                        }
 	;
 
     VarSpec_1:
     	Type														{$$ = $1;}
     	|
-     	COMMA ID VarSpec_1												{$$ = create_node(A_VAR_DECL, "VarDecl");
-     															push($$->children, create_node(A_ID, $2->id));
+     	COMMA ID VarSpec_1												{$$ = create_node(0, 0, A_VAR_DECL, "VarDecl");
+     															push($$->children, create_node($2->line, $2->column, A_ID, $2->id));
      															push($$->children, $3);}
      	;
 
     Type:
-    	INT														{$$ = create_node(A_INT, "Int");}
+    	INT														{$$ = create_node($1->line, $1->column, A_INT, "Int");}
     	|
-    	FLOAT32														{$$ = create_node(A_FLOAT32, "Float32");}
+    	FLOAT32														{$$ = create_node($1->line, $1->column, A_FLOAT32, "Float32");}
     	|
-    	BOOL														{$$ = create_node(A_BOOL, "Bool");}
+    	BOOL														{$$ = create_node($1->line, $1->column, A_BOOL, "Bool");}
     	|
-	STRING                                                      							{$$ = create_node(A_STRING, "String");}
+	STRING                                                      							{$$ = create_node($1->line, $1->column, A_STRING, "String");}
 	;
 
 	FuncHeader:
-		FUNC ID LPAR RPAR											{$$ = create_node(A_ID, $2->id);
-															push($$->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));}
+		FUNC ID LPAR RPAR											{$$ = create_node($2->line, $2->column, A_ID, $2->id);
+															push($$->siblings, create_node(0, 0, A_FUNC_PARAMS, "FuncParams"));}
     	|
-    	FUNC ID LPAR Parameters RPAR											{$$ = create_node(A_ID, $2->id);
-    															push($$->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));
+    	FUNC ID LPAR Parameters RPAR											{$$ = create_node($2->line, $2->column, A_ID, $2->id);
+    															push($$->siblings, create_node(0, 0, A_FUNC_PARAMS, "FuncParams"));
 															push($$->siblings->next->data->children, $4);}
     	|
-    	FUNC ID LPAR RPAR Type												{$$ = create_node(A_ID, $2->id);
+    	FUNC ID LPAR RPAR Type												{$$ = create_node($2->line, $2->column, A_ID, $2->id);
     															push($$->siblings, $5);
-    															push($$->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));}
+    															push($$->siblings, create_node(0, 0, A_FUNC_PARAMS, "FuncParams"));}
     	|
-    	FUNC ID LPAR Parameters RPAR Type										{$$ = create_node(A_ID, $2->id);
+    	FUNC ID LPAR Parameters RPAR Type										{$$ = create_node($2->line, $2->column, A_ID, $2->id);
 															push($$->siblings, $6);
-															push($$->siblings, create_node(A_FUNC_PARAMS, "FuncParams"));
+															push($$->siblings, create_node(0, 0, A_FUNC_PARAMS, "FuncParams"));
 															push($$->siblings->next->next->data->children, $4);}
 		;
 
     FuncDeclaration:
-    	FuncHeader FuncBody												{$$ = create_node(A_FUNC_HEADER, "FuncHeader");
+    	FuncHeader FuncBody												{$$ = create_node(0, 0, A_FUNC_HEADER, "FuncHeader");
     															push($$->children, $1);
     															push($$->siblings, $2);}
     	;
 
     Parameters:
-    	ID Type														{$$ = create_node(A_PARAM_DECL, "ParamDecl");
+    	ID Type														{$$ = create_node(0, 0, A_PARAM_DECL, "ParamDecl");
     															push($$->children, $2);
-    															push($$->children, create_node(A_ID, $1->id));}
+    															push($$->children, create_node($1->line, $1->column, A_ID, $1->id));}
     	|
-    	ID Type Parameters_1                                        							{$$ = create_node(A_PARAM_DECL, "ParamDecl");
+    	ID Type Parameters_1                                        							{$$ = create_node(0, 0, A_PARAM_DECL, "ParamDecl");
     															push($$->children, $2);
-    															push($$->children, create_node(A_ID, $1->id));
+    															push($$->children, create_node($1->line, $1->column, A_ID, $1->id));
     															push($$->siblings, $3);}
 	;
 
     Parameters_1:
-    	COMMA ID Type													{$$ = create_node(A_PARAM_DECL, "ParamDecl");
+    	COMMA ID Type													{$$ = create_node(0, 0, A_PARAM_DECL, "ParamDecl");
     															push($$->children, $3);
-    															push($$->children, create_node(A_ID, $2->id));}
+    															push($$->children, create_node($2->line, $2->column, A_ID, $2->id));}
     	|
-    	COMMA ID Type Parameters_1											{$$ = create_node(A_PARAM_DECL, "ParamDecl");
+    	COMMA ID Type Parameters_1											{$$ = create_node(0, 0, A_PARAM_DECL, "ParamDecl");
     															push($$->children, $3);
-    															push($$->children, create_node(A_ID, $2->id));
+    															push($$->children, create_node($2->line, $2->column, A_ID, $2->id));
     															push($$->siblings, $4);}
     	;
 
     FuncBody:
-    	LBRACE RBRACE													{$$ = create_node(A_FUNC_BODY, "FuncBody");}
+    	LBRACE RBRACE													{$$ = create_node(0, 0, A_FUNC_BODY, "FuncBody");}
     	|
-    	LBRACE VarsAndStatements RBRACE                      								{$$ = create_node(A_FUNC_BODY, "FuncBody");
+    	LBRACE VarsAndStatements RBRACE                      								{$$ = create_node(0, 0, A_FUNC_BODY, "FuncBody");
     															push($$->children, $2);}
     	;
 
     VarsAndStatements:
-    	SEMICOLON													{$$ = create_node(A_INVALID_NODE, "NO");}
+    	SEMICOLON													{$$ = create_node(0, 0, A_INVALID_NODE, "NO");}
     	|
     	VarDeclaration SEMICOLON											{$$ = $1;}
     	|
@@ -237,15 +237,15 @@ extern struct tree_node_t * root;
     	;
 
     Statement:
-    	ID ASSIGN Expr                                                      						{$$ = create_node(A_ASSIGN, "Assign");
-    															push($$->children, create_node(A_ID, $1->id));
+    	ID ASSIGN Expr                                                      						{$$ = create_node($2->line, $2->column, A_ASSIGN, "Assign");
+    															push($$->children, create_node($1->line, $1->column, A_ID, $1->id));
     															push($$->children, $3);}
     	;
 
     Statement:
-    	LBRACE RBRACE													{$$ = create_node(A_INVALID_NODE, "Block");}
+    	LBRACE RBRACE													{$$ = create_node(0, 0, A_INVALID_NODE, "Block");}
     	|
-    	LBRACE Statement_1 RBRACE                                       						{$$ = create_node(A_PROB_BLOCK, "Block");
+    	LBRACE Statement_1 RBRACE                                       						{$$ = create_node(0, 0, A_PROB_BLOCK, "Block");
     															push($$->children, $2);}
     	;
 
@@ -257,21 +257,21 @@ extern struct tree_node_t * root;
     	;
 
     Statement:
-     	IF Expr LBRACE Statement_rep RBRACE OPT_ELSE									{$$ = create_node(A_IF, "If");
+     	IF Expr LBRACE Statement_rep RBRACE OPT_ELSE									{$$ = create_node($1->line, $1->column, A_IF, "If");
 		 													push($$->children, $2);
-		 													push($$->children, create_node(A_BLOCK, "Block"));
+		 													push($$->children, create_node(0, 0, A_BLOCK, "Block"));
 		 													push($$->children->next->next->data->children, $4);
 		 													push($$->children, $6);}
      	;
     OPT_ELSE:
-	ELSE LBRACE Statement_rep RBRACE 										{$$ = create_node(A_BLOCK, "Block");
+	ELSE LBRACE Statement_rep RBRACE 										{$$ = create_node(0, 0, A_BLOCK, "Block");
 															push($$->children, $3);}
 	|
-	/*epsilon*/													{$$ = create_node(A_BLOCK, "Block");}
+	/*epsilon*/													{$$ = create_node(0, 0, A_BLOCK, "Block");}
 	;
 
     Statement_rep:
-    	/*epsilon*/													{$$ = create_node(A_INVALID_NODE, "NO");}
+    	/*epsilon*/													{$$ = create_node(0, 0, A_INVALID_NODE, "NO");}
 	|
 	Statement SEMICOLON Statement_rep										{if(!yacc_error){
 															$$ = $1;
@@ -280,22 +280,22 @@ extern struct tree_node_t * root;
     	;
 
     Statement:
-	FOR LBRACE Statement_rep RBRACE 										{$$ = create_node(A_FOR, "For");
-															push($$->children, create_node(A_BLOCK, "Block"));
+	FOR LBRACE Statement_rep RBRACE 										{$$ = create_node($1->line, $1->column, A_FOR, "For");
+															push($$->children, create_node(0, 0, A_BLOCK, "Block"));
 															push($$->children->next->data->children, $3);
 															}
 	|
-	FOR Expr LBRACE Statement_rep RBRACE 										{$$ = create_node(A_FOR, "For");
+	FOR Expr LBRACE Statement_rep RBRACE 										{$$ = create_node($1->line, $1->column, A_FOR, "For");
 															push($$->children, $2);
-															push($$->children, create_node(A_BLOCK, "Block"));
+															push($$->children, create_node(0, 0, A_BLOCK, "Block"));
 															push($$->children->next->next->data->children, $4);
 															}
 	;
 
     Statement:
-    	RETURN														{$$ = create_node(A_RETURN, "Return");}
+    	RETURN														{$$ = create_node($1->line, $1->column, A_RETURN, "Return");}
     	|
-    	RETURN Expr                                                 							{$$ = create_node(A_RETURN, "Return");
+    	RETURN Expr                                                 							{$$ = create_node($1->line, $1->column, A_RETURN, "Return");
     															push($$->children, $2);}
     	;
 
@@ -306,11 +306,11 @@ extern struct tree_node_t * root;
     	;
 
     Statement:
-    	PRINT LPAR Expr RPAR 												{$$ = create_node(A_PRINT, "Print");
+    	PRINT LPAR Expr RPAR 												{$$ = create_node($1->line, $1->column, A_PRINT, "Print");
     															push($$->children, $3);}
     	|
-    	PRINT LPAR STRLIT RPAR                                          						{$$ = create_node(A_PRINT, "Print");
-    															push($$->children, create_node(A_STRLIT, $3->id));}
+    	PRINT LPAR STRLIT RPAR                                          						{$$ = create_node($1->line, $1->column, A_PRINT, "Print");
+    															push($$->children, create_node($3->line, $3->column, A_STRLIT, $3->id));}
     	;
 
     Statement:
@@ -318,8 +318,8 @@ extern struct tree_node_t * root;
     	;
 
     ParseArgs:
-    	ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR                        				{$$ = create_node(A_PARSE_ARGS, "ParseArgs");
-															push($$->children, create_node(A_ID, $1->id));
+    	ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR                        				{/*might be wrong and be cmdargs*/$$ = create_node($5->line, $5->column, A_PARSE_ARGS, "ParseArgs");
+															push($$->children, create_node($1->line, $1->column, A_ID, $1->id));
 															push($$->children, $9);
 															}
     	;
@@ -329,15 +329,15 @@ extern struct tree_node_t * root;
     	;
 
     FuncInvocation:
-    	ID LPAR RPAR 													{$$ = create_node(A_CALL, "Call");
-    															push($$->children, create_node(A_ID, $1->id));}
+    	ID LPAR RPAR 													{$$ = create_node(0, 0, A_CALL, "Call");
+    															push($$->children, create_node($1->line, $1->column, A_ID, $1->id));}
     	|
-	ID LPAR Expr RPAR 												{$$ = create_node(A_CALL, "Call");
-															push($$->children, create_node(A_ID, $1->id));
+	ID LPAR Expr RPAR 												{$$ = create_node(0, 0, A_CALL, "Call");
+															push($$->children, create_node($1->line, $1->column, A_ID, $1->id));
 															push($$->children, $3);}
 	|
-	ID LPAR Expr FuncInvocation_rep RPAR										{$$ = create_node(A_CALL, "Call");
-															push($$->children, create_node(A_ID, $1->id));
+	ID LPAR Expr FuncInvocation_rep RPAR										{$$ = create_node(0, 0, A_CALL, "Call");
+															push($$->children, create_node($1->line, $1->column, A_ID, $1->id));
 															push($$->children, $3);
 															push($$->children, $4);}
 	;
@@ -354,80 +354,80 @@ extern struct tree_node_t * root;
     	;
 
     Expr:
-    	Expr OR Expr 													{$$ = create_node(A_OR, "Or");
+    	Expr OR Expr 													{$$ = create_node($2->line, $2->column, A_OR, "Or");
     															push($$->children, $1);
     															push($$->children, $3);}
     	|
-    	Expr AND Expr                                                							{$$ = create_node(A_AND, "And");
-    															push($$->children, $1);
-    															push($$->children, $3);}
-    	;
-
-    Expr:
-    	Expr LT Expr													{$$ = create_node(A_LT, "Lt");
-    															push($$->children, $1);
-    															push($$->children, $3);}
-    	|
-    	Expr GT Expr													{$$ = create_node(A_GT, "Gt");
-															push($$->children, $1);
-															push($$->children, $3);}
-    	|
-    	Expr LE Expr													{$$ = create_node(A_LE, "Le");
-															push($$->children, $1);
-															push($$->children, $3);}
-    	|
-    	Expr GE Expr													{$$ = create_node(A_GE, "Ge");
-															push($$->children, $1);
-															push($$->children, $3);}
-    	|
-    	Expr EQ Expr													{$$ = create_node(A_EQ, "Eq");
-															push($$->children, $1);
-															push($$->children, $3);}
-    	|
-    	Expr NE	Expr													{$$ = create_node(A_NE, "Ne");
-															push($$->children, $1);
-															push($$->children, $3);}
-    	;
-
-    Expr:
-    	Expr PLUS Expr													{$$ = create_node(A_ADD, "Add");
-															push($$->children, $1);
-															push($$->children, $3);}
-    	|
-    	Expr MINUS Expr													{$$ = create_node(A_SUB, "Sub");
-															push($$->children, $1);
-															push($$->children, $3);}
-    	|
-    	Expr STAR Expr													{$$ = create_node(A_MUL, "Mul");
-															push($$->children, $1);
-															push($$->children, $3);}
-    	|
-    	Expr DIV Expr													{$$ = create_node(A_DIV, "Div");
-															push($$->children, $1);
-															push($$->children, $3);}
-    	|
-    	Expr MOD Expr                             									{$$ = create_node(A_MOD, "Mod");
+    	Expr AND Expr                                                							{$$ = create_node($2->line, $2->column, A_AND, "And");
     															push($$->children, $1);
     															push($$->children, $3);}
     	;
 
     Expr:
-    	NOT Expr													{$$ = create_node(A_NOT, "Not");
+    	Expr LT Expr													{$$ = create_node($2->line, $2->column, A_LT, "Lt");
+    															push($$->children, $1);
+    															push($$->children, $3);}
+    	|
+    	Expr GT Expr													{$$ = create_node($2->line, $2->column, A_GT, "Gt");
+															push($$->children, $1);
+															push($$->children, $3);}
+    	|
+    	Expr LE Expr													{$$ = create_node($2->line, $2->column, A_LE, "Le");
+															push($$->children, $1);
+															push($$->children, $3);}
+    	|
+    	Expr GE Expr													{$$ = create_node($2->line, $2->column, A_GE, "Ge");
+															push($$->children, $1);
+															push($$->children, $3);}
+    	|
+    	Expr EQ Expr													{$$ = create_node($2->line, $2->column, A_EQ, "Eq");
+															push($$->children, $1);
+															push($$->children, $3);}
+    	|
+    	Expr NE	Expr													{$$ = create_node($2->line, $2->column, A_NE, "Ne");
+															push($$->children, $1);
+															push($$->children, $3);}
+    	;
+
+    Expr:
+    	Expr PLUS Expr													{$$ = create_node($2->line, $2->column, A_ADD, "Add");
+															push($$->children, $1);
+															push($$->children, $3);}
+    	|
+    	Expr MINUS Expr													{$$ = create_node($2->line, $2->column, A_SUB, "Sub");
+															push($$->children, $1);
+															push($$->children, $3);}
+    	|
+    	Expr STAR Expr													{$$ = create_node($2->line, $2->column, A_MUL, "Mul");
+															push($$->children, $1);
+															push($$->children, $3);}
+    	|
+    	Expr DIV Expr													{$$ = create_node($2->line, $2->column, A_DIV, "Div");
+															push($$->children, $1);
+															push($$->children, $3);}
+    	|
+    	Expr MOD Expr                             									{$$ = create_node($2->line, $2->column, A_MOD, "Mod");
+    															push($$->children, $1);
+    															push($$->children, $3);}
+    	;
+
+    Expr:
+    	NOT Expr													{$$ = create_node($1->line, $1->column, A_NOT, "Not");
     															push($$->children, $2);}
     	|
-    	MINUS Expr %prec NOT												{$$ = create_node(A_MINUS, "Minus");
+    	MINUS Expr %prec NOT												{$$ = create_node($1->line, $1->column, A_MINUS, "Minus");
     															push($$->children, $2);}
     	|
-    	PLUS Expr %prec NOT /*unary minus/plus has the same priority as the not operator */				{$$ = create_node(A_PLUS, "Plus");
+    	PLUS Expr %prec NOT /*unary minus/plus has the same priority as the not operator */				{$$ = create_node($1->line, $1->column, A_PLUS, "Plus");
     															push($$->children, $2);}
     	;
 
     Expr:
-    	INTLIT 														{$$ = create_node(A_INTLIT, $1->id);}
+    	INTLIT 														{$$ = create_node($1->line, $1->column, A_INTLIT, $1->id);}
     	|
-    	REALLIT 													{$$ = create_node(A_REALLIT, $1->id);}
+    	REALLIT 													{$$ = create_node($1->line, $1->column, A_REALLIT, $1->id);}
     	|
-    	ID 														{$$ = create_node(A_ID, $1->id);}
+    	ID 														{$$ = create_node($1->line, $1->column, A_ID, $1->id);}
     	|
     	FuncInvocation 													{$$ = $1;}
     	|

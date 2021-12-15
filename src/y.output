@@ -118,48 +118,48 @@ Terminals, with rules where they appear
 
     $end (0) 0
     error (256) 82
-    PACKAGE (258) 1 2
+    PACKAGE <node> (258) 1 2
     ID <node> (259) 1 2 9 11 16 17 18 19 21 22 23 24 33 52 53 54 55 56 59 78
-    SEMICOLON (260) 1 2 3 4 5 6 8 27 28 29 30 31 32 36 37 42
-    VAR (261) 7 8
-    LPAR (262) 8 16 17 18 19 49 50 52 53 54 55 56 59 80 81
-    RPAR (263) 8 16 17 18 19 49 50 52 53 54 55 56 59 80 81
-    COMMA (264) 11 23 24 52 53 57 58
-    INT (265) 12
-    FLOAT32 (266) 13
-    BOOL (267) 14
-    STRING (268) 15
-    RBRACE (269) 25 26 34 35 38 39 43 44
-    LBRACE (270) 25 26 34 35 38 39 43 44
-    ASSIGN (271) 33 52 53
-    IF (272) 38
-    ELSE (273) 39
-    RETURN (274) 45 46
-    FOR (275) 43 44
-    PRINT (276) 49 50
+    SEMICOLON <node> (260) 1 2 3 4 5 6 8 27 28 29 30 31 32 36 37 42
+    VAR <node> (261) 7 8
+    LPAR <node> (262) 8 16 17 18 19 49 50 52 53 54 55 56 59 80 81
+    RPAR <node> (263) 8 16 17 18 19 49 50 52 53 54 55 56 59 80 81
+    COMMA <node> (264) 11 23 24 52 53 57 58
+    INT <node> (265) 12
+    FLOAT32 <node> (266) 13
+    BOOL <node> (267) 14
+    STRING <node> (268) 15
+    RBRACE <node> (269) 25 26 34 35 38 39 43 44
+    LBRACE <node> (270) 25 26 34 35 38 39 43 44
+    ASSIGN <node> (271) 33 52 53
+    IF <node> (272) 38
+    ELSE <node> (273) 39
+    RETURN <node> (274) 45 46
+    FOR <node> (275) 43 44
+    PRINT <node> (276) 49 50
     STRLIT <node> (277) 50
-    BLANKID (278) 52 53
-    PARSEINT (279) 52 53
-    CMDARGS (280) 52
-    LSQ (281) 52
-    RSQ (282) 52
-    OR (283) 60
-    AND (284) 61
-    LT (285) 62
-    GT (286) 63
-    EQ (287) 66
-    NE (288) 67
-    LE (289) 64
-    GE (290) 65
-    PLUS (291) 68 75
-    MINUS (292) 69 74
-    STAR (293) 70
-    DIV (294) 71
-    MOD (295) 72
-    NOT (296) 73
+    BLANKID <node> (278) 52 53
+    PARSEINT <node> (279) 52 53
+    CMDARGS <node> (280) 52
+    LSQ <node> (281) 52
+    RSQ <node> (282) 52
+    OR <node> (283) 60
+    AND <node> (284) 61
+    LT <node> (285) 62
+    GT <node> (286) 63
+    EQ <node> (287) 66
+    NE <node> (288) 67
+    LE <node> (289) 64
+    GE <node> (290) 65
+    PLUS <node> (291) 68 75
+    MINUS <node> (292) 69 74
+    STAR <node> (293) 70
+    DIV <node> (294) 71
+    MOD <node> (295) 72
+    NOT <node> (296) 73
     INTLIT <node> (297) 76
     REALLIT <node> (298) 77
-    FUNC (299) 16 17 18 19
+    FUNC <node> (299) 16 17 18 19
     UNARY (300)
 
 

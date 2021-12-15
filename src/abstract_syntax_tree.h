@@ -72,7 +72,7 @@ typedef struct local_table_t local_table_t;
 typedef struct global_table_t global_table_t;
 typedef struct global_entry_t global_entry_t;
 
-extern struct tree_node_t * create_node(int type, char * id);
+extern struct tree_node_t * create_node(int line, int column, int type, char * id);
 extern void print_tree(struct tree_node_t * node, int is_annotated);
 extern void annotate_tree(struct tree_node_t * node, global_table_t * global_table, global_entry_t * global_entry);
 

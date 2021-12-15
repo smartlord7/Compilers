@@ -1,28 +1,28 @@
 not found f0
-Line 30, column 15: Cannot find symbol f0
+Line 30, column 2: Cannot find symbol f0
 not found f0
-Line 31, column 41: Cannot find symbol f0
+Line 31, column 26: Cannot find symbol f0
 not found f0
-Line 31, column 42: Operator + cannot be applied to types float32, 
-not found f0
-not found f0
-Line 31, column 42: Operator = cannot be applied to types float32, 
+Line 31, column 24: Operator + cannot be applied to types float32, 
 not found f0
 not found f0
+Line 31, column 4: Operator = cannot be applied to types float32, 
 not found f0
-Line 34, column 11: Cannot find symbol func2
-Line 34, column 11: Operator = cannot be applied to types int, 
-Line 35, column 61: Operator + cannot be applied to types int, float32
-Line 35, column 64: Operator + cannot be applied to types , float32
-Line 39, column 12: Operator = cannot be applied to types int, float32
-Line 43, column 14: Operator > cannot be applied to types int, float32
-Line 46, column 14: Operator = cannot be applied to types int, 
-Line 78, column 2: Incompatible type undef in for statement
-Line 64, column 5: Incompatible type float32 in for statement
+not found f0
+not found f0
+Line 34, column 6: Cannot find symbol func2
+Line 34, column 4: Operator = cannot be applied to types int, 
+Line 35, column 57: Operator + cannot be applied to types int, float32
+Line 35, column 61: Operator + cannot be applied to types , float32
+Line 39, column 7: Operator = cannot be applied to types int, float32
+Line 43, column 12: Operator > cannot be applied to types int, float32
+Line 46, column 4: Operator = cannot be applied to types int, 
+Line 49, column 2: Incompatible type undef in for statement
+Line 58, column 5: Incompatible type float32 in for statement
 not found func_
-Line 69, column 33: Cannot find symbol func_
-Line 76, column 58: Cannot find symbol noWhereToBeFound
+Line 69, column 20: Cannot find symbol func_
+Line 76, column 4: Cannot find symbol noWhereToBeFound
 not found noWhereToBeFound
-Line 76, column 57: Cannot find symbol noWhereToBeFound
+Line 76, column 23: Cannot find symbol noWhereToBeFound
 not found noWhereToBeFound
 not found noWhereToBeFound

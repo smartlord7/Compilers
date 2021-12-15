@@ -174,7 +174,7 @@ int main(int argc, char * argv[]) {
 
     buf = malloc(BUF_SIZE*sizeof(char));
     buf2 = malloc(BUF_SIZE_2*sizeof(char));
-    yylval.node = create_node(A_DUMMY, "");
+    yylval.node = create_node(0, 0, A_DUMMY, "");
 
 
 	if (argc > 1 && strcmp(argv[1], "-l") == 0) {
@@ -211,6 +211,7 @@ char * handle_token(token_type tok_type) {
 
 	last_token_line = current_line;
 	last_token_column = current_column;
+	yylval.node = create_node(0, 0, A_DUMMY, NULL);
 	yylval.node->line = last_token_line;
 	yylval.node->column = last_token_column;
 
@@ -265,7 +266,7 @@ char * handle_token(token_type tok_type) {
 
 			buf_counter = 0;
             last_token = tok_type;
-            yylval.node = create_node(A_DUMMY, strdup(buf2));
+            yylval.node->id = strdup(buf2);
 
 			return buf2;
 			break;
