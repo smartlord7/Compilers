@@ -1,19 +1,6 @@
 package main;
 
-func factorial(n int) int {
-    if n == 0 {
-        return 1;
-    };
-    return n * factorial(n-1);
-};
-
 func main() {
-    var argument int;
-    var aux float32;
-    argument,_ = strconv.Atoi(os.Args[1]);
-    aux = beta();
-};
-
-func beta() float32 {
-    return 0.0;
+    var argument bool;
+    argument = (0==0+0 && 1==1) || (0 == 0 && 1==1);
 };

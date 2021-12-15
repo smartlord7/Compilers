@@ -48,12 +48,12 @@ Program
 ......VarDecl
 ........Bool
 ........Id(b)
-......Assign
+......Assign - bool
 ........Id(b) - bool
 ........Ne - bool
 ..........Id(i) - int
 ..........Id(i) - int
-......Assign
+......Assign - bool
 ........Id(b) - bool
 ........Eq - bool
 ..........Id(f) - float32
@@ -63,7 +63,7 @@ Program
 ........And - bool
 ..........Id(b) - bool
 ..........Id(b) - bool
-......Assign
+......Assign - bool
 ........Id(b) - bool
 ........Eq - bool
 ..........Id(b) - bool

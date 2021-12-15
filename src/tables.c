@@ -189,6 +189,7 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
             result1 = get_child_type(global_table, local_table, child);
 
             child = child->next;
+
             if (child != NULL) {
                 result2 = get_child_type(global_table, local_table, child);
 
@@ -213,13 +214,13 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
 
                     return result1;
                 } else {
-                    if(!(result1 == DATATYPE_BOOL && check_bool(child->data->type) == DATATYPE_BOOL)) {
+                    /*if(!(result1 == DATATYPE_BOOL && check_bool(child->data->type) == DATATYPE_BOOL)) {
                         if(node->data->errored == 0) {
                             //printf("here %d\n", result2);
                             node->data->errored = 1;
                             semantic_error(OPERATOR_INVALID_2, node->data, result1, result2);
                         }
-                    }
+                    }*/
                 }
 
             } else {
@@ -257,10 +258,10 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
                 }
 
             } else if (feedback == SYMBOL_NOT_FOUND){
-                if (!node->data->errored) {
+                /*if (!node->data->errored) {
                     semantic_error(SYMBOL_MISSING, node->data, 0, 0);
                     node->data->errored = 1;
-                }
+                }*/
             }
 
             break;
@@ -277,7 +278,7 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
                         return aux_table->return_->return_type;
                     }
                 } else if(feedback == SYMBOL_NOT_FOUND) {
-                    printf("not found %s\n", value);
+                    //printf("not found %s\n", value);
                 }
             }
 
@@ -327,8 +328,7 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
                 }
 
             }*/
-            node->data->annotation = ANNOTATION_BOOL;
-            break;
+            return DATATYPE_BOOL;
 
         case A_NOT:
 
@@ -526,7 +526,9 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                     }
                 } else {
                     result2 = get_child_type(global_table, table, child);
-
+                    if(result2 != DATATYPE_BOOL) {
+                        result2 = check_bool(child->data->type);
+                    }
                     if((result1 != result2 || result1 != DATATYPE_BOOL || result2 != DATATYPE_BOOL) && node->data->errored == 0) {
                         node->data->errored = 1;
                         semantic_error(OPERATOR_INVALID_2, node->data, result1, result2);
@@ -548,7 +550,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             child = node->data->children->next;
 
             while (child != NULL) {
-                sub_build_local_table(global_table, table, child, build_phase, flag, passage);
+                //sub_build_local_table(global_table, table, child, build_phase, flag, passage);
                 child = child->next;
             }
 
@@ -578,15 +580,14 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                     }
 
                 } else {
-
-                    if(!(result1 == DATATYPE_BOOL && check_bool(child->data->type) == DATATYPE_BOOL)) {
-                        if(node->data->errored == 0) {
-                            //printf("here %d\n", result2);
+                    if(result1 == DATATYPE_BOOL && check_bool(child->data->type) == DATATYPE_BOOL) {
+                        node->data->annotation = ANNOTATION_BOOL;
+                    } else {
+                        if(!node->data->errored) {
                             node->data->errored = 1;
                             semantic_error(OPERATOR_INVALID_2, node->data, result1, result2);
                         }
                     }
-
                 }
             } else {
                 switch (result1) {

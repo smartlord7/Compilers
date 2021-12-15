@@ -1,7 +1,7 @@
-Line 29, column 11: Operator + cannot be applied to types int, float32
 Line 29, column 7: Operator = cannot be applied to types int, 
-Line 30, column 11: Operator + cannot be applied to types float32, int
+Line 29, column 11: Operator + cannot be applied to types int, float32
 Line 30, column 7: Operator = cannot be applied to types int, 
+Line 30, column 11: Operator + cannot be applied to types float32, int
 Line 31, column 7: Operator = cannot be applied to types int, float32
 Line 32, column 7: Operator = cannot be applied to types int, bool
 Line 43, column 7: Operator = cannot be applied to types int, string
