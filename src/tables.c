@@ -320,47 +320,27 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             break;
 
         case A_FUNC_BODY:
+            if(passage == FIRST_PASSAGE) {
+                return;
+            }
             build_phase = T_FUNC_BODY;
             break;
-
-        case A_INT:
-            if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", DATATYPE_INT, DATATYPE_NONE, node->data);
-            }
-            break;
-
-        case A_FLOAT32:
-            if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", DATATYPE_FLOAT32, DATATYPE_NONE, node->data);
-            }
-            break;
-
-        case A_BOOL:
-            if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", DATATYPE_BOOL, DATATYPE_NONE, node->data);
-            }
-            break;
-
-        case A_STRING:
-            if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", DATATYPE_STRING, DATATYPE_NONE, node->data);
-            }
-            break;
-
         case A_PARAM_DECL:
             flag = FATHER_PARAM_DECL;
 
-            aux_var_data = init_var_data(node);
-            type = aux_var_data->var_type;
-            name = aux_var_data->var_name;
+            if(passage == FIRST_PASSAGE) {
+                aux_var_data = init_var_data(node);
+                type = aux_var_data->var_type;
+                name = aux_var_data->var_name;
 
-            int var_type = 0;
-            while (strcmp(type, data_types[var_type]) != 0) {
-                var_type++;
+                int var_type = 0;
+                while (strcmp(type, data_types[var_type]) != 0) {
+                    var_type++;
+                }
+
+                new_entry = init_entry(name, DATA_PARAM, (data_type_t) var_type, node->data->children->next->next->data);
+                push_entry(table, new_entry);
             }
-
-            new_entry = init_entry(name, DATA_PARAM, (data_type_t) var_type, node->data->children->next->next->data);
-            push_entry(table, new_entry);
             break;
 
         case A_VAR_DECL:
@@ -370,7 +350,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             type = aux_var_data->var_type;
             name = aux_var_data->var_name;
 
-            var_type = 0;
+            int var_type = 0;
             while (strcmp(type, data_types[var_type]) != 0) {
                 var_type++;
             }
@@ -485,11 +465,6 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
         case A_MOD:
         case A_ASSIGN:
             child = node->data->children->next;
-
-            while (child != NULL) {
-                //sub_build_local_table(global_table, table, child, build_phase, flag, passage);
-                child = child->next;
-            }
 
             child = node->data->children->next;
             result1 = get_child_type(global_table, table, child);
@@ -731,7 +706,7 @@ void build_local_table(global_table_t * global_table, local_table_t * table, str
 }
 
 void sub_build_global_table(global_table_t * global_table, struct list_node_t * node, passage_t passage) {
-    struct list_node_t * child = NULL, * grandchild = NULL;
+    struct list_node_t * child = NULL, * grandchild = NULL, * grand_grand_child = NULL;
     local_table_t * new_table = NULL, * aux_local_table = NULL;
     entry_t * new_var = NULL;
     global_entry_t * new_entry = NULL;
@@ -764,31 +739,32 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
                                 case SYMBOL_NOT_FOUND:
                                     new_table = init_table(func_name);
 
-                                    grandchild = grandchild->data->siblings->next;
+                                    grand_grand_child = grandchild->data->siblings->next;
 
-                                    switch (grandchild->data->type) {
+                                    switch (grand_grand_child->data->type) { /*define return type*/
                                         case A_FUNC_PARAMS:
-                                            new_table->return_ = init_entry("return", DATATYPE_NONE, DATATYPE_NONE, grandchild->data);
+                                            new_table->return_ = init_entry("return", DATATYPE_NONE, DATATYPE_NONE, grand_grand_child->data);
                                             break;
                                         case A_INT:
-                                            new_table->return_ = init_entry("return", DATATYPE_INT, DATATYPE_NONE, grandchild->data);
+                                            new_table->return_ = init_entry("return", DATATYPE_INT, DATATYPE_NONE, grand_grand_child->data);
                                             break;
 
                                         case A_FLOAT32:
-                                            new_table->return_ = init_entry("return", DATATYPE_FLOAT32, DATATYPE_NONE, grandchild->data);
+                                            new_table->return_ = init_entry("return", DATATYPE_FLOAT32, DATATYPE_NONE, grand_grand_child->data);
                                             break;
 
                                         case A_BOOL:
-                                            new_table->return_ = init_entry("return", DATATYPE_BOOL, DATATYPE_NONE, grandchild->data);
+                                            new_table->return_ = init_entry("return", DATATYPE_BOOL, DATATYPE_NONE, grand_grand_child->data);
                                             break;
 
                                         case A_STRING:
-                                            new_table->return_ = init_entry("return", DATATYPE_STRING, DATATYPE_NONE, grandchild->data);
+                                            new_table->return_ = init_entry("return", DATATYPE_STRING, DATATYPE_NONE, grand_grand_child->data);
                                             break;
                                         default:
                                             break;
                                     }
 
+                                    build_local_table(global_table, new_table, node->data, passage);
                                     new_entry = init_global_entry(TABLE_, new_table, NULL);
                                     push_global_entry(global_table, new_entry);
 
