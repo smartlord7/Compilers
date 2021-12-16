@@ -18,3 +18,5 @@ Line 69, column 20: Cannot find symbol func_
 Line 76, column 4: Cannot find symbol noWhereToBeFound
 not found noWhereToBeFound
 Line 76, column 23: Cannot find symbol noWhereToBeFound
+Line 21, column 6: Symbol a declared but never used
+Line 28, column 9: Symbol h declared but never used

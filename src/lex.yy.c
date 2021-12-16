@@ -2322,6 +2322,7 @@ int main(int argc, char * argv[]) {
         global_table = init_global_table();
         build_global_table(global_table, root, FIRST_PASSAGE);
         build_global_table(global_table, root, SECOND_PASSAGE);
+        check_unused_global_symbols(global_table);
 
         if (argc > 1 && strcmp(argv[1], "-s") == 0 && semantic_error_flag == 0) {
             print_global_table(global_table);

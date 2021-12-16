@@ -87,5 +87,6 @@ extern void print_global_table(global_table_t * global_table);
 extern void build_global_table(global_table_t * global_table, tree_node_t * tree_root, passage_t passage);
 extern entry_t * get_var(global_table_t * global_table, local_table_t * local_table, char * var_name, symbol_check_mode_t mode, symbol_check_t * feedback);
 extern local_table_t * get_func(global_table_t * global_table, char * func_name, symbol_check_mode_t mode, symbol_check_t * feedback);
+extern void check_unused_global_symbols(global_table_t * global_table);
 
 #endif //COMPILERS_SYMBOL_TABLE_H

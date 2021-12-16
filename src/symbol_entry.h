@@ -3,6 +3,7 @@
 
 #include "linked_list.h"
 #include "data_types.h"
+#include "abstract_syntax_tree.h"
 
 typedef enum {
     RETURN_ENTRY_,
@@ -13,9 +14,11 @@ typedef enum {
 } entry_type;
 
 typedef enum data_type_t data_type_t;
+typedef struct tree_node_t tree_node_t;
 
 struct entry_t {
     char * name;
+    tree_node_t * node;
     data_type_t return_type, arg_type;
     int used;
     struct entry_t * next;
@@ -29,7 +32,7 @@ typedef struct {
 
 typedef struct list_node_t list_node_t;
 
-extern entry_t * init_entry(char * name, data_type_t return_type, data_type_t arg_type);
+extern entry_t * init_entry(char * name, data_type_t return_type, data_type_t arg_type, tree_node_t * node);
 extern var_data_t * init_var_data(list_node_t * container);
 extern void print_entry(int type, entry_t * entry);
 

@@ -213,15 +213,7 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
                     }
 
                     return result1;
-                } else {
-                    /*if(!(result1 == DATATYPE_BOOL && check_bool(child->data->type) == DATATYPE_BOOL)) {
-                        if(node->data->errored == 0) {
-                            //printf("here %d\n", result2);
-                            node->data->errored = 1;
-                            semantic_error(OPERATOR_INVALID_2, node->data, result1, result2);
-                        }
-                    }*/
-                }
+                } else {}
 
             } else {
 
@@ -257,12 +249,7 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
                     return aux_entry->return_type;
                 }
 
-            } else if (feedback == SYMBOL_NOT_FOUND){
-                /*if (!node->data->errored) {
-                    semantic_error(SYMBOL_MISSING, node->data, 0, 0);
-                    node->data->errored = 1;
-                }*/
-            }
+            } else if (feedback == SYMBOL_NOT_FOUND){}
 
             break;
 
@@ -277,9 +264,7 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
                     if (aux_table->return_ != NULL) {
                         return aux_table->return_->return_type;
                     }
-                } else if(feedback == SYMBOL_NOT_FOUND) {
-                    //printf("not found %s\n", value);
-                }
+                } else if(feedback == SYMBOL_NOT_FOUND) {}
             }
 
             break;
@@ -300,66 +285,18 @@ data_type_t get_child_type(global_table_t * global_table, local_table_t * local_
             return DATATYPE_INT;
         case A_REALLIT:
             return DATATYPE_FLOAT32;
-        case A_BOOL:
-            return DATATYPE_BOOL;
         case A_STRING:
             return DATATYPE_STRING;
+        case A_BOOL:
         case A_EQ:
         case A_NE:
         case A_LT:
         case A_LE:
         case A_GT:
         case A_GE:
-
-            /*child = node->data->children->next;
-            //result1 = check_bool()
-            result1 = get_child_type(global_table, local_table, child);
-            child = child->next;
-            if(child != NULL) {
-                result2 = get_child_type(global_table, local_table, child);
-
-                if(result2 == DATATYPE_NONE) {
-                    result2 = DATATYPE_UNDEF;
-                }
-
-                if(result1 != result2 && node->data->errored == 0) {
-                    node->data->errored = 1;
-                    semantic_error(OPERATOR_INVALID_2, node->data, result1, result2);
-                }
-
-            }*/
-            return DATATYPE_BOOL;
-
         case A_NOT:
-
-            /*child = node->data->children->next;
-            result1 = get_child_type(global_table, local_table, child);
-            child = child->next;
-            if(child != NULL) {
-                result2 = get_child_type(global_table, local_table, child);
-
-                if((result1 != result2 || result1 != DATATYPE_BOOL || result2 != DATATYPE_BOOL) && node->data->errored == 0) {
-                    node->data->errored = 1;
-                    semantic_error(OPERATOR_INVALID_2, node->data, result1, result2);
-                }
-            }*/
-
-            return DATATYPE_BOOL;
         case A_AND:
         case A_OR:
-
-            /*child = node->data->children->next;
-            result1 = get_child_type(global_table, local_table, child);
-            child = child->next;
-            if(child != NULL) {
-                result2 = get_child_type(global_table, local_table, child);
-                printf("here\n");
-                if((result1 != result2 || result1 != DATATYPE_BOOL || result2 != DATATYPE_BOOL) && node->data->errored == 0) {
-                    node->data->errored = 1;
-                    semantic_error(OPERATOR_INVALID_2, node->data, result1, result2);
-                }
-            }*/
-
             return DATATYPE_BOOL;
         default:
             break;
@@ -388,25 +325,25 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
 
         case A_INT:
             if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", DATATYPE_INT, DATATYPE_NONE);
+                table->return_ = init_entry("return", DATATYPE_INT, DATATYPE_NONE, node->data);
             }
             break;
 
         case A_FLOAT32:
             if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", DATATYPE_FLOAT32, DATATYPE_NONE);
+                table->return_ = init_entry("return", DATATYPE_FLOAT32, DATATYPE_NONE, node->data);
             }
             break;
 
         case A_BOOL:
             if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", DATATYPE_BOOL, DATATYPE_NONE);
+                table->return_ = init_entry("return", DATATYPE_BOOL, DATATYPE_NONE, node->data);
             }
             break;
 
         case A_STRING:
             if (build_phase == T_FUNC_HEADER) {
-                table->return_ = init_entry("return", DATATYPE_STRING, DATATYPE_NONE);
+                table->return_ = init_entry("return", DATATYPE_STRING, DATATYPE_NONE, node->data);
             }
             break;
 
@@ -422,7 +359,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                 var_type++;
             }
 
-            new_entry = init_entry(name, DATA_PARAM, (data_type_t) var_type);
+            new_entry = init_entry(name, DATA_PARAM, (data_type_t) var_type, node->data->children->next->next->data);
             push_entry(table, new_entry);
             break;
 
@@ -440,7 +377,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
 
             aux_entry = get_var(global_table, table, name,SYMBOL_DECL, &feedback);
 
-            new_entry = init_entry(name, (data_type_t) var_type, DATATYPE_NONE);
+            new_entry = init_entry(name, (data_type_t) var_type, DATATYPE_NONE, node->data->children->next->next->data);
             push_entry(table, new_entry);
             break;
 
@@ -682,13 +619,14 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                         strcpy(value, "(");
                         value = str_append(value, get_func_args(aux_table));
                         value = str_append(value, ")");
-
                         node->data->annotation = value;
                     } else if (feedback == SYMBOL_NOT_FOUND) {
+
                         if (!node->data->errored) {
                             semantic_error(SYMBOL_MISSING, node->data, 0, 0);
                             node->data->errored = 1;
                         }
+
                     }
 
                     flag = FATHER_VOID;
@@ -721,24 +659,32 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
 
                 if(feedback == SYMBOL_FOUND) {
 
-                    if(aux_entry->arg_type == DATATYPE_NONE) {
+                    if(aux_entry->arg_type == DATATYPE_NONE) { /*it's a function parameter*/
+
                         if(aux_entry->return_type != DATATYPE_BOOL && !child->data->errored) {
                             child->data->errored = 1;
                             semantic_error(INCOMPATIBLE_TYPE, node->data, aux_entry->return_type, 0);}
                         }
+
                     } else {
+
                         if(aux_entry->arg_type != DATATYPE_BOOL && !child->data->errored) {
                             child->data->errored = 1;
                             semantic_error(INCOMPATIBLE_TYPE, node->data, aux_entry->arg_type, 0);
                         }
+
                     }
+
             } else if(child->data->type == A_CALL) {
                 aux_table = get_func(global_table, trim_value(child->data->id), SYMBOL_USAGE, &feedback);
+
                 if(feedback == SYMBOL_FOUND) {
+
                     if(aux_table->return_->return_type != DATATYPE_BOOL && !child->data->errored) {
                         child->data->errored = 1;
                         semantic_error(INCOMPATIBLE_TYPE, node->data, aux_table->return_->return_type, 0);
                     }
+
                 }
             } else {
                 result1 = check_bool(child->data->type);
@@ -747,6 +693,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                     child->data->errored = 1;
                     semantic_error(INCOMPATIBLE_TYPE, node->data, result1, 0);
                 }
+
             }
 
             break;
@@ -821,22 +768,22 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
 
                                     switch (grandchild->data->type) {
                                         case A_FUNC_PARAMS:
-                                            new_table->return_ = init_entry("return", DATATYPE_NONE, DATATYPE_NONE);
+                                            new_table->return_ = init_entry("return", DATATYPE_NONE, DATATYPE_NONE, grandchild->data);
                                             break;
                                         case A_INT:
-                                            new_table->return_ = init_entry("return", DATATYPE_INT, DATATYPE_NONE);
+                                            new_table->return_ = init_entry("return", DATATYPE_INT, DATATYPE_NONE, grandchild->data);
                                             break;
 
                                         case A_FLOAT32:
-                                            new_table->return_ = init_entry("return", DATATYPE_FLOAT32, DATATYPE_NONE);
+                                            new_table->return_ = init_entry("return", DATATYPE_FLOAT32, DATATYPE_NONE, grandchild->data);
                                             break;
 
                                         case A_BOOL:
-                                            new_table->return_ = init_entry("return", DATATYPE_BOOL, DATATYPE_NONE);
+                                            new_table->return_ = init_entry("return", DATATYPE_BOOL, DATATYPE_NONE, grandchild->data);
                                             break;
 
                                         case A_STRING:
-                                            new_table->return_ = init_entry("return", DATATYPE_STRING, DATATYPE_NONE);
+                                            new_table->return_ = init_entry("return", DATATYPE_STRING, DATATYPE_NONE, grandchild->data);
                                             break;
                                         default:
                                             break;
@@ -898,7 +845,7 @@ void sub_build_global_table(global_table_t * global_table, struct list_node_t * 
 
                 switch (feedback) {
                     case SYMBOL_NOT_FOUND:
-                        new_var = init_entry(var_name, (data_type_t) var_type, DATATYPE_NONE);
+                        new_var = init_entry(var_name, (data_type_t) var_type, DATATYPE_NONE, node->data->children->next->next->data);
                         new_entry = init_global_entry(GLOBAL_VAR_, NULL, new_var);
                         push_global_entry(global_table, new_entry);
 
@@ -1015,7 +962,6 @@ local_table_t * get_func(global_table_t * global_table, char * func_name, symbol
 
                 return NULL;
             } else if (mode == SYMBOL_USAGE) {
-
                 global_entry->used = 1;
                 * feedback = SYMBOL_FOUND;
 
@@ -1028,4 +974,33 @@ local_table_t * get_func(global_table_t * global_table, char * func_name, symbol
 
 
     return NULL;
+}
+
+void check_unused_local_symbols(local_table_t * local_table) {
+    entry_t * entry;
+
+    entry = local_table->entries;
+    while (entry != NULL) {
+        if(entry->used == 0 && strcmp(data_types[entry->return_type], "param") != 0) {
+            semantic_error(SYMBOL_NEVER_USED, entry->node, 0, 0);
+        }
+        entry = entry->next;
+    }
+}
+
+void check_unused_global_symbols(global_table_t * global_table) {
+    global_entry_t * entry;
+
+    entry = global_table->entries;
+    while (entry != NULL) {
+        switch (entry->type) {
+            case TABLE_:
+                check_unused_local_symbols(entry->data->table);
+                break;
+            default:
+                break;
+        }
+        entry = entry->next;
+    }
+
 }

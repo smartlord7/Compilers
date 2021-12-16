@@ -5,12 +5,13 @@
 #include "strings.h"
 #include "symbol_entry.h"
 
-entry_t * init_entry(char * name, data_type_t return_type, data_type_t arg_type) {
+entry_t * init_entry(char * name, data_type_t return_type, data_type_t arg_type, tree_node_t * node) {
     entry_t * new_entry = (entry_t *) calloc(1, sizeof(entry_t));
 
     new_entry->name = (char *) calloc(1,sizeof(name));
     strcpy(new_entry->name, name);
 
+    new_entry->node = node;
     new_entry->return_type = return_type;
     new_entry->arg_type = arg_type;
 
