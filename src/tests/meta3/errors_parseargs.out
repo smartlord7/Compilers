@@ -1,5 +1,3 @@
-Line 16, column 11: Operator  cannot be applied to types float32, int
-Line 17, column 11: Operator  cannot be applied to types int, float32
 Line 29, column 11: Operator + cannot be applied to types int, float32
 Line 29, column 7: Operator = cannot be applied to types int, undef
 Line 30, column 11: Operator + cannot be applied to types float32, int

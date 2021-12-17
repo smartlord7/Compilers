@@ -141,14 +141,15 @@ char * str_append(char * dest, char * src) {
 
 char * get_func_args(local_table_t * table) {
     char * args = NULL;
-    int first_append = 1;
+    int first_append = 1, size;
     entry_t * entry = NULL;
 
     entry = table->entries;
     while (entry != NULL && entry->return_type == DATA_PARAM) {
         if (first_append) {
-            args = (char *) malloc(strlen(data_types[(entry->arg_type)] + 1) * sizeof(char));
-            strcpy(args, data_types[entry->arg_type]);
+            size = (strlen(data_types[(entry->arg_type)]) + 1) * sizeof(char);
+            args = (char *) malloc(size);
+            strncpy(args, data_types[entry->arg_type], size);
             first_append = 0;
         } else {
             args = str_append(args, ",");
@@ -657,7 +658,6 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                             }
                             node->data->errored = 1;
                         }
-
                     }
 
                     flag = FATHER_VOID;
@@ -685,21 +685,20 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
         case A_FOR:
             child = node->data->children->next;
 
-            if(child->data->type == A_ID) {
+            if (child->data->type == A_ID) {
                 aux_entry = get_var(global_table, table, trim_value(child->data->id), SYMBOL_USAGE, &feedback);
 
-                if(feedback == SYMBOL_FOUND) {
+                if (feedback == SYMBOL_FOUND) {
 
-                    if(aux_entry->arg_type == DATATYPE_NONE) { /*it's a function parameter*/
+                    if (aux_entry->arg_type == DATATYPE_NONE) { /*it's a function parameter*/
 
-                        if(aux_entry->return_type != DATATYPE_BOOL && !child->data->errored) {
+                        if (aux_entry->return_type != DATATYPE_BOOL && !child->data->errored) {
                             child->data->errored = 1;
                             semantic_error(INCOMPATIBLE_TYPE, child->data, aux_entry->return_type, 0, node->data->id);}
                         }
-
                     } else {
 
-                        if(aux_entry->arg_type != DATATYPE_BOOL && !child->data->errored) {
+                        if (aux_entry->arg_type != DATATYPE_BOOL && !child->data->errored) {
                             child->data->errored = 1;
                             semantic_error(INCOMPATIBLE_TYPE, child->data, aux_entry->arg_type, 0, node->data->id);
                         }
@@ -711,9 +710,9 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                 func_args = get_call_args(global_table, table, child->data->children->next->next, &has_args);
                 aux_table = get_func(global_table, trim_value(child->data->id), func_args, SYMBOL_USAGE, &feedback);
 
-                if(feedback == SYMBOL_FOUND) {
+                if (feedback == SYMBOL_FOUND) {
 
-                    if(aux_table->return_->return_type != DATATYPE_BOOL && !child->data->errored) {
+                    if (aux_table->return_->return_type != DATATYPE_BOOL && !child->data->errored) {
                         child->data->errored = 1;
                         semantic_error(INCOMPATIBLE_TYPE, child->data, aux_table->return_->return_type, 0, node->data->id);
                     }
@@ -722,7 +721,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             } else {
                 result1 = check_bool(child->data->type);
 
-                if(result1 != DATATYPE_BOOL && !child->data->errored) {
+                if (result1 != DATATYPE_BOOL && !child->data->errored) {
                     child->data->errored = 1;
                     semantic_error(INCOMPATIBLE_TYPE, child->data, result1, 0, node->data->id);
                 }

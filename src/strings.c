@@ -24,8 +24,8 @@ char * trim_value(char * original_value) {
     }
 
     if (found) {
-        value = (char *) malloc((i + 1) * sizeof(char));
-        strncpy(value, aux, i);
+        value = (char *) malloc( (i + 1) * sizeof(char));
+        strncpy(value, aux, (i + 1) * sizeof(char));
         value[i] = '\0';
     }
 

@@ -1,23 +1,23 @@
 
-===== Global Symbol Table =====
-ia		int
-ib		int
-ic		int
 ....Id(ia)
 ....Id(ib)
 ....Id(ic)
 ....Id(id)
 ....Id(ie)
+....Int
+....Int
+....Int
+....Int
+....Int
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+===== Global Symbol Table =====
+Program
+ia		int
+ib		int
+ic		int
 id		int
 ie		int
-....Int
-....Int
-....Int
-....Int
-....Int
-Program
-..VarDecl
-..VarDecl
-..VarDecl
-..VarDecl
-..VarDecl

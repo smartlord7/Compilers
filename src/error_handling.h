@@ -3,7 +3,6 @@
 
 #define ERROR_GENERIC_MSG "Line %d, column %d: "
 #define BUF_SIZE 1024
-#define BUF_SIZE_2 8192
 
 #include "symbol_entry.h"
 

@@ -1,124 +1,124 @@
 
 
+..................Id(i) - int
+..................Id(i) - int
+................Id(i) - int
+................Id(i) - int
+................Id(i) - int
+................Mod - int
+..............Id(i) - int
+..............Id(i) - int
+..............Id(i) - int
+..............Id(i) - int
+..............Mod - int
+..............Mul - int
+............Div - int
+............Id(i) - int
+............Mod - int
+............Mod - int
 ..........Add - int
+..........Id(b) - bool
+..........Id(b) - bool
+..........Id(b) - bool
+..........Id(b) - bool
+..........Id(f) - float32
+..........Id(f) - float32
+..........Id(f) - float32
+..........Id(f) - float32
+..........Id(f) - float32
+..........Id(f) - float32
+..........Id(f) - float32
+..........Id(f) - float32
+..........Id(i) - int
+..........Id(i) - int
+..........Id(i) - int
+..........Id(i) - int
+..........Id(i) - int
+..........Id(i) - int
+..........Mod - int
 ........Add - int
 ........And - bool
-......Assign - bool
-......Assign - bool
-......Assign - bool
-......Assign - bool
-......Assign - float32
-......Assign - float32
-......Assign - float32
-......Assign - float32
-......Assign - float32
-......Assign - int
-......Assign - int
-......Assign - int
-......Assign - int
-b		bool
 ........Bool
-....Bool
-b		string
-............Div - int
 ........Div - int
 ........Eq - bool
 ........Eq - bool
-f		float32
-f		int
 ........Float32
-....Float32
-....FuncBody
-..FuncDecl
-....FuncHeader
-......FuncParams
-===== Function main() Symbol Table =====
-===== Global Symbol Table =====
 ........Id(b)
-....Id(b)
-..........Id(b) - bool
-..........Id(b) - bool
-..........Id(b) - bool
-..........Id(b) - bool
 ........Id(b) - bool
 ........Id(b) - bool
 ........Id(b) - bool
 ........Id(b) - bool
 ........Id(f)
-....Id(f)
-..........Id(f) - float32
-..........Id(f) - float32
-..........Id(f) - float32
-..........Id(f) - float32
-..........Id(f) - float32
-..........Id(f) - float32
-..........Id(f) - float32
-..........Id(f) - float32
 ........Id(f) - float32
 ........Id(f) - float32
 ........Id(f) - float32
 ........Id(f) - float32
 ........Id(i)
-....Id(i)
 ........Id(i) - float32
-..................Id(i) - int
-..................Id(i) - int
-................Id(i) - int
-................Id(i) - int
-................Id(i) - int
-..............Id(i) - int
-..............Id(i) - int
-..............Id(i) - int
-..............Id(i) - int
-............Id(i) - int
-..........Id(i) - int
-..........Id(i) - int
-..........Id(i) - int
-..........Id(i) - int
-..........Id(i) - int
-..........Id(i) - int
 ........Id(i) - int
 ........Id(i) - int
 ........Id(i) - int
 ........Id(i) - int
 ........Id(i) - int
-......Id(main)
 ........Id(s)
-....Id(s)
 ........Id(s) - string
+........Int
+........IntLit(1) - int
+........IntLit(1) - int
+........Minus - float32
+........Mul - float32
+........Ne - bool
+........Plus - float32
+........RealLit(1.1) - float32
+........String
+........Sub - float32
+........Sub - int
+......Assign - bool
+......Assign - bool
+......Assign - bool
+......Assign - bool
+......Assign - float32
+......Assign - float32
+......Assign - float32
+......Assign - float32
+......Assign - float32
+......Assign - int
+......Assign - int
+......Assign - int
+......Assign - int
+......FuncParams
+......Id(main)
+......ParseArgs - int
+......Print
+......VarDecl
+......VarDecl
+......VarDecl
+......VarDecl
+....Bool
+....Float32
+....FuncBody
+....FuncHeader
+....Id(b)
+....Id(f)
+....Id(i)
+....Id(s)
+....Int
+....String
+..FuncDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+===== Function main() Symbol Table =====
+===== Global Symbol Table =====
+Program
+b		bool
+b		string
+f		float32
+f		int
 i		float32
 i		int
-........Int
-....Int
-........IntLit(1) - int
-........IntLit(1) - int
 main	()	none
-........Minus - float32
-................Mod - int
-..............Mod - int
-............Mod - int
-............Mod - int
-..........Mod - int
-........Mul - float32
-..............Mul - int
-........Ne - bool
-......ParseArgs - int
-........Plus - float32
-......Print
-Program
-........RealLit(1.1) - float32
 return		none
 s		bool
 s		string
-........String
-....String
-........Sub - float32
-........Sub - int
-......VarDecl
-......VarDecl
-......VarDecl
-......VarDecl
-..VarDecl
-..VarDecl
-..VarDecl
-..VarDecl

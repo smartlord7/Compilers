@@ -22,6 +22,7 @@
 		buf_counter = 0,
 	    flag = 0,
 	    semicolon_flag = 0;
+    int buf_size = BUF_SIZE, buf_size2 = BUF_SIZE;
 	char * buf = NULL, * buf2 = NULL;
 	global_table_t * global_table = NULL;
 	struct tree_node_t * root = NULL;
@@ -172,8 +173,8 @@ reserved							"break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"fallt
 
 int main(int argc, char * argv[]) {
 
-    buf = malloc(BUF_SIZE*sizeof(char));
-    buf2 = malloc(BUF_SIZE_2*sizeof(char));
+    buf = malloc(buf_size * sizeof(char));
+    buf2 = malloc(buf_size * sizeof(char));
     yylval.node = create_node(0, 0, A_DUMMY, "");
 
 
@@ -221,15 +222,18 @@ char * handle_token(token_type tok_type) {
 
 	current_column += yyleng;
 
-	if (strlen(tok) > BUF_SIZE) {
-        buf = malloc(sizeof(strlen(tok)) * sizeof(char) + 100);
+	if (strlen(tok) > buf_size) {
+	    free(buf);
+        buf = malloc(strlen(tok) * sizeof(char) + 100);
+        buf_size += strlen(tok) * sizeof(char) + 100;
 	}
 
-	if (strlen(tok) > BUF_SIZE_2) {
-        buf2 = malloc(sizeof(strlen(tok)) * sizeof(char) + 100);
+	if (strlen(tok) > buf_size2) {
+	    free(buf2);
+        buf2 = malloc(strlen(tok) * sizeof(char) + 100);
+        buf_size2 += strlen(tok) * sizeof(char) + 100;
     }
 
-    int buffer_size = strlen(tok) + 100;
 
     switch (tok_type) {
         case ID_:
@@ -254,15 +258,15 @@ char * handle_token(token_type tok_type) {
 		case REAL_LIT_:
 		case STRING_LIT_:
 			buf[buf_counter] = '\0';
-			snprintf(buf2, buffer_size, "%s(\"%s\")\n", token_types[tok_type], buf);
+			snprintf(buf2, buf_size, "%s(\"%s\")\n", token_types[tok_type], buf);
 			if (verbose) {
 				printf("%s", buf2);
 			}
 
             if (tok_type != STRING_LIT_) {
-                snprintf(buf2, buffer_size, "%s(%s)", aux2, tok);
+                snprintf(buf2, buf_size, "%s(%s)", aux2, tok);
             } else {
-                snprintf(buf2, buffer_size, "%s(\"%s\")", aux2, buf);
+                snprintf(buf2, buf_size, "%s(\"%s\")", aux2, buf);
             }
 
 			buf_counter = 0;
@@ -272,11 +276,11 @@ char * handle_token(token_type tok_type) {
 			return buf2;
 			break;
 		case RESERVED_:
-			snprintf(buf2, buffer_size, "%s(\"%s\")\n", token_types[tok_type], tok);
+			snprintf(buf2, buf_size, "%s(\"%s\")\n", token_types[tok_type], tok);
             if (verbose) {
                 printf("%s", buf2);
             }
-			snprintf(buf2, buffer_size, "%s", tok);
+			snprintf(buf2, buf_size, "%s", tok);
 		    last_token = tok_type;
 		    return buf2;
 			break;
@@ -330,7 +334,7 @@ void auto_semicolon() {
             case RPAR_:
             case RSQ_:
             case RBRACE_:
-                snprintf(buf2, BUF_SIZE_2, "%s\n", token_types[SEMICOLON_]);
+                snprintf(buf2, buf_size2, "%s\n", token_types[SEMICOLON_]);
 
                 if (verbose) {
                     printf("%s\n", token_types[SEMICOLON_]);

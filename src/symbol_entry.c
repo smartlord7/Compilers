@@ -7,9 +7,10 @@
 
 entry_t * init_entry(char * name, data_type_t return_type, data_type_t arg_type, tree_node_t * node) {
     entry_t * new_entry = (entry_t *) calloc(1, sizeof(entry_t));
+    int size = (strlen(name) + 1) * sizeof(char);
 
-    new_entry->name = (char *) calloc(1,sizeof(name));
-    strcpy(new_entry->name, name);
+    new_entry->name = (char *) malloc(size);
+    strncpy(new_entry->name, name, size);
 
     new_entry->node = node;
     new_entry->return_type = return_type;
