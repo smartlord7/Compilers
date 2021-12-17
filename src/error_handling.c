@@ -15,6 +15,7 @@ const char * error_msgs[] = {
         "invalid escape sequence (%s)",
         "Symbol %s already defined",
         "Cannot find symbol %s",
+        "Cannot find symbol %s(%s)",
         "Operator %s cannot be applied to type %s",
         "Operator %s cannot be applied to types %s, %s",
         "Incompatible type %s in %s statement",
@@ -51,7 +52,7 @@ void error(error_type_t err_type, int curr_column, char * text) {
     error_inner(err_type, curr_column, text);
 }
 
-extern void semantic_error(error_type_t err_type, tree_node_t * node, data_type_t type_1, data_type_t type_2) {
+extern void semantic_error(error_type_t err_type, tree_node_t * node, data_type_t type_1, data_type_t type_2, char * call_args) {
     char * aux = trim_value(node->id);
     semantic_error_flag = 1;
 
@@ -61,6 +62,9 @@ extern void semantic_error(error_type_t err_type, tree_node_t * node, data_type_
             break;
         case SYMBOL_MISSING:
             error_inner2(err_type, node->line, node->column, aux);
+            break;
+        case SYMBOL_MISSING_FUNC:
+            error_inner2(err_type, node->line, node->column, aux, call_args);
             break;
         case OPERATOR_INVALID_1:
             error_inner2(err_type, node->line, node->column, operator_types[get_operator_type(node->type)], data_types[type_1]);

@@ -71,6 +71,7 @@ typedef enum {
 
 typedef struct global_table_t global_table_t;
 typedef struct tree_node_t tree_node_t;
+typedef struct list_node_t list_node_t;
 typedef enum data_type_t data_type_t;
 
 extern local_table_t * init_table(char * name);
@@ -86,7 +87,10 @@ extern void push_global_entry(global_table_t * global_table, global_entry_t * en
 extern void print_global_table(global_table_t * global_table);
 extern void build_global_table(global_table_t * global_table, tree_node_t * tree_root, passage_t passage);
 extern entry_t * get_var(global_table_t * global_table, local_table_t * local_table, char * var_name, symbol_check_mode_t mode, symbol_check_t * feedback);
-extern local_table_t * get_func(global_table_t * global_table, char * func_name, symbol_check_mode_t mode, symbol_check_t * feedback);
+extern local_table_t * get_func(global_table_t * global_table, char * func_name, char * func_args, symbol_check_mode_t mode, symbol_check_t * feedback);
 extern void check_unused_global_symbols(global_table_t * global_table);
+extern data_type_t get_child_type(global_table_t * global_table, local_table_t * local_table, list_node_t * node);
+extern char * get_call_args(global_table_t * global_table, local_table_t * local_table, list_node_t * child, int * has_args);
+extern char * get_func_params(list_node_t * node);
 
 #endif //COMPILERS_SYMBOL_TABLE_H
