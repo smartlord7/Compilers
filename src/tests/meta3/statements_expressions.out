@@ -1,25 +1,28 @@
-Line 0, column 0: Incompatible type undef in for statement
-Line 21, column 6: Symbol a declared but never used
-Line 28, column 9: Symbol h declared but never used
 Line 30, column 2: Cannot find symbol f0(undef)
+Line 31, column 4: Operator = cannot be applied to types float32, undef
 Line 31, column 24: Operator + cannot be applied to types float32, undef
 Line 31, column 26: Cannot find symbol f0(undef)
-Line 31, column 4: Operator = cannot be applied to types float32, undef
 Line 32, column 4: Operator = cannot be applied to types int, undef
 Line 32, column 6: Cannot find symbol func2(undef)
+Line 33, column 10: Operator strconv.Atoi cannot be applied to types int, float32
 Line 34, column 4: Operator = cannot be applied to types int, undef
 Line 34, column 6: Cannot find symbol func2
-Line 35, column 57: Operator + cannot be applied to types int, float32
-Line 35, column 61: Operator + cannot be applied to types , float32
 Line 35, column 7: Operator = cannot be applied to types float32, undef
 Line 35, column 9: Cannot find symbol func1(undef)
+Line 35, column 61: Operator + cannot be applied to types , float32
+Line 35, column 57: Operator + cannot be applied to types int, float32
+Line 37, column 13: Operator strconv.Atoi cannot be applied to types int, undef
 Line 37, column 34: Cannot find symbol func1(undef)
 Line 39, column 7: Operator = cannot be applied to types int, float32
 Line 43, column 12: Operator > cannot be applied to types int, float32
+Line 44, column 13: Operator strconv.Atoi cannot be applied to types float32, string
 Line 46, column 4: Operator = cannot be applied to types int, bool
+Line 0, column 0: Incompatible type undef in for statement
 Line 55, column 6: Operator = cannot be applied to types int, undef
 Line 55, column 8: Cannot find symbol func3()
 Line 58, column 9: Incompatible type float32 in for statement
 Line 69, column 20: Cannot find symbol func_(undef)
-Line 76, column 23: Cannot find symbol noWhereToBeFound(undef)
 Line 76, column 4: Cannot find symbol noWhereToBeFound
+Line 76, column 23: Cannot find symbol noWhereToBeFound(undef)
+Line 21, column 6: Symbol a declared but never used
+Line 28, column 9: Symbol h declared but never used

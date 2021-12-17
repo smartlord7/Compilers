@@ -623,9 +623,32 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
             value = trim_value(child->data->id);
             aux_entry = get_var(global_table,table, value, SYMBOL_USAGE, &feedback);
 
+            child = node->data->children->next;
+            child = child->next;
+
             if (feedback == SYMBOL_FOUND) {
                 if (aux_entry->return_type != DATATYPE_NONE) {
                     node->data->annotation = data_types[aux_entry->return_type];
+                }
+
+                result1 = get_child_type(global_table, table, node->data->children->next);
+                result2 = get_child_type(global_table, table, node->data->children->next->next);
+
+                if(result1 != DATATYPE_INT || result2 != DATATYPE_INT) {
+                    if(result2 != DATATYPE_BOOL) {
+                        result3 = check_bool(child->data->type);
+                        if(result3 == DATATYPE_BOOL) {
+                            result2 = result3;
+                        }
+                    }
+
+                    if(result2 == DATATYPE_NONE) {
+                        result2 = DATATYPE_UNDEF;
+                    }
+                    if(!node->data->errored) {
+                        semantic_error(OPERATOR_INVALID_2, node->data, result1, result2, NULL);
+                        node->data->errored = 1;
+                    }
                 }
 
             }

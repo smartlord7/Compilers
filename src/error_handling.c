@@ -70,7 +70,11 @@ extern void semantic_error(error_type_t err_type, tree_node_t * node, data_type_
             error_inner2(err_type, node->line, node->column, operator_types[get_operator_type(node->type)], data_types[type_1]);
             break;
         case OPERATOR_INVALID_2:
-            error_inner2(err_type, node->line, node->column, operator_types[get_operator_type(node->type)], data_types[type_1], data_types[type_2]);
+            if(node->type == A_PARSE_ARGS) {
+                error_inner2(err_type, node->line, node->column, "strconv.Atoi", data_types[type_1], data_types[type_2]);
+            } else {
+                error_inner2(err_type, node->line, node->column, operator_types[get_operator_type(node->type)], data_types[type_1], data_types[type_2]);
+            }
             break;
         case INCOMPATIBLE_TYPE:
             error_inner2(err_type, node->line, node->column, data_types[type_1], to_lower(call_args));

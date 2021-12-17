@@ -1,23 +1,23 @@
-
-....Id(ia)
-....Id(ib)
-....Id(ic)
-....Id(id)
-....Id(ie)
-....Int
-....Int
-....Int
-....Int
-....Int
-..VarDecl
-..VarDecl
-..VarDecl
-..VarDecl
-..VarDecl
 ===== Global Symbol Table =====
-Program
 ia		int
 ib		int
 ic		int
 id		int
 ie		int
+
+Program
+..VarDecl
+....Int
+....Id(ia)
+..VarDecl
+....Int
+....Id(ib)
+..VarDecl
+....Int
+....Id(ic)
+..VarDecl
+....Int
+....Id(id)
+..VarDecl
+....Int
+....Id(ie)
