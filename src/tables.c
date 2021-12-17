@@ -344,7 +344,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
     local_table_t * aux_table = NULL;
     var_data_t * aux_var_data = NULL;
     symbol_check_t feedback = 0;
-    data_type_t result1, result2;
+    data_type_t result1, result2, result3;
     int has_args = 0;
     char * name = NULL, * type = NULL, * value = NULL, * func_args = NULL;
 
@@ -482,7 +482,10 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                 } else {
                     result2 = get_child_type(global_table, table, child);
                     if(result2 != DATATYPE_BOOL) {
-                        result2 = check_bool(child->data->type);
+                        result3 = check_bool(child->data->type);
+                        if(result3 == DATATYPE_BOOL) {
+                            result2 = result3;
+                        }
                     }
                     if((result1 != result2 || result1 != DATATYPE_BOOL || result2 != DATATYPE_BOOL) && node->data->errored == 0) {
                         node->data->errored = 1;
@@ -535,6 +538,10 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
                     } else {
                         if(!node->data->errored) {
                             node->data->errored = 1;
+
+                            if(result2 == DATATYPE_NONE) {
+                                result2 = DATATYPE_UNDEF;
+                            }
                             semantic_error(OPERATOR_INVALID_2, node->data, result1, result2, NULL);
                         }
                     }
@@ -687,14 +694,14 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
 
                         if(aux_entry->return_type != DATATYPE_BOOL && !child->data->errored) {
                             child->data->errored = 1;
-                            semantic_error(INCOMPATIBLE_TYPE, node->data, aux_entry->return_type, 0, NULL);}
+                            semantic_error(INCOMPATIBLE_TYPE, child->data, aux_entry->return_type, 0, node->data->id);}
                         }
 
                     } else {
 
                         if(aux_entry->arg_type != DATATYPE_BOOL && !child->data->errored) {
                             child->data->errored = 1;
-                            semantic_error(INCOMPATIBLE_TYPE, node->data, aux_entry->arg_type, 0, NULL);
+                            semantic_error(INCOMPATIBLE_TYPE, child->data, aux_entry->arg_type, 0, node->data->id);
                         }
 
                     }
@@ -708,7 +715,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
 
                     if(aux_table->return_->return_type != DATATYPE_BOOL && !child->data->errored) {
                         child->data->errored = 1;
-                        semantic_error(INCOMPATIBLE_TYPE, node->data, aux_table->return_->return_type, 0, NULL);
+                        semantic_error(INCOMPATIBLE_TYPE, child->data, aux_table->return_->return_type, 0, node->data->id);
                     }
 
                 } else if(feedback == SYMBOL_NOT_FOUND) {}
@@ -717,7 +724,7 @@ void sub_build_local_table(global_table_t * global_table, local_table_t * table,
 
                 if(result1 != DATATYPE_BOOL && !child->data->errored) {
                     child->data->errored = 1;
-                    semantic_error(INCOMPATIBLE_TYPE, node->data, result1, 0, NULL);
+                    semantic_error(INCOMPATIBLE_TYPE, child->data, result1, 0, node->data->id);
                 }
 
             }

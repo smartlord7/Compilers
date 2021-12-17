@@ -1,614 +1,614 @@
-===== Global Symbol Table =====
-ia		int
-ib		int
-ic		int
-id		int
-ie		int
-fa		float32
-fb		float32
-fc		float32
-fd		float32
-fe		float32
+
+
+
+
+
+
+
+
+
+
+
+................Add - float32
+................Add - float32
+..............Add - float32
+............Add - float32
+........Add - float32
+..............................Add - int
+............................Add - int
+..........................Add - int
+................Add - int
+................Add - int
+................Add - int
+..............Add - int
+..............Add - int
+............Add - int
+............Add - int
+............Add - int
+............Add - int
+..........Add - int
+..........Add - int
+........Add - int
+........Add - int
+..................And - bool
+..................And - bool
+................And - bool
+..............And - bool
+........And - bool
+..............Assign - bool
+..............Assign - bool
+......................Assign - float32
+..............Assign - float32
+..............Assign - float32
+..........Assign - float32
+..........Assign - float32
+..........Assign - float32
+......Assign - float32
+......Assign - float32
+......Assign - float32
+......Assign - float32
+......Assign - float32
+......................Assign - int
+..............Assign - int
+..............Assign - int
+..........Assign - int
+..........Assign - int
+......Assign - int
+......Assign - int
+......Assign - int
+......Assign - int
+......Assign - int
+......Assign - int
+......Assign - int
+......Assign - int
+......Assign - int
 ba		bool
+bafcf		bool
+bafcj		bool	param
 bb		bool
 bc		bool
 bd		bool
-sa		string
-sb		string
-sc		string
+....................Block
+................Block
+................Block
+............Block
+............Block
+............Block
+............Block
+............Block
+............Block
+........Block
+........Block
+........Block
+........Block
+........Block
+........Block
+........Block
+........Block
+........Block
+........Block
+..........Bool
+........Bool
+......Bool
+....Bool
+....Bool
+....Bool
+....Bool
+..........Call
+....................Call - bool
+....................Call - bool
+................Call - bool
+................Call - bool
+..........Call - bool
+........Call - bool
+....................Call - float32
+....................Call - float32
+..................Call - float32
+..................Call - float32
+..................Call - float32
+..................Call - float32
+................Call - float32
+................Call - float32
+................Call - float32
+..............Call - float32
+..............Call - float32
+..............Call - float32
+............Call - float32
+............Call - float32
+............Call - float32
+............Call - float32
+............Call - float32
+..........Call - float32
+..........Call - float32
+........Call - float32
+........Call - float32
+......Call - float32
+................................Call - int
+............................Call - int
+....................Call - int
+..................Call - int
+..................Call - int
+..................Call - int
+..................Call - int
+..................Call - int
+................Call - int
+................Call - int
+................Call - int
+................Call - int
+..............Call - int
+..............Call - int
+..............Call - int
+..............Call - int
+..........Call - int
+..........Call - int
+..........Call - int
+..........Call - int
+........Call - int
+........Call - int
+........Call - int
+......Call - int
+....................Call - string
+..............Call - string
+..............Call - string
+........Call - string
+................Div - float32
+..............................Div - int
+................Div - int
+fafcb		int
+fafcg		float32	param
+fafch		float32	param
+fafci		float32	param
+fafcj		float32	param
+fa		float32
+fbfci		float32	param
+fbfcj		float32	param
+fb		float32
 fca	()	none
 fcb	()	int
 fcd	()	float32
 fce	()	string
 fcf	()	bool
+fc		float32
 fcg	(int,float32)	int
 fch	(int,float32,string)	float32
 fci	(int,int,float32,float32,string)	float32
-fcj	(int,int,float32,float32,bool)	int
-main	()	none
-
-===== Function fca() Symbol Table =====
-return		none
-
-===== Function fcb() Symbol Table =====
-return		int
-fafcb		int
-
-===== Function fcd() Symbol Table =====
-return		float32
-
-===== Function fce() Symbol Table =====
-return		string
-strfce		string
-
-===== Function fcf() Symbol Table =====
-return		bool
-bafcf		bool
-
-===== Function fcg(int,float32) Symbol Table =====
-return		int
-iafcg		int	param
-fafcg		float32	param
-
-===== Function fch(int,float32,string) Symbol Table =====
-return		float32
-iafch		int	param
-fafch		float32	param
-safch		string	param
-
-===== Function fci(int,int,float32,float32,string) Symbol Table =====
-return		float32
-iafci		int	param
-ibfci		int	param
-fafci		float32	param
-fbfci		float32	param
-safci		string	param
-
-===== Function fcj(int,int,float32,float32,bool) Symbol Table =====
-return		int
-iafcj		int	param
-ibfcj		int	param
-fafcj		float32	param
-fbfcj		float32	param
-bafcj		bool	param
 fcjia		int
 fcjib		int
-
+fcj	(int,int,float32,float32,bool)	int
+fd		float32
+fe		float32
+..........Float32
+..........Float32
+..........Float32
+..........Float32
+..........Float32
+..........Float32
+......Float32
+......Float32
+......Float32
+....Float32
+....Float32
+....Float32
+....Float32
+....Float32
+..................For
+......For
+......For
+....FuncBody
+....FuncBody
+....FuncBody
+....FuncBody
+....FuncBody
+....FuncBody
+....FuncBody
+....FuncBody
+....FuncBody
+....FuncBody
+..FuncDecl
+..FuncDecl
+..FuncDecl
+..FuncDecl
+..FuncDecl
+..FuncDecl
+..FuncDecl
+..FuncDecl
+..FuncDecl
+..FuncDecl
+....FuncHeader
+....FuncHeader
+....FuncHeader
+....FuncHeader
+....FuncHeader
+....FuncHeader
+....FuncHeader
+....FuncHeader
+....FuncHeader
+....FuncHeader
+......FuncParams
+......FuncParams
+......FuncParams
+......FuncParams
+......FuncParams
+......FuncParams
+......FuncParams
+......FuncParams
+......FuncParams
+......FuncParams
+===== Function fca() Symbol Table =====
+===== Function fcb() Symbol Table =====
+===== Function fcd() Symbol Table =====
+===== Function fce() Symbol Table =====
+===== Function fcf() Symbol Table =====
+===== Function fcg(int,float32) Symbol Table =====
+===== Function fch(int,float32,string) Symbol Table =====
+===== Function fci(int,int,float32,float32,string) Symbol Table =====
+===== Function fcj(int,int,float32,float32,bool) Symbol Table =====
 ===== Function main() Symbol Table =====
-return		none
+===== Global Symbol Table =====
+............Gt - bool
+..........Gt - bool
+........Gt - bool
+........Gt - bool
+iafcg		int	param
+iafch		int	param
+iafci		int	param
+iafcj		int	param
+ia		int
+ibfci		int	param
+ibfcj		int	param
+ib		int
+ic		int
+....Id(ba)
+....................Id(ba) - bool
+..................Id(ba) - bool
+..................Id(ba) - bool
+................Id(ba) - bool
+............Id(ba) - bool
+........Id(bafcf)
+........Id(bafcf) - bool
+..........Id(bafcj)
+................Id(bafcj) - bool
+....Id(bb)
+..............Id(bb) - bool
+........Id(bb) - bool
+........Id(bb) - bool
+....Id(bc)
+......................Id(bc) - bool
+............Id(bc) - bool
+....Id(bd)
+....................Id(bd) - bool
+..................Id(bd) - bool
+................Id(bd) - bool
+................Id(bd) - bool
+....Id(fa)
+........Id(fafcb)
+........Id(fafcb) - int
+........Id(fafcb) - int
+..........Id(fafcg)
+..........Id(fafcg) - float32
+..........Id(fafch)
+............Id(fafch) - float32
+............Id(fafch) - float32
+..........Id(fafci)
+............Id(fafci) - float32
+..........Id(fafcj)
+........................Id(fafcj) - float32
+..............................Id(fa) - float32
+..................Id(fa) - float32
+..................Id(fa) - float32
+................Id(fa) - float32
+................Id(fa) - float32
+..............Id(fa) - float32
+............Id(fa) - float32
+........Id(fa) - float32
+....Id(fb)
+..........Id(fbfci)
+................Id(fbfci) - float32
+..........Id(fbfcj)
+........................Id(fbfcj) - float32
+................Id(fb) - float32
+............Id(fb) - float32
+........Id(fb) - float32
+....Id(fc)
+............Id(fca) - ()
+......Id(fca)
+..................................Id(fcb) - ()
+......................Id(fcb) - ()
+....................Id(fcb) - ()
+....................Id(fcb) - ()
+....................Id(fcb) - ()
+....................Id(fcb) - ()
+..................Id(fcb) - ()
+................Id(fcb) - ()
+................Id(fcb) - ()
+............Id(fcb) - ()
+............Id(fcb) - ()
+..........Id(fcb) - ()
+..........Id(fcb) - ()
+......Id(fcb)
+......................Id(fcd) - ()
+......................Id(fcd) - ()
+....................Id(fcd) - ()
+....................Id(fcd) - ()
+....................Id(fcd) - ()
+..................Id(fcd) - ()
+..................Id(fcd) - ()
+................Id(fcd) - ()
+................Id(fcd) - ()
+..............Id(fcd) - ()
+............Id(fcd) - ()
+............Id(fcd) - ()
+..........Id(fcd) - ()
+..........Id(fcd) - ()
+......Id(fcd)
+......................Id(fce) - ()
+................Id(fce) - ()
+................Id(fce) - ()
+..........Id(fce) - ()
+......Id(fce)
+......................Id(fcf) - ()
+......................Id(fcf) - ()
+..................Id(fcf) - ()
+..................Id(fcf) - ()
+............Id(fcf) - ()
+..........Id(fcf) - ()
+......Id(fcf)
+..................Id(fc) - float32
+................Id(fc) - float32
+................Id(fc) - float32
+........Id(fc) - float32
+......Id(fcg)
+..............................Id(fcg) - (int,float32)
+....................Id(fcg) - (int,float32)
+..................Id(fcg) - (int,float32)
+..................Id(fcg) - (int,float32)
+................Id(fcg) - (int,float32)
+............Id(fcg) - (int,float32)
+..........Id(fcg) - (int,float32)
+........Id(fcg) - (int,float32)
+......Id(fch)
+....................Id(fch) - (int,float32,string)
+................Id(fch) - (int,float32,string)
+..............Id(fch) - (int,float32,string)
+..............Id(fch) - (int,float32,string)
+........Id(fch) - (int,float32,string)
+......Id(fci)
+..................Id(fci) - (int,int,float32,float32,string)
+..............Id(fci) - (int,int,float32,float32,string)
+..............Id(fci) - (int,int,float32,float32,string)
+......Id(fcj)
+........Id(fcjia)
+..............................Id(fcjia) - int
+............Id(fcjia) - int
+..........Id(fcjia) - int
+........Id(fcjia) - int
+........Id(fcjib)
+........................Id(fcjib) - int
+..............Id(fcjib) - int
+..................Id(fcj) - (int,int,float32,float32,bool)
+................Id(fcj) - (int,int,float32,float32,bool)
+............Id(fcj) - (int,int,float32,float32,bool)
+....Id(fd)
+..............Id(fd) - float32
+........Id(fd) - float32
+....Id(fe)
+..................Id(fe) - float32
+..................Id(fe) - float32
+........Id(fe) - float32
+....Id(ia)
+..........Id(iafcg)
+............Id(iafcg) - int
+..........Id(iafch)
+............Id(iafch) - int
+............Id(iafch) - int
+..........Id(iafci)
+........Id(iafci) - int
+..........Id(iafcj)
+................................Id(iafcj) - int
+................................Id(ia) - int
+....................Id(ia) - int
+..................Id(ia) - int
+..................Id(ia) - int
+..................Id(ia) - int
+................Id(ia) - int
+..............Id(ia) - int
+..............Id(ia) - int
+............Id(ia) - int
+............Id(ia) - int
+........Id(ia) - int
+....Id(ib)
+..........Id(ibfci)
+..............Id(ibfci) - int
+..........Id(ibfcj)
+..........................Id(ibfcj) - int
+..................Id(ib) - int
+................Id(ib) - int
+..............Id(ib) - int
+............Id(ib) - int
+............Id(ib) - int
+........Id(ib) - int
+....Id(ic)
+..................Id(ic) - int
+..............Id(ic) - int
+............Id(ic) - int
+........Id(ic) - int
+....Id(id)
+..................Id(id) - int
+..............Id(id) - int
+............Id(id) - int
+........Id(id) - int
+....Id(ie)
+..................Id(ie) - int
+............Id(ie) - int
+........Id(ie) - int
+id		int
+......Id(main)
+........Id(mia)
+................Id(mia) - int
+........Id(mia) - int
+........Id(mib)
+................Id(mib) - int
+................Id(mib) - int
+..........Id(mib) - int
+....Id(sa)
+..........Id(safch)
+........Id(safch) - string
+..........Id(safci)
+............Id(safci) - string
+................Id(sa) - string
+..............Id(sa) - string
+....Id(sb)
+..............Id(sb) - string
+....Id(sc)
+..................Id(sc) - string
+........Id(strfce)
+........Id(strfce) - string
+ie		int
+..............If
+..........If
+..........If
+..........If
+......If
+......If
+......If
+......If
+..........Int
+..........Int
+..........Int
+..........Int
+..........Int
+..........Int
+........Int
+........Int
+........Int
+........Int
+........Int
+......Int
+......Int
+......Int
+....Int
+....Int
+....Int
+....Int
+....Int
+..........IntLit(101) - int
+..................IntLit(123) - int
+..............IntLit(123) - int
+..............IntLit(123) - int
+................................IntLit(12) - int
+..................IntLit(12) - int
+..................IntLit(12) - int
+................IntLit(12) - int
+..............IntLit(12) - int
+........IntLit(132) - int
+........IntLit(1) - int
+........IntLit(1) - int
+........IntLit(1) - int
+........IntLit(1) - int
+........IntLit(1) - int
+................IntLit(312) - int
+..................IntLit(456) - int
+main	()	none
 mia		int
 mib		int
-
-Program
-..VarDecl
-....Int
-....Id(ia)
-..VarDecl
-....Int
-....Id(ib)
-..VarDecl
-....Int
-....Id(ic)
-..VarDecl
-....Int
-....Id(id)
-..VarDecl
-....Int
-....Id(ie)
-..VarDecl
-....Float32
-....Id(fa)
-..VarDecl
-....Float32
-....Id(fb)
-..VarDecl
-....Float32
-....Id(fc)
-..VarDecl
-....Float32
-....Id(fd)
-..VarDecl
-....Float32
-....Id(fe)
-..VarDecl
-....Bool
-....Id(ba)
-..VarDecl
-....Bool
-....Id(bb)
-..VarDecl
-....Bool
-....Id(bc)
-..VarDecl
-....Bool
-....Id(bd)
-..VarDecl
-....String
-....Id(sa)
-..VarDecl
-....String
-....Id(sb)
-..VarDecl
-....String
-....Id(sc)
-..FuncDecl
-....FuncHeader
-......Id(fca)
-......FuncParams
-....FuncBody
-..FuncDecl
-....FuncHeader
-......Id(fcb)
-......Int
-......FuncParams
-....FuncBody
-......VarDecl
-........Int
-........Id(fafcb)
-......Assign - int
-........Id(fafcb) - int
-........IntLit(132) - int
-......Return
-........Id(fafcb) - int
-..FuncDecl
-....FuncHeader
-......Id(fcd)
-......Float32
-......FuncParams
-....FuncBody
-......Return
-........Add - float32
-..........RealLit(.1e1) - float32
-..........RealLit(0.007) - float32
-..FuncDecl
-....FuncHeader
-......Id(fce)
-......String
-......FuncParams
-....FuncBody
-......VarDecl
-........String
-........Id(strfce)
-......Return
-........Id(strfce) - string
-..FuncDecl
-....FuncHeader
-......Id(fcf)
-......Bool
-......FuncParams
-....FuncBody
-......VarDecl
-........Bool
-........Id(bafcf)
-......Return
-........Id(bafcf) - bool
-..FuncDecl
-....FuncHeader
-......Id(fcg)
-......Int
-......FuncParams
-........ParamDecl
-..........Int
-..........Id(iafcg)
-........ParamDecl
-..........Float32
-..........Id(fafcg)
-....FuncBody
-......If
-........Gt - bool
-..........Call - float32
-............Id(fcd) - ()
-..........Id(fafcg) - float32
-........Block
-..........Call
-............Id(fca) - ()
-..........Return
-............Id(iafcg) - int
-........Block
-......Return
-........Call - int
-..........Id(fcb) - ()
-..FuncDecl
-....FuncHeader
-......Id(fch)
-......Float32
-......FuncParams
-........ParamDecl
-..........Int
-..........Id(iafch)
-........ParamDecl
-..........Float32
-..........Id(fafch)
-........ParamDecl
-..........String
-..........Id(safch)
-....FuncBody
-......Call - int
-........Id(fcg) - (int,float32)
-........Call - int
-..........Id(fcb) - ()
-........Call - float32
-..........Id(fcd) - ()
-......Print
-........Id(safch) - string
-......If
-........Id(bb) - bool
-........Block
-..........Assign - int
-............Id(iafch) - int
-............Add - int
-..............Id(ia) - int
-..............Id(ib) - int
-..........Assign - float32
-............Id(fafch) - float32
-............Id(fa) - float32
-..........Assign - float32
-............Id(fb) - float32
-............Id(fafch) - float32
-..........Assign - int
-............Id(id) - int
-............Id(iafch) - int
-........Block
-......Return
-........RealLit(.01) - float32
-..FuncDecl
-....FuncHeader
-......Id(fci)
-......Float32
-......FuncParams
-........ParamDecl
-..........Int
-..........Id(iafci)
-........ParamDecl
-..........Int
-..........Id(ibfci)
-........ParamDecl
-..........Float32
-..........Id(fafci)
-........ParamDecl
-..........Float32
-..........Id(fbfci)
-........ParamDecl
-..........String
-..........Id(safci)
-....FuncBody
-......Call - float32
-........Id(fch) - (int,float32,string)
-........Call - int
-..........Id(fcg) - (int,float32)
-..........Call - int
-............Id(fcb) - ()
-..........Call - float32
-............Id(fcd) - ()
-........Call - float32
-..........Id(fcd) - ()
-........Call - string
-..........Id(fce) - ()
-......Assign - int
-........Id(iafci) - int
-........Add - int
-..........Add - int
-............Add - int
-..............Id(ibfci) - int
-..............IntLit(12) - int
-............Id(ic) - int
-..........Call - int
-............Id(fcb) - ()
-......If
-........Call - bool
-..........Id(fcf) - ()
-........Block
-..........Print
-............Id(safci) - string
-..........Return
-............Call - float32
-..............Id(fch) - (int,float32,string)
-..............Id(ia) - int
-..............Id(fa) - float32
-..............Id(sa) - string
-........Block
-..........Assign - float32
-............Id(fafci) - float32
-............Add - float32
-..............Mul - float32
-................Id(fa) - float32
-................Id(fbfci) - float32
-..............Call - float32
-................Id(fcd) - ()
-..........Return
-............Call - float32
-..............Id(fcd) - ()
-..FuncDecl
-....FuncHeader
-......Id(fcj)
-......Int
-......FuncParams
-........ParamDecl
-..........Int
-..........Id(iafcj)
-........ParamDecl
-..........Int
-..........Id(ibfcj)
-........ParamDecl
-..........Float32
-..........Id(fafcj)
-........ParamDecl
-..........Float32
-..........Id(fbfcj)
-........ParamDecl
-..........Bool
-..........Id(bafcj)
-....FuncBody
-......VarDecl
-........Int
-........Id(fcjia)
-......VarDecl
-........Int
-........Id(fcjib)
-......Assign - int
-........Id(fcjia) - int
-........Sub - int
-..........Add - int
-............Id(ia) - int
-............Id(ib) - int
-..........Mod - int
-............Mul - int
-..............Id(ic) - int
-..............Id(id) - int
-............Id(ie) - int
-......If
-........Gt - bool
-..........Id(fcjia) - int
-..........Call - int
-............Id(fcg) - (int,float32)
-............Id(fcjia) - int
-............Call - float32
-..............Id(fci) - (int,int,float32,float32,string)
-..............Call - int
-................Id(fcb) - ()
-..............Id(fcjib) - int
-..............Call - float32
-................Id(fch) - (int,float32,string)
-................Call - int
-..................Id(fcb) - ()
-................Id(fb) - float32
-................Id(sa) - string
-..............Id(fd) - float32
-..............Id(sb) - string
-........Block
-..........If
-............Id(ba) - bool
-............Block
-..............Assign - float32
-................Id(fc) - float32
-................RealLit(.01) - float32
-............Block
-..............Assign - float32
-................Id(fc) - float32
-................Add - float32
-..................Id(fc) - float32
-..................Id(fe) - float32
-..............If
-................Id(bafcj) - bool
-................Block
-..................For
-....................Call - bool
-......................Id(fcf) - ()
-....................Block
-......................Assign - int
-........................Id(fcjib) - int
-........................Sub - int
-..........................Add - int
-............................Add - int
-..............................Id(fcjia) - int
-..............................Div - int
-................................Call - int
-..................................Id(fcb) - ()
-................................IntLit(12) - int
-............................Call - int
-..............................Id(fcg) - (int,float32)
-..............................Add - int
-................................Id(ia) - int
-................................Id(iafcj) - int
-..............................Id(fa) - float32
-..........................Id(ibfcj) - int
-......................Assign - float32
-........................Id(fbfcj) - float32
-........................Id(fafcj) - float32
-................Block
-........Block
-......For
-........Id(bb) - bool
-........Block
-..........If
-............Id(bc) - bool
-............Block
-..............Assign - bool
-................Id(bd) - bool
-................And - bool
-..................Id(bd) - bool
-..................Id(ba) - bool
-..............Assign - bool
-................Id(bd) - bool
-................Or - bool
-..................And - bool
-....................Id(ba) - bool
-....................Call - bool
-......................Id(fcf) - ()
-..................And - bool
-....................Id(bd) - bool
-....................Not - bool
-......................Id(bc) - bool
-............Block
-......Return
 ........Minus - int
-..........IntLit(101) - int
-..FuncDecl
-....FuncHeader
-......Id(main)
-......FuncParams
-....FuncBody
-......Assign - int
-........Id(ia) - int
-........IntLit(1) - int
-......Assign - int
-........Id(ib) - int
-........IntLit(1) - int
-......Assign - int
-........Id(ic) - int
-........IntLit(1) - int
-......Assign - int
-........Id(id) - int
-........IntLit(1) - int
-......Assign - int
-........Id(ie) - int
-........IntLit(1) - int
-......Assign - float32
-........Id(fa) - float32
-........RealLit(.1) - float32
-......Assign - float32
-........Id(fb) - float32
-........RealLit(.1) - float32
-......Assign - float32
-........Id(fc) - float32
-........RealLit(.1) - float32
-......Assign - float32
-........Id(fd) - float32
-........RealLit(.1) - float32
-......Assign - float32
-........Id(fe) - float32
-........RealLit(.1) - float32
-......VarDecl
-........Int
-........Id(mia)
-......VarDecl
-........Int
-........Id(mib)
-......For
-........And - bool
-..........Gt - bool
-............Id(ia) - int
-............Id(ib) - int
-..........Call - bool
-............Id(fcf) - ()
-........Block
-..........If
-............Gt - bool
-..............Call - int
-................Id(fcb) - ()
-..............Call - int
-................Id(fcj) - (int,int,float32,float32,bool)
-................Call - int
-..................Id(fcg) - (int,float32)
-..................Call - int
-....................Id(fcb) - ()
-..................Id(fe) - float32
-................Id(mia) - int
-................Call - float32
-..................Id(fci) - (int,int,float32,float32,string)
-..................Call - int
-....................Id(fcg) - (int,float32)
-....................Call - int
-......................Id(fcb) - ()
-....................Call - float32
-......................Id(fcd) - ()
-..................IntLit(123) - int
-..................Call - float32
-....................Id(fch) - (int,float32,string)
-....................Id(ia) - int
-....................Call - float32
-......................Id(fcd) - ()
-....................Call - string
-......................Id(fce) - ()
-..................Call - float32
-....................Id(fcd) - ()
-..................Id(sc) - string
-................Call - float32
-..................Id(fcd) - ()
-................Call - bool
-..................Id(fcf) - ()
-............Block
-..............Assign - int
-................Id(mib) - int
-................Call - int
-..................Id(fcj) - (int,int,float32,float32,bool)
-..................IntLit(12) - int
-..................Id(ia) - int
-..................Id(fa) - float32
-..................RealLit(.1e12) - float32
-..................Id(ba) - bool
-............Block
-..............Assign - int
-................Id(mib) - int
-................Add - int
-..................Id(ia) - int
-..................Call - int
-....................Id(fcb) - ()
-......Assign - int
-........Id(mia) - int
-........Add - int
-..........Id(mib) - int
-..........Call - int
-............Id(fcj) - (int,int,float32,float32,bool)
-............Add - int
-..............IntLit(123) - int
-..............Call - int
-................Id(fcg) - (int,float32)
-................Add - int
-..................IntLit(456) - int
-..................Call - int
-....................Id(fcb) - ()
-................Add - float32
-..................Call - float32
-....................Id(fcd) - ()
-..................RealLit(123.321) - float32
-............Add - int
-..............Sub - int
-................Add - int
-..................Id(ia) - int
-..................Id(ib) - int
-................Div - int
-..................Id(ic) - int
-..................IntLit(12) - int
 ..............Mod - int
+..........Mod - int
+..............Mul - float32
 ................Mul - int
-..................Id(id) - int
-..................Id(ie) - int
-................Call - int
-..................Id(fcg) - (int,float32)
-..................Call - int
-....................Id(fcb) - ()
-..................Id(fa) - float32
-............Call - float32
-..............Id(fci) - (int,int,float32,float32,string)
-..............Add - int
-................Id(ia) - int
-................Id(ib) - int
-..............IntLit(123) - int
-..............Sub - float32
-................Id(fa) - float32
-................Div - float32
-..................Call - float32
-....................Id(fcd) - ()
-..................RealLit(.1e12) - float32
-..............Call - float32
-................Id(fcd) - ()
-..............Call - string
-................Id(fce) - ()
-............Call - float32
-..............Id(fch) - (int,float32,string)
-..............Add - int
-................IntLit(312) - int
-................IntLit(12) - int
-..............Add - float32
-................Call - float32
-..................Id(fcd) - ()
-................RealLit(.1e23) - float32
-..............Call - string
-................Id(fce) - ()
+............Mul - int
+....................Not - bool
+................Or - bool
 ............Or - bool
-..............And - bool
-................Call - bool
-..................Id(fcf) - ()
-................Id(ba) - bool
-..............Id(bb) - bool
+........ParamDecl
+........ParamDecl
+........ParamDecl
+........ParamDecl
+........ParamDecl
+........ParamDecl
+........ParamDecl
+........ParamDecl
+........ParamDecl
+........ParamDecl
+........ParamDecl
+........ParamDecl
+........ParamDecl
+........ParamDecl
+........ParamDecl
+..........Print
+......Print
+Program
+..........RealLit(0.007) - float32
+................RealLit(.01) - float32
+........RealLit(.01) - float32
+..................RealLit(123.321) - float32
+..................RealLit(.1e12) - float32
+..................RealLit(.1e12) - float32
+..........RealLit(.1e1) - float32
+................RealLit(.1e23) - float32
+........RealLit(.1) - float32
+........RealLit(.1) - float32
+........RealLit(.1) - float32
+........RealLit(.1) - float32
+........RealLit(.1) - float32
+..........Return
+..........Return
+..........Return
+......Return
+......Return
+......Return
+......Return
+......Return
+......Return
+......Return
+return		bool
+return		float32
+return		float32
+return		float32
+return		int
+return		int
+return		int
+return		none
+return		none
+return		string
+safch		string	param
+safci		string	param
+sa		string
+sb		string
+sc		string
+strfce		string
+..........String
+..........String
+........String
+......String
+....String
+....String
+....String
+..............Sub - float32
+........................Sub - int
+..............Sub - int
+........Sub - int
+......VarDecl
+......VarDecl
+......VarDecl
+......VarDecl
+......VarDecl
+......VarDecl
+......VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl

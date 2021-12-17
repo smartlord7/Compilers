@@ -1,124 +1,124 @@
-===== Global Symbol Table =====
-i		float32
-f		int
-s		bool
-b		string
-main	()	none
 
-===== Function main() Symbol Table =====
-return		none
-i		int
-f		float32
-s		string
+
+..........Add - int
+........Add - int
+........And - bool
+......Assign - bool
+......Assign - bool
+......Assign - bool
+......Assign - bool
+......Assign - float32
+......Assign - float32
+......Assign - float32
+......Assign - float32
+......Assign - float32
+......Assign - int
+......Assign - int
+......Assign - int
+......Assign - int
 b		bool
-
-Program
-..VarDecl
-....Float32
-....Id(i)
-..VarDecl
-....Int
-....Id(f)
-..VarDecl
+........Bool
 ....Bool
-....Id(s)
-..VarDecl
-....String
-....Id(b)
+b		string
+............Div - int
+........Div - int
+........Eq - bool
+........Eq - bool
+f		float32
+f		int
+........Float32
+....Float32
+....FuncBody
 ..FuncDecl
 ....FuncHeader
-......Id(main)
 ......FuncParams
-....FuncBody
-......Assign - float32
-........Id(i) - float32
-........RealLit(1.1) - float32
-......VarDecl
-........Int
-........Id(i)
-......Assign - int
-........Id(i) - int
-........IntLit(1) - int
-......VarDecl
-........Float32
-........Id(f)
-......VarDecl
-........String
-........Id(s)
-......VarDecl
-........Bool
+===== Function main() Symbol Table =====
+===== Global Symbol Table =====
 ........Id(b)
-......Assign - bool
+....Id(b)
+..........Id(b) - bool
+..........Id(b) - bool
+..........Id(b) - bool
+..........Id(b) - bool
 ........Id(b) - bool
-........Ne - bool
-..........Id(i) - int
-..........Id(i) - int
-......Assign - bool
 ........Id(b) - bool
-........Eq - bool
+........Id(b) - bool
+........Id(b) - bool
+........Id(f)
+....Id(f)
 ..........Id(f) - float32
 ..........Id(f) - float32
-......Assign - bool
-........Id(b) - bool
-........And - bool
-..........Id(b) - bool
-..........Id(b) - bool
-......Assign - bool
-........Id(b) - bool
-........Eq - bool
-..........Id(b) - bool
-..........Id(b) - bool
-......Assign - int
-........Id(i) - int
-........Add - int
-..........Id(i) - int
-..........Id(i) - int
-......Assign - int
-........Id(i) - int
-........Div - int
-..........Id(i) - int
-..........Id(i) - int
-......Assign - float32
+..........Id(f) - float32
+..........Id(f) - float32
+..........Id(f) - float32
+..........Id(f) - float32
+..........Id(f) - float32
+..........Id(f) - float32
 ........Id(f) - float32
-........Mul - float32
-..........Id(f) - float32
-..........Id(f) - float32
-......Assign - float32
 ........Id(f) - float32
-........Sub - float32
-..........Id(f) - float32
-..........Id(f) - float32
-......Assign - int
-........Id(i) - int
-........Sub - int
-..........Add - int
-............Mod - int
-..............Id(i) - int
-..............Id(i) - int
-............Mod - int
-..............Mul - int
-................Mod - int
+........Id(f) - float32
+........Id(f) - float32
+........Id(i)
+....Id(i)
+........Id(i) - float32
 ..................Id(i) - int
 ..................Id(i) - int
 ................Id(i) - int
+................Id(i) - int
+................Id(i) - int
 ..............Id(i) - int
-..........Mod - int
-............Div - int
-..............Mod - int
-................Id(i) - int
-................Id(i) - int
+..............Id(i) - int
+..............Id(i) - int
 ..............Id(i) - int
 ............Id(i) - int
-......Assign - float32
-........Id(f) - float32
-........Minus - float32
-..........Id(f) - float32
-......Assign - float32
-........Id(f) - float32
-........Plus - float32
-..........Id(f) - float32
-......Print
-........Id(s) - string
-......ParseArgs - int
+..........Id(i) - int
+..........Id(i) - int
+..........Id(i) - int
+..........Id(i) - int
+..........Id(i) - int
+..........Id(i) - int
 ........Id(i) - int
+........Id(i) - int
+........Id(i) - int
+........Id(i) - int
+........Id(i) - int
+......Id(main)
+........Id(s)
+....Id(s)
+........Id(s) - string
+i		float32
+i		int
+........Int
+....Int
 ........IntLit(1) - int
+........IntLit(1) - int
+main	()	none
+........Minus - float32
+................Mod - int
+..............Mod - int
+............Mod - int
+............Mod - int
+..........Mod - int
+........Mul - float32
+..............Mul - int
+........Ne - bool
+......ParseArgs - int
+........Plus - float32
+......Print
+Program
+........RealLit(1.1) - float32
+return		none
+s		bool
+s		string
+........String
+....String
+........Sub - float32
+........Sub - int
+......VarDecl
+......VarDecl
+......VarDecl
+......VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
+..VarDecl
